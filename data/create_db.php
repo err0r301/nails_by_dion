@@ -1,0 +1,164 @@
+<?php  
+// Include the config file
+error_reporting(E_ALL);  
+ini_set('display_errors', 1);  
+
+// Parse the config file
+$config = parse_ini_file(__DIR__ . "/../config.ini", true);
+
+$host = $config["database"]["DB_HOST"];
+$dbName = $config["database"]["DB_NAME"];
+$username = $config["database"]["DB_USER"];
+$password = $config["database"]["DB_PASSWORD"];
+
+// Create a connection to the MySQL server without selecting a database  
+$conn = new mysqli($host, $username, $password);  
+
+// Check connection  
+if ($conn->connect_error) {  
+    die("Connection failed: " . $conn->connect_error);  
+}  
+
+// Check if the database exists     
+$result = $conn->query("SHOW DATABASES LIKE '$dbName'");  
+
+if ($result) {  
+    if ($result->num_rows > 0) {  
+        echo "The '$dbName' database already exists.\n";  
+    } else {  
+        // SQL to create a database  
+        if ($conn->query("CREATE DATABASE $dbName") === TRUE) {  
+            echo "Database '$dbName' created successfully.\n";  
+            // Select the database after creation  
+            $conn->select_db($dbName);  
+            // Create tables  
+            createUserTable($conn);   
+            createServiceTable($conn);  
+            createAppointmentTable($conn);  
+            createGalleryTable($conn);  
+            createInventoryTable($conn);  
+            createAdminTable($conn);  
+            createNotificationTable($conn);  
+            createAvailabilityTable($conn);  
+        } else {  
+            echo "Error creating database: " . $conn->error . "\n";  
+        }  
+    }  
+} else {  
+    echo "Query failed: " . $conn->error;  
+} 
+
+// Close the connection  
+$conn->close();  
+
+function confirmQuery($conn, $sql, $tableName) {
+    if ($conn->query($sql) === TRUE) {  
+        echo "$tableName table created successfully.\n";  
+    } else {  
+        echo "Error creating table: " . $conn->error . "\n";  
+    }
+}
+
+function createUserTable($conn) {
+    $sql = "CREATE TABLE user (
+        userID INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        cell VARCHAR(255),
+        password VARCHAR(255) NOT NULL,
+        userType VARCHAR(255) DEFAULT 'Client'
+    )"; 
+    
+    confirmQuery($conn, $sql, "User" );
+}
+
+function createServiceTable($conn) {
+    $sql = "CREATE TABLE service (
+        serviceID INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        description VARCHAR(255) NOT NULL,
+        price VARCHAR(255) NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        category VARCHAR(255) NOT NULL,
+        duration VARCHAR(255) NOT NULL,
+        status VARCHAR(255) NOT NULL
+    )";
+
+    confirmQuery($conn, $sql, "Service");
+}
+
+function createAppointmentTable($conn) {
+    $sql = "CREATE TABLE appointment (
+        appointmentID INT AUTO_INCREMENT PRIMARY KEY,
+        userID INT NOT NULL,
+        serviceID INT NOT NULL,
+        bookedDateTime DATETIME NOT NULL,
+        scheduledDateTime DATETIME NOT NULL,
+        status VARCHAR(255) NOT NULL DEFAULT 'Pending',
+        FOREIGN KEY (userID) REFERENCES user(userID),
+        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+    )";
+
+    confirmQuery($conn, $sql, "Appointment");
+}
+
+function createInventoryTable($conn) {
+    $sql = "CREATE TABLE inventory (
+        inventoryID INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        stock INT NOT NULL,
+        image VARCHAR(255) NOT NULL
+    )";
+
+    confirmQuery($conn, $sql, "Inventory");
+}
+
+function createAdminTable($conn) {
+    $sql = "CREATE TABLE admin (
+        adminID INT AUTO_INCREMENT PRIMARY KEY,
+        userID INT NOT NULL,
+        profileImage VARCHAR(255) NOT NULL,
+        accessLevel VARCHAR(255) NOT NULL,
+        role VARCHAR(255) NOT NULL,
+        FOREIGN KEY (userID) REFERENCES user(userID)
+    )";
+
+    confirmQuery($conn, $sql, "Admin");
+}   
+
+function createNotificationTable($conn) {
+    $sql = "CREATE TABLE notification (
+        notificationID INT AUTO_INCREMENT PRIMARY KEY,
+        userID INT NOT NULL,
+        message VARCHAR(255) NOT NULL,
+        status VARCHAR(255) NOT NULL DEFAULT 'Unread',
+        date DATETIME NOT NULL,
+        FOREIGN KEY (userID) REFERENCES user(userID)
+    )";
+
+    confirmQuery($conn, $sql, "Notification");
+}
+
+function createGalleryTable($conn) {
+    $sql = "CREATE TABLE gallery (
+        galleryID INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        date DATETIME NOT NULL
+    )";
+
+    confirmQuery($conn, $sql, "Gallery");
+}
+
+function createAvailabilityTable($conn) {
+    $sql = "CREATE TABLE availability (
+        availabilityID INT AUTO_INCREMENT PRIMARY KEY,
+        serviceID INT NOT NULL,
+        date Date NOT NULL,
+        startTime Time NOT NULL,
+        endTime Time NOT NULL,
+        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+    )";
+
+    confirmQuery($conn, $sql, "Availability");
+}
