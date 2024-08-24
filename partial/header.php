@@ -26,19 +26,18 @@
           <a href="index.php" class="navbar-link" data-nav-link>Home</a>
         </li>
 
+        <li class="<?php if ($page == 'service'){echo "active-link";}?> navbar-item">
+          <a href="service.php" class="navbar-link" data-nav-link>Services</a>
+        </li>
+
         <li class="<?php if ($page == 'appointment'){echo "active-link";}?> navbar-item">
-          <a href="appointments.php" class="navbar-link" data-nav-link>Appointments</a>
+          <a href="appointment.php" class="navbar-link" data-nav-link>Appointments</a>
         </li>
 
          <li class="<?php if ($page == 'gallery'){echo "active-link";}?> navbar-item">
           <a href="gallery.php" class="navbar-link" data-nav-link>Gallery</a>
         </li>
 
-<!--
-        <li class="<?php if ($page == 'contact'){echo "active-link";}?> navbar-item">
-          <a href="contact.php" class="navbar-link" data-nav-link>Contact</a>
-        </li>
--->
         <li class="navbar-item" style="<?php if (isset($_SESSION["user"])){echo "display: none;";}else{echo "display: flex;";}?>">
           <a href="../auth/login.php" class="navbar-link" data-nav-link>Login</a>
         </li>
