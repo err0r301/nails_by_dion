@@ -13,9 +13,9 @@
   </div>
 
   <ul class="sidebar-list">
-    <a href="dashboard.php">
+    <a href="overview.php">
       <li class="sidebar-list-item">
-        Dashboard
+        Overview
       </li>
     </a>
 
