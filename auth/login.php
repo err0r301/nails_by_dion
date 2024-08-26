@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="input-field">
-                    <input id="login_password" type="password" name="text" placeholder="" autocomplete="off"/>
-                    <label for="login_password">Password</label>
+                    <input id="password" type="password" name="password" placeholder="" autocomplete="off"/>
+                    <label for="password">Password</label>
                 </div>
                 
                 <button class="btn">Sign in</button>

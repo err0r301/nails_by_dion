@@ -4,9 +4,9 @@ require_once '../data/config.php';
 $error =  false;
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "<script> console.log('pwd :$_POST[login_password]')</script>";
-    if (isset($_POST['login_password'])){
-    $pwd = $_POST['login_password'];
+    echo "<script> console.log('pwd :$_POST[password]')</script>";
+    if (isset($_POST['password'])){
+    $pwd = $_POST['password'];
     }else{
         $error = true;
     }
