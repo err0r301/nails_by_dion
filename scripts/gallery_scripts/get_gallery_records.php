@@ -1,6 +1,6 @@
 <?php
 // Include the config file
-require_once 'data/config.php';
+require_once '../data/config.php';
 
 // get the gallery data from the database
 $query = "SELECT * FROM gallery";

@@ -1,28 +1,33 @@
 <?php
 // Include the config file
-require_once 'config.php';
-require 'validate_input.php';
-
+require_once '../data/config.php';
+require '../scripts/validate_input.php';
+$error = null;
+$success = null;
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $cell = $_POST['cell'];
-    $password = $_POST['password'];
+    $pwd = $_POST['password'];
 
     // error massages
-    $error_name = validateName($name);
-    $error_email = validateEmail($email);
-    $error_cell = validateCell($cell);
-    $error_password = validatePassword($password);
+    
+    $error = validatePassword($pwd,$error);  // not working
+    $error = validateCell($cell,$error);
+    $error = validateEmail($email,$error);
+    $error = validateName($name,$error);
+    echo"<script> console.log('error :$error pwd len :".strlen($pwd)."')</script>";
+    
+    
 
     // Validate the form data
-    if ( is_null($error_name) && is_null($error_email) && is_null($error_cell) && is_null($error_password)) {
+    if ( is_null($error)) {
         // Hash the password
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $password_hash = password_hash($pwd, PASSWORD_DEFAULT);
 
         // Insert the user data into the database
-        $query = "INSERT INTO users (name, email, cell, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO user (name, email, cell, password) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ssss", $name, $email, $cell, $password_hash);
         $stmt->execute();
@@ -31,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->affected_rows == 1) {
             $success = 'User created successfully';
             $stmt->close();
-            $conn->close();
         } else {
             $error = 'Failed to create user';
         }
     }
+
+    $conn->close();
 }

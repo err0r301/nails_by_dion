@@ -1,7 +1,7 @@
 <?php
 function removeUser( $userID) {
     // Include the config file
-    require_once 'data/config.php';
+    require_once '../data/config.php';
 
     // remove the user data from the database
     $query = "DELETE FROM user WHERE userID = $userID";

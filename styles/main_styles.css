@@ -30,14 +30,15 @@ body {
     min-width: 100vw;
 }
 .form-container {
-  padding: 30px;
+  padding: 30px;;
   border-radius: 20px;
-  max-width: 500px;
+  width: 400px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 2px 3px #000d3848, inset 0px 5px 5px var(--secondary),
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 0px 0px var(--secondary),
     inset 0px -2px 3px var(--accent);
   background-color: var(--background);
 }
@@ -53,6 +54,24 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.error{
+  background-color: rgb(255,220,224);
+  border: solid 1px rgb(251, 157, 157);
+  font-weight: bolder;
+  width: 300px;
+  padding: 20px;
+  margin-bottom:20px;
+  text-align: center;
+  font-size: 1rem;
+  display: none;
+}
+
+.error p{
+  margin: 0;
+  color: red;;
+
 }
 
 .form .btn {
@@ -104,7 +123,7 @@ body {
 }
 
 .input-field input:focus ~ label,
-.input-field input:valid ~ label {
+.input-field input:not(:placeholder-shown) ~ label {
   transform: translateY(-51%) translateX(-10px) scale(0.8);
   background: linear-gradient(180deg, var(--background), var(--light));
   padding: 0px 5px;
@@ -113,4 +132,9 @@ body {
   letter-spacing: 1px;
   border: none;
   border-radius: 100px;
+}
+
+.link{
+  text-decoration: none;
+  color: rgb(38, 38, 217);
 }

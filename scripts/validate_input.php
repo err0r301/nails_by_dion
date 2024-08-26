@@ -1,26 +1,24 @@
 <?php
 //validate input
-function validateName($name) {
+function validateName($name,$error) {
     if (empty(trim($name))) {
-        return "*";
-    } elseif (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-        return "Only letters allowed";
+        return "Name is required";
     } else {
-        return null;
+        return $error;
     }
 }
 
-function validateEmail($email) {
+function validateEmail($email,$error) {
     if (empty(trim($email))) {
-        return "*";
+        return "Email is required";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return "Invalid email format";
     } else {
-        return null;
+        return $error;
     }
 }
 
-function validateCell($cell) {
+function validateCell($cell,$error) {
     if (!empty(trim($cell))) {
         if (!preg_match("/^[0-9]*$/", $cell)) {
             return "no characters allowed";
@@ -33,13 +31,14 @@ function validateCell($cell) {
         }
     }
 
-    return null;
+    return $error;
 }
 
-function validatePassword($password) {
+function validatePassword($password,$error) {
+    $pwdL = strlen($password);
     if (empty(trim($password))) {
-        return "*";
-    } elseif (strlen($password) < 8) {
+        return "Password is required";
+    } elseif (strlen($pwdL) < 8) {
         return "Password must be 8 characters or longer";
     } elseif (!preg_match("#[0-9]+#", $password)) {
         return "Password must contain a number";
@@ -50,7 +49,7 @@ function validatePassword($password) {
     } elseif (!preg_match("#\W+#", $password)) {
         return "Password must contain a special character";
     } else {
-        return null;
+        return $error;
     }
 }
 
