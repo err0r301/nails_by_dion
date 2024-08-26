@@ -38,7 +38,7 @@ function validatePassword($password,$error) {
     $pwdL = strlen($password);
     if (empty(trim($password))) {
         return "Password is required";
-    } elseif (strlen($pwdL) < 8) {
+    } elseif ($pwdL < 8) {
         return "Password must be 8 characters or longer";
     } elseif (!preg_match("#[0-9]+#", $password)) {
         return "Password must contain a number";

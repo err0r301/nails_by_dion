@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // password is correct
             session_start();
             $_SESSION['user'] = $row;
-            if ($row['user']['userType'] == 'Client') {
+            if ($_SESSION['user']['userType'] == 'Client') {
                 header("Location: ../client/index.php");
                 exit;
             } elseif ($_SESSION['user']['userType'] == 'Admin') {
