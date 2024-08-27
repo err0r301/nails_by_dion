@@ -62,11 +62,11 @@ function confirmQuery($conn, $sql, $tableName) {
 function createUserTable($conn) {
     $sql = "CREATE TABLE user (
         userID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        cell VARCHAR(255),
-        password VARCHAR(255) NOT NULL,
-        userType VARCHAR(255) DEFAULT 'Client'
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(60) NOT NULL,
+        cell VARCHAR(15),
+        password VARCHAR(300) NOT NULL,
+        userType VARCHAR(10) DEFAULT 'Client'
     )"; 
     
     confirmQuery($conn, $sql, "User" );
@@ -75,13 +75,13 @@ function createUserTable($conn) {
 function createServiceTable($conn) {
     $sql = "CREATE TABLE service (
         serviceID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        description VARCHAR(255) NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        description VARCHAR(300) NOT NULL,
         price FLOAT NOT NULL,
-        image VARCHAR(255) NOT NULL,
-        category VARCHAR(255) NOT NULL,
-        duration VARCHAR(255) NOT NULL,
-        status VARCHAR(255) NOT NULL
+        image BLOB NOT NULL,
+        category VARCHAR(30) NOT NULL,
+        duration TIME NOT NULL,
+        status VARCHAR(20) NOT NULL
     )";
 
     confirmQuery($conn, $sql, "Service");
@@ -94,7 +94,7 @@ function createAppointmentTable($conn) {
         serviceID INT NOT NULL,
         bookedDateTime DATETIME NOT NULL,
         scheduledDateTime DATETIME NOT NULL,
-        status VARCHAR(255) NOT NULL DEFAULT 'Pending',
+        status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID),
         FOREIGN KEY (serviceID) REFERENCES service(serviceID)
     )";
@@ -105,9 +105,9 @@ function createAppointmentTable($conn) {
 function createInventoryTable($conn) {
     $sql = "CREATE TABLE inventory (
         inventoryID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
+        name VARCHAR(100) NOT NULL,
         stock INT NOT NULL,
-        image VARCHAR(255) NOT NULL
+        image BLOB NOT NULL
     )";
 
     confirmQuery($conn, $sql, "Inventory");
@@ -117,9 +117,9 @@ function createAdminTable($conn) {
     $sql = "CREATE TABLE admin (
         adminID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
-        profileImage VARCHAR(255) NOT NULL,
-        accessLevel VARCHAR(255) NOT NULL,
-        role VARCHAR(255) NOT NULL,
+        profileImage BLOB NOT NULL,
+        accessLevel VARCHAR(30) NOT NULL DEFAULT 'Admin',
+        role VARCHAR(50) NOT NULL,
         FOREIGN KEY (userID) REFERENCES user(userID)
     )";
 
@@ -130,8 +130,8 @@ function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
-        message VARCHAR(255) NOT NULL,
-        status VARCHAR(255) NOT NULL DEFAULT 'Unread',
+        message VARCHAR(300) NOT NULL,
+        status VARCHAR(10) NOT NULL DEFAULT 'Unread',
         date DATETIME NOT NULL,
         FOREIGN KEY (userID) REFERENCES user(userID)
     )";
@@ -142,8 +142,8 @@ function createNotificationTable($conn) {
 function createGalleryTable($conn) {
     $sql = "CREATE TABLE gallery (
         galleryID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        image VARCHAR(255) NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        image BLOB NOT NULL,
         date DATETIME NOT NULL
     )";
 
