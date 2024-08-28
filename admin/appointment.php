@@ -24,7 +24,7 @@
             $pending = 0;
             $completed = 0;
             $cancelled = 0;
-            $id = null;
+
             foreach ($appointments as $appointment) {
                 switch ($appointment['status']) {
                     case 'Pending':
@@ -38,57 +38,9 @@
                         break;
                 }
             }
-
-            if(isset($_POST['delete'])){
-                $id = $_POST['id'];
-                unset($appointments[$id]);
-                file_put_contents($filePath, json_encode($appointments, JSON_PRETTY_PRINT));
-            }
-
-            if(isset($_POST['add'])){
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $date = $_POST['date'];
-                $time = $_POST['time'];
-                $service = $_POST['service'];
-                $data = [
-                    'id' => count($appointments) + 1,
-                    'name' => $name,
-                    'email' => $email,
-                    'date' => $date,
-                    'time' => $time,
-                    'status' => 'Pending',
-                    'service' => $service
-                ];
-                
-                $appointments[] = $data;
-                file_put_contents($filePath, json_encode($appointments, JSON_PRETTY_PRINT));
-            }
-
-            if(isset($_POST['update'])){
-                $id = $_POST['id']-1;
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $date = $_POST['date'];
-                $time = $_POST['time'];
-                $status = $_POST['status'];
-                $service = $_POST['service'];
-
-                $data = [
-                    'id' => $_POST['id'],
-                    'name' => $name,
-                    'email' => $email,
-                    'date' => $date,
-                    'time' => $time,
-                    'status' => $status,
-                    'service' => $service
-                ];
-                $appointments[$id] = $data;
-                file_put_contents($filePath, json_encode($appointments, JSON_PRETTY_PRINT));
-            }
-        ?>       
+        ?>    
         <!--popups-->
-        <!--view popup-->
+        
         <div class="popup" id="popup-view-appointment">
             <div class="overlay" onclick="togglePopup_view(null)"></div>
             <div class="content">
@@ -118,7 +70,7 @@
             </div>
         </div>
 
-        <!--add popup-->
+        
         <div class="popup" id="popup-add-appointment">
             <div class="overlay" onclick="togglePopup_add('popup-add-appointment')"></div>
             <div class="content">
@@ -151,7 +103,7 @@
             </div>
         </div>
 
-        <!--delete popup-->
+
         <div class="popup" id="popup-delete-appointment">
             <div class="overlay" onclick="togglePopup_delete(null)"></div>
             <div class="content">
@@ -165,7 +117,7 @@
             </div>
         </div>
 
-        <!--edit popup-->
+        
         <div class="popup" id="popup-edit-appointment">
             <div class="overlay" onclick="togglePopup_edit(null)"></div>
             <div class="content">
