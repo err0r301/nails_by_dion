@@ -32,12 +32,12 @@ if ($result) {
             // Select the database after creation  
             $conn->select_db($dbName);  
             // Create tables  
-            createUserTable($conn);   
+            createUserTable($conn);
+            createAdminTable($conn);    
             createServiceTable($conn);  
             createAppointmentTable($conn);  
             createGalleryTable($conn);  
-            createInventoryTable($conn);  
-            createAdminTable($conn);  
+            createInventoryTable($conn);   
             createNotificationTable($conn);  
             createAvailabilityTable($conn);  
         } else {  
@@ -87,15 +87,30 @@ function createServiceTable($conn) {
     confirmQuery($conn, $sql, "Service");
 }
 
+function createAdminTable($conn) {
+    $sql = "CREATE TABLE admin (
+        adminID INT AUTO_INCREMENT PRIMARY KEY,
+        userID INT NOT NULL,
+        profileImage BLOB NOT NULL,
+        accessLevel VARCHAR(30) NOT NULL DEFAULT 'Admin',
+        role VARCHAR(50) NOT NULL,
+        FOREIGN KEY (userID) REFERENCES user(userID)
+    )";
+
+    confirmQuery($conn, $sql, "Admin");
+}  
+
 function createAppointmentTable($conn) {
     $sql = "CREATE TABLE appointment (
         appointmentID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
+        adminID INT NOT NULL,
         serviceID INT NOT NULL,
         bookedDateTime DATETIME NOT NULL,
         scheduledDateTime DATETIME NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID),
+        FOREIGN KEY (adminID) REFERENCES admin(adminID),
         FOREIGN KEY (serviceID) REFERENCES service(serviceID)
     )";
 
@@ -111,20 +126,7 @@ function createInventoryTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Inventory");
-}
-
-function createAdminTable($conn) {
-    $sql = "CREATE TABLE admin (
-        adminID INT AUTO_INCREMENT PRIMARY KEY,
-        userID INT NOT NULL,
-        profileImage BLOB NOT NULL,
-        accessLevel VARCHAR(30) NOT NULL DEFAULT 'Admin',
-        role VARCHAR(50) NOT NULL,
-        FOREIGN KEY (userID) REFERENCES user(userID)
-    )";
-
-    confirmQuery($conn, $sql, "Admin");
-}   
+} 
 
 function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
