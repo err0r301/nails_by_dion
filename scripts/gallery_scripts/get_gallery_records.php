@@ -1,14 +1,17 @@
 <?php
-// Include the config file
-require_once '../data/config.php';
+function getGalleryRecords() {
+    // Include the config file
+    require_once '../data/config.php';
 
-// get the gallery data from the database
-$query = "SELECT * FROM gallery";
-$result = $conn->query($query);
+    // get the gallery data from the database
+    $query = "SELECT * FROM gallery";
+    $gallery_result = $conn->query($query);
 
-// Check if the data was retrieved successfully
-if ($result->num_rows <= 0) {
-    echo "No gallery records found";                                   ////////////////////////
+    // Check if the data was retrieved successfully
+    if ($gallery_result->num_rows <= 0) {
+        echo "No gallery records found";                                   ////////////////////////
+    }
+    // Close the connection
+    $conn->close();
+    return $gallery_result;
 }
-// Close the connection
-$conn->close();

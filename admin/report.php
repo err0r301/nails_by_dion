@@ -1,7 +1,6 @@
 <?php
-    $filePath = __DIR__ . '/../data/services.json';
-    $servicesData = file_get_contents($filePath);
-    $services = json_decode($servicesData, true);
+    error_reporting(E_ALL);  
+    ini_set('display_errors', 1); 
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +63,10 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            $sales = 0;
+            /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
                 $sales += $services[$i]['month-revenue'];
-            }
+            }*/
         ?>
         
         <main class="main-container">

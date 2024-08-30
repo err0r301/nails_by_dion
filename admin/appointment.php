@@ -1,9 +1,3 @@
-<?php
-    $filePath = __DIR__ . '/../data/appointments.json';
-    $appointmentsData = file_get_contents($filePath);
-    $appointments = json_decode($appointmentsData, true);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +14,13 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            //include 'scripts/appointment_scripts/get_appointments.php';
 
             $pending = 0;
             $completed = 0;
             $cancelled = 0;
+
+            //$appointments = getAppointments();
 
             foreach ($appointments as $appointment) {
                 switch ($appointment['status']) {
@@ -217,7 +214,12 @@
                             <th onclick="sortTable(3,'appointment_table','appointment_arrow_4')">Date<i class="arrow" id="appointment_arrow_4"></i></th>
                             <th onclick="sortTable(4,'appointment_table','appointment_arrow_5')">Time<i class="arrow" id="appointment_arrow_5"></i></th>
                             <th>
-                                <select name="status" id="status" onchange="getValue()">
+                                <select name="stylist" id="stylist" class="table-selector" onchange="getValue()">
+                                  <option value="All">Stylists</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select name="status" id="status" class="table-selector" onchange="getValue()">
                                   <option value="All">Appointments</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Complete">Complete</option>
@@ -229,8 +231,9 @@
                     </thead>
                     <tbody>
                         <?php 
+                            require ('../scripts/appointment_scripts/get_appointments.php');
+                            $appointments = $result->fetch_all(MYSQLI_ASSOC);
                             foreach ($appointments as $appointment) {
-                                $appointmentJson = json_encode($appointment);
                                 echo "
                                     <tr>
                                         <td>".$appointment['id']."</td>
@@ -238,6 +241,7 @@
                                         <td>".$appointment['email']."</td>
                                         <td>".$appointment['date']."</td>
                                         <td>".$appointment['time']."</td>
+                                        <td>".$appointment['stylist']."</td>
                                         <td>".$appointment['status']."</td>
                                         <td> 
                                             <input type='hidden' name='id' value=".$appointment['id'].">
