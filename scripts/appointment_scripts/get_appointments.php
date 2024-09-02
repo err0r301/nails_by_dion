@@ -1,5 +1,9 @@
 <?php
+
 function getAppointments(){
+    error_reporting(E_ALL);  
+    ini_set('display_errors', 1); 
+
     // Include the config file
     require_once '../data/config.php';
 

@@ -1,5 +1,4 @@
 <?php
-    //require ('../scripts/updatePwd.php');
     require ('../scripts/user_scripts/edit_user.php');
 ?>
 <!DOCTYPE html>

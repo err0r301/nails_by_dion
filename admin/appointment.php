@@ -209,10 +209,9 @@
                     <thead>
                         <tr>
                             <th onclick="sortTable(0,'appointment_table','appointment_arrow_1')">#<i class="arrow" id="appointment_arrow_1"></i></th>
-                            <th onclick="sortTable(1,'appointment_table','appointment_arrow_2')">Name<i class="arrow" id="appointment_arrow_2"></i></th>
-                            <th onclick="sortTable(2,'appointment_table','appointment_arrow_3')">E-mail<i class="arrow" id="appointment_arrow_3"></i></th>
-                            <th onclick="sortTable(3,'appointment_table','appointment_arrow_4')">Date<i class="arrow" id="appointment_arrow_4"></i></th>
-                            <th onclick="sortTable(4,'appointment_table','appointment_arrow_5')">Time<i class="arrow" id="appointment_arrow_5"></i></th>
+                            <th onclick="sortTable(1,'appointment_table','appointment_arrow_2')">Client<i class="arrow" id="appointment_arrow_2"></i></th>
+                            <th onclick="sortTable(2,'appointment_table','appointment_arrow_4')">Date<i class="arrow" id="appointment_arrow_4"></i></th>
+                            <th onclick="sortTable(3,'appointment_table','appointment_arrow_5')">Time<i class="arrow" id="appointment_arrow_5"></i></th>
                             <th>
                                 <select name="stylist" id="stylist" class="table-selector" onchange="getValue()">
                                   <option value="All">Stylists</option>
@@ -238,7 +237,6 @@
                                     <tr>
                                         <td>".$appointment['id']."</td>
                                         <td>".$appointment['name']."</td>
-                                        <td>".$appointment['email']."</td>
                                         <td>".$appointment['date']."</td>
                                         <td>".$appointment['time']."</td>
                                         <td>".$appointment['stylist']."</td>
@@ -247,7 +245,7 @@
                                             <input type='hidden' name='id' value=".$appointment['id'].">
                                             <button class='crud-btn btn-view' onclick='togglePopup_view(".$appointmentJson.")'><i class='fa fa-eye'></i></button>
                                             <button class='crud-btn btn-edit' onclick='togglePopup_edit(".$appointmentJson.")'><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn btn-delete' onclick='togglePopup_delete(".($appointment['id']-1).")'><i class='fa fa-trash-can'></i></button>
+                                            <button class='crud-btn btn-delete' onclick='togglePopup_delete(".($appointment['id']).")'><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr>
                                 ";

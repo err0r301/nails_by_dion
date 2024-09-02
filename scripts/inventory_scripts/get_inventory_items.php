@@ -13,5 +13,6 @@ function getInventoryItems() {
     }
     // Close the connection
     $conn->close();
+    echo "<script> console.log('Inventory list sent'); </script>";
     return $inventory_result;
 }

@@ -17,6 +17,7 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            include '../scripts/inventory_scripts/get_inventory.php';
         ?>
 
         <!--popups-->
@@ -73,7 +74,7 @@
         <!-- Main -->
         <main class="main-container">
             <div class="top">
-                <h1 class="main-title font-weight-bold">PRODUCTS</h1>
+                <h1 class="main-title font-weight-bold">INVENTORY</h1>
                 <button class="add-product-button">Add
                     Product</button>
             </div>
@@ -101,7 +102,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <?php
+                        $inventories = getInventoryItems();
+                        echo "<script>console.log('inventory: '.$inventories)</script>";
+                        foreach($inventories as $inventory){
+                            echo "<tr>
+                                    <td>$inventory->InventoryID</td>
+                                    <td>$inventory->name</td>
+                                    <td>$inventory->stock</td>
+                                    <td>$inventory->price</td>
+                                    <td>
+                                        <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
+                                        <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
+                                    </td>";
+                        }
+                        ?>
+                        <!--<tr>
                             <td>1</td>
                             <td>Shampoo</td>
                             <td>100</td>
@@ -150,7 +166,7 @@
                                 <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
                                 <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
                             </td>
-                        </tr>
+                        </tr>-->
                     </tbody>
                 </table>
             </div>
