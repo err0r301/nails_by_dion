@@ -39,8 +39,6 @@ if ($result) {
             createGalleryTable($conn);  
             createInventoryTable($conn);   
             createNotificationTable($conn);  
-            createTimeSlotTable($conn);
-            createAvailabilityTable($conn);  
         } else {  
             echo "Error creating database: " . $conn->error . "\n";  
         }  
@@ -108,6 +106,7 @@ function createAppointmentTable($conn) {
         adminID INT NOT NULL,
         serviceID INT NOT NULL,
         dateBooked DATETIME NOT NULL,
+        dateScheduled DATETIME NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID),
         FOREIGN KEY (adminID) REFERENCES admin(adminID),
@@ -149,27 +148,4 @@ function createGalleryTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Gallery");
-}
-
-function createTimeSlotTable($conn) {
-    $sql = "CREATE TABLE timeSlot (
-        timeSlotID INT AUTO_INCREMENT PRIMARY KEY,
-        startTime Time NOT NULL,
-        endTime Time NOT NULL
-    )";
-
-    confirmQuery($conn, $sql, "TimeSlot"); 
-}
-
-function createAvailabilityTable($conn) {
-    $sql = "CREATE TABLE availability (
-        availabilityID INT AUTO_INCREMENT PRIMARY KEY,
-        appointmentID INT NOT NULL,
-        timeSlotID INT NOT NULL,
-        date DATE NOT NULL,
-        FOREIGN KEY (appointmentID) REFERENCES appointment(appointmentID),
-        FOREIGN KEY (timeSlotID) REFERENCES timeSlot(timeSlotID)
-    )";
-
-    confirmQuery($conn, $sql, "Availability");
 }
