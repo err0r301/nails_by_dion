@@ -39,6 +39,7 @@ if ($result) {
             createGalleryTable($conn);  
             createInventoryTable($conn);   
             createNotificationTable($conn);  
+            createTimeSlotTable($conn);
             createAvailabilityTable($conn);  
         } else {  
             echo "Error creating database: " . $conn->error . "\n";  
@@ -65,7 +66,7 @@ function createUserTable($conn) {
         name VARCHAR(100) NOT NULL,
         email VARCHAR(60) NOT NULL,
         cell VARCHAR(15),
-        password VARCHAR(300) NOT NULL,
+        password VARCHAR(500) NOT NULL,
         userType VARCHAR(10) DEFAULT 'Client'
     )"; 
     
@@ -78,7 +79,7 @@ function createServiceTable($conn) {
         name VARCHAR(100) NOT NULL,
         description VARCHAR(300) NOT NULL,
         price FLOAT NOT NULL,
-        image BLOB NOT NULL,
+        image VARCHAR(150) NOT NULL,
         category VARCHAR(30) NOT NULL,
         duration TIME NOT NULL,
         status VARCHAR(20) NOT NULL
@@ -91,7 +92,7 @@ function createAdminTable($conn) {
     $sql = "CREATE TABLE admin (
         adminID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
-        profileImage BLOB NOT NULL,
+        profileImage VARCHAR(150) NOT NULL,
         accessLevel VARCHAR(30) NOT NULL DEFAULT 'Admin',
         role VARCHAR(50) NOT NULL,
         FOREIGN KEY (userID) REFERENCES user(userID)
@@ -106,8 +107,7 @@ function createAppointmentTable($conn) {
         userID INT NOT NULL,
         adminID INT NOT NULL,
         serviceID INT NOT NULL,
-        bookedDateTime DATETIME NOT NULL,
-        scheduledDateTime DATETIME NOT NULL,
+        dateBooked DATETIME NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID),
         FOREIGN KEY (adminID) REFERENCES admin(adminID),
@@ -122,7 +122,7 @@ function createInventoryTable($conn) {
         inventoryID INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         stock INT NOT NULL,
-        image BLOB NOT NULL
+        price FLOAT NOT NULL
     )";
 
     confirmQuery($conn, $sql, "Inventory");
@@ -144,22 +144,31 @@ function createNotificationTable($conn) {
 function createGalleryTable($conn) {
     $sql = "CREATE TABLE gallery (
         galleryID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        image BLOB NOT NULL,
+        image VARCHAR(150) NOT NULL,
         date DATETIME NOT NULL
     )";
 
     confirmQuery($conn, $sql, "Gallery");
 }
 
+function createTimeSlotTable($conn) {
+    $sql = "CREATE TABLE timeSlot (
+        timeSlotID INT AUTO_INCREMENT PRIMARY KEY,
+        startTime Time NOT NULL,
+        endTime Time NOT NULL
+    )";
+
+    confirmQuery($conn, $sql, "TimeSlot"); 
+}
+
 function createAvailabilityTable($conn) {
     $sql = "CREATE TABLE availability (
         availabilityID INT AUTO_INCREMENT PRIMARY KEY,
-        serviceID INT NOT NULL,
-        date Date NOT NULL,
-        startTime Time NOT NULL,
-        endTime Time NOT NULL,
-        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+        appointmentID INT NOT NULL,
+        timeSlotID INT NOT NULL,
+        date DATE NOT NULL,
+        FOREIGN KEY (appointmentID) REFERENCES appointment(appointmentID),
+        FOREIGN KEY (timeSlotID) REFERENCES timeSlot(timeSlotID)
     )";
 
     confirmQuery($conn, $sql, "Availability");

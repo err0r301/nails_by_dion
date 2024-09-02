@@ -31,9 +31,9 @@
       </li>
     </a>
 
-    <a href="product.php">
+    <a href="inventory.php">
       <li class="sidebar-list-item">
-          Products 
+          Inventory 
       </li>
     </a>
 <!--
