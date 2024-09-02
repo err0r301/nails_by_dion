@@ -83,7 +83,7 @@ $serviceQuery = "INSERT INTO service (serviceID, name, category, status, price, 
 checkInsert($conn, $serviceQuery, "Service");
 
 // insert appointment data
-$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, adminID, serviceID, dateBooked, status) 
+$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, adminID, serviceID, dateBooked, dateScheduled, status) 
                 VALUES 
                 (1, 6, 1, 1, '2022-01-01 10:00:00', 'Pending'),
                 (2, 7, 2, 2, '2022-01-02 10:00:00', 'Complete'),
@@ -137,66 +137,6 @@ checkInsert($conn, $inventoryQuery, "Inventory");
 
 
 // insert notification data
-
-
-// insert timeSlot data
-$timeSlotsQuery = "INSERT INTO timeSlot (timeSlotID, startTime, endTime)
-VALUES
-    (1, '07:00:00', '07:30:00'),
-    (2, '07:30:00', '08:00:00'),
-    (3, '08:00:00', '08:30:00'),
-    (4, '08:30:00', '09:00:00'),
-    (5, '09:00:00', '09:30:00'),
-    (6, '09:30:00', '10:00:00'),
-    (7, '10:00:00', '10:30:00'),
-    (8, '10:30:00', '11:00:00'),
-    (9, '11:00:00', '11:30:00'),
-    (10, '11:30:00', '12:00:00'),
-    (11, '12:00:00', '12:30:00'),
-    (12, '12:30:00', '13:00:00'),
-    (13, '13:00:00', '13:30:00'),
-    (14, '13:30:00', '14:00:00'),
-    (15, '14:00:00', '14:30:00'),
-    (16, '14:30:00', '15:00:00'),
-    (17, '15:00:00', '15:30:00'),
-    (18, '15:30:00', '16:00:00'),
-    (19, '16:00:00', '16:30:00'),
-    (20, '16:30:00', '17:00:00'),
-    (21, '17:00:00', '17:30:00'),
-    (22, '17:30:00', '18:00:00')";
-
-checkInsert($conn, $timeSlotsQuery, "Time Slots");
-
-// insert availability data
-$availabilityQuery = "INSERT INTO availability (availabilityID, appointmentID, timeSlotID, date)
-VALUES
-    (1, 1, 1, '2022-01-01'),
-    (2, 1, 2, '2022-01-01'),
-    (3, 2, 3, '2022-01-01'),
-    (4, 3, 4, '2022-01-01'),
-    (5, 4, 5, '2022-01-01'),
-    (6, 4, 6, '2022-01-01'),
-    (7, 5, 7, '2022-01-01'),
-    (8, 6, 8, '2022-01-01'),
-    (9, 7, 9, '2022-01-01'),
-    (10, 8, 10, '2022-01-01'),
-    (11, 9, 11, '2022-01-01'),
-    (12, 10, 1, '2022-01-02'),
-    (13, 10, 2, '2022-01-02'),
-    (14, 11, 3, '2022-01-02'),
-    (15, 12, 4, '2022-01-02'),
-    (16, 13, 5, '2022-01-02'),
-    (17, 14, 6, '2022-01-02'),
-    (18, 15, 7, '2022-01-02'),
-    (19, 16, 8, '2022-01-02'),
-    (20, 17, 9, '2022-01-02'),
-    (21, 18, 10, '2022-01-03'),
-    (22, 18, 1, '2022-01-03'),
-    (23, 19, 2, '2022-01-03'),
-    (24, 20, 3, '2022-01-03'),
-    (25, 20, 4, '2022-01-03')";
-
-checkInsert($conn, $availabilityQuery, "Availability");
 
 // Close the connection
 $conn->close();
