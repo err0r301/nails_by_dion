@@ -14,6 +14,10 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require_once '../data/config.php';
+
+            error_reporting(E_ALL);  
+            ini_set('display_errors', 1); 
             //include 'scripts/appointment_scripts/get_appointments.php';
 
             $pending = 0;
@@ -229,9 +233,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                            require ('../scripts/appointment_scripts/get_appointments.php');
-                            $appointments = $result->fetch_all(MYSQLI_ASSOC);
+                        <?php
                             foreach ($appointments as $appointment) {
                                 echo "
                                     <tr>

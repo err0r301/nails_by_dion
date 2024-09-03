@@ -39,6 +39,7 @@ if ($result) {
             createGalleryTable($conn);  
             createInventoryTable($conn);   
             createNotificationTable($conn);  
+            createCartTable($conn);
         } else {  
             echo "Error creating database: " . $conn->error . "\n";  
         }  
@@ -104,13 +105,11 @@ function createAppointmentTable($conn) {
         appointmentID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
         adminID INT NOT NULL,
-        serviceID INT NOT NULL,
         dateBooked DATETIME NOT NULL,
         dateScheduled DATETIME NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID),
-        FOREIGN KEY (adminID) REFERENCES admin(adminID),
-        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+        FOREIGN KEY (adminID) REFERENCES admin(adminID)
     )";
 
     confirmQuery($conn, $sql, "Appointment");
@@ -148,4 +147,16 @@ function createGalleryTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Gallery");
+}
+
+function createCartTable($conn) {
+    $sql = "CREATE TABLE cart (
+        cartID INT AUTO_INCREMENT PRIMARY KEY,
+        appointmentID INT NOT NULL,
+        serviceID INT NOT NULL,
+        FOREIGN KEY (appointmentID) REFERENCES appointment(appointmentID),
+        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+    )";
+
+    confirmQuery($conn, $sql, "Cart");
 }
