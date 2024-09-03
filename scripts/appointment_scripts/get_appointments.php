@@ -5,10 +5,13 @@ function getAppointments(){
     ini_set('display_errors', 1); 
 
     // Include the config file
-    require_once '../data/config.php';
+    require '../data/config.php';
 
     // get the appointments from the database
-    $query = "SELECT * FROM appointment";
+    $query = "SELECT user.name as client, appointment.appointmentID as appointmentID, appointment.dateScheduled as date, appointment.status as status
+            FROM appointment 
+            INNER JOIN user 
+            ON appointment.userID = user.userID";
     $appointment_result = $conn->query($query);
 
     // Check if the data was retrieved successfully

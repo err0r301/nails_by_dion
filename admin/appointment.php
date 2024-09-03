@@ -18,13 +18,13 @@
 
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
-            //include 'scripts/appointment_scripts/get_appointments.php';
+            include '../scripts/appointment_scripts/get_appointments.php';
 
             $pending = 0;
             $completed = 0;
             $cancelled = 0;
 
-            //$appointments = getAppointments();
+            $appointments = getAppointments();
 
             foreach ($appointments as $appointment) {
                 switch ($appointment['status']) {
@@ -235,19 +235,22 @@
                     <tbody>
                         <?php
                             foreach ($appointments as $appointment) {
+                                $datetime = new DateTime($appointment['date']);
+                                $date = $datetime->format('Y-m-d');
+                                $time = $datetime->format('H:i');
                                 echo "
                                     <tr>
-                                        <td>".$appointment['id']."</td>
-                                        <td>".$appointment['name']."</td>
-                                        <td>".$appointment['date']."</td>
-                                        <td>".$appointment['time']."</td>
-                                        <td>".$appointment['stylist']."</td>
+                                        <td>".$appointment['appointmentID']."</td>
+                                        <td>".$appointment['client']."</td>
+                                        <td>".$date."</td>
+                                        <td>".$time."</td>
+                                        <td>Placeholder</td>
                                         <td>".$appointment['status']."</td>
                                         <td> 
-                                            <input type='hidden' name='id' value=".$appointment['id'].">
-                                            <button class='crud-btn btn-view' onclick='togglePopup_view(".$appointmentJson.")'><i class='fa fa-eye'></i></button>
-                                            <button class='crud-btn btn-edit' onclick='togglePopup_edit(".$appointmentJson.")'><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn btn-delete' onclick='togglePopup_delete(".($appointment['id']).")'><i class='fa fa-trash-can'></i></button>
+                                            <input type='hidden' name='id' value=".$appointment['appointmentID'].">
+                                            <button class='crud-btn btn-view' onclick='togglePopup_view()'><i class='fa fa-eye'></i></button>
+                                            <button class='crud-btn btn-edit' onclick='togglePopup_edit()'><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn btn-delete' onclick='togglePopup_delete(".($appointment['appointmentID']).")'><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr>
                                 ";
