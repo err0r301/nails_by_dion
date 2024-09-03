@@ -104,8 +104,7 @@
                         <?php
                         include '../scripts/inventory_scripts/get_inventory_items.php';
                         $inventories = getInventoryItems();
-
-                        // Assuming $result is your mysqli_result object  
+  
                         if ($inventories) {  
                             while ($row = $inventories->fetch_assoc()) {  
                                 echo "
@@ -123,7 +122,6 @@
                                  
                             }  
                         } else {  
-                            // Handle the case where the query failed  
                             echo "Query failed: " . $mysqli->error;  
                         }
                         ?>

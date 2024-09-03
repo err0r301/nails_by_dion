@@ -21,7 +21,7 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            if(isset($_POST['add'])){
+            /*if(isset($_POST['add'])){
                 $name = $_POST['name'];
                 $category = $_POST['category'];
                 $status = $_POST['status'];
@@ -44,7 +44,7 @@
                 ];
                 $services[] = $data;
                 file_put_contents($filePath, json_encode($services, JSON_PRETTY_PRINT));
-            }
+            }*/
         ?>
 
         <div class="popup" id="popup-add-service">
@@ -118,28 +118,32 @@
                     <div class="service-cell status-cell">Status</div>
                     <div class="service-cell price">Price</div>
                 </div>
-          <!---      <script>
-                    function searchFunction() {
-                        var input, filter, table, tr, td, i, txtValue;
-                        input = document.querySelector('.search-bar');
-                        filter = input.value.toUpperCase();
-                        table = document.querySelector('.tableView');
-                        tr = table.getElementsByTagName('div');
-                        for (i = 0; i < tr.length; i++) {
-                            td = tr[i].getElementsByTagName('span')[1];
-                            if (td) {
-                                txtValue = td.textContent || td.innerText;
-                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                    tr[i].style.display = "";
-                                } else {
-                                    tr[i].style.display = "none";
-                                }
+                <?php 
+                    include '../scripts/service_scripts/get_services.php';
+                    $services = getServices();
+
+                    if ($services) {  
+                        while ($row = $services->fetch_assoc()) {  
+                            echo "  <div class='service-row'>";
+                            echo "      <div class='service-cell image'>";
+                            echo "          <img src='$row[image]' alt='Service' class='service-img'>";
+                            echo "          <span>$row[name]</span>";
+                            echo "      </div>";
+                            echo "      <div class='service-cell category'><span class='cell-label'>Category:</span>$row[category]</div>";
+                            echo "      <div class='service-cell status-cell'> <span class='cell-label'>Status:</span>";
+                            if ($row['status'] == "Active") {
+                                echo "          <span class='status active'>Active</span>";
+                            }else{
+                                echo "          <span class='status disabled'>Disabled</span>";
                             }
+                            echo "      </div>";
+                            echo "      <div class='service-cell price'><span class='cell-label'>Price:</span>R$row[price]</div>";
+                            echo "  </div>";
                         }
                     }
-                </script>  -->
-                <?php 
-                    foreach ($services as $service): ?>
+
+                    
+                    /*foreach ($services as $service): ?>
 
                         <div class='service-row'>
                             <div class='service-cell image'>
@@ -160,7 +164,7 @@
                             <div class='service-cell price'><span class='cell-label'>Price:</span>R<?=$service['price']?></div>
                         </div>
                     
-                <?php endforeach; ?>
+                <?php endforeach;*/ ?>
             </div>
         </main>
     </div>

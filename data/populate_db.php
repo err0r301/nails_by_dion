@@ -64,21 +64,21 @@ checkInsert($conn, $adminQuery, "Admin");
 // insert service data
 $serviceQuery = "INSERT INTO service (serviceID, name, category, status, price, duration, description, image) 
                 VALUES 
-                (1, 'Classic Manicure', 'Manicure', 'Disabled', 250, '00:30:00', 'A classic manicure treatment to keep your nails looking and feeling great', '1.jpg'),
-                (2, 'Gel Manicure', 'Manicure', 'Disabled', 350, '00:45:00', 'A gel manicure treatment to keep your nails looking and feeling great', '2.jpg'),
-                (3, 'French Manicure', 'Manicure', 'Active', 300, '00:45:00', 'A French manicure treatment to keep your nails looking and feeling great', '3.jpg'),
-                (4, 'Classic Pedicure', 'Pedicure', 'Disabled', 300, '00:45:00', 'A classic pedicure treatment to keep your feet looking and feeling great', '10.jpg'),
-                (5, 'Gel Pedicure', 'Pedicure', 'Active', 400, '01:00:00', 'A gel pedicure treatment to keep your feet looking and feeling great', '11.jpg'),
-                (6, 'Paraffin Treatment', 'Pedicure', 'Active', 150, '00:30:00', 'A paraffin treatment to keep your feet looking and feeling great', '12.jpg'),
-                (7, 'Facial', 'Beauty Treatment', 'Disabled', 500, '01:30:00', 'A facial treatment to keep your skin looking and feeling great', '4.png'),
-                (8, 'Microdermabrasion', 'Beauty Treatment', 'Active', 750, '01:45:00', 'A microdermabrasion treatment to keep your skin looking and feeling great', '5.png'),
-                (9, 'Chemical Peel', 'Beauty Treatment', 'Active', 800, '02:00:00', 'A chemical peel treatment to keep your skin looking and feeling great', '6.png'),
-                (10, 'Haircut', 'Hair Beauty', 'Disabled', 400, '00:45:00', 'A haircut treatment to keep your hair looking and feeling great', '7.png'),
-                (11, 'Hair Color', 'Hair Beauty', 'Active', 600, '02:00:00', 'A hair color treatment to keep your hair looking and feeling great', '8.png'),
-                (12, 'Highlights', 'Hair Beauty', 'Active', 800, '02:30:00', 'A highlights treatment to keep your hair looking and feeling great', '9.png'),
-                (13, 'Blowout', 'Hair Beauty', 'Active', 350, '00:45:00', 'A blowout treatment to keep your hair looking and feeling great', '1.jpg'),
-                (14, 'Hair Extensions', 'Hair Beauty', 'Active', 700, '03:00:00', 'A hair extensions treatment to keep your hair looking and feeling great', '2.jpg'),
-                (15, 'Keratin Treatment', 'Hair Beauty', 'Disabled', 850, '03:30:00', 'A keratin treatment to keep your hair looking and feeling great', '3.jpg')";
+                (1, 'Classic Manicure', 'Manicure', 'Disabled', 250, '00:30:00', 'A classic manicure treatment to keep your nails looking and feeling great', '../_images/1.jpg'),
+                (2, 'Gel Manicure', 'Manicure', 'Disabled', 350, '00:45:00', 'A gel manicure treatment to keep your nails looking and feeling great', '../_images/2.jpg'),
+                (3, 'French Manicure', 'Manicure', 'Active', 300, '00:45:00', 'A French manicure treatment to keep your nails looking and feeling great', '../_images/3.jpg'),
+                (4, 'Classic Pedicure', 'Pedicure', 'Disabled', 300, '00:45:00', 'A classic pedicure treatment to keep your feet looking and feeling great', '../_images/4.png'),
+                (5, 'Gel Pedicure', 'Pedicure', 'Active', 400, '01:00:00', 'A gel pedicure treatment to keep your feet looking and feeling great', '../_images/5.png'),
+                (6, 'Paraffin Treatment', 'Pedicure', 'Active', 150, '00:30:00', 'A paraffin treatment to keep your feet looking and feeling great', '../_images/6.png'),
+                (7, 'Facial', 'Beauty Treatment', 'Disabled', 500, '01:30:00', 'A facial treatment to keep your skin looking and feeling great', '../_images/7.png'),
+                (8, 'Microdermabrasion', 'Beauty Treatment', 'Active', 750, '01:45:00', 'A microdermabrasion treatment to keep your skin looking and feeling great', '../_images/8.png'),
+                (9, 'Chemical Peel', 'Beauty Treatment', 'Active', 800, '02:00:00', 'A chemical peel treatment to keep your skin looking and feeling great', '../_images/9.png'),
+                (10, 'Haircut', 'Hair Beauty', 'Disabled', 400, '00:45:00', 'A haircut treatment to keep your hair looking and feeling great', '../_images/10.jpg'),
+                (11, 'Hair Color', 'Hair Beauty', 'Active', 600, '02:00:00', 'A hair color treatment to keep your hair looking and feeling great', '../_images/11.jpg'),
+                (12, 'Highlights', 'Hair Beauty', 'Active', 800, '02:30:00', 'A highlights treatment to keep your hair looking and feeling great', '../_images/12.jpg'),
+                (13, 'Blowout', 'Hair Beauty', 'Active', 350, '00:45:00', 'A blowout treatment to keep your hair looking and feeling great', '../_images/13.png'),
+                (14, 'Hair Extensions', 'Hair Beauty', 'Active', 700, '03:00:00', 'A hair extensions treatment to keep your hair looking and feeling great', '../_images/14.png'),
+                (15, 'Keratin Treatment', 'Hair Beauty', 'Disabled', 850, '03:30:00', 'A keratin treatment to keep your hair looking and feeling great', '../_images/15.png')";
 
 checkInsert($conn, $serviceQuery, "Service");
 
@@ -112,15 +112,15 @@ checkInsert($conn, $appointmentQuery, "Appointment");
 // insert gallery data
 $galleryQuery = "INSERT INTO gallery (galleryID, image, date) 
                 VALUES 
-                (1, 'Gallery 1', '2022-01-01 12:00:00'),
-                (2, 'Gallery 2', '2022-01-05 14:00:00'),
-                (3, 'Gallery 3', '2022-01-10 10:00:00'),
-                (4, 'Gallery 4', '2022-01-15 16:00:00'),
-                (5, 'Gallery 5', '2022-01-20 12:00:00'),
-                (6, 'Gallery 6', '2022-01-25 14:00:00'),
-                (7, 'Gallery 7', '2022-01-30 10:00:00'),
-                (8, 'Gallery 8', '2022-02-01 16:00:00'),
-                (9, 'Gallery 9', '2022-02-05 12:00:00')";
+                (1, 'gallery_1', '2022-01-01 12:00:00'),
+                (2, 'gallery_2', '2022-01-05 14:00:00'),
+                (3, 'gallery_3', '2022-01-10 10:00:00'),
+                (4, 'gallery_4', '2022-01-15 16:00:00'),
+                (5, 'gallery_5', '2022-01-20 12:00:00'),
+                (6, 'gallery_6', '2022-01-25 14:00:00'),
+                (7, 'gallery_7', '2022-01-30 10:00:00'),
+                (8, 'gallery_8', '2022-02-01 16:00:00'),
+                (9, 'gallery_9', '2022-02-05 12:00:00')";
 
 checkInsert($conn, $galleryQuery, "Gallery");
 
