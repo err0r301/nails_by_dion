@@ -388,16 +388,20 @@ function sort(column, table,arrow) {
 }
 
 //filter the appointments by status
-function getValue() {
-    var selectElement = document.getElementById("status");
+function getValue(id) {
+    var selectElement = document.getElementById(id);
     var selectedValue = selectElement.value;
     //console.log(selectedValue);    //used for testing
     var table = document.getElementById("appointment_table");
     var rows = table.getElementsByTagName("tr");
-    filter(rows,selectedValue);
+    if (id == "status") {
+      filter1(rows,selectedValue);
+    }else{
+      filter2(rows,selectedValue); 
+    }
 }
 
-function filter(rows, status){
+function filter1(rows, status){
   for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
       var cell = row.getElementsByTagName("td")[5];
@@ -405,6 +409,24 @@ function filter(rows, status){
           row.style.display = "table-row";
       }else{
         if (cell.innerHTML == status) {
+            row.style.display = "table-row";
+        } else {
+            row.style.display = "none";
+        }
+      }
+      
+  }
+  console.log(status);
+}
+
+function filter2(rows, stylist){
+  for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var cell = row.getElementsByTagName("td")[4];
+      if(stylist == "All"){
+          row.style.display = "table-row";
+      }else{
+        if (cell.innerHTML == stylist) {
             row.style.display = "table-row";
         } else {
             row.style.display = "none";

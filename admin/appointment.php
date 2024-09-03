@@ -217,12 +217,20 @@
                             <th onclick="sortTable(2,'appointment_table','appointment_arrow_4')">Date<i class="arrow" id="appointment_arrow_4"></i></th>
                             <th onclick="sortTable(3,'appointment_table','appointment_arrow_5')">Time<i class="arrow" id="appointment_arrow_5"></i></th>
                             <th>
-                                <select name="stylist" id="stylist" class="table-selector" onchange="getValue()">
+                                <select name="stylist" id="stylist" class="table-selector" onchange="getValue('stylist')">
                                   <option value="All">Stylists</option>
+                                  <?php
+                                    $query = "SELECT name FROM user WHERE userType = 'Admin'";
+                                    $result = mysqli_query($conn, $query);
+                                    $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    foreach ($stylists as $stylist) {
+                                        echo "<option value=".$stylist['name'].">".$stylist['name']."</option>";
+                                    }
+                                  ?>
                                 </select>
                             </th>
                             <th>
-                                <select name="status" id="status" class="table-selector" onchange="getValue()">
+                                <select name="status" id="status" class="table-selector" onchange="getValue('status')">
                                   <option value="All">Appointments</option>
                                   <option value="Pending">Pending</option>
                                   <option value="Complete">Complete</option>
@@ -244,7 +252,7 @@
                                         <td>".$appointment['client']."</td>
                                         <td>".$date."</td>
                                         <td>".$time."</td>
-                                        <td>Placeholder</td>
+                                        <td>".$appointment['stylist']."</td>
                                         <td>".$appointment['status']."</td>
                                         <td> 
                                             <input type='hidden' name='id' value=".$appointment['appointmentID'].">
