@@ -17,7 +17,6 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            include '../scripts/inventory_scripts/get_inventory.php';
         ?>
 
         <!--popups-->
@@ -103,70 +102,31 @@
                     </thead>
                     <tbody>
                         <?php
+                        include '../scripts/inventory_scripts/get_inventory_items.php';
                         $inventories = getInventoryItems();
-                        echo "<script>console.log('inventory: '.$inventories)</script>";
-                        foreach($inventories as $inventory){
-                            echo "<tr>
-                                    <td>$inventory->InventoryID</td>
-                                    <td>$inventory->name</td>
-                                    <td>$inventory->stock</td>
-                                    <td>$inventory->price</td>
-                                    <td>
-                                        <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                        <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                                    </td>";
+
+                        // Assuming $result is your mysqli_result object  
+                        if ($inventories) {  
+                            while ($row = $inventories->fetch_assoc()) {  
+                                echo "
+                                    <tr>
+                                        <td>$row[inventoryID]</td>
+                                        <td>$row[name]</td>
+                                        <td>$row[stock]</td>
+                                        <td>$row[price]</td>
+                                        <td>
+                                            <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
+                                        </td>
+                                    </tr> 
+                                ";
+                                 
+                            }  
+                        } else {  
+                            // Handle the case where the query failed  
+                            echo "Query failed: " . $mysqli->error;  
                         }
                         ?>
-                        <!--<tr>
-                            <td>1</td>
-                            <td>Shampoo</td>
-                            <td>100</td>
-                            <td>R 250</td>
-                            <td>
-                                <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Conditioner</td>
-                            <td>100</td>
-                            <td>R 250</td>
-                            <td>
-                                <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Hair Serum</td>
-                            <td>50</td>
-                            <td>R 350</td>
-                            <td>
-                                <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Leave-in Conditioner</td>
-                            <td>60</td>
-                            <td>R 320</td>
-                            <td>
-                                <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Hair Mask</td>
-                            <td>40</td>
-                            <td>R 450</td>
-                            <td>
-                                <button class='crud-btn p-btn-edit'><i class='fa fa-pen-to-square'></i></button>
-                                <button class='crud-btn p-btn-delete'><i class='fa fa-trash-can'></i></button>
-                            </td>
-                        </tr>-->
                     </tbody>
                 </table>
             </div>
