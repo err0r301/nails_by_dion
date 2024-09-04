@@ -1,9 +1,3 @@
-<?php
-    $filePath = __DIR__ . '/../data/services.json';
-    $servicesData = file_get_contents($filePath);
-    $services = json_decode($servicesData, true);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,30 +15,9 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            /*if(isset($_POST['add'])){
-                $name = $_POST['name'];
-                $category = $_POST['category'];
-                $status = $_POST['status'];
-                $price = $_POST['price'];
-                
-                $image_name = $_FILES['image']['name'];
-                $image_temp = $_FILES['image']['tmp_name'];
-                $image_path = "../_images/$image_name";
-                // Save image to desired directory
-                move_uploaded_file($image_temp, $image_path);
-
-                $data = [
-                    'id' => count($services) + 1,
-                    'name' => $name,
-                    'category' => $category,
-                    'status' => "disabled",
-                    'price' => $price,
-                    'image' => $image_name,
-                    'month-revenue' => 0
-                ];
-                $services[] = $data;
-                file_put_contents($filePath, json_encode($services, JSON_PRETTY_PRINT));
-            }*/
+            if (require '../scripts/service_scripts/add_service.php') {
+                echo "<script>console.log('added')</script>";
+            }
         ?>
 
         <div class="popup" id="popup-add-service">
@@ -76,6 +49,14 @@
                     <div class="form-group">
                         <label for="price">Price:</label>
                         <input type="number" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration:</label>
+                        <input type="time" name="duration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea name="description" id="description-box" maxlength="150" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="upload-image" for="service-image">Upload Image</label>
@@ -117,6 +98,7 @@
                     <div class="service-cell category">Category</div>
                     <div class="service-cell status-cell">Status</div>
                     <div class="service-cell price">Price</div>
+                    <div class="service-cell duration">Duration</div>
                 </div>
                 <?php 
                     include '../scripts/service_scripts/get_services.php';
@@ -124,6 +106,7 @@
 
                     if ($services) {  
                         while ($row = $services->fetch_assoc()) {  
+                            $duration = $row['duration'];
                             echo "  <div class='service-row'>";
                             echo "      <div class='service-cell image'>";
                             echo "          <img src='$row[image]' alt='Service' class='service-img'>";
@@ -138,6 +121,7 @@
                             }
                             echo "      </div>";
                             echo "      <div class='service-cell price'><span class='cell-label'>Price:</span>R$row[price]</div>";
+                            echo "      <div class='service-cell duration'><span class='cell-label'>Duration:</span> $duration</div>";
                             echo "  </div>";
                         }
                     }
