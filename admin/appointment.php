@@ -14,16 +14,20 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            require_once '../data/config.php';
-
+            require '../data/config.php';
+            
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
+
+            $query = "SELECT u.name as name, a.adminID as id FROM user u, admin a WHERE u.userID = a.userID";
+            $result = mysqli_query($conn, $query);
+            $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
             include '../scripts/appointment_scripts/get_appointments.php';
             include '../scripts/service_scripts/get_services.php';
+            include '../scripts/appointment_scripts/add_appointment.php';
 
-            $query = "SELECT name FROM user WHERE userType = 'Admin'";
-                                    $result = mysqli_query($conn, $query);
-                                    $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
 
             $pending = 0;
             $completed = 0;
@@ -85,12 +89,8 @@
                 <h2>Add Appointment</h2>
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="appointment-name">Name:</label>
-                        <input type="text" name="name" id="appointment-name" autofocus required>
-                    </div>
-                    <div class="form-group">
                         <label for="appointment-email">Email:</label>
-                        <input type="email" name="email" id="appointment-email" required>
+                        <input type="email" name="email" id="appointment-email" autofocus required>
                     </div>
                     <div class="form-group">
                         <label for="appointment-date">Date:</label>
@@ -101,21 +101,11 @@
                         <input type="time" name="time" id="appointment-time" required>
                     </div>
                     <div class="form-group">
-                        <label for="appointment-service">Service:</label>
-                        <select name="stylist" class="form-selector status" required>
-                            <?php
-                                foreach ($services as $service) {
-                                    echo "<option value=" . $service['name'] . ">" . $service['name'] . "</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="appointment-stylist">Stylist:</label>
                         <select name="stylist" class="form-selector status" required>
                             <?php
                                 foreach ($stylists as $stylist) {
-                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
+                                    echo "<option value=" . $stylist['id'] . ">" . $stylist['name'] . "</option>";
                                 }
                             ?>
                         </select>
@@ -149,14 +139,6 @@
                 <form action="" method="post">
                     <input type="hidden" name="id" class="id">
                     <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" class="name" required>
-                    </div>
-                    <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" class="email" required>
-                    </div>
-                    <div class="form-group">
                         <label for="date">Date:</label>
                         <input type="date" name="date" class="date" required>
                     </div>
@@ -165,31 +147,21 @@
                         <input type="time" name="time" class="time" required>
                     </div>
                     <div class="form-group">
+                        <label for="appointment-stylist">Stylist:</label>
+                        <select name="stylist" class="form-selector status" required>
+                            <?php
+                                foreach ($stylists as $stylist) {
+                                    echo "<option value=" . $stylist['id'] . ">" . $stylist['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="status">Status:</label>
                         <select name="status" class="form-selector status">
                             <option value="Pending">Pending</option>
                             <option value="Complete">Complete</option>
                             <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="appointment-service">Service:</label>
-                        <select name="stylist" class="form-selector status" required>
-                            <?php
-                                foreach ($services as $service) {
-                                    echo "<option value=" . $service['name'] . ">" . $service['name'] . "</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="appointment-stylist">Stylist:</label>
-                        <select name="stylist" class="form-selector status" required>
-                            <?php
-                                foreach ($stylists as $stylist) {
-                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
-                                }
-                            ?>
                         </select>
                     </div>
                     <button type="submit" name="update" value="Update">Update</button>
@@ -278,6 +250,9 @@
                     <tbody>
                         <?php
                             foreach ($appointments as $appointment) {
+                                if ($appointment['appointmentID'] < 10) {
+                                    $appointment['appointmentID'] = "0" . $appointment['appointmentID'];
+                                }
                                 $datetime = new DateTime($appointment['date']);
                                 $date = $datetime->format('Y-m-d');
                                 $time = $datetime->format('H:i');
