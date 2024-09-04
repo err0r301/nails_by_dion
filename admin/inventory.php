@@ -17,6 +17,9 @@
         <?php
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            //require '../scripts/inventory_scripts/add_inventory_item.php';
+            //require '../scripts/inventory_scripts/edit_inventory_item.php';
+            //require '../scripts/inventory_scripts/delete_inventory_item.php';
         ?>
 
         <!--popups-->
@@ -200,7 +203,7 @@
                 const row = event.target.closest("tr");
                 const productName = row.cells[1].textContent;
                 const productStock = row.cells[2].textContent;
-                const productPrice = row.cells[3].textContent.slice(2); // Remove the "R " prefix
+                const productPrice = row.cells[3].textContent; 
 
                 productNameInput.value = productName;
                 productStockInput.value = productStock;
@@ -211,7 +214,7 @@
                 saveEditButton.onclick = function() {
                     row.cells[1].textContent = productNameInput.value;
                     row.cells[2].textContent = productStockInput.value;
-                    row.cells[3].textContent = "R " + productPriceInput.value;
+                    row.cells[3].textContent = productPriceInput.value;
 
                     popupEditProduct.style.display = "none";
                 };

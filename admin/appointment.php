@@ -19,12 +19,18 @@
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
             include '../scripts/appointment_scripts/get_appointments.php';
+            include '../scripts/service_scripts/get_services.php';
+
+            $query = "SELECT name FROM user WHERE userType = 'Admin'";
+                                    $result = mysqli_query($conn, $query);
+                                    $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             $pending = 0;
             $completed = 0;
             $cancelled = 0;
 
             $appointments = getAppointments();
+            $services = getServices();
 
             foreach ($appointments as $appointment) {
                 switch ($appointment['status']) {
@@ -96,7 +102,23 @@
                     </div>
                     <div class="form-group">
                         <label for="appointment-service">Service:</label>
-                        <input type="text" name="service" id="appointment-service" required>
+                        <select name="stylist" class="form-selector status" required>
+                            <?php
+                                foreach ($services as $service) {
+                                    echo "<option value=" . $service['name'] . ">" . $service['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-stylist">Stylist:</label>
+                        <select name="stylist" class="form-selector status" required>
+                            <?php
+                                foreach ($stylists as $stylist) {
+                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" name="add" value="Add">Add</button>
                     <button type="reset">Reset</button>
@@ -151,8 +173,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="service">Service:</label>
-                        <input type="text" name="service" class="service" required>
+                        <label for="appointment-service">Service:</label>
+                        <select name="stylist" class="form-selector status" required>
+                            <?php
+                                foreach ($services as $service) {
+                                    echo "<option value=" . $service['name'] . ">" . $service['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-stylist">Stylist:</label>
+                        <select name="stylist" class="form-selector status" required>
+                            <?php
+                                foreach ($stylists as $stylist) {
+                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" name="update" value="Update">Update</button>
                     <button onclick="togglePopup_edit(null)">Cancel</button>
@@ -220,9 +258,6 @@
                                 <select name="stylist" id="stylist" class="table-selector" onchange="getValue('stylist')">
                                   <option value="All">Stylists</option>
                                   <?php
-                                    $query = "SELECT name FROM user WHERE userType = 'Admin'";
-                                    $result = mysqli_query($conn, $query);
-                                    $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                     foreach ($stylists as $stylist) {
                                         echo "<option value=".$stylist['name'].">".$stylist['name']."</option>";
                                     }

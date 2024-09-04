@@ -1,7 +1,7 @@
 <?php
 function getServices() {
     // Include the config file
-    require_once '../data/config.php';
+    require '../data/config.php';
 
     // get the services from the database
     $query = "SELECT * FROM service";
