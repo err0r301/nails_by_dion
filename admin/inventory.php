@@ -24,7 +24,7 @@
             ini_set('display_errors', 1); 
 
             require '../scripts/inventory_scripts/add_inventory_item.php';
-            //require '../scripts/inventory_scripts/edit_inventory_item.php';
+            require '../scripts/inventory_scripts/edit_inventory_item.php';
             require '../scripts/inventory_scripts/remove_inventory_item.php';
         ?>
 
@@ -63,19 +63,20 @@
                     &times;</div>
                 <h2>Edit Product</h2>
                 <form action="" method="post">
+                <input type="hidden" name="edit-appointment-id" id="edit-appointment-id">
                     <div class="form-group">
                         
-                        <input type="text" id="edit-product-name" placeholder="Product name" required>
+                        <input type="text" name="edit-product-name" id="edit-product-name" placeholder="Product name" required>
                     </div>
                     <div class="form-group">
                         
-                        <input type="number" id="edit-product-stock" placeholder="Stock" required>
+                        <input type="number" name="edit-product-stock" id="edit-product-stock" placeholder="Stock" required>
                     </div>
                     <div class="form-group">
                         
-                        <input type="number" id="edit-product-price" placeholder="Price (ZAR)" required>
+                        <input type="number" name="edit-product-price" id="edit-product-price" placeholder="Price (ZAR)" required>
                     </div>
-                    <button type="button" id="save-edit-btn">Save</button>
+                    <button type="submit" id="save-edit-btn">Save</button>
                 </form>
             </div>
         </div>
@@ -137,13 +138,11 @@
                                         <td><?php echo $row['stock'] ?></td>
                                         <td><?php echo $row['price'] ?></td>
                                         <td>
-                                            <button class='crud-btn p-btn-edit' onclick="togglePopup('popup-edit-product')"><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn p-btn-edit' onclick="togglePopup('popup-edit-product','edit-appointment-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-pen-to-square'></i></button>
                                             <button class='crud-btn p-btn-delete' onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr> 
                            <?php }  
-                        } else {  
-                            echo "Query failed: " . $mysqli->error;  
                         }
                         ?>
                     </tbody>
