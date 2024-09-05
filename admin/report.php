@@ -61,6 +61,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'report';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
             /*$sales = 0;

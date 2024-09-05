@@ -13,6 +13,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'customer'; 
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
             $filePath = __DIR__ . '/../data/customers.json';

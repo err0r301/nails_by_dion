@@ -13,6 +13,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'admin_service';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
             if (require '../scripts/service_scripts/add_service.php') {
@@ -99,6 +100,7 @@
                     <div class="service-cell status-cell">Status</div>
                     <div class="service-cell price">Price</div>
                     <div class="service-cell duration">Duration</div>
+                    <div class="service-cell actions"></div>
                 </div>
                 <?php 
                     include '../scripts/service_scripts/get_services.php';
@@ -106,49 +108,42 @@
 
                     if ($services) {  
                         while ($row = $services->fetch_assoc()) {  
-                            $duration = $row['duration'];
-                            echo "  <div class='service-row'>";
-                            echo "      <div class='service-cell image'>";
-                            echo "          <img src='$row[image]' alt='Service' class='service-img'>";
-                            echo "          <span>$row[name]</span>";
-                            echo "      </div>";
-                            echo "      <div class='service-cell category'><span class='cell-label'>Category:</span>$row[category]</div>";
-                            echo "      <div class='service-cell status-cell'> <span class='cell-label'>Status:</span>";
-                            if ($row['status'] == "Active") {
-                                echo "          <span class='status active'>Active</span>";
-                            }else{
-                                echo "          <span class='status disabled'>Disabled</span>";
-                            }
-                            echo "      </div>";
-                            echo "      <div class='service-cell price'><span class='cell-label'>Price:</span>R$row[price]</div>";
-                            echo "      <div class='service-cell duration'><span class='cell-label'>Duration:</span> $duration</div>";
-                            echo "  </div>";
+                            $duration = $row['duration'];?>
+                            <div class='service-row'>
+                                <div class='service-cell image'>
+                                    <img src='<?php echo $row['image']?>' alt='Service' class='service-img'>
+                                    <span><?php echo $row['name']?></span>
+                                </div>
+                                <div class='service-cell category'>
+                                    <span class='cell-label'>Category:</span>
+                                    <?php echo $row['category']?>
+                                </div>
+                                <div class='service-cell status-cell'> 
+                                    <span class='cell-label'>Status:</span>
+                                    <?php if ($row['status'] == "Active") {
+                                        echo "          <span class='status active'>Active</span>";
+                                    }else{
+                                        echo "          <span class='status disabled'>Disabled</span>";
+                                    }?>
+                                </div>
+                                <div class='service-cell price'>
+                                    <span class='cell-label'>Price:</span>R
+                                    <?php echo $row['price']?>
+                                </div>
+                                <div class='service-cell duration'>
+                                    <span class='cell-label'>Duration:</span> 
+                                    <?php echo $duration?>
+                                </div>
+                                <div class='service-cell actions'>
+                                    <button class='crud-btn btn-view' onclick="togglePopup('popup-view-service')"><i class='fa fa-eye'></i></button>
+                                    <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-service')"><i class='fa fa-pen-to-square'></i></button>
+                                    <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-service','delete-service-id',<?php echo $row['serviceID']?>)"><i class='fa fa-trash-can'></i></button>
+                                </div>
+                            </div>
+                        <?php 
                         }
                     }
-
-                    
-                    /*foreach ($services as $service): ?>
-
-                        <div class='service-row'>
-                            <div class='service-cell image'>
-                                <img src='../_images/<?= $service['image'] ?>' alt='Service' class='service-img'>
-                                <span><?= $service['name']?></span>
-                            </div>
-                            <div class='service-cell category'><span class='cell-label'>Category:</span><?=$service['category']?></div>
-                            <div class='service-cell status-cell'>
-                                <span class='cell-label'>Status:</span>
-                                <?php
-                                if ($service['status'] == "Active") {
-                                    echo "<span class='status active'>Active</span>";
-                                }else{
-                                    echo "<span class='status disabled'>Disabled</span>";
-                                }
-                                ?>
-                            </div>
-                            <div class='service-cell price'><span class='cell-label'>Price:</span>R<?=$service['price']?></div>
-                        </div>
-                    
-                <?php endforeach;*/ ?>
+                ?>
             </div>
         </main>
     </div>

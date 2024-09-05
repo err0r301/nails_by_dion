@@ -15,6 +15,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'team';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
         ?>

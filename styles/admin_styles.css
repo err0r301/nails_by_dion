@@ -130,6 +130,12 @@ body {
   z-index: 2;
 }
 
+.active-Side-link .sidebar-list-item{
+  background-color: var(--secondary); 
+  color: var(--text);
+  font-weight: bold;
+}
+
 .sidebar-title {
   display: flex;
   justify-content: space-between;
@@ -1502,10 +1508,10 @@ background-color: #3270e4;
   transition: transform 0.2s;
   position: relative;
 }
-/*.gridView .service-row:hover {
+.gridView .service-row:hover {
   transform: scale(1.01);
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-}*/
+}
 .gridView .service-row:hover .cell-more-button {
   display: flex;
 }

@@ -13,6 +13,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'appointment';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
             require '../data/config.php';

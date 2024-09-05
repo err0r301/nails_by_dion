@@ -13,6 +13,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'admin_profile';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
         ?> 

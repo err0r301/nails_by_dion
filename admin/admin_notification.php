@@ -15,6 +15,7 @@
 <body>
     <div class="grid-container">
         <?php
+            $page = 'admin_notification';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
         ?>
