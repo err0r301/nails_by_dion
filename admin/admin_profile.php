@@ -1,7 +1,3 @@
-<?php 
-    require ('../scripts/updateUser.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -22,11 +22,9 @@
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
 
-            if (require '../scripts/inventory_scripts/add_inventory_item.php') {
-                echo "<script>console.log('Successfully added inventory item!')</script>";
-            }
+            require '../scripts/inventory_scripts/add_inventory_item.php';
             //require '../scripts/inventory_scripts/edit_inventory_item.php';
-            //require '../scripts/inventory_scripts/delete_inventory_item.php';
+            require '../scripts/inventory_scripts/remove_inventory_item.php';
         ?>
 
         <!--popups-->
@@ -81,6 +79,20 @@
             </div>
         </div>
 
+        <div class="popup" id="popup-delete-product">  
+            <div class="overlay" onclick="togglePopup('popup-delete-product')"></div>  
+            <div class="content">  
+                <div class="close-btn" onclick="togglePopup('popup-delete-product')">&times;</div>  
+                <h2>Delete Product</h2>  
+                <p>Are you sure you want to delete this product?</p>  
+                <form action="" method="POST">  
+                    <input type="hidden" name="delete-product-id" id="delete-product-id">  
+                    <button type="submit" id="delete-product-btn">Delete</button>  
+                    <button type="button" onclick="togglePopup('popup-delete-product')">Cancel</button>  
+                </form>  
+            </div>  
+        </div> 
+
         <!-- Main -->
         <main class="main-container">
             <div class="top">
@@ -117,21 +129,18 @@
                         $inventories = getInventoryItems();
   
                         if ($inventories) {  
-                            while ($row = $inventories->fetch_assoc()) {  
-                                echo "
+                            while ($row = $inventories->fetch_assoc()) {  ?>
                                     <tr>
-                                        <td>$row[inventoryID]</td>
-                                        <td>$row[name]</td>
-                                        <td>$row[stock]</td>
-                                        <td>$row[price]</td>
+                                        <td><?php echo $row['inventoryID'] ?></td>
+                                        <td><?php echo $row['name'] ?></td>
+                                        <td><?php echo $row['stock'] ?></td>
+                                        <td><?php echo $row['price'] ?></td>
                                         <td>
-                                            <button class='crud-btn p-btn-edit' onclick="."togglePopup('popup-edit-product')"."><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn p-btn-delete' onclick="."togglePopup('popup-edit-product')"."><i class='fa fa-trash-can'></i></button>
+                                            <button class='crud-btn p-btn-edit' onclick="togglePopup('popup-edit-product')"><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn p-btn-delete' onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr> 
-                                ";
-                                 
-                            }  
+                           <?php }  
                         } else {  
                             echo "Query failed: " . $mysqli->error;  
                         }

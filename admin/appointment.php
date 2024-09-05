@@ -6,6 +6,7 @@
     <title>Appointments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <script src="../scripts/admin_script.js" defer></script>
+    <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
 </head>
@@ -23,9 +24,11 @@
             $result = mysqli_query($conn, $query);
             $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            include '../scripts/appointment_scripts/get_appointments.php';
-            include '../scripts/service_scripts/get_services.php';
-            include '../scripts/appointment_scripts/add_appointment.php';
+            require '../scripts/appointment_scripts/get_appointments.php';
+            require '../scripts/service_scripts/get_services.php';
+            require '../scripts/appointment_scripts/add_appointment.php';
+            require '../scripts/appointment_scripts/remove_appointment.php';
+            
 
             
 
@@ -53,9 +56,9 @@
         <!--popups-->
         
         <div class="popup" id="popup-view-appointment">
-            <div class="overlay" onclick="togglePopup_view(null)"></div>
+            <div class="overlay" onclick="togglePopup('popup-view-appointment')"></div>
             <div class="content">
-                <div class="close-btn" onclick="togglePopup_view(null)">&times;</div>
+                <div class="close-btn" onclick="togglePopup('popup-view-appointment')">&times;</div>
                 <h2>Appointment Details</h2>
                 <div class="form-group">
                     <p class="view-id"></p>
@@ -83,9 +86,9 @@
 
         
         <div class="popup" id="popup-add-appointment">
-            <div class="overlay" onclick="togglePopup_add('popup-add-appointment')"></div>
+            <div class="overlay" onclick="togglePopup('popup-add-appointment')"></div>
             <div class="content">
-                <div class="close-btn" onclick="togglePopup_add('popup-add-appointment')">&times;</div>
+                <div class="close-btn" onclick="togglePopup('popup-add-appointment')">&times;</div>
                 <h2>Add Appointment</h2>
                 <form action="" method="post">
                     <div class="form-group">
@@ -118,23 +121,23 @@
 
 
         <div class="popup" id="popup-delete-appointment">
-            <div class="overlay" onclick="togglePopup_delete(null)"></div>
+            <div class="overlay" onclick="togglePopup('popup-delete-appointment')"></div>
             <div class="content">
-                <div class="close-btn" onclick="togglePopup_delete(null)">&times;</div>
-                <h2>Are you sure you want to delete this appointment?</h2>
+                <div class="close-btn" onclick="togglePopup('popup-delete-appointment')">&times;</div>
+                <h2>Delete Appointment</h2>
+                <p>Are you sure you want to delete this appointment?</p>
                 <form action="" method="post">
-                    <input type="hidden" name="id">
-                    <button type="submit" name="delete" value="Delete">Delete</button>
-                    <button onclick="togglePopup_delete(null)">Cancel</button>
+                    <input type="hidden" name="delete-appointment-id" id="delete-appointment-id"> 
+                    <button type="submit" id="delete-appointment-btn" value="Delete">Delete</button>
+                    <button onclick="togglePopup('popup-delete-appointment')">Cancel</button>
                 </form>
             </div>
         </div>
-
         
         <div class="popup" id="popup-edit-appointment">
-            <div class="overlay" onclick="togglePopup_edit(null)"></div>
+            <div class="overlay" onclick="togglePopup('popup-edit-appointment')"></div>
             <div class="content">
-                <div class="close-btn" onclick="togglePopup_edit(null)">&times;</div>
+                <div class="close-btn" onclick="togglePopup('popup-edit-appointment')">&times;</div>
                 <h2>Edit Appointment</h2>
                 <form action="" method="post">
                     <input type="hidden" name="id" class="id">
@@ -165,7 +168,7 @@
                         </select>
                     </div>
                     <button type="submit" name="update" value="Update">Update</button>
-                    <button onclick="togglePopup_edit(null)">Cancel</button>
+                    <button onclick="togglePopup_edit('popup-edit-appointment')">Cancel</button>
                 </form>
             </div>
         </div>
@@ -174,7 +177,7 @@
         <main class="main-container">
             <div class="top">
                 <h1 class="main-title font-weight-bold">APPOINTMENTS</h1>
-                <button class="app-content-headerButton" onclick="togglePopup_add('popup-add-appointment')">Add Appointment</button>
+                <button class="app-content-headerButton" onclick="togglePopup('popup-add-appointment')">Add Appointment</button>
             </div>
                 <div class="main-overview">
                 <div class="overview-card">
@@ -192,31 +195,6 @@
                     <div class="overview-card__info">Monthly appointments canceled</div>
                 </div>
             </div>
-<!--
-            <div class="appointment-cards">
-                <div class="card graph-l">
-                    <canvas></canvas>
-                </div>
-                
-                <div class="card graph-r" id="taskList">
-                    <h1 class="main-title">TASKS</h1>
-                    <div class="add-task">
-                        <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem" class="task-input">
-                        <input type="submit" value="" class="submit-task" @click="newItem" title="Add Task">
-                    </div>
-
-                    <ul class="task-list">
-                        <li class="task-list-item" v-for="task in tasks">
-                            <label class="task-list-item-label">
-                        <input type="checkbox">
-                                <span>{{task.name}}</span>
-                            </label>
-                            <i class="fa fa-trash delete-btn"></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            -->
 
             <div class="table-container">
                 <table class="table" id="appointment_table">
@@ -244,7 +222,7 @@
                                   <option value="Cancelled">Cancelled</option>
                                 </select>
                             </th>
-                            <th onclick="togglePopup_add('popup-add-appointment')"><button class='crud-btn btn-add'><i class="fa fa-plus"></i></button></th>
+                            <th onclick="togglePopup('popup-add-appointment')"><button class='crud-btn btn-add'><i class="fa fa-plus"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -256,22 +234,21 @@
                                 $datetime = new DateTime($appointment['date']);
                                 $date = $datetime->format('Y-m-d');
                                 $time = $datetime->format('H:i');
-                                echo "
+                                ?>
                                     <tr>
-                                        <td>".$appointment['appointmentID']."</td>
-                                        <td>".$appointment['client']."</td>
-                                        <td>".$date."</td>
-                                        <td>".$time."</td>
-                                        <td>".$appointment['stylist']."</td>
-                                        <td>".$appointment['status']."</td>
+                                        <td><?php echo $appointment['appointmentID'];?></td>
+                                        <td><?php echo $appointment['client'];?></td>
+                                        <td><?php echo $date;?></td>
+                                        <td><?php echo $time;?></td>
+                                        <td><?php echo $appointment['stylist'];?></td>
+                                        <td><?php echo $appointment['status'];?></td>
                                         <td> 
-                                            <input type='hidden' name='id' value=".$appointment['appointmentID'].">
-                                            <button class='crud-btn btn-view' onclick='togglePopup_view()'><i class='fa fa-eye'></i></button>
-                                            <button class='crud-btn btn-edit' onclick='togglePopup_edit()'><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn btn-delete' onclick='togglePopup_delete(".($appointment['appointmentID']).")'><i class='fa fa-trash-can'></i></button>
+                                            <button class='crud-btn btn-view' onclick="togglePopup('popup-view-appointment')"><i class='fa fa-eye'></i></button>
+                                            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment')"><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment','delete-appointment-id',<?php echo $appointment['appointmentID']?>)"><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr>
-                                ";
+                                <?php
                             };
                         ?> 
                     </tbody>

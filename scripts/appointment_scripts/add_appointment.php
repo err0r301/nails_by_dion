@@ -5,36 +5,38 @@ require_once '../data/config.php';
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $client_email = $_POST['email'];
-    $stylistID = $_POST['stylist'];
-    $bookedDateTime = date( 'Y-m-d H:i:s');
-    $scheduled  = ($_POST['date'] . ' ' . $_POST['time']);
-    $scheduledDateTime = date('Y-m-d H:i:s', strtotime($scheduled));
+    if (isset($_POST['email']) && isset($_POST['stylist']) && isset($_POST['date']) && isset($_POST['time'])) {
+        $client_email = $_POST['email'];
+        $stylistID = $_POST['stylist'];
+        $bookedDateTime = date( 'Y-m-d H:i:s');
+        $scheduled  = ($_POST['date'] . ' ' . $_POST['time']);
+        $scheduledDateTime = date('Y-m-d H:i:s', strtotime($scheduled));
 
-    $userID = getEmail($conn, $client_email);
-    $appointmentID = getMaxID($conn) + 1;
+        $userID = getEmail($conn, $client_email);
+        $appointmentID = getMaxID($conn) + 1;
 
-    echo "<script> console.log('client email: $client_email -- stylist id :$stylistID -- booked date :$bookedDateTime -- scheduled date :$scheduledDateTime -- user id :$userID')</script>";
+        echo "<script> console.log('client email: $client_email -- stylist id :$stylistID -- booked date :$bookedDateTime -- scheduled date :$scheduledDateTime -- user id :$userID')</script>";
 
-// Validate the form data
-if (empty($userID) || empty($stylistID) || empty($bookedDateTime) || empty($scheduledDateTime)) {
-    $error = 'Please fill in all fields';
-} else {
-    // Insert the appointment data into the database
-    $query = "INSERT INTO appointment (appointmentID, userID, adminID, dateBooked, dateScheduled) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("iiiss", $appointmentID, $userID, $stylistID, $bookedDateTime, $scheduledDateTime,);
-    $stmt->execute();
+    // Validate the form data
+        if (empty($userID) || empty($stylistID) || empty($bookedDateTime) || empty($scheduledDateTime)) {
+            $error = 'Please fill in all fields';
+        } else {
+            // Insert the appointment data into the database
+            $query = "INSERT INTO appointment (appointmentID, userID, adminID, dateBooked, dateScheduled) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("iiiss", $appointmentID, $userID, $stylistID, $bookedDateTime, $scheduledDateTime,);
+            $stmt->execute();
 
-    // Check if the insertion was successful
-    if ($stmt->affected_rows == 1) {
-        $success = 'Appointment created successfully';
-        $stmt->close();
-        $conn->close();
-    } else {
-        $error = 'Failed to create appointment';
+            // Check if the insertion was successful
+            if ($stmt->affected_rows == 1) {
+                $success = 'Appointment created successfully';
+                $stmt->close();
+                $conn->close();
+            } else {
+                $error = 'Failed to create appointment';
+            }
+        }
     }
-}
 }
 
 function getEmail($conn, $email){
