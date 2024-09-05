@@ -1,7 +1,7 @@
 <?php
 function removeGalleryRecord( $galleryID) {
     // Include the config file
-    require_once '../data/config.php';
+    require '../data/config.php';
 
     // remove the gallery data from the database
     $query = "DELETE FROM gallery WHERE galleryID = $galleryID";

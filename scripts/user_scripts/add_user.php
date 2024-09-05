@@ -1,6 +1,6 @@
 <?php
 // Include the config file
-require_once '../data/config.php';
+require '../data/config.php';
 require '../scripts/validate_input.php';
 $error = null;
 $success = null;

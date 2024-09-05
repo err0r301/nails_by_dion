@@ -29,6 +29,7 @@
             require '../scripts/service_scripts/get_services.php';
             require '../scripts/appointment_scripts/add_appointment.php';
             require '../scripts/appointment_scripts/remove_appointment.php';
+            require '../scripts/appointment_scripts/edit_appointment.php';
             
 
             
@@ -141,18 +142,18 @@
                 <div class="close-btn" onclick="togglePopup('popup-edit-appointment')">&times;</div>
                 <h2>Edit Appointment</h2>
                 <form action="" method="post">
-                    <input type="hidden" name="id" class="id">
+                <input type="hidden" name="edit-appointment-id" id="edit-appointment-id">
                     <div class="form-group">
                         <label for="date">Date:</label>
-                        <input type="date" name="date" class="date" required>
+                        <input type="date" name="edit_appointment_date" id="edit_appointment_date" class="date" required>
                     </div>
                     <div class="form-group">
                         <label for="time">Time:</label>
-                        <input type="time" name="time" class="time" required>
+                        <input type="time" name="edit_appointment_time" id="edit_appointment_time" class="time" required>
                     </div>
                     <div class="form-group">
                         <label for="appointment-stylist">Stylist:</label>
-                        <select name="stylist" class="form-selector status" required>
+                        <select name="edit_appointment_stylist" id="edit_appointment_stylist" class="form-selector status" required>
                             <?php
                                 foreach ($stylists as $stylist) {
                                     echo "<option value=" . $stylist['id'] . ">" . $stylist['name'] . "</option>";
@@ -162,7 +163,7 @@
                     </div>
                     <div class="form-group">
                         <label for="status">Status:</label>
-                        <select name="status" class="form-selector status">
+                        <select name="edit_appointment_status" id="edit_appointment_status" class="form-selector status">
                             <option value="Pending">Pending</option>
                             <option value="Complete">Complete</option>
                             <option value="Cancelled">Cancelled</option>
@@ -245,7 +246,7 @@
                                         <td><?php echo $appointment['status'];?></td>
                                         <td> 
                                             <button class='crud-btn btn-view' onclick="togglePopup('popup-view-appointment')"><i class='fa fa-eye'></i></button>
-                                            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment')"><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment','edit-appointment-id',<?php echo $appointment['appointmentID']?> )"><i class='fa fa-pen-to-square'></i></button>
                                             <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment','delete-appointment-id',<?php echo $appointment['appointmentID']?>)"><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr>

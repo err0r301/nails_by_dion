@@ -1,6 +1,6 @@
 <?php
 // Include the config file
-require_once '../data/config.php';
+require '../data/config.php';
 echo "<script> console.log('add service')</script>";
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

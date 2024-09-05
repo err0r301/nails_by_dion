@@ -100,7 +100,7 @@
                     <div class="service-cell status-cell">Status</div>
                     <div class="service-cell price">Price</div>
                     <div class="service-cell duration">Duration</div>
-                    <div class="service-cell actions"></div>
+                    <!--<div class="service-cell actions"></div>-->
                 </div>
                 <?php 
                     include '../scripts/service_scripts/get_services.php';
@@ -134,11 +134,11 @@
                                     <span class='cell-label'>Duration:</span> 
                                     <?php echo $duration?>
                                 </div>
-                                <div class='service-cell actions'>
+                                <!--<div class='service-cell actions'>
                                     <button class='crud-btn btn-view' onclick="togglePopup('popup-view-service')"><i class='fa fa-eye'></i></button>
                                     <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-service')"><i class='fa fa-pen-to-square'></i></button>
                                     <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-service','delete-service-id',<?php echo $row['serviceID']?>)"><i class='fa fa-trash-can'></i></button>
-                                </div>
+                                </div>-->
                             </div>
                         <?php 
                         }
