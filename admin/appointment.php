@@ -29,10 +29,7 @@
             require '../scripts/service_scripts/get_services.php';
             require '../scripts/appointment_scripts/add_appointment.php';
             require '../scripts/appointment_scripts/remove_appointment.php';
-            require '../scripts/appointment_scripts/edit_appointment.php';
-            
-
-            
+            require '../scripts/appointment_scripts/edit_appointment.php';            
 
             $pending = 0;
             $completed = 0;
@@ -63,25 +60,22 @@
                 <div class="close-btn" onclick="togglePopup('popup-view-appointment')">&times;</div>
                 <h2>Appointment Details</h2>
                 <div class="form-group">
-                    <p class="view-id"></p>
+                    <p class="view-id">Appointment ID :</p>
                 </div>
                 <div class="form-group">
-                    <p class="view-name"></p>
+                    <p class="view-name">Client Name : </p>
                 </div>
                 <div class="form-group">
-                    <p class="view-email"></p>
+                    <p class="view-date">Scheduled Date : </p>
                 </div>
                 <div class="form-group">
-                    <p class="view-date"></p>
+                    <p class="view-time">Scheduled Time:</p>
                 </div>
                 <div class="form-group">
-                    <p class="view-time"></p>
+                    <p class="view-status"> Appointment Status :</p>
                 </div>
                 <div class="form-group">
-                    <p class="view-status"></p>
-                </div>
-                <div class="form-group">
-                    <p class="view-service"></p>
+                    <p class="view-service"> Service/s Booked :</p>
                 </div>
             </div>
         </div>

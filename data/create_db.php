@@ -40,6 +40,7 @@ if ($result) {
             createInventoryTable($conn);   
             createNotificationTable($conn);  
             createCartTable($conn);
+            createSaleTable($conn);
         } else {  
             echo "Error creating database: " . $conn->error . "\n";  
         }  
@@ -159,4 +160,16 @@ function createCartTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Cart");
+}
+
+function createSaleTable($conn) {
+    $sql = "CREATE TABLE sale (
+        saleID INT AUTO_INCREMENT PRIMARY KEY,
+        serviceID INT NOT NULL,
+        price FLOAT NOT NULL,   
+        date DATE NOT NULL,
+        FOREIGN KEY (serviceID) REFERENCES service(serviceID)
+    )";
+
+    confirmQuery($conn, $sql, "Sale");
 }
