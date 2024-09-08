@@ -18,16 +18,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
+
+
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($pwd, $row['password'])) {
+            $role = null;
+            $getRole = "SELECT * FROM admin WHERE userID = " . $row['userID'];
+            $role = $conn->query($getRole);
+            $role = $role->fetch_assoc();
             // password is correct
             session_start();
-            $_SESSION['user'] = $row;
+            $_SESSION['user'] = array(
+                'userID' => $row['userID'],
+                'name' => $row['name'],
+                'email' => $row['email'],
+                'cell' => $row['cell'],
+                'userType' => $row['userType'],
+                'role'=> $role['role']
+            );
+            
             if ($_SESSION['user']['userType'] == 'Client') {
+                //echo "<script> window.alert('User Type: " . $_SESSION['user']['userType'] . "')</script>";
                 header("Location: ../client/index.php");
                 exit;
             } elseif ($_SESSION['user']['userType'] == 'Admin') {
+                //echo "<script> window.alert('User Type: " . $_SESSION['user']['userType'] . "')</script>";
                 header("Location: ../admin/overview.php");
                 exit;
             }    

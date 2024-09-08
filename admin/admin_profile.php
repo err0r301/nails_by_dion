@@ -27,7 +27,7 @@
                         <br>
                         <b><?php echo $_SESSION['user']['email']; ?></b>
                         <br>
-                        <i>Role</i>
+                        <i><?php echo $_SESSION['user']['role'];?></i>
                     </div>
                 </div>
                 <img src="../_images/profile-cover.jpg" alt="" class="profile-cover">
