@@ -60,22 +60,28 @@
                 <div class="close-btn" onclick="togglePopup('popup-view-appointment')">&times;</div>
                 <h2>Appointment Details</h2>
                 <div class="form-group">
-                    <p class="view-id">Appointment ID :</p>
+                    <p class="view-p">Appointment ID :</p>
+                    <p id="view-id-value"></p>
                 </div>
                 <div class="form-group">
-                    <p class="view-name">Client Name : </p>
+                    <p class="view-p">Client Name : </p>
+                    <p id="view-name-value"></p>
                 </div>
                 <div class="form-group">
-                    <p class="view-date">Scheduled Date : </p>
+                    <p class="view-p">Scheduled Date : </p>
+                    <p id="view-date-value"></p>
                 </div>
                 <div class="form-group">
-                    <p class="view-time">Scheduled Time:</p>
+                    <p class="view-p">Scheduled Time:</p>
+                    <p id="view-time-value"></p>
                 </div>
                 <div class="form-group">
-                    <p class="view-status"> Appointment Status :</p>
+                    <p class="view-p"> Appointment Status :</p>
+                    <p id="view-status-value"></p>
                 </div>
                 <div class="form-group">
-                    <p class="view-service"> Service/s Booked :</p>
+                    <p class="view-p"> Service Booked :</p>
+                    <p id="view-service-value"></p>
                 </div>
             </div>
         </div>
@@ -222,31 +228,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                            foreach ($appointments as $appointment) {
-                                if ($appointment['appointmentID'] < 10) {
-                                    $appointment['appointmentID'] = "0" . $appointment['appointmentID'];
-                                }
-                                $datetime = new DateTime($appointment['date']);
-                                $date = $datetime->format('Y-m-d');
-                                $time = $datetime->format('H:i');
-                                ?>
-                                    <tr>
-                                        <td><?php echo $appointment['appointmentID'];?></td>
-                                        <td><?php echo $appointment['client'];?></td>
-                                        <td><?php echo $date;?></td>
-                                        <td><?php echo $time;?></td>
-                                        <td><?php echo $appointment['stylist'];?></td>
-                                        <td><?php echo $appointment['status'];?></td>
-                                        <td> 
-                                            <button class='crud-btn btn-view' onclick="togglePopup('popup-view-appointment')"><i class='fa fa-eye'></i></button>
-                                            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment','edit-appointment-id',<?php echo $appointment['appointmentID']?> )"><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment','delete-appointment-id',<?php echo $appointment['appointmentID']?>)"><i class='fa fa-trash-can'></i></button>
-                                        </td>
-                                    </tr>
-                                <?php
-                            };
-                        ?> 
+                    <?php  
+foreach ($appointments as $appointment) {  
+    if ($appointment['appointmentID'] < 10) {  
+        $appointment['appointmentID'] = "0" . $appointment['appointmentID'];  
+    }  
+
+    $datetime = new DateTime($appointment['date']);  
+    $date = $datetime->format('Y-m-d');  
+    $time = $datetime->format('H:i');  
+    ?>  
+    <tr>  
+        <td><?php echo htmlspecialchars($appointment['appointmentID']); ?></td>  
+        <td><?php echo htmlspecialchars($appointment['client']); ?></td>  
+        <td><?php echo htmlspecialchars($date); ?></td>  
+        <td><?php echo htmlspecialchars($time); ?></td>  
+        <td><?php echo htmlspecialchars($appointment['stylist']); ?></td>  
+        <td><?php echo htmlspecialchars($appointment['status']); ?></td>  
+        <td>   
+            <button class='crud-btn btn-view' onclick="viewPopup('popup-view-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-eye'></i></button>  
+            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-pen-to-square'></i></button>  
+            <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-trash-can'></i></button>  
+        </td>  
+    </tr>  
+    <?php  
+}  
+?>
                     </tbody>
                 </table>
             </div>

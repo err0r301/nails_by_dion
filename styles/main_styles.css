@@ -214,6 +214,19 @@ body {
   outline: none;
 }
 
+#popup-view-appointment .form-group{
+  flex-direction: row;
+  margin: 0;
+}
+
+#popup-view-appointment .form-group p{
+  margin: 10px; 
+}
+
+.view-p{
+  font-weight: normal;
+}
+
 .popup button{
   width: 35%;
   margin: 20px 10px 10px 10px;

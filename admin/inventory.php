@@ -131,7 +131,11 @@
                         $inventories = getInventoryItems();
   
                         if ($inventories) {  
-                            while ($row = $inventories->fetch_assoc()) {  ?>
+                            while ($row = $inventories->fetch_assoc()) {  
+                                if ($row ['inventoryID'] < 10) {
+                                    $row['inventoryID'] = "0" . $row['inventoryID'];
+                                }
+                                ?>
                                     <tr>
                                         <td><?php echo $row['inventoryID'] ?></td>
                                         <td><?php echo $row['name'] ?></td>
