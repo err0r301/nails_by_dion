@@ -8,7 +8,23 @@
     <script src="../scripts/admin_script.js" defer></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
-    
+    <?php 
+        if ($pwd_error != null){?>
+            <style>
+                #pwd_error{
+                    display: block;
+                }
+            </style>
+
+        
+    <?php }
+        if ($info_error != null){?>
+            <style>
+                #info_error{
+                    display: block;
+                }
+            </style>
+    <?php }?>   
 </head>
 <body>
     <div class="grid-container">
@@ -16,6 +32,10 @@
             $page = 'admin_profile';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require '../scripts/user_scripts/edit_user-pwd.php';
+            require '../scripts/user_scripts/edit_user-info.php';
+            error_reporting(E_ALL);  
+            ini_set('display_errors', 1); 
         ?> 
         
         <main class="main-container">
@@ -38,6 +58,7 @@
                     <header>
                         <h2>Profile Information</h2>
                         <p>Update your account's profile information and email address.</p>
+                        <div class="error" id="info_error"><p><?php echo $info_error ?></p></div>
                     </header>
 
                     <form class="profile-form" action="" method="POST" >
@@ -57,7 +78,7 @@
                         <div>
                             <label for="cell">Cell No.</label>
                             <input type="text" id="cell" name="cell" value="<?php echo $_SESSION['user']['cell']; ?>">
-                            <!--<p id="email_error" style="color: red;">The phone number you have entered is not valid</p>-->
+                            <!--<p id="cell_error" style="color: red;">The phone number you have entered is not valid</p>-->
                         </div>
 
                         <button type="submit" class="profile-button">Update</button>
@@ -69,9 +90,10 @@
                     <header>
                         <h2>Update Password</h2>
                         <p>Ensure your account is using a long, random password to stay secure.</p>
+                        <div class="error" id="pwd_error"><p><?php echo $pwd_error ?></p></div>
                     </header>
 
-                    <form class="profile-form">
+                    <form class="profile-form" action="" method="POST">
                         <div>
                             <label for="update_password_current">Current Password</label>
                             <input type="password" id="update_password_current" name="current_password" required>

@@ -1,19 +1,32 @@
 <?php
-function removeUser( $userID) {
     // Include the config file
     require '../data/config.php';
 
-    // remove the user data from the database
-    $query = "DELETE FROM user WHERE userID = $userID";
-    $result = $conn->query($query);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['delete-user-id'])) {
+            $userID = $_POST['delete-user-id']; 
 
-    // Check if the data was removed successfully
-    if ($result) {
-        echo "Account removed successfully.";
-    } else {
-        echo "Error removing account: " . $conn->error;
+            // check if the user is an admin
+            $query1 = "SELECT userType FROM user WHERE userID = $userID";
+            $result1 = $conn->query($query1);
+            $row = $result1->fetch_assoc();
+
+            if ($row['userType'] == 'Admin') {
+                $query2 = "DELETE FROM admin WHERE userID = $userID";
+                $result2 = $conn->query($query2);
+            }
+
+            // remove the user data from the database
+            $query3 = "DELETE FROM user WHERE userID = $userID";
+            $result3 = $conn->query($query3);
+        
+            // Check if the data was removed successfully
+            if ($result3) {
+                echo "<script>console.log('Account removed successfully.')</script>";
+            } else {
+                echo "<script>console.log('Error removing account. '". $conn->error.")</script>";
+            }
+        }
     }
-
     // Close the database connection
     $conn->close();
-}

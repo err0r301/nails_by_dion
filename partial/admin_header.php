@@ -1,12 +1,12 @@
 <?php 
-    /*session_start();
+    session_start();
     if(!isset($_SESSION['user']))
         header('Location: /../auth/login.php');
     if($_SESSION['user']['userType'] != "Admin")
         header('Location: /../auth/login.php');
     echo"<script> console.log('session details : 
                     userID: $_SESSION[user]['userID']
-                    userType: $_SESSION[user]['userType']')</script>"; */
+                    userType: $_SESSION[user]['userType']')</script>"; 
 ?>
 
 <header class="header">
