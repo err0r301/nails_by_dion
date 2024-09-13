@@ -5,8 +5,8 @@
     if($_SESSION['user']['userType'] != "Admin")
         header('Location: /../auth/login.php');
     echo"<script> console.log('session details : 
-                    userID: $_SESSION[user]['userID']
-                    userType: $_SESSION[user]['userType']')</script>"; 
+                    userID: ".$_SESSION['user']['userID']."
+                    userType: ".$_SESSION['user']['userType']."')</script>"; 
 ?>
 
 <header class="header">

@@ -4,7 +4,10 @@ function getAdmins() {
     require '../data/config.php';
 
     // get the user data from the database with a user type of 'Client'
-    $query = "SELECT * FROM appointment WHERE userType = 'Admin'";
+    $query = "SELECT user.name, user.cell, user.email, admin.profileImage AS image, admin.accessLevel, admin.role , admin.adminID
+              FROM user 
+              INNER JOIN admin 
+              ON user.userID = admin.userID";
     $admin_result = $conn->query($query);
 
     // Check if the data was retrieved successfully

@@ -2,9 +2,11 @@
   
 let id;  
 
+var m_name;  
+var m_email;
+var m_cell;
+var m_role;
 
-// the following is the popup function structure
-// function togglePopup (popup,CRUD function, rowId) 
 function viewPopup(pop, data) {  
   var popup = document.getElementById(pop);  
   popup.classList.toggle("active");  
@@ -26,6 +28,37 @@ function viewPopup(pop, data) {
     status.textContent= data.status;  
   }  
 }
+function viewModal(pop, modal_name, modal_email, modal_cell, modal_role) {  
+  var popup = document.getElementById(pop);  
+  popup.classList.toggle("active");  
+
+  
+  var name = document.getElementById('modal-name');  
+  var email = document.getElementById('modal-email');  
+  var cell = document.getElementById('modal-cell');  
+  var role = document.getElementById('modal-role'); 
+  
+  name.textContent  = m_name = modal_name;
+  email.textContent = m_email = modal_email;
+  cell.textContent  = m_cell= modal_cell;
+  role.textContent  = m_role = modal_role;   
+}
+
+function editModal(pop) {  
+  var popup = document.getElementById(pop);  
+  popup.classList.toggle("active");  
+
+  var name = document.getElementById('edit-name');  
+  var email = document.getElementById('edit-email');  
+  var cell = document.getElementById('edit-cell');  
+  var role = document.getElementById('edit-role'); 
+  
+  name.value = m_name;
+  email.value = m_email;
+  cell.value= m_cell;
+  role.value= m_role;   
+}
+
 function togglePopup(popupId,saveId,rowId = null) {  
     const popup = document.getElementById(popupId);  
     if (rowId) {  

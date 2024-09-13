@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the edit was successful
             if ($stmt->affected_rows > 0) {
-                echo "Inventory item updated successfully.";
+                echo "<script>console.log('Inventory item updated successfully.')</script>";
             } else {
-                echo "Failed to update inventory item.";
+                echo "<script>console.log('Failed to update inventory item.')</script>";
             }
             $stmt->close();
         }

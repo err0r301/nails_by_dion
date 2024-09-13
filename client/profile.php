@@ -1,5 +1,5 @@
 <?php
-    require ('../scripts/user_scripts/edit_user.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,15 @@
     <link rel="stylesheet" href="/../styles/main_styles.css"> 
 </head>
 <body>
-    <?php $page = 'profile';include '../partial/header.php';?>
+    <?php 
+        $page = 'profile';
+        include '../partial/header.php';
+        error_reporting(E_ALL);  
+        ini_set('display_errors', 1); 
+        require ('../scripts/user_scripts/edit_user-pwd.php');
+        require ('../scripts/user_scripts/edit_user-info.php');
+    
+    ?>
 
     <section>
         <header>

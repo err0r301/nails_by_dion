@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
         $cell = $_POST['cell'];
         // Validate the form data  
+        echo"<script> console.log('name :$name email :$email cell :$cell')</script>";
         $info_error =  validateEmail($email,$info_error);
         $info_error =  validateCell($cell,$info_error);   
         $info_error =  validateName($name,$info_error); 
 
         if ( is_null($info_error)) {
             // Update the user data in the database
-            //echo"<script> console.log 'userID:".$_SESSION['user']['userID']."';</script>";
             $query = "UPDATE user SET name = ?, email = ?, cell = ? WHERE userID = '{$_SESSION['user']['userID']}'";   
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sss", $name, $email, $cell);

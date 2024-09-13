@@ -115,6 +115,16 @@
                             ?>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="appointment-stylist">Service:</label>
+                        <select name="service" class="form-selector services">
+                            <?php
+                                foreach ($services as $service) {
+                                    echo "<option value=" . $service['serviceID'] . ">" . $service['name'] . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
                     <button type="submit" name="add" value="Add">Add</button>
                     <button type="reset">Reset</button>
                 </form>
@@ -131,7 +141,7 @@
                 <form action="" method="post">
                     <input type="hidden" name="delete-appointment-id" id="delete-appointment-id"> 
                     <button type="submit" id="delete-appointment-btn" value="Delete">Delete</button>
-                    <button onclick="togglePopup('popup-delete-appointment')">Cancel</button>
+                    <button type="reset" onclick="togglePopup('popup-delete-appointment')">Cancel</button>
                 </form>
             </div>
         </div>
@@ -229,31 +239,31 @@
                     </thead>
                     <tbody>
                     <?php  
-foreach ($appointments as $appointment) {  
-    if ($appointment['appointmentID'] < 10) {  
-        $appointment['appointmentID'] = "0" . $appointment['appointmentID'];  
-    }  
-
-    $datetime = new DateTime($appointment['date']);  
-    $date = $datetime->format('Y-m-d');  
-    $time = $datetime->format('H:i');  
-    ?>  
-    <tr>  
-        <td><?php echo htmlspecialchars($appointment['appointmentID']); ?></td>  
-        <td><?php echo htmlspecialchars($appointment['client']); ?></td>  
-        <td><?php echo htmlspecialchars($date); ?></td>  
-        <td><?php echo htmlspecialchars($time); ?></td>  
-        <td><?php echo htmlspecialchars($appointment['stylist']); ?></td>  
-        <td><?php echo htmlspecialchars($appointment['status']); ?></td>  
-        <td>   
-            <button class='crud-btn btn-view' onclick="viewPopup('popup-view-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-eye'></i></button>  
-            <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-pen-to-square'></i></button>  
-            <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-trash-can'></i></button>  
-        </td>  
-    </tr>  
-    <?php  
-}  
-?>
+                        foreach ($appointments as $appointment) {  
+                            if ($appointment['appointmentID'] < 10) {  
+                                $appointment['appointmentID'] = "0" . $appointment['appointmentID'];  
+                            }  
+                        
+                            $datetime = new DateTime($appointment['date']);  
+                            $date = $datetime->format('Y-m-d');  
+                            $time = $datetime->format('H:i');  
+                            ?>  
+                            <tr>  
+                                <td><?php echo htmlspecialchars($appointment['appointmentID']); ?></td>  
+                                <td><?php echo htmlspecialchars($appointment['client']); ?></td>  
+                                <td><?php echo htmlspecialchars($date); ?></td>  
+                                <td><?php echo htmlspecialchars($time); ?></td>  
+                                <td><?php echo htmlspecialchars($appointment['stylist']); ?></td>  
+                                <td><?php echo htmlspecialchars($appointment['status']); ?></td>  
+                                <td>   
+                                    <button class='crud-btn btn-view' onclick="viewPopup('popup-view-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-eye'></i></button>  
+                                    <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment', 'edit-appointment-id',<?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-pen-to-square'></i></button>  
+                                    <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment', 'delete-appointment-id', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-trash-can'></i></button>  
+                                </td>  
+                            </tr>  
+                            <?php  
+                        }  
+                    ?>
                     </tbody>
                 </table>
             </div>

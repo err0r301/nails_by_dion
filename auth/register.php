@@ -1,4 +1,5 @@
 <?php 
+    $page = 'register';
     require ('../scripts/user_scripts/add_user.php');
 ?>
 <!DOCTYPE html>

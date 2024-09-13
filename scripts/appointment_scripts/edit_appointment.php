@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate the form data
         if (empty($appointmentID) ||empty($scheduledDateTime) || empty($status) || empty($stylistID)) {
             echo "<script>console.log('Please fill in all required fields.')</script>";
+            echo "<script>console.log('appointmentID : $appointmentID scheduledDateTime : $scheduledDateTime status :   $status stylistID :$stylistID')</script>";
         } else {
             // edit the appointment data in the database
             $query = "UPDATE appointment SET dateScheduled = ?, status = ?, adminID = ? WHERE appointmentID = ?";

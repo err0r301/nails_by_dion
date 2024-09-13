@@ -53,11 +53,11 @@ checkInsert($conn, $userQuery, "User");
 // insert admin data
 $adminQuery = "INSERT INTO admin (adminID,userID, profileImage, accessLevel, role) 
                 VALUES 
-                (1,1, 'profile.png', 'super-admin', 'Manager'),
-                (2,2, 'profile.png', 'admin', 'hair stylist'),
-                (3,3, 'profile.png', 'admin', 'nail stylist'),
-                (4,4, 'profile.png', 'admin', 'hair stylist'),
-                (5,5, 'profile.png', 'admin', 'nail stylist')";
+                (1,1, 'profile-1.png', 'super-admin', 'Manager'),
+                (2,2, 'profile-2.png', 'admin', 'hair stylist'),
+                (3,3, 'profile-3.png', 'admin', 'nail stylist'),
+                (4,4, 'profile-4.png', 'admin', 'hair stylist'),
+                (5,5, 'profile-5.png', 'admin', 'nail stylist')";
 
 checkInsert($conn, $adminQuery, "Admin");
 

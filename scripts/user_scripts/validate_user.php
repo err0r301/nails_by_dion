@@ -24,9 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $result->fetch_assoc();
         if (password_verify($pwd, $row['password'])) {
             $role = null;
-            $getRole = "SELECT * FROM admin WHERE userID = " . $row['userID'];
-            $role = $conn->query($getRole);
-            $role = $role->fetch_assoc();
+            if ($row['userType'] == 'Admin') {
+                $getRole = "SELECT * FROM admin WHERE userID = " . $row['userID'];
+                $role = $conn->query($getRole);
+                $role = $role->fetch_assoc();
+            }
+            
             // password is correct
             session_start();
             $_SESSION['user'] = array(

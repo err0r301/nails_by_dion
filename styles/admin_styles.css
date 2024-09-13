@@ -1354,7 +1354,7 @@ background-color: #3270e4;
   border-color: var(--accent);
 }
 
-#service-image{
+#service-image, #admin-image {
   display: none;}
 
 .upload-image {

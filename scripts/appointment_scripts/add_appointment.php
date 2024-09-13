@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bookedDateTime = date( 'Y-m-d H:i:s');
         $scheduled  = ($_POST['date'] . ' ' . $_POST['time']);
         $scheduledDateTime = date('Y-m-d H:i:s', strtotime($scheduled));
+        $serviceID = $_POST ['service'];
 
         $userID = getEmail($conn, $client_email);
         $appointmentID = getMaxID($conn) + 1;
@@ -22,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Please fill in all fields';
         } else {
             // Insert the appointment data into the database
-            $query = "INSERT INTO appointment (appointmentID, userID, adminID, dateBooked, dateScheduled) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO appointment (appointmentID, userID, adminID, dateBooked, dateScheduled, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("iiiss", $appointmentID, $userID, $stylistID, $bookedDateTime, $scheduledDateTime,);
+            $stmt->bind_param("iiissi", $appointmentID, $userID, $stylistID, $bookedDateTime, $scheduledDateTime, $serviceID);
             $stmt->execute();
 
             // Check if the insertion was successful

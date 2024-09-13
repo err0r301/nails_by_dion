@@ -7,6 +7,7 @@
     <title>Team</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="../scripts/admin_script.js" defer></script>
+    <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
 
@@ -16,8 +17,13 @@
     <div class="grid-container">
         <?php
             $page = 'team';
+            error_reporting(E_ALL);  
+            ini_set('display_errors', 1); 
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require '../scripts/user_scripts/add_user.php';
+            require '../scripts/user_scripts/get_admins.php';
+            $team = getAdmins();
         ?>
 
         <main class="main-container">
@@ -29,143 +35,100 @@
 
                 <div class="adding">
                     <div class="add-card">
-                        <form id="add-member-form">
+                        <form id="add-member-form" action="" method="post" enctype="multipart/form-data">
                             <h3>Add New Member</h3>
                             <div class="add-form-container">
                                 <div class="add-img-container">
                                     <img id="add-img" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
                                 </div>
                                 <div class="add-input-container">
-                                    <input type="text" id="member-name" placeholder="Name" required>
-                                    <input type="email" id="member-email" placeholder="Email" required>
-                                    <input type="pNumber" id="member-pNumber" placeholder="Phone number" required>
-                                    <input type="text" id="member-address" placeholder="Address" required>
-                                    <input type="text" id="member-role" placeholder="Role" required>
+                                    <input type="text" id="member-name" name="name" placeholder="Name" required>
+                                    <input type="email" id="member-email" name="email" placeholder="Email" required>
+                                    <input type="text" id="member-cell" name="cell" placeholder="Phone number" required>
+                                    <input type="text" id="member-role" name="role" placeholder="Role" required>
+                                    <label class="upload-image" for="admin-image">Upload Image</label>
+                                    <input type="file" name="image" id="admin-image" accept="image/JPEG, image/PNG, image/JPG" required>
                                     <button type="submit">Add</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>
-
+                </div>        
 
                     <div class="added">
                         <div class="deck">
+                            <?php 
+                                foreach ($team as $member) {
+                                    $name = $member['name'];
+                                    $email = $member['email'];
+                                    $cell = $member['cell'];
+                                    $role = $member['role'];
+                                    $image = $member['image'];
+                                ?>
 
-                            <div class="card-container" id="john-card">
-                                <div class="team-card">
-                                    <div class="trash">
-                                        <i id="bin" class="fa-solid fa-xmark"></i>
+                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>');
+                                                                    togglePopup('popup-delete-member', <?php echo ($member['adminID']); ?>);">
+                                        <div class="team-card">
+                                            <img id="team-pic" src="../_images/<?php echo $image?>" alt="team-profile photo">
+                                            <p id="team-name"><?php echo $name ?></p>
+                                            <p id="team-email"><?php echo $email ?></p>
+                                            <p class="team-role"><?php echo $role ?></p>
+                                            <div class="card-bottom">
+                                                <!--    <button id="team-view">Edit</button>
+                                            <button id="team-view">View</button> -->
+                                            </div>
+                                        </div>
                                     </div>
-                                    <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                                    <p id="team-name">John Doe</p>
-                                    <p id="team-email">john@example.com</p>
-                                    <p class="team-role">stylist</p>
-                                    <div class="card-bottom">
-                                        <!--    <button id="team-view">Edit</button>
-                                    <button id="team-view">View</button> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-container">
-                                <div class="team-card">
-                                    <div class="trash">
-                                        <i id="bin" class="fa-solid fa-xmark"></i>
-                                    </div>
-                                    <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                                    <p id="team-name">Jane Doe</p>
-                                    <p id="team-email">jane@example.com</p>
-                                    <p class="team-role">manager</p>
-                                    <div class="card-bottom">
-                                        <!--    <button id="team-view">Edit</button>
-                                    <button id="team-view">View</button> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-container">
-                                <div class="team-card">
-                                    <div class="trash">
-                                        <i id="bin" class="fa-solid fa-xmark"></i>
-                                    </div>
-                                    <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                                    <p id="team-name">Jim Beam</p>
-                                    <p id="team-email">jim@example.com</p>
-                                    <p class="team-role">owner</p>
-                                    <div class="card-bottom">
-                                        <!--    <button id="team-view">Edit</button>
-                                    <button id="team-view">View</button> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-container">
-                                <div class="team-card">
-                                    <div class="trash">
-                                        <i id="bin" class="fa-solid fa-xmark"></i>
-                                    </div>
-                                    <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                                    <p id="team-name">Jack Daniels</p>
-                                    <p id="team-email">jack@example.com</p>
-                                    <p class="team-role">stylist</p>
-                                    <div class="card-bottom">
-                                        <!--    <button id="team-view">Edit</button>
-                                    <button id="team-view">View</button> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-container">
-                                <div class="team-card">
-                                    <div class="trash">
-                                        <i id="bin" class="fa-solid fa-xmark"></i>
-                                    </div>
-                                    <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                                    <p id="team-name">Ali Wong</p>
-                                    <p id="team-email">ali@example.com</p>
-                                    <p class="team-role">stylist</p>
-                                    <div class="card-bottom">
-                                        <!--    <button id="team-view">Edit</button>
-                                    <button id="team-view">View</button> -->
-                                    </div>
-                                </div>
-                            </div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
 
                 <!-- ---------MODAL ----------- -->
 
-                <div id="team-modal" class="t-modal">
-                    <div class="t-modal-content">
-                        <span class="close">&times;</span>
+                <div class="popup" id="popup-view-member">
+                    <div class="overlay" onclick="togglePopup('popup-view-member')"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup('popup-view-member')">&times;</div>
                         <h2>Team Member Details</h2>
                         <p id="modal-name"></p>
                         <p id="modal-email"></p>
-                        <p id="modal-phone"></p>
-                        <p id="modal-address"></p>
+                        <p id="modal-cell"></p>
                         <p id="modal-role"></p>
                         <div class="modal-buttons">
-                            <button id="edit-button">Edit</button>
-                            <button id="delete-button">Delete</button>
+                            <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>');">Edit</button>
+                            <button id="delete-button" onclick="togglePopup('popup-delete-member')"><i class='fa fa-trash-can'></i>>Delete</button> 
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- ---------EDIT MODAL ----------- -->
-
-                <div id="edit-modal" class="t-modal">
-                    <div class="t-modal-content">
-                        <!--  <span class="close-edit">&times;</span>   -->
+                <div class="popup" id="popup-edit-member">
+                    <div class="overlay" onclick="togglePopup('popup-edit-member')"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup('popup-edit-member')">&times;</div>
                         <h2>Edit Team Member Details</h2>
                         <form id="edit-member-form">
                             <input type="text" id="edit-name" placeholder="Name" required>
                             <input type="email" id="edit-email" placeholder="Email" required>
-                            <input type="text" id="edit-phone" placeholder="Phone number" required>
-                            <input type="text" id="edit-address" placeholder="Address" required>
+                            <input type="text" id="edit-cell" placeholder="Phone number" required>
                             <input type="text" id="edit-role" placeholder="Role" required>
                             <button type="submit">Save</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ---------DELETE MODAL ----------- -->
+                <div class="popup" id="popup-delete-member">
+                    <div class="overlay" onclick="togglePopup('popup-delete-member')"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup('popup-delete-member')">&times;</div>
+                        <h2>Remove Employee</h2>
+                        <p>Are you sure you want to remove this employee?</p>
+                        <form action="" method="post">
+                            <input type="hidden" name="delete-member-id" id="delete-member-id"> 
+                            <button type="submit" id="delete-member-btn" value="Delete">Delete</button>
+                            <button onclick="togglePopup('popup-delete-member')">Cancel</button>
                         </form>
                     </div>
                 </div>
@@ -174,182 +137,18 @@
 
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("add-member-form");
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-
-          
-            const name = document.getElementById("member-name").value;
-            const email = document.getElementById("member-email").value;
-            const phone = document.getElementById("member-pNumber").value;
-            const address = document.getElementById("member-address").value;
-            const role = document.getElementById("member-role").value;
-
-            // Creates a new team card   
-
-            //  <button id="team-view">Edit</button>
-            //<button id="team-view">View</button> 
-            const newCard = document.createElement("div");
-            newCard.classList.add("card-container");
-            newCard.innerHTML = `
-                        <div class="team-card">
-                            <div class="trash">
-                            <i id="bin"class="fa-solid fa-xmark"></i>
-                            </div>
-                            <img id="team-pic" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
-                            <p id="team-name">${name}</p>
-                            <p id="team-email">${email}</p>
-                            <p class="team-role">${role}</p>
-                            <div class="card-bottom">
-                             
-                            </div>
-                        </div>
-                    `;
-
-            // <p id="team-phone">${phone}</p>
-            // <p id="team-address">${address}</p>
-
-         
-            const deck = document.querySelector(".deck");
-            deck.appendChild(newCard);
-
-            
-            const trashIcon = newCard.querySelector(".fa-xmark");
-            trashIcon.addEventListener("click", function() {
-                newCard.remove();
-            });
-
-            
-            newCard.querySelector(".team-card").addEventListener("click", function() {
-                showTeamModal({
-                    name,
-                    email,
-                    phone,
-                    address,
-                    role
-                });
-            });
-
-            // Clear inputs
-            form.reset();
-        });
-
-     
-        const existingTrashIcons = document.querySelectorAll(".fa-xmark");
-        existingTrashIcons.forEach(icon => {
-            icon.addEventListener("click", function() {
-                icon.closest(".card-container").remove();
-            });
-        });
-
-        const existingTeamCards = document.querySelectorAll(".team-card");
-        existingTeamCards.forEach(card => {
-            card.addEventListener("click", function() {
-                const name = card.querySelector(".team-name").textContent;
-                const email = card.querySelector(".team-email").textContent;
-                const phone = card.querySelector(".team-phone").textContent;
-                const address = card.querySelector(".team-address").textContent;
-                const role = card.querySelector(".team-role").textContent;
-                showTeamModal({
-                    name,
-                    email,
-                    phone,
-                    address,
-                    role
-                });
-            });
-        });
-
-        // Modal functionality
         const modal = document.getElementById("team-modal");
-        const span = document.getElementsByClassName("close")[0];
+        const modalClose = document.getElementsByClassName("close")[0];
 
-        function showTeamModal({
-            name,
-            email,
-            phone,
-            address,
-            role
-        }) {
+        function showTeamModal(name,email,phone,role) {
             document.getElementById("modal-name").textContent = name;
             document.getElementById("modal-email").textContent = email;
             document.getElementById("modal-phone").textContent = phone;
-            document.getElementById("modal-address").textContent = address;
             document.getElementById("modal-role").textContent = role;
             modal.style.display = "block";
         }
-
-   
-        span.onclick = function() {
+        modalClose.onclick = function() {
             modal.style.display = "none";
         }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        // Edit and Delete buttons
-        const editButton = document.getElementById("edit-button");
-        const deleteButton = document.getElementById("delete-button");
-
-        editButton.addEventListener("click", function() {
-            
-            document.getElementById("edit-modal").style.display = "block";
-
-            
-            document.getElementById("edit-name").value = document.getElementById("modal-name")
-                .textContent;
-            document.getElementById("edit-email").value = document.getElementById("modal-email")
-                .textContent;
-            document.getElementById("edit-phone").value = document.getElementById("modal-phone")
-                .textContent;
-            document.getElementById("edit-address").value = document.getElementById("modal-address")
-                .textContent;
-            document.getElementById("edit-role").value = document.getElementById("modal-role")
-                .textContent;
-
-        });
-
-        // Save button 
-        const saveButton = document.getElementById("edit-member-form");
-        saveButton.addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            
-            document.getElementById("modal-name").textContent = document.getElementById("edit-name")
-                .value;
-            document.getElementById("modal-email").textContent = document.getElementById("edit-email")
-                .value;
-            document.getElementById("modal-phone").textContent = document.getElementById("edit-phone")
-                .value;
-            document.getElementById("modal-address").textContent = document.getElementById(
-                "edit-address").value;
-            document.getElementById("modal-role").textContent = document.getElementById("edit-role")
-                .value;
-
-            
-            document.getElementById("edit-modal").style.display = "none";
-
-        });
-
-        deleteButton.addEventListener("click", function() {
-            
-            const email = document.getElementById("modal-email").textContent;
-            const cardToDelete = Array.from(document.querySelectorAll(".team-card"))
-                .find(card => card.querySelector("#team-email").textContent === email);
-            if (cardToDelete) {
-                cardToDelete.closest(".card-container").remove();
-            }
-            modal.style.display = "none";
-        });
-
-    });
-
     </script>
-    </div>
-</body>
-
-</html>
+    
