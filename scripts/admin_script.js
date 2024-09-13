@@ -436,3 +436,9 @@ function filter2(rows, stylist){
   }
   console.log(status);
 }
+
+
+// bucket scripts
+function setMemberDeleteID(id){
+
+}

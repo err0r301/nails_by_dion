@@ -22,6 +22,8 @@
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
             require '../scripts/user_scripts/add_user.php';
+            require '../scripts/user_scripts/edit_user-info.php';
+            require '../scripts/user_scripts/remove_user.php';
             require '../scripts/user_scripts/get_admins.php';
             $team = getAdmins();
         ?>
@@ -65,9 +67,8 @@
                                     $role = $member['role'];
                                     $image = $member['image'];
                                 ?>
-
-                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>');
-                                                                    togglePopup('popup-delete-member', <?php echo ($member['adminID']); ?>);">
+ 
+                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>')">
                                         <div class="team-card">
                                             <img id="team-pic" src="../_images/<?php echo $image?>" alt="team-profile photo">
                                             <p id="team-name"><?php echo $name ?></p>
@@ -97,7 +98,7 @@
                         <p id="modal-role"></p>
                         <div class="modal-buttons">
                             <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>');">Edit</button>
-                            <button id="delete-button" onclick="togglePopup('popup-delete-member')"><i class='fa fa-trash-can'></i>>Delete</button> 
+                            <button id="delete-button" onclick="togglePopup('popup-delete-member');togglePopup('popup-view-member');">Delete</button> 
                         </div>
                     </div>
                 </div>
@@ -108,11 +109,11 @@
                     <div class="content">
                         <div class="close-btn" onclick="togglePopup('popup-edit-member')">&times;</div>
                         <h2>Edit Team Member Details</h2>
-                        <form id="edit-member-form">
-                            <input type="text" id="edit-name" placeholder="Name" required>
-                            <input type="email" id="edit-email" placeholder="Email" required>
-                            <input type="text" id="edit-cell" placeholder="Phone number" required>
-                            <input type="text" id="edit-role" placeholder="Role" required>
+                        <form id="edit-member-form" action="" method="post">
+                            <input type="text" id="edit-name" name="name" placeholder="Name" required>
+                            <input type="email" id="edit-email" name="email" placeholder="Email" required>
+                            <input type="text" id="edit-cell" name="cell" placeholder="Phone number" required>
+                            <input type="text" id="edit-role" name="role" placeholder="Role" required>
                             <button type="submit">Save</button>
                         </form>
                     </div>
@@ -128,11 +129,10 @@
                         <form action="" method="post">
                             <input type="hidden" name="delete-member-id" id="delete-member-id"> 
                             <button type="submit" id="delete-member-btn" value="Delete">Delete</button>
-                            <button onclick="togglePopup('popup-delete-member')">Cancel</button>
+                            <button type="reset" onclick="togglePopup('popup-delete-member')">Cancel</button>
                         </form>
                     </div>
                 </div>
-
         </main>
 
     </div>

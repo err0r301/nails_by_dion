@@ -93,7 +93,7 @@ function createAdminTable($conn) {
         adminID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
         profileImage VARCHAR(150) NOT NULL,
-        accessLevel VARCHAR(30) NOT NULL DEFAULT 'Admin',
+        accessLevel VARCHAR(30) NOT NULL DEFAULT 'admin',
         role VARCHAR(50) NOT NULL,
         FOREIGN KEY (userID) REFERENCES user(userID)
     )";
