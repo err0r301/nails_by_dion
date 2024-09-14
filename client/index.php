@@ -14,7 +14,7 @@
 </head>
 <body>
     <?php /*$page = 'home'; include '../partial/header.php';*/?>
-    <?php $page = 'services'; include '../partial/header.php';?>
+    <?php $page = 'home'; include '../partial/header.php';?>
     <br>
 	<img src="_images\logo.png" id="shortlisted" onclick="myController2.showPop(1)">
 

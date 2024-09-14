@@ -1,5 +1,8 @@
 <!--<?php
-    require ('../scripts/updateUser.php');
+    require '../scripts/user_scripts/edit_user-pwd.php';
+    require '../scripts/user_scripts/edit_user-info.php';
+    error_reporting(E_ALL);  
+    ini_set('display_errors', 1); 
 ?>-->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +27,7 @@
             <p>Update your account's profile information and email address.</p>
         </header>
 
-        <form class="profile-form">
+        <form class="profile-form" action="" method="POST">
             <div>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>" required>
@@ -54,7 +57,7 @@
             <p>Ensure your password is 8 characters long and contains a special character, upper case letter, lower case letter, and a number.</p>
         </header>
 
-        <form class="profile-form">
+        <form class="profile-form" action="" method="POST">
             <div>
                 <label for="update_password_current">Current Password</label>
                 <input type="password" id="update_password_current" name="current_password" required>

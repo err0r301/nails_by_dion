@@ -92,6 +92,7 @@
                     <div class="content">
                         <div class="close-btn" onclick="togglePopup('popup-view-member')">&times;</div>
                         <h2>Team Member Details</h2>
+                        <input type="hidden" name="userID" id="memberUserID">
                         <p id="modal-name"></p>
                         <p id="modal-email"></p>
                         <p id="modal-cell"></p>
@@ -127,7 +128,7 @@
                         <h2>Remove Employee</h2>
                         <p>Are you sure you want to remove this employee?</p>
                         <form action="" method="post">
-                            <input type="hidden" name="delete-member-id" id="delete-member-id"> 
+                            <input type="hidden" name="delete-user-id" id="delete-member-id"> 
                             <button type="submit" id="delete-member-btn" value="Delete">Delete</button>
                             <button type="reset" onclick="togglePopup('popup-delete-member')">Cancel</button>
                         </form>

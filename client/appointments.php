@@ -11,7 +11,7 @@
         <script src="../scripts/appointFunction.js" ></script>
     </head>
     <body>
-    <?php $page = 'services'; include '../partial/header.php';?>
+    <?php $page = 'appointment'; include '../partial/header.php';?>
 
 
     

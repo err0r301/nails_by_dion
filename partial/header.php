@@ -26,12 +26,12 @@
           <a href="index.php" class="navbar-link" data-nav-link>Home</a>
         </li>
 
-        <li class="<?php if ($page == 'service'){echo "active-link";}?> navbar-item">
+        <!--<li class="<?php if ($page == 'service'){echo "active-link";}?> navbar-item">
           <a href="service.php" class="navbar-link" data-nav-link>Services</a>
-        </li>
+        </li>-->
 
         <li class="<?php if ($page == 'appointment'){echo "active-link";}?> navbar-item">
-          <a href="appointment.php" class="navbar-link" data-nav-link>Appointments</a>
+          <a href="appointments.php" class="navbar-link" data-nav-link>Appointments</a>
         </li>
 
          <li class="<?php if ($page == 'gallery'){echo "active-link";}?> navbar-item">

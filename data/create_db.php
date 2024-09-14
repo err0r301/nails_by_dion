@@ -132,6 +132,7 @@ function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
+        adminID INT NOT NULL,
         message VARCHAR(300) NOT NULL,
         status VARCHAR(10) NOT NULL DEFAULT 'Unread',
         date DATETIME NOT NULL,
