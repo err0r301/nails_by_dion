@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/../styles/style.css">
     <script src="../scripts/client_script.js" defer></script>
     <script src="../scripts/serviceFunction.js" ></script>
-    
+     
 </head>
 <body>
     <?php $page = 'home'; include '../partial/header.php';?>
