@@ -1,6 +1,6 @@
-<?php
-
-?>
+<!--<?php
+    require ('../scripts/updateUser.php');
+?>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,52 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="/../styles/client_styles.css">
     <link rel="stylesheet" href="/../styles/main_styles.css"> 
+
 </head>
 <body>
     <?php 
-        $page = 'profile';
-        include '../partial/header.php';
-        error_reporting(E_ALL);  
-        ini_set('display_errors', 1); 
-        require ('../scripts/user_scripts/edit_user-pwd.php');
-        require ('../scripts/user_scripts/edit_user-info.php');
-    
-    ?>
-
+        $page = 'profile'; 
+        $unsubcribe = false;
+        $pop = false;
+        include '../partial/header.php';?>
     <section>
         <header>
             <h2>Profile Information</h2>
             <p>Update your account's profile information and email address.</p>
         </header>
-        <form class="profile-form" action="" method="post" autocomplete="off">
-                <span>
-                    <label for="name">Name</label>
-                    <p class="error" id="Profile-name-error">
-                        <?php echo $name_error; ?>
-                    </p>
-                </span>
-                <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>" required>  
 
-                <span>
-                    <label for="email">Email:</label>
-                    <p class="error" id="Profile-email-error">
-                        <?php echo $email_error; ?>
-                    </p>
-                </span>
+        <form class="profile-form">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>" required>
+                <p class="error" id="name_error"></p>    
+            </div>
+
+            <div>
+                <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>" required>
+                <p class="error" id="email_error"></p>
+            </div>
 
-                <span>
-                    <label for="cell">Cell No.</label>
-                    <p class="error" id="Profile-cell-error">
-                        <?php echo $cell_error; ?>
-                    </p>
-                </span>
+            <div>
+                <label for="cell">Cell No.</label>
                 <input type="text" id="cell" name="cell" value="<?php echo $_SESSION['user']['cell']; ?>">
-            <span>
-                <button type="submit" class="profile-button">Update</button>
-                <button type="reset" class="profile-button">Reset</button>
-            </span>
-            
+                <p class="error" id="email_error"></p>
+            </div>
+
+            <button type="submit" class="profile-button">Update</button>
+            <button type="reset" class="profile-button">Reset</button>
         </form>
     </section>
 
@@ -65,41 +54,56 @@
             <p>Ensure your password is 8 characters long and contains a special character, upper case letter, lower case letter, and a number.</p>
         </header>
 
-        <form class="profile-form" action="" method="post" autocomplete="off">
+        <form class="profile-form">
             <div>
                 <label for="update_password_current">Current Password</label>
-                <input type="password" id="current_password" name="current_password" required>
-                <!--<p class="error" id="current_password_error"></p>-->
+                <input type="password" id="update_password_current" name="current_password" required>
+                <p class="error" id="current_password_error"></p>
             </div>
 
             <div>
                 <label for="update_password_new">New Password</label>
-                <input type="password" id="new_password" name="new_password" required>
-                <!--<p class="error" id="new_password_error"></p>-->
+                <input type="password" id="update_password_new" name="new_password" required>
+                <p class="error" id="new_password_error"></p>
                 
             </div>
 
             <div>
                 <label for="update_password_confirm">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-                <!--<p class="error" id="confirm_password_error"></p>-->
+                <input type="password" id="update_password_confirm" name="confirm_password" required>
+                <p class="error" id="confirm_password_error"></p>
             </div>
 
-            <span>
-                <button type="submit" class="profile-button">Update</button>
-                <button type="reset" class="profile-button">Reset</button>
-            </span>
-            
+            <button type="submit" class="profile-button">Update</button>
+            <button type="reset" class="profile-button">Reset</button>
+            </div>
         </form>
     </section>
 
     <section>
         <header>
-            <h2>Delete Account</h2>
-            <p>This action is irreversible. All your data will be permanently deleted.</p>
+            <h2>Unsubscribe</h2>
+            <p>Once your have unsubscribed, you will no longer receive important updates, promotions, and exclusive offers.</p>
         </header>
 
-        <button class="unsubscribe profile-button" onclick="togglePopup('popup-register')">Delete account</button>
+        <button class="unsubscribe profile-button" onclick="togglePopup('popup-register')">Unsubscribe</button>
+
+        <div class='popup' id='popup-register'>
+                    <div class='overlay' onclick="togglePopup('popup-register')" ></div>
+                    <div class='content'>
+                        <h2>You are now unsubscribed</h2>
+                            <button onclick="togglePopup('popup-register')"> Back</button>  
+                    </div>
+                </div>
     </section>
+
+    <script>
+        function togglePopup(id) {
+            const popup = document.getElementById(id);
+            popup.classList.toggle("active");
+            pop =document.getElementsByClassName("content")[0];
+            pop.style.top = "100%";
+        }
+    </script>
 </body>
 </html>

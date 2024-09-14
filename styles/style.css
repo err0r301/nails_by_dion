@@ -1,0 +1,1002 @@
+/*service page*/
+
+
+
+th {
+    background-color: rgb(216, 206, 206);
+}
+
+.evenRow:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.evenRow:nth-child(odd) 
+{
+    background-color: #f2f2f2;  
+    
+}
+
+.oddRow:nth-child(even) 
+{
+    background-color: transparent;  
+    
+}
+
+        .popupBackground 
+        {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+        .popupBlock 
+        {
+            background-color: white;
+            margin-top: 3% ;
+            margin-left:13%;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 70%;
+            height: 80%;
+            font-weight: bolder;
+            border-radius: 20px;
+        }
+
+        
+        
+        .bookButton
+        {
+            background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 270px;
+            margin-top:20px;
+            color: white;
+            border-radius: 15px;
+        }
+
+        .bookButton:hover
+        {
+            background-color: white;
+            border-style:solid;
+            border-color: #e3cfbb;
+            font-weight: 600;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 270px;
+            margin-top:20px;
+            color: black;
+            border-radius: 15px;
+
+            transition: all 200ms ease-in-out;
+        }
+
+        .closePopup
+        {
+            background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 200px;
+
+            color: white;
+            border-radius: 15px;
+                
+        }
+
+        
+
+        .closePopupAppointments
+        {
+            background-color: rgb(180, 145, 101);
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 400px;
+
+            color: white;
+            border-radius: 15px;
+        }
+
+
+
+        .timeSectionDialog
+        {
+            width: 20px;
+        }
+
+        
+
+        .closePopup:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        .show 
+        {
+            display: block;   
+        }
+
+        .contentblock
+        {
+            background-color: transparent;
+            margin-top:35px ;
+            margin-left:50pt;
+            height:500px;
+            width: 900px;
+            
+        }
+
+        .dialogServicesInfo
+        {
+            
+            background-color: rgb(255, 255, 255);
+            border-radius: 25px;
+            width:880px;
+            margin-top: 0px;;
+            margin-bottom: 0px;
+            z-index: 3;
+            margin-left: 12px;
+            padding:0px;
+       
+           
+        }
+
+        .dialogInfoTable
+        {
+            
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .serviceDetailCell
+        {
+            border-style:solid;
+            border-color: white;
+            width:0px;
+            background-color: transparent;
+            font-weight: 100;
+            font-size: 11pt;
+            padding: 12pt;
+            border-radius: 10px;
+            background-color:rgb(247, 245, 245);
+        }
+      
+
+        .detailsAppointments
+        {
+            width: 600px;
+            background-color:transparent;
+        }
+
+        .headingRow
+        {
+            height: 40px;
+        }
+
+        .dialogHeading
+        {
+            text-align: left;
+            
+        }
+
+        .detailsRow
+        {
+            
+            border-style: solid;
+            border-width: 2pt;
+            border: #888888;
+            text-align: left;
+            
+        }
+
+        .serviceDetailCellH
+        {
+            border-style:solid;
+            border-color: white;
+            width:300px;
+
+            background-color: #F3E6D9;
+            font-weight: 600;
+            font-size: 12pt;
+            color: #000000;
+            padding: 12pt;
+            border-radius: 10px;
+            background-color: rgb(247, 245, 245);
+        }
+        
+
+        .sessionTable
+        {
+            background-color:transparent;
+            margin-top: 0px;
+            height: 0px;
+        }
+
+        .sessionColvalue
+        {
+            font-size: 11pt;
+        }
+
+        .sessionCol
+        {
+            width: 90px;
+            text-align: center;
+        }
+
+        .dialogServiceCell
+        {
+            width: 10px;
+            padding:18px;
+        }
+
+        .headingColAppoint
+        {
+            width: 160px;
+            
+        }
+
+        .headingCol
+        {
+            margin-bottom: 0px;
+            margin-left: 0px;
+            text-align: center;
+            padding: 0px;
+            height:40px;
+        }
+
+        .dialogThumbnail
+        {
+            height: 130px;
+            margin-top: 0px;
+            width:130px;
+            border-radius: 20px;
+ 
+
+        }
+
+        /*Grid services*/
+         .gridBlock
+         {
+            background-color: #F3E6D9;
+            
+         }
+
+         .serviceTable
+         {
+            width: 950pt;
+            
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            border: none; 
+            border-radius: 10px; 
+            overflow: hidden;
+            padding: 18px;
+         }
+
+         .serviceCategories
+         {
+            margin-left:50px;
+            color: #8c775b;
+            font-size: 16pt;
+            font-family: sans-serif;
+         }
+
+         .notice
+         {
+            position: fixed;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0);
+            
+            border-radius: 100px;
+
+            margin-left: 1200px;
+            padding: 0px;
+
+         }
+
+         .noticeMessage
+         {
+            color: #00000000;
+            font-size: 10pt;
+            margin: 10px;
+            padding: 7px;;
+         }
+
+         .mainHeading
+         {
+            font-size: 25pt;
+            margin-left:140px;
+         }
+        
+         .gridBlockImage
+         {
+            background-color: #F3E6D9;
+            width: 3cm;
+            border-radius: 25px;
+            text-align: center;
+            padding-top:30px;
+            
+         }
+
+         .gridBlockImage:hover
+         {
+
+            background-color: #fff3e7;
+             transition: all 200ms ease-in-out;
+         }
+
+         .labelTable
+         {
+            width: 4cm;
+            height: 1cm;
+            margin-bottom: 0px;
+            margin-left: 40px;
+            padding: 0px;
+         }
+         
+         .labelTableCell
+         {
+            background-color: transparent;
+            height: 0.5cm;
+            width: 2cm;
+         }
+
+         .labelTableCellAdd
+         {
+            width: 0.5cm;
+            
+         }
+
+         .serviceLabel
+         {
+            margin-right: 5px;
+            margin-bottom: 0px;
+           
+            font-size: 12pt;
+            color:#655033;
+         }
+         
+         .price
+         {
+            margin-bottom: 0px;
+            margin-right: 0px;
+            font-size: 10pt;
+            
+            color: #888888;
+         }
+
+         .addButton
+         {
+            font-size: 32px;
+            text-align: center;
+            color: white;
+            background-color: #e7caad;
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;  
+         }
+
+         .addButton:hover
+         {
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;
+            transition: all 250ms ease-in-out;
+            background-color: black;
+         }
+
+
+        .gridImage
+        {
+            height: 140px;
+            width: 140px;
+            border-radius: 15%;
+        }
+
+        .tableHeading
+        {
+            width: 730px;
+            font-weight: 200;
+            font-size: 10pt;
+            text-align: center;
+            margin-left: 80px;
+        }
+
+        .tableHeadingRed
+        {
+            height:0px;
+            width: 193px;
+            margin-top: 0px;
+            text-align: center;
+            background-color: transparent;
+
+        }
+
+        .stylistsSection
+        {
+            margin-top: 80px;
+        }
+
+        .mainStylistTable
+        {
+            background-color: white;
+            /*width: 25px;*/
+            margin-left:30px;
+            margin-bottom: 0px;
+        }
+
+        .dialogStylistTable
+        {
+            
+            height: 12px;
+            
+            margin-top: 0px;
+            margin-right: 2px;
+            border-radius: 15px;
+            background-color: #f7f5f5;;
+        }
+
+        .dialogStylistTable:hover
+        {
+            
+            height: 120px;
+            margin-top: 0px;
+            margin-right: 2px;
+            border-radius: 15px;
+            background-color: #f0dfd0;
+        }
+
+        .DayPickCell
+        {
+            width: 145px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .MonthPickCell, .SessionPickCell, .TimePickCell 
+        {
+            width: 220px;
+            height: 100px;
+            text-align: center;
+            
+        }
+
+        
+
+        .TimeSelection
+        {
+            
+            width: fit-content;
+            background-color:transparent;
+            border: none;
+            border-radius: 10px;
+            font-size: 40px;
+            text-align: center;
+
+        }
+
+        .StylistSelector
+        {
+            background-color:transparent;
+            border: none;
+        }
+
+        .addButtonDialog
+        {
+            height: 20px;
+            width:20px;
+            margin-left: 35px;
+            font-size: 15pt;
+            text-align: center;
+            color: white;
+            background-color: #e7caad;
+            border-radius: 100px;
+        }
+
+        .addButtonDialog:hover
+        {
+            height: 20px;
+            width:20px;
+            margin-left: 35px;
+            font-size: 15pt;
+            text-align: center;
+            color: white;
+            background-color: #000000;
+            border-radius: 100px;
+            transition: all 200ms ease-in-out;
+        }
+
+        .dialogStylistCell
+        {
+            
+            background-color: transparent;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 100;
+            font-size: 10pt;
+            
+        }
+
+        .stylistThumbnail
+        {
+            width:50px;
+            height:50px;
+            border-radius: 90px;
+            
+        }
+
+/*appointments page*/
+.popupBackground 
+{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.popupBlock 
+{
+    background-color: white;
+    margin-top: 3% ;
+    margin-left:13%;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 70%;
+    height: 80%;
+    font-weight: bolder;
+    border-radius: 20px;
+}
+
+.statusTable
+{
+    margin-left:100px;
+    border-radius: 20px;
+    background-color: #f0dfd0;
+    padding:35px;
+}
+
+.appointmentTable
+{
+    margin-left:100px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+    background-color: #f0dfd0;
+    padding:35px;
+    
+    
+}
+
+.statusRow
+{
+    width: 20px;
+}
+
+.headingCellAppoint
+{
+    padding:20px;
+    border-radius: 10px 0px 0px 0px;
+    width: 15px;
+    text-align: center;
+    color: #655033;
+    font-weight:600;
+    background-color:  #e3cfbb;
+    
+}
+
+.headingCellAppoint1
+{
+    padding:20px;
+    border-radius: 0px 10px 0px 0px;
+    width: 845px;
+    text-align: left;
+    color: #655033;
+    font-weight:600;
+
+    background-color: #e3cfbb;
+}
+
+.headingCellAppoint2
+{
+    padding:20px;
+    border-radius: 0px 10px 0px 0px;
+    width: 1030px;
+    text-align: left;
+    color: #655033;
+    font-weight:600;
+
+    background-color: #e3cfbb;
+    
+}
+
+.headingCellAppointStatus
+{
+ 
+    background-color: #e3cfbb;
+    width: 1030px;
+    padding:20px;
+    border-radius: 0px 10px 0px 0px;
+    
+    text-align: left;
+    color: #655033;
+    font-weight:600;
+
+    
+}
+
+.headingCellAppoint3
+{
+    background-color: #e3cfbb;
+    text-align: center;
+    color: #655033;
+    font-weight:600;
+}
+
+#cancelCell
+{
+    width: 80px;
+}
+.statusCell
+{
+    background-color: #f2f2f2;
+    border-radius: 0px 0px 0px 10px;
+    padding:20px;
+}
+
+.statusCell2
+{
+    background-color: #f2f2f2;
+    border-radius: 0px 0px 10px 0px;
+    width: 200px;
+    padding:20px;
+    text-align: right;
+}
+
+.show 
+{
+    display: block;   
+}
+
+.subheading
+{
+margin-left: 7%;
+font-weight: 700;
+color: #8c775b;
+}
+
+.heading
+{
+margin-left: 5%;
+}
+
+.leftAppointmentCell
+{
+    padding:20px;
+    border-radius: 10px 0px 0px 10px;
+    width: 15px;
+    text-align: center;
+    
+}
+
+.appointmentTimeCell
+{
+    width:120px;
+    text-align: center;
+}
+
+.appointmentCell
+{
+    width: 470px;
+    padding-left: 20px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.cancelAppointmentCell
+{
+    padding:0px;
+    background-color: #f0dfd0;
+    width: 100px;   
+}
+
+
+
+.cancelButtonAppoint
+        {
+            background-color: #cea984;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 20px;
+
+            color: white;
+            border-radius: 15px;
+        }
+
+.cancelButtonAppoint:hover
+{
+    background-color: rgb(180, 145, 101);
+}
+
+.leftAppointmentCell, .appointmentTimeCell, .appointmentCell, .statusCell, .statusCell2
+{
+    font-weight: 100;
+    font-size: 11pt;
+    color: #606060;
+}
+
+.appointmentInfo
+{
+    background-color: red;
+}
+
+.timeTable
+{
+    margin-left: 93px;
+    background-color: white;
+    padding:0px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    
+}
+
+
+.timeBlock, .incTime, .redtime
+{
+    width: 910px;
+    height: 45px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f6f6f6;   
+    font-weight: 100;
+}
+
+.timeBlock
+{
+    font-weight: 600;
+    
+}
+
+.incButton
+{
+    background-color: #fbf8f6;
+    color: rgb(132, 129, 129);
+    font-size: 18pt;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-left:55px;
+    align-content: center;
+    
+}
+
+.spaceBlock
+{
+    width: 0px;
+}
+
+/*gallery page*/
+
+
+.popupBackground 
+{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.popupBlock 
+{
+    background-color: white;
+    margin-top: 3% ;
+    margin-left:13%;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 70%;
+    height: 80%;
+    font-weight: bolder;
+    border-radius: 20px;
+}
+
+.monthHeading
+{
+    margin-left:40px;
+    color: #8c775b;
+    font-size: 16pt;
+    font-family: sans-serif;
+}
+
+.imageTable
+{
+    height: 10px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.imageTable:hover
+{
+    height: 10px;
+    background: #fff3e7;
+}
+
+.imageDetailGallery
+{
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 12pt;;
+    
+}
+
+.imageDetailGallery2
+{
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 10pt; 
+    color: #888888;  
+}
+
+.galleryImage
+{
+    width:80px;
+    height:80px;
+    border-radius: 15px;
+}
+
+.imageColumn
+{
+    width: 10px;
+}
+
+#galleryTable
+{
+    margin-left: 110px;
+    width:35cm;
+}
+
+.galleryTableRow
+{
+    padding: 30px;
+}
+
+.imageDetail
+{
+    margin-left: 13cm;
+    background-color: #F3E6D9;
+    text-align: left;
+}
+
+
+
+/*notification's page*/
+
+
+        .show 
+        {
+            display: block;   
+        }
+        
+        h
+        {
+          
+            font-size: 16pt;
+            margin-left: 4%;
+        }
+
+
+        #paneContent
+        {
+            width: 900px;
+            background-color: white;
+            margin-left: 75px;
+            margin-top:70px;
+        }
+
+        #textdata, #paragraph
+        {
+            font-weight: 100;
+        }
+        
+        #paragraph
+        {
+            font-size: 10pt;
+        }
+
+        #shortlisted
+        {
+            height: 100px;
+            width: 100px;
+            position: fixed;
+            margin-left: 92%;
+            margin-top: 25%;
+            opacity: 0.2;
+
+            
+        }
+
+
+        #serviceList
+        {
+            margin-left:7%;
+        }
+
+
+
+        .NotifBrief
+        {
+            text-align: left;
+        }
+
+        .subheading
+        {
+            margin-left: 7%;
+        }
+            
+        
+    #timestamp
+    {
+        width: 200px;
+        font-weight: 100;
+        font-size: 10pt;
+        color: #888888;
+        margin-right: 100%;
+    }
+
+    .replyForm
+    {
+        margin-top: 170px;
+        margin-left:10px;
+    }
+
+    .replyBox
+    {
+        border-style: solid;
+        border-color: rgb(220, 220, 220);
+        border-radius: 20px;
+        height: 30px;
+        width: 800px;
+        
+    }
+
+    #sendButton
+    {
+        background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 0px;
+
+            color: white;
+            border-radius: 15px;
+    }
+
+    #closePopupNotice
+    {
+        margin-left: 500px;
+        margin-top: 50px;
+        background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 500px;
+
+            color: white;
+            border-radius: 15px;
+    }

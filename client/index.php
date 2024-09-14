@@ -34,7 +34,7 @@
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Classic</p><p class='price'> R400.00</p></p></td class='gridBlock'></td>
                         <td class='labelTableCellAdd'>
-                            <div class='addButton' onclick='myController2.bookService(1, false)'>+</div>
+                            <div class='addButton' onclick='myController2.bookService(false)'>+</div>
                         </td>
                     </tr>
                 </table>
@@ -46,7 +46,7 @@
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Hybrid</p><p class='price'> R500.00</p></p></td class='gridBlock'></td>
                         <td class='labelTableCellAdd'>
-                            <div class='addButton' onclick='myController2.bookService(2,false)'>+</div>
+                            <div class='addButton' onclick='myController2.bookService(false)'>+</div>
                         </td>
                     </tr>
                 </table>
@@ -57,7 +57,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Strip Las</p><p class='price'> R450.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(3, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -68,7 +68,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Volume</p><p class='price'> R600.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(4, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -78,7 +78,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Mega Vol</p><p class='price'> R800.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(5, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -107,7 +107,7 @@
                             </p>
                             
                         </td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(6, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -117,7 +117,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Acrylic</p><p class='price'> R420.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(7, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -127,7 +127,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Gel</p><p class='price'> R370.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(8, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -138,7 +138,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Silk</p><p class='price'> R390.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(9, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -148,7 +148,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Soak off</p><p class='price'> R130.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(10, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -168,7 +168,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Knotless</p><p class='price'> R850.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -178,7 +178,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Small</p><p class='price'> R900.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -188,7 +188,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Medium</p><p class='price'> R800.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -199,7 +199,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Large</p><p class='price'> R750.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -209,7 +209,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Thick</p><p class='price'> R700.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -229,7 +229,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Full Body</p><p class='price'> R110.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -239,7 +239,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Underarms</p><p class='price'> R120.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -249,7 +249,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Bikini</p><p class='price'> R160.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -260,7 +260,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Brazilian</p><p class='price'> R335.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -270,7 +270,7 @@
                 <table class='labelTable'>
                     <tr >
                         <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Face</p><p class='price'> R225.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(1, false)'>+</div></td>
+                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false)'>+</div></td>
                     </tr>
                 </table>
             </td>
@@ -424,7 +424,7 @@
                     <p id='internalMsg' class='tableHeading'>.</p>
     
 
-        <button id='buttonBook' class="bookButton" onclick='myController2.bookService(1, true)'>Book</button>
+        <button id='buttonBook' class="bookButton" onclick='myController2.bookService(true)'>Book</button>
 
         <button id='closePopup' class="closePopup" >Close</button>
 
