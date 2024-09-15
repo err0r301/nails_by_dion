@@ -131,12 +131,11 @@ function createInventoryTable($conn) {
 function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
-        userID INT NOT NULL,
-        adminID INT NOT NULL,
+        dateTime_ DATETIME NOT NULL,
         message VARCHAR(300) NOT NULL,
         status VARCHAR(10) NOT NULL DEFAULT 'Unread',
-        date DATETIME NOT NULL,
-        FOREIGN KEY (userID) REFERENCES user(userID)
+        userID INT NOT NULL,
+        FOREIGN KEY (userID) REFERENCES appointment(userID)
     )";
 
     confirmQuery($conn, $sql, "Notification");

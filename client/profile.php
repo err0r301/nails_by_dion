@@ -1,8 +1,5 @@
 <!--<?php
-    require '../scripts/user_scripts/edit_user-pwd.php';
-    require '../scripts/user_scripts/edit_user-info.php';
-    error_reporting(E_ALL);  
-    ini_set('display_errors', 1); 
+    
 ?>-->
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +17,13 @@
         $page = 'profile'; 
         $unsubcribe = false;
         $pop = false;
-        include '../partial/header.php';?>
+        include '../partial/header.php';
+        error_reporting(E_ALL);  
+        ini_set('display_errors', 1); 
+        require '../scripts/user_scripts/remove_user.php';
+        require '../scripts/user_scripts/edit_user-pwd.php';
+        require '../scripts/user_scripts/edit_user-info.php';
+        ?>
     <section>
         <header>
             <h2>Profile Information</h2>
@@ -85,19 +88,26 @@
 
     <section>
         <header>
-            <h2>Unsubscribe</h2>
-            <p>Once your have unsubscribed, you will no longer receive important updates, promotions, and exclusive offers.</p>
+            <h2>Delete Account</h2>
+            <p>Once your account is deleted, you will no longer be able to access it.</p>
         </header>
 
-        <button class="unsubscribe profile-button" onclick="togglePopup('popup-register')">Unsubscribe</button>
+        <button class="unsubscribe profile-button" onclick="togglePopup('popup-confirm')">Delete Account</button>
 
-        <div class='popup' id='popup-register'>
-                    <div class='overlay' onclick="togglePopup('popup-register')" ></div>
-                    <div class='content'>
-                        <h2>You are now unsubscribed</h2>
-                            <button onclick="togglePopup('popup-register')"> Back</button>  
-                    </div>
-                </div>
+
+        <div class='popup' id='popup-confirm'>
+            <div class='overlay' onclick="togglePopup('popup-confirm')" ></div>
+            <div class='content'>
+                <h2>Confirmation</h2>
+                <p>Are you sure you want to delete your account?   </p>
+                <form action="" method="POST">
+                <input type="hidden" name="delete-user-id" id="delete-user-id" value="<?php echo $_SESSION['user']['userID']; ?>"> 
+                    <button type="reset" onclick="togglePopup('popup-confirm')"> Back</button>  
+                    <button type="submit" onclick="togglePopup('popup-confirm')">Delete</button>
+                </form>
+                    
+            </div>
+        </div>
     </section>
 
     <script>

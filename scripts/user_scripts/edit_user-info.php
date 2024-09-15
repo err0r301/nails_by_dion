@@ -5,6 +5,7 @@ require '../data/config.php';
 
 $info_error = null;
 // Check if the form has been submitted
+echo"<script> console.log('edit-user-info')</script>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['cell'])) {
         $name = $_POST['name']; 

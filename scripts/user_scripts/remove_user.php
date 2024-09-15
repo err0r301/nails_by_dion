@@ -16,13 +16,19 @@
                 $result2 = $conn->query($query2);
             }
 
+            $query4 = "DELETE FROM appointment WHERE userID = $userID";
+            $result4 = $conn->query($query4);
             // remove the user data from the database
             $query3 = "DELETE FROM user WHERE userID = $userID";
             $result3 = $conn->query($query3);
+
+            session_start(); 
+            session_destroy(); 
         
             // Check if the data was removed successfully
             if ($result3) {
                 echo "<script>console.log('Account removed successfully.')</script>";
+                header("Location: ../client/index.php");
             } else {
                 echo "<script>console.log('Error removing account. '". $conn->error.")</script>";
             }
