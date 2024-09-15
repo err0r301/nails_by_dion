@@ -105,13 +105,13 @@ function createAppointmentTable($conn) {
     $sql = "CREATE TABLE appointment (
         appointmentID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
-        adminID INT NOT NULL,
+        /*adminID INT NOT NULL,*/
+        stylist VARCHAR(30) NOT NULL,
         dateBooked DATETIME NOT NULL,
         dateScheduled DATETIME NOT NULL,
         serviceID INT NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
-        FOREIGN KEY (userID) REFERENCES user(userID),
-        FOREIGN KEY (adminID) REFERENCES admin(adminID)
+        FOREIGN KEY (userID) REFERENCES user(userID)
     )";
 
     confirmQuery($conn, $sql, "Appointment");

@@ -13,17 +13,13 @@ function getAppointments(){
             INNER JOIN user 
             ON appointment.userID = user.userID";*/
 
-    $query = "SELECT  u.name AS client, a.appointmentID AS appointmentID,  a.dateScheduled AS date, a.status AS status, ua.name AS stylist, s.name AS service
-                FROM   
-                  appointment a  
-                JOIN   
-                  user u ON a.userID = u.userID  
-                JOIN   
-                  admin ad ON a.adminID = ad.adminID  
-                JOIN   
-                  user ua ON ad.userID = ua.userID  
-                JOIN   
-                  service s ON a.serviceID = s.serviceID;"; 
+    $query = "SELECT  u.name AS client, a.appointmentID AS appointmentID,  a.dateScheduled AS date,  a.status AS status,  a.stylist AS stylist,  s.name AS service
+    FROM   
+        appointment a  
+    JOIN   
+        user u ON a.userID = u.userID  
+    JOIN   
+        service s ON a.serviceID = s.serviceID";  
     $appointment_result = $conn->query($query);
 
     // Check if the data was retrieved successfully
@@ -33,4 +29,10 @@ function getAppointments(){
     // Close the connection
     $conn->close();
     return $appointment_result;
-}
+} 
+
+ 
+
+ 
+    
+   

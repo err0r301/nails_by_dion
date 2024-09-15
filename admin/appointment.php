@@ -21,7 +21,7 @@
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
 
-            $query = "SELECT u.name as name, a.adminID as id FROM user u, admin a WHERE u.userID = a.userID";
+            $query = "SELECT u.name as name FROM user u, admin a WHERE u.userID = a.userID";
             $result = mysqli_query($conn, $query);
             $stylists = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -110,7 +110,7 @@
                         <select name="stylist" class="form-selector status" required>
                             <?php
                                 foreach ($stylists as $stylist) {
-                                    echo "<option value=" . $stylist['id'] . ">" . $stylist['name'] . "</option>";
+                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
                                 }
                             ?>
                         </select>
@@ -166,7 +166,7 @@
                         <select name="edit_appointment_stylist" id="edit_appointment_stylist" class="form-selector status" required>
                             <?php
                                 foreach ($stylists as $stylist) {
-                                    echo "<option value=" . $stylist['id'] . ">" . $stylist['name'] . "</option>";
+                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
                                 }
                             ?>
                         </select>
@@ -175,6 +175,7 @@
                         <label for="status">Status:</label>
                         <select name="edit_appointment_status" id="edit_appointment_status" class="form-selector status">
                             <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
                             <option value="Complete">Complete</option>
                             <option value="Cancelled">Cancelled</option>
                         </select>
@@ -230,6 +231,7 @@
                                 <select name="status" id="status" class="table-selector" onchange="getValue('status')">
                                   <option value="All">Appointments</option>
                                   <option value="Pending">Pending</option>
+                                  <option value="In Progress">In Progress</option>
                                   <option value="Complete">Complete</option>
                                   <option value="Cancelled">Cancelled</option>
                                 </select>
