@@ -53,7 +53,7 @@
     $sessions=intval($_GET['sessions']);
 
     {
-      $sql='insert into appointments values(appointmentID, "userName","'.$date.' 21:00", "'.$date.' '. $time .'","'. $stylist .'",'. $sessions .', "approved", "'. $service .'");';
+      $sql='insert into appointments values(appointmentID, "userName","'.$date.' 21:00", "'.$date.' '. $time .'","'. $stylist .'",'. $sessions .', "Unconfirmed", "'. $service .'");';
       //$sql="insert into appointments values(appointmentID, 'userName',". $date.", '20:27', 'approved','tyr');";//
       
       $result = mysqli_query($con,$sql);
@@ -63,5 +63,7 @@
     
     echo 'will this work';
     mysqli_close($con);
+
+    
 
 ?>
