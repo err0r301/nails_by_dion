@@ -113,7 +113,7 @@ function createAppointmentTable($conn) {
         dateScheduled DATETIME NOT NULL,
         /*serviceID INT NOT NULL,*/
         serviceID VARCHAR(100) NOT NULL,
-        status VARCHAR(20) NOT NULL DEFAULT 'Pending',
+        status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID)
     )";
 
@@ -136,7 +136,7 @@ function createNotificationTable($conn) {
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
         dateTime_ DATETIME NOT NULL,
         message VARCHAR(300) NOT NULL,
-        status VARCHAR(10) NOT NULL DEFAULT 'Unread',
+        status_ VARCHAR(10) NOT NULL DEFAULT 'Unread',
         userID INT NOT NULL,
         FOREIGN KEY (userID) REFERENCES appointment(userID)
     )";

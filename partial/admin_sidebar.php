@@ -15,11 +15,11 @@
   </div>
 
   <ul class="sidebar-list">
-    <a href="overview.php" class = "<?php if ($page == 'overview'){echo "active-Side-link";}?>">
+    <!--<a href="overview.php" class = "<?php if ($page == 'overview'){echo "active-Side-link";}?>">
       <li class="sidebar-list-item">
         Overview
       </li>
-    </a>
+    </a>-->
 
     <a href="appointment.php" class = "<?php if ($page == 'appointment'){echo "active-Side-link";}?>">
       <li class="sidebar-list-item">
@@ -51,11 +51,11 @@
       </li>
     </a>
 
-    <a href="sale.php" class = "<?php if ($page == 'sale'){echo "active-Side-link";}?>">
+    <!--<a href="sale.php" class = "<?php if ($page == 'sale'){echo "active-Side-link";}?>">
       <li class="sidebar-list-item">
           Sales 
       </li>
-    </a>
+    </a>-->
 
     <a href="report.php" class = "<?php if ($page == 'report'){echo "active-Side-link";}?>">
       <li class="sidebar-list-item">

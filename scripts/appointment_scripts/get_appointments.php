@@ -13,7 +13,7 @@ function getAppointments(){
             INNER JOIN user 
             ON appointment.userID = user.userID";*/
 
-    $query = "SELECT  u.name AS client, a.appointmentID AS appointmentID,  a.dateScheduled AS date,  a.status AS status,  a.stylist AS stylist,  a.serviceID AS service
+    $query = "SELECT  u.name AS client, a.appointmentID AS appointmentID,  a.dateScheduled AS date,  a.status_ AS status,  a.stylist AS stylist,  a.serviceID AS service
     FROM   
         appointment a  
     JOIN   

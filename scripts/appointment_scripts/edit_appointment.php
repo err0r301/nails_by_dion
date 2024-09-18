@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>console.log('appointmentID : $appointmentID scheduledDateTime : $scheduledDateTime status :   $status stylist :$stylist')</script>";
         } else {
             // edit the appointment data in the database
-            $query = "UPDATE appointment SET dateScheduled = ?, status = ?, stylist = ? WHERE appointmentID = ?";
+            $query = "UPDATE appointment SET dateScheduled = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sssi", $scheduledDateTime, $status, /*$stylistID*/$stylist, $appointmentID);
             $stmt->execute();
