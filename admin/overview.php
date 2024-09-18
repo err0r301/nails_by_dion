@@ -16,6 +16,7 @@
             $page = 'overview';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require '../scripts/chart.php';
         ?>
 
         <main class="main-container">
@@ -118,5 +119,11 @@
 -->
         </main>
     </div>
+    <script>
+        displayMonthlySales('dashboard-sales-monthly');
+        displayWeeklySales('dashboard-sales-weekly');
+        displayServiceRevenue('dashboard-service-revenue');
+        displayCustomerNumber('dashboard-customer-number');
+    </script>
 </body>
 </html>

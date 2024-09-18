@@ -75,8 +75,9 @@ function createUserTable($conn) {
 
 function createServiceTable($conn) {
     $sql = "CREATE TABLE service (
-        serviceID INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
+        /*serviceID INT AUTO_INCREMENT PRIMARY KEY,*/
+        serviceID VARCHAR(100) PRIMARY KEY,
+        /*name VARCHAR(100) NOT NULL,*/
         description VARCHAR(300) NOT NULL,
         price FLOAT NOT NULL,
         image VARCHAR(150) NOT NULL,
@@ -107,9 +108,11 @@ function createAppointmentTable($conn) {
         userID INT NOT NULL,
         /*adminID INT NOT NULL,*/
         stylist VARCHAR(30) NOT NULL,
+        sessions INT NOT NULL DEFAULT 1,
         dateBooked DATETIME NOT NULL,
         dateScheduled DATETIME NOT NULL,
-        serviceID INT NOT NULL,
+        /*serviceID INT NOT NULL,*/
+        serviceID VARCHAR(100) NOT NULL,
         status VARCHAR(20) NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (userID) REFERENCES user(userID)
     )";
@@ -166,7 +169,8 @@ function createGalleryTable($conn) {
 function createSaleTable($conn) {
     $sql = "CREATE TABLE sale (
         saleID INT AUTO_INCREMENT PRIMARY KEY,
-        serviceID INT NOT NULL,
+        /*serviceID INT NOT NULL,*/
+        serviceID VARCHAR(100) NOT NULL,
         price FLOAT NOT NULL,   
         date DATE NOT NULL,
         FOREIGN KEY (serviceID) REFERENCES service(serviceID)

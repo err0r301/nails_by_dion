@@ -120,7 +120,7 @@
                         <select name="service" class="form-selector services">
                             <?php
                                 foreach ($services as $service) {
-                                    echo "<option value=" . $service['serviceID'] . ">" . $service['name'] . "</option>";
+                                    echo "<option value=" . $service['serviceID'] . ">" . $service['serviceID'] . "</option>";
                                 }
                             ?>
                         </select>

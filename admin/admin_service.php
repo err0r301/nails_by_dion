@@ -112,7 +112,7 @@
                             <div class='service-row'>
                                 <div class='service-cell image'>
                                     <img src='<?php echo $row['image']?>' alt='Service' class='service-img'>
-                                    <span><?php echo $row['name']?></span>
+                                    <span><?php echo $row['serviceID']?></span>
                                 </div>
                                 <div class='service-cell category'>
                                     <span class='cell-label'>Category:</span>

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST['category'];
     $duration = $_POST['duration'] . ":00";
     $status = $_POST['status'];
-    $id = getMaxID($conn) + 1;
+    //$id = getMaxID($conn) + 1;
     $targetDir = "../_images/";
     $fileName = basename($_FILES['image']['name']);  
     $targetFilePath = $targetDir . $fileName;  
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please fill in all fields';
     } else {
         // Insert the service data into the database
-        $query = "INSERT INTO service (serviceID, name, description, price, image, category, duration, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO service (serviceID, /*name,*/ description, price, image, category, duration, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("isssssss", $id, $name, $description, $price, $image, $category, $duration, $status);
+        $stmt->bind_param(/*"isssssss"*/"sssssss", /*$id,*/ $name, $description, $price, $image, $category, $duration, $status);
         $stmt->execute();
 
         // Check if the insertion was successful

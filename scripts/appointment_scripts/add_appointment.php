@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insert the appointment data into the database
             $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, dateScheduled, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param(/*"iiissi"*/"iisssi", $appointmentID, $userID, /*$stylistID*/$stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
+            $stmt->bind_param(/*"iiissi"*/"iissss", $appointmentID, $userID, /*$stylistID*/$stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
             $stmt->execute();
 
             // Check if the insertion was successful
