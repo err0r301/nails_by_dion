@@ -21,9 +21,10 @@
             ini_set('display_errors', 1); 
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            require '../scripts/user_scripts/add_user.php';
-            require '../scripts/user_scripts/edit_user-info.php';
             require '../scripts/user_scripts/remove_user.php';
+            require '../scripts/user_scripts/add_user.php'; 
+            require '../scripts/user_scripts/edit_user-info.php';
+            require '../scripts/user_scripts/edit_user-pwd.php';           
             require '../scripts/user_scripts/get_admins.php';
             $team = getAdmins();
         ?>
@@ -44,12 +45,12 @@
                                     <img id="add-img" src="../_images/profile-pic blank.jpeg" alt="team-profile photo">
                                 </div>
                                 <div class="add-input-container">
-                                    <input type="text" id="member-name" name="name" placeholder="Name" required>
-                                    <input type="email" id="member-email" name="email" placeholder="Email" required>
-                                    <input type="text" id="member-cell" name="cell" placeholder="Phone number" required>
-                                    <input type="text" id="member-role" name="role" placeholder="Role" required>
+                                    <input type="text" id="member-name" name="add-name" placeholder="Name" required>
+                                    <input type="email" id="member-email" name="add-email" placeholder="Email" required>
+                                    <input type="text" id="member-cell" name="add-cell" placeholder="Phone number" required>
+                                    <input type="text" id="member-role" name="add-role" placeholder="Role" required>
                                     <label class="upload-image" for="admin-image">Upload Image</label>
-                                    <input type="file" name="image" id="admin-image" accept="image/JPEG, image/PNG, image/JPG" required>
+                                    <input type="file" name="add-image" id="admin-image" accept="image/JPEG, image/PNG, image/JPG" required>
                                     <button type="submit">Add</button>
                                 </div>
                             </div>
@@ -66,9 +67,10 @@
                                     $cell = $member['cell'];
                                     $role = $member['role'];
                                     $image = $member['image'];
+                                    $memberID = $member['id'];
                                 ?>
  
-                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>')">
+                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($memberID); ?>','<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>'); storeID('<?php echo addslashes( $memberID); ?>','delete-member-id');">
                                         <div class="team-card">
                                             <img id="team-pic" src="../_images/<?php echo $image?>" alt="team-profile photo">
                                             <p id="team-name"><?php echo $name ?></p>
@@ -86,6 +88,15 @@
                 </div>
 
                 <!-- ---------MODAL ----------- -->
+                <div class="popup <?php if(isset($pwd)) echo 'active'?>" id="popup-generated-pwd">
+                    <div class="overlay" onclick="togglePopup('popup-generated-pwd')"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup('popup-generated-pwd')">&times;</div>
+                        <h2>Generated Password</h2>
+                        <strong>Password : <?php echo $pwd;?></strong>
+                        <button onclick="togglePopup('popup-generated-pwd')">close</button> 
+                    </div>
+                </div>
 
                 <div class="popup" id="popup-view-member">
                     <div class="overlay" onclick="togglePopup('popup-view-member')"></div>
@@ -111,10 +122,11 @@
                         <div class="close-btn" onclick="togglePopup('popup-edit-member')">&times;</div>
                         <h2>Edit Team Member Details</h2>
                         <form id="edit-member-form" action="" method="post">
-                            <input type="text" id="edit-name" name="name" placeholder="Name" required>
-                            <input type="email" id="edit-email" name="email" placeholder="Email" required>
-                            <input type="text" id="edit-cell" name="cell" placeholder="Phone number" required>
-                            <input type="text" id="edit-role" name="role" placeholder="Role" required>
+                            <input type="hidden" name="userID" id="edit-member-id"> 
+                            <input type="text" id="edit-name" name="edit-name" placeholder="Name" required>
+                            <input type="email" id="edit-email" name="edit-email" placeholder="Email" required>
+                            <input type="text" id="edit-cell" name="edit-cell" placeholder="Phone number" required>
+                            <input type="text" id="edit-role" name="edit-role" placeholder="Role" required>
                             <button type="submit">Save</button>
                         </form>
                     </div>

@@ -9,10 +9,10 @@ $success = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "<script> console.log('This is add user')</script>";
-    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['cell'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $cell = $_POST['cell'];
+    if (isset($_POST['add-name']) && isset($_POST['add-email']) && isset($_POST['add-cell'])) {
+        $name = $_POST['add-name'];
+        $email = $_POST['add-email'];
+        $cell = $_POST['add-cell'];
         $userID = getMaxUserID($conn) + 1;
 
         if (isset($_POST['password'])) {
@@ -50,16 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             if ($userType == 'Admin' && $stmt->affected_rows == 1) {
                 $adminID = getMaxAdminID($conn) + 1;
-                $role = $_POST['role'];
+                $role = $_POST['add-role'];
                 $targetDir = "../_images/";
-                $fileName = basename($_FILES['image']['name']);
+                $fileName = basename($_FILES['add-image']['name']);
                 $targetFilePath = $targetDir . $fileName;
 
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0755, true);
                 }
 
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+                if (move_uploaded_file($_FILES['add-image']['tmp_name'], $targetFilePath)) {
                     $image = $targetFilePath;
                     echo "<script> console.log('The file has been uploaded successfully. Image path: $image')</script>";
                 } else {

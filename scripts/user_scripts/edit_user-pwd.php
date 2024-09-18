@@ -1,7 +1,6 @@
 <?php
 // Include the config file
 require '../data/config.php';
-require '../scripts/validate_input.php';
 
 $pwd_error = null;
 // Check if the form has been submitted

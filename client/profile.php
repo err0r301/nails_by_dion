@@ -20,6 +20,7 @@
         include '../partial/header.php';
         error_reporting(E_ALL);  
         ini_set('display_errors', 1); 
+        require '../scripts/validate_input.php';
         require '../scripts/user_scripts/remove_user.php';
         require '../scripts/user_scripts/edit_user-pwd.php';
         require '../scripts/user_scripts/edit_user-info.php';
@@ -33,19 +34,19 @@
         <form class="profile-form" action="" method="POST">
             <div>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>" required>
+                <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>" required>
                 <p class="error" id="name_error"></p>    
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>" required>
+                <input type="email" id="email" name="edit-email" value="<?php echo $_SESSION['user']['email']; ?>" required>
                 <p class="error" id="email_error"></p>
             </div>
 
             <div>
                 <label for="cell">Cell No.</label>
-                <input type="text" id="cell" name="cell" value="<?php echo $_SESSION['user']['cell']; ?>">
+                <input type="text" id="cell" name="edit-cell" value="<?php echo $_SESSION['user']['cell']; ?>">
                 <p class="error" id="email_error"></p>
             </div>
 

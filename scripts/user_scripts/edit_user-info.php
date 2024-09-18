@@ -7,10 +7,10 @@ $info_error = null;
 // Check if the form has been submitted
 echo"<script> console.log('edit-user-info')</script>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['cell'])) {
-        $name = $_POST['name']; 
-        $email = $_POST['email'];
-        $cell = $_POST['cell'];
+    if (isset($_POST['edit-name']) && isset($_POST['edit-email']) && isset($_POST['edit-cell'])) {
+        $name = $_POST['edit-name']; 
+        $email = $_POST['edit-email'];
+        $cell = $_POST['edit-cell'];
         // Validate the form data  
         echo"<script> console.log('name :$name email :$email cell :$cell')</script>";
         $info_error =  validateEmail($email,$info_error);
@@ -18,13 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $info_error =  validateName($name,$info_error); 
 
         if ( is_null($info_error)) {
-            if (isset($_POST['role'])) {
-                $role = $_POST['role'];
-                $query = "SELECT userID FROM user WHERE email = '$email'";
-                $result = $conn->query($query);
-                $row = $result->fetch_assoc();
-
-                $userID = $row['userID'];   
+            if (isset($_POST['edit-role'])) {
+                $role = $_POST['edit-role'];
+                
+                $userID = $_POST['userID'];   
                 $query = "UPDATE admin SET role = ? WHERE userID = '$userID'";
                 $stmt = $conn->prepare($query);
                 $stmt->bind_param("s", $role);

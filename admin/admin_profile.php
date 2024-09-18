@@ -32,6 +32,7 @@
             $page = 'admin_profile';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require '../scripts/validate_input.php';
             require '../scripts/user_scripts/edit_user-pwd.php';
             require '../scripts/user_scripts/edit_user-info.php';
             error_reporting(E_ALL);  
@@ -64,20 +65,20 @@
                     <form class="profile-form" action="" method="POST" >
                         <div>
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>">
+                            <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>">
                             <!--<p id="name_error" style="color: red;">your name is required</p>-->
                         </div>
 
 
                         <div>
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>" required>
+                            <input type="email" id="email" name="edit-email" value="<?php echo $_SESSION['user']['email']; ?>" required>
                             <!--<p id="email_error" style="color: red;">The email you have entered is not valid</p>-->
                         </div>
 
                         <div>
                             <label for="cell">Cell No.</label>
-                            <input type="text" id="cell" name="cell" value="<?php echo $_SESSION['user']['cell']; ?>">
+                            <input type="text" id="cell" name="edit-cell" value="<?php echo $_SESSION['user']['cell']; ?>">
                             <!--<p id="cell_error" style="color: red;">The phone number you have entered is not valid</p>-->
                         </div>
 

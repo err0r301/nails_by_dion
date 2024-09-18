@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/../styles/client_styles.css">
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/style.css">
-    <script src="../scripts/client_script.js" defer></script>
-    <script src="../scripts/serviceFunction.js" ></script>
+    <script src="../scripts/client_script.js"></script>
+    <script src="../scripts/serviceFunction.js"></script>
     
 </head>
 <body>

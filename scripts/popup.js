@@ -1,7 +1,7 @@
 
   
 let id;  
-
+var m_id;
 var m_name;  
 var m_email;
 var m_cell;
@@ -28,7 +28,7 @@ function viewPopup(pop, data) {
     status.textContent= data.status;  
   }  
 }
-function viewModal(pop, modal_name, modal_email, modal_cell, modal_role) {  
+function viewModal(pop, model_id,modal_name, modal_email, modal_cell, modal_role) {  
   var popup = document.getElementById(pop);  
   popup.classList.toggle("active");  
 
@@ -38,6 +38,7 @@ function viewModal(pop, modal_name, modal_email, modal_cell, modal_role) {
   var cell = document.getElementById('modal-cell');  
   var role = document.getElementById('modal-role'); 
   
+  m_id = model_id;
   name.textContent  = m_name = modal_name;
   email.textContent = m_email = modal_email;
   cell.textContent  = m_cell= modal_cell;
@@ -48,11 +49,13 @@ function editModal(pop) {
   var popup = document.getElementById(pop);  
   popup.classList.toggle("active");  
 
+  var id = document.getElementById('edit-member-id');
   var name = document.getElementById('edit-name');  
   var email = document.getElementById('edit-email');  
   var cell = document.getElementById('edit-cell');  
   var role = document.getElementById('edit-role'); 
   
+  id.value = m_id;
   name.value = m_name;
   email.value = m_email;
   cell.value= m_cell;
@@ -66,4 +69,8 @@ function togglePopup(popupId,saveId,rowId = null) {
         document.getElementById(saveId).value = rowId; 
     }  
     popup.classList.toggle("active");  
+}
+
+function storeID(id,container){
+  document.getElementById(container).value = id;
 }

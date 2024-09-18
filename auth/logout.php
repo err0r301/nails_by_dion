@@ -1,3 +1,7 @@
+<?php 
+    if(!isset($_SESSION['user']))
+    header('Location: /../auth/login.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,16 +17,21 @@
             <a href="../client/index.php">
                 <img class="logo" src="../_images/logo.png" alt="Nails By Dion">
             </a>    
+            <h2>Logged Out</h2>
             <?php  
                 session_start(); 
                 if ($_SESSION["user"]['userType']=="Client"){
-                    echo "<h2>Thank you for visiting!</h2> <p>We hope to see you again soon.</p>";
+                    echo "<strong>Thank you for visiting!</strong>
+                            <p>We hope to see you again soon.</p>";
+                }elseif ($_SESSION["user"]['userType']=="Admin"){
+                    echo "<strong>Thank you for all your hard work!</strong>
+                            <p>You have successfully logged out.</p>";
                 }
             ?>    
             <div id="logout-buttons">
                 <a href="../client/index.php">
                     <button class="btn">
-                        Home Page
+                        Home
                     </button>
                 </a>
                 <a href="../auth/login.php">

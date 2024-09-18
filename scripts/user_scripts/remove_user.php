@@ -21,14 +21,16 @@
             // remove the user data from the database
             $query3 = "DELETE FROM user WHERE userID = $userID";
             $result3 = $conn->query($query3);
-
-            session_start(); 
-            session_destroy(); 
         
             // Check if the data was removed successfully
             if ($result3) {
                 echo "<script>console.log('Account removed successfully.')</script>";
-                header("Location: ../client/index.php");
+                if ($row['userType'] == 'Client') {
+                    header("Location: ../client/index.php");
+                    session_start(); 
+                    session_destroy(); 
+                }
+                
             } else {
                 echo "<script>console.log('Error removing account. '". $conn->error.")</script>";
             }

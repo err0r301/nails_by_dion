@@ -4,7 +4,7 @@ function getAdmins() {
     require '../data/config.php';
 
     // get the user data from the database with a user type of 'Client'
-    $query = "SELECT user.name, user.cell, user.email, admin.profileImage AS image, admin.accessLevel, admin.role , admin.adminID
+    $query = "SELECT user.userID as id, user.name, user.cell, user.email, admin.profileImage AS image, admin.accessLevel, admin.role 
               FROM user 
               INNER JOIN admin 
               ON user.userID = admin.userID";
