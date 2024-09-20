@@ -1,6 +1,7 @@
 <?php
     error_reporting(E_ALL);  
     ini_set('display_errors', 1); 
+    require ('../scripts/get_report.php');
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +65,7 @@
             $page = 'report';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            $report = getReport();
             /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
                 $sales += $services[$i]['month-revenue'];
@@ -82,9 +84,9 @@
                         <img src="../_images/logo.png" alt="Salon Logo" style="width: 200px;">
                         <div>
                             <h3>Monthly Report</h3>
-                            <p>Sales this month: R <?= $sales ?></p>
-                            <p>Appointments this month: 236</p>
-                            <p>Number of customers: 520</p>
+                            <p>Sales this month: R <?= $report['sales'] ?></p>
+                            <p>Appointments this month: <?$report['appointments']?></p>
+                            <p>Number of customers: <?= $report['users'] ?></p>
                         </div>
                         
                     </div>
@@ -100,12 +102,12 @@
                         <th>Revenue</th>
                     </tr>
 
-                    <?php foreach ($services as $service): ?>
+                    <?php foreach ($report['services'] as $service): ?>
                         <tr>
                             <td><?= $service['name'] ?></td>
                             <td><?= $service['category'] ?></td>
                             <td>R <?= $service['price'] ?></td>
-                            <td>R <?= $service['month-revenue'] ?></td>
+                            <td>R <?= $service['monthlyRevenue'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

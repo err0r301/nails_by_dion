@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit;
             } elseif ($_SESSION['user']['userType'] == 'Admin') {
                 //echo "<script> window.alert('User Type: " . $_SESSION['user']['userType'] . "')</script>";
-                header("Location: ../admin/overview.php");
+                header("Location: ../admin/appointment.php");
                 exit;
             }    
         } else {

@@ -83,6 +83,7 @@ function createServiceTable($conn) {
         image VARCHAR(150) NOT NULL,
         category VARCHAR(30) NOT NULL,
         duration TIME NOT NULL,
+        monthlyRevenue FLOAT NOT NULL DEFAULT 0,
         status VARCHAR(20) NOT NULL
     )";
 
