@@ -18,6 +18,7 @@
             $page = 'admin_notification';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
+            require '../scripts/get_notification.php'
         ?>
 
         <main class="main-container">
@@ -30,7 +31,24 @@
                 </div> -->
             </div>
 
-            <p id="message-date">TODAY</p>
+            <?php 
+                $notifications = getNotifications();
+                if ($notifications == "No notifications found") {
+                    echo "<p>No notifications found</p>";
+                }else{
+                    foreach ($notifications as $notification) {echo "<script>console.log('".$notification['message']."')</script>";?>
+                        <div class="message-box" data-message="<?php echo $notification["message"]?>">
+                            <div class="message-start">
+                                <img src="../_images/profile-pic blank.jpeg" alt="Profile picture">
+                                <p class="message-name"><?php echo $notification["sender"]?></p>
+                                <p class="message-title"><?php echo $notification["title"]?></p>
+                            </div>
+                            <p class="message-time"><?php echo $notification["time"]?></p>
+                        </div>
+                    <?php }
+                }
+            ?>
+<!--
             <div class="message-box"
                 data-message="Dear John, this is a reminder for your appointment scheduled for tomorrow at 3:00 PM. Please make sure to arrive 10 minutes early.">
                 <div class="message-start">
@@ -60,7 +78,6 @@
                 </div>
                 <p class="message-time">10:35am</p>
             </div>
-            <p id="message-date">YESTERDAY</p>
 
             <div id="message-read" class="message-box message-unread"
                 data-message="Hi Tinashe, this is a test message to ensure the notification system is working correctly.
@@ -75,8 +92,8 @@
                     <p class="message-name">Tinashe Murindagomo</p>
                     <p class="message-title">Hello Website - Testing</p>
                 </div>
-                <p class="message-time">Yesterday</p>
-            </div>
+                <p class="message-time">10:35am</p>
+            </div>-->
 
         </main>
 

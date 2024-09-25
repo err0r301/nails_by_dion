@@ -139,7 +139,7 @@ function createNotificationTable($conn) {
         message VARCHAR(300) NOT NULL,
         status_ VARCHAR(10) NOT NULL DEFAULT 'Unread',
         userID INT NOT NULL,
-        FOREIGN KEY (userID) REFERENCES appointment(userID)
+        FOREIGN KEY (userID) REFERENCES user(userID)
     )";
 
     confirmQuery($conn, $sql, "Notification");

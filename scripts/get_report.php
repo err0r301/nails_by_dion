@@ -20,6 +20,9 @@ function getReport(){
     $appointment_result = $conn->query($query);
     if ($appointment_result->num_rows > 0){
         $appointments = $appointment_result->num_rows;
+        echo "<script>console.log('appointments".$appointments."')</script>";
+    }else{
+        echo "<script>console.log('no appointments')</script>";
     }
 
     //get number of users with a 'userType' of 'Client'
@@ -38,6 +41,7 @@ function getReport(){
     );
 
     echo"<script>console.log(".$output['sales'].")</script>";
+    echo"<script>console.log('appointments".$output['appointments']."')</script>";
 
     // Close the database connection
     $conn->close();

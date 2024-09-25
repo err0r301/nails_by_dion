@@ -127,26 +127,26 @@ checkInsert($conn, $serviceQuery, "Service");
 
 $appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, dateScheduled, status_, serviceID, sessions) 
                     VALUES  
-                    (1, 6, 'Dion','2022-01-01 10:32:00','2022-01-03 07:00:00', 'Pending', 'Classic Manicure', 1),
-                    (2, 7, 'Jane','2022-01-01 12:53:00','2022-01-03 08:00:00', 'Complete', 'Gel Manicure', 1),
-                    (3, 8, 'John','2022-01-02 11:25:00','2022-01-03 10:00:00', 'Pending', 'French Manicure', 1),
-                    (4, 9, 'Jenny','2022-01-02 11:53:00','2022-01-03 12:00:00', 'Pending', 'Classic Pedicure', 1),
-                    (5, 10, 'James','2022-01-02 14:13:00','2022-01-03 14:00:00', 'Cancelled', 'Gel Pedicure', 1),
-                    (6, 11, 'Dion','2022-01-03 16:34:00','2022-01-04 08:00:00', 'Pending', 'Paraffin Treatment', 2),
-                    (7, 12, 'Jane','2022-01-03 15:15:00','2022-01-04 10:00:00', 'Complete', 'Facial', 2),
-                    (8, 13, 'John','2022-01-03 12:42:00','2022-01-04 11:00:00', 'Pending', 'Microdermabrasion', 2),
-                    (9, 14, 'Jenny','2022-01-03 13:35:00','2022-01-04 13:00:00', 'Cancelled', 'Chemical Peel', 2),
-                    (10, 6, 'James','2022-01-03 16:59:00','2022-01-04 15:00:00', 'Pending', 'Haircut', 2),
-                    (11, 7, 'Dion','2022-01-04 17:24:00','2022-01-05 09:00:00', 'Complete', 'Hair Color', 3),
-                    (12, 8, 'Jane','2022-01-04 11:52:00','2022-01-05 11:00:00', 'Complete', 'Highlights', 3),
-                    (13, 9, 'John','2022-01-04 18:13:00','2022-01-05 13:00:00', 'Complete', 'Blowout', 3),
-                    (14, 10, 'Jenny','2022-01-03 19:02:00','2022-01-05 15:00:00', 'Complete', 'Hair Extensions', 3),
-                    (15, 11, 'James','2022-01-01 14:41:00','2022-01-05 17:00:00', 'Complete', 'Keratin Treatment', 3),
-                    (16, 12, 'Dion','2022-01-03 11:52:00','2022-01-06 08:00:00', 'Pending', 'Classic Manicure', 1),
-                    (17, 13, 'Jane','2022-01-01 14:31:00','2022-01-06 10:00:00', 'Pending', 'Gel Manicure', 1),
-                    (18, 14, 'John','2022-01-04 12:14:00','2022-01-06 15:00:00', 'Pending', 'French Manicure', 1),
-                    (19, 6, 'Jenny','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 'Classic Pedicure', 1),
-                    (20, 7, 'James','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 'Gel Pedicure', 1)";
+                    (1, 6, 'Dion','2024-09-01 10:32:00','2024-09-03 07:00:00', 'Pending', 'Classic Manicure', 1),
+                    (2, 7, 'Jane','2024-09-01 12:53:00','2024-09-03 08:00:00', 'Complete', 'Gel Manicure', 1),
+                    (3, 8, 'John','2024-09-02 11:25:00','2024-09-03 10:00:00', 'Pending', 'French Manicure', 1),
+                    (4, 9, 'Jenny','2024-09-02 11:53:00','2024-09-03 12:00:00', 'Pending', 'Classic Pedicure', 1),
+                    (5, 10, 'James','2024-09-02 14:13:00','2024-09-03 14:00:00', 'Cancelled', 'Gel Pedicure', 1),
+                    (6, 11, 'Dion','2024-09-03 16:34:00','2024-09-04 08:00:00', 'Pending', 'Paraffin Treatment', 2),
+                    (7, 12, 'Jane','2024-09-03 15:15:00','2024-09-04 10:00:00', 'Complete', 'Facial', 2),
+                    (8, 13, 'John','2024-09-03 12:42:00','2024-09-04 11:00:00', 'Pending', 'Microdermabrasion', 2),
+                    (9, 14, 'Jenny','2024-09-03 13:35:00','2024-09-04 13:00:00', 'Cancelled', 'Chemical Peel', 2),
+                    (10, 6, 'James','2024-09-03 16:59:00','2024-09-04 15:00:00', 'Pending', 'Haircut', 2),
+                    (11, 7, 'Dion','2024-09-04 17:24:00','2024-09-05 09:00:00', 'Complete', 'Hair Color', 3),
+                    (12, 8, 'Jane','2024-09-04 11:52:00','2024-09-05 11:00:00', 'Complete', 'Highlights', 3),
+                    (13, 9, 'John','2024-09-04 18:13:00','2024-09-05 13:00:00', 'Complete', 'Blowout', 3),
+                    (14, 10, 'Jenny','2024-09-03 19:02:00','2024-09-05 15:00:00', 'Complete', 'Hair Extensions', 3),
+                    (15, 11, 'James','2024-09-01 14:41:00','2024-09-05 17:00:00', 'Complete', 'Keratin Treatment', 3),
+                    (16, 12, 'Dion','2024-09-03 11:52:00','2024-09-06 08:00:00', 'Pending', 'Classic Manicure', 1),
+                    (17, 13, 'Jane','2024-09-01 14:31:00','2024-09-06 10:00:00', 'Pending', 'Gel Manicure', 1),
+                    (18, 14, 'John','2024-09-04 12:14:00','2024-09-06 15:00:00', 'Pending', 'French Manicure', 1),
+                    (19, 6, 'Jenny','2024-09-05 04:35:00','2024-09-07 10:00:00', 'Cancelled', 'Classic Pedicure', 1),
+                    (20, 7, 'James','2024-09-06 08:24:00','2024-09-07 13:00:00', 'Complete', 'Gel Pedicure', 1)";
 
 
 checkInsert($conn, $appointmentQuery, "Appointment");
@@ -377,6 +377,30 @@ VALUES
 checkInsert($conn, $saleQuery, "Sale");
     
 // insert notification data
+$notificationsQuery = "INSERT INTO notification (dateTime_, message, status_, userID) 
+VALUES   
+    ('2024-08-01 10:00:00', 'Appointment confirmed for user 1', 'Read', 1),    
+    ('2024-08-02 10:00:00', 'New stylist joined our salon', 'Unread', 1),  
+    ('2024-08-05 14:15:00', 'Appointment reminder for user 2', 'Read', 2),  
+    ('2024-08-10 09:30:00', 'New message from stylist', 'Read', 3), 
+    ('2024-08-12 15:15:00', 'Your stylist has a new schedule', 'Unread', 2),   
+    ('2024-08-15 12:00:00', 'Cancellation notice for user 4', 'Read', 4),  
+    ('2024-08-20 11:45:00', 'Feedback received from user 5', 'Read', 5), 
+    ('2024-08-22 09:30:00', 'Check out our new services', 'Unread', 3),   
+    ('2024-08-25 08:30:00', 'Special discount available for user 1', 'Read', 1),  
+    ('2024-08-30 17:00:00', 'New service announcement for user 2', 'Read', 2),  
+    ('2024-09-01 09:00:00', 'Your last appointment was rated', 'Read', 3),  
+    ('2024-09-03 12:00:00', 'Your appointment has been rescheduled', 'Unread', 4),
+    ('2024-09-05 13:30:00', 'New product launch on September 10', 'Read', 4),  
+    ('2024-09-10 15:00:00', 'Update on your appointment request', 'Read', 5),  
+    ('2024-09-12 11:20:00', 'Payment confirmation for user 1', 'Read', 1),  
+    ('2024-09-15 14:50:00', 'Limited time offer for user 2', 'Read', 2), 
+    ('2024-09-18 08:00:00', 'We miss you! Schedule your next visit.', 'Unread', 5),  
+    ('2024-09-20 10:10:00', 'Your review is now live!', 'Read', 3),  
+    ('2024-09-22 10:20:00', 'Appointment feedback request', 'Read', 4),  
+    ('2024-09-25 09:15:00', 'Promo code available for user 5', 'Read', 5)";  
+  
+checkInsert($conn, $notificationsQuery, "Notification");
 
 // Close the connection
 $conn->close();
