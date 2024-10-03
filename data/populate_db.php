@@ -204,7 +204,7 @@ VALUES
     (21, 20, 15)";
 
 checkInsert($conn, $cartQuery, "Cart"); */
-
+/*
 // insert sales data
 $saleQuery = "INSERT INTO sale (saleID, serviceID, price, date)
 VALUES
@@ -401,6 +401,6 @@ VALUES
     ('2024-09-25 09:15:00', 'Promo code available for user 5', 'Read', 5)";  
   
 checkInsert($conn, $notificationsQuery, "Notification");
-
+*/
 // Close the connection
 $conn->close();

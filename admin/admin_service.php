@@ -6,6 +6,7 @@
     <title>Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="../scripts/admin_script.js" defer></script>
+    <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
 </head>
@@ -16,11 +17,13 @@
             $page = 'admin_service';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            if (require '../scripts/service_scripts/add_service.php') {
-                echo "<script>console.log('added')</script>";
-            }
+            require '../scripts/service_scripts/add_service.php';
+            require '../scripts/service_scripts/edit_service.php';
+            require '../scripts/service_scripts/remove_service.php';
+              
         ?>
 
+      <!-- popups-->
         <div class="popup" id="popup-add-service">
             <div class="overlay" onclick="togglePopup_add('popup-add-service')"></div>
             <div class="content">
@@ -69,6 +72,97 @@
             </div>
         </div>
 
+        <div class="popup" id="popup-edit-service">
+            <div class="overlay" onclick="togglePopup('popup-edit-service')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('popup-edit-service')">&times;</div>
+                <h2>Edit Service</h2>
+                <form action="" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="edit-service-id" id="edit-service-id"> 
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select name="category" class="form-selector" id="ass-category">
+                            <option value="Manicure">Manicure</option>
+                            <option value="Pedicure">Pedicure</option>
+                            <option value="Beauty Treatment">Beauty Treatment</option>
+                            <option value="Hair beauty">Hair Beauty </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select name="status" class="form-selector" id="add-status">
+                            <option value="Active">Active</option>
+                            <option value="Disabled">Disabled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration:</label>
+                        <input type="time" name="duration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea name="description" id="description-box" maxlength="150" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="upload-image" for="service-image">Upload Image</label>
+                        <input type="file" name="image" id="service-image" accept="image/JPEG, image/PNG, image/JPG" required>
+                    </div>
+                    <button type="submit" name="add" value="Add">Update</button>
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup" id="popup-delete-service">
+            <div class="overlay" onclick="togglePopup('popup-delete-service')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('popup-delete-service')">&times;</div>
+                <h2>Delete Service</h2>
+                <p>Are you sure you want to delete this service?</p>
+                <form action="" method="post">
+                    <input type="hidden" name="delete-service-id" id="delete-service-id"> 
+                    <button type="submit" id="delete-service-btn" value="Delete">Delete</button>
+                    <button type="reset" onclick="togglePopup('popup-delete-service')">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup" id="popup-show-service">
+            <div class="overlay" onclick="togglePopup('popup-show-service')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('popup-show-service')">&times;</div>
+                <img src="" alt="Service Image">
+                <h3>Service Name</h3>
+                <strong>Service category</strong>
+                <p>Service status</p>
+                <strong>Service price</strong>
+                <p>Service duration</p>
+                <p>Service description</p>
+                <button name="edit" value="Edit" onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
+                <button name="delete" value="Delete" onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
+            
+                <!--<div class="rightColumn">
+                    <div id="service-days">
+                        <div>Mon <input type="checkbox" name="MONDAY" value="Monday" id="prefMon" /></div>
+		                <div>Tue <input type="checkbox" name="TUESDAY" value="Tuesday" id="prefTues" /></div>
+      	                <div>Wed <input type="checkbox" name="WEDNESDAY" value="Wednesday" id="prefWed" /></div>
+		                <div>Thu <input type="checkbox" name="THURSDAY" value="Thursday" id="prefThr" /></div>
+ 		                <div>Fri <input type="checkbox" name="FRIDAY" value="Friday" id="prefFri" /></div>
+                        <div>Sat <input type="checkbox" name="SATURDAY" value="Saturday" id="prefSat" /></div>
+                        <div>Sun <input type="checkbox" name="SUNDAY" value="Sunday" id="prefSun" /></div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+
         <main class="main-container">
             <div class="top">
                 <h1 class="main-title font-weight-bold">SERVICES</h1>
@@ -103,13 +197,15 @@
                     <!--<div class="service-cell actions"></div>-->
                 </div>
                 <?php 
-                    include '../scripts/service_scripts/get_services.php';
+                    require '../scripts/service_scripts/get_services.php';
                     $services = getServices();
 
                     if ($services) {  
                         while ($row = $services->fetch_assoc()) {  
                             $duration = $row['duration'];?>
-                            <div class='service-row'>
+                            <div class='service-row' onclick="togglePopup('popup-show-service'); 
+                                                              storeID('<?php echo $row['serviceID']; ?>','delete-service-id'); 
+                                                              storeID('<?php echo $row['serviceID']; ?>','edit-service-id');">
                                 <div class='service-cell image'>
                                     <img src='<?php echo $row['image']?>' alt='Service' class='service-img'>
                                     <span><?php echo $row['serviceID']?></span>

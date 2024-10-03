@@ -40,7 +40,7 @@ if ($result) {
             createInventoryTable($conn);   
             createNotificationTable($conn);  
             //createCartTable($conn);
-            createSaleTable($conn);
+            //createSaleTable($conn);
         } else {  
             echo "Error creating database: " . $conn->error . "\n";  
         }  
@@ -167,10 +167,9 @@ function createGalleryTable($conn) {
     confirmQuery($conn, $sql, "Cart");
 }*/
 
-function createSaleTable($conn) {
+/*function createSaleTable($conn) {
     $sql = "CREATE TABLE sale (
         saleID INT AUTO_INCREMENT PRIMARY KEY,
-        /*serviceID INT NOT NULL,*/
         serviceID VARCHAR(100) NOT NULL,
         price FLOAT NOT NULL,   
         date DATE NOT NULL,
@@ -178,4 +177,4 @@ function createSaleTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Sale");
-}
+}*/
