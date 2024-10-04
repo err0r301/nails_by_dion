@@ -20,13 +20,36 @@ function viewPopup(pop, data) {
   
   if(data) {  
     console.log('date value: ',data);
-    appointmentID.textContent = data.appointmentID; // Use dot notation  
+    appointmentID.textContent = data.appointmentID; 
     name.textContent = data.client;   
     date.textContent = data.date.substr(0, 10);  
     time.textContent = data.date.substr(11, 5);  
-    service.textContent = data.service; // Ensure 'service' exists in your PHP array  
+    service.textContent = data.service;  
     status.textContent= data.status;  
   }  
+}
+
+function viewService(pop, data) {
+  var popup = document.getElementById(pop);  
+  popup.classList.toggle("active");
+
+  if(data){
+    //var image = document.getElementById('view-service-').textContent = data.;
+    var name = document.getElementById('view-service-name').textContent = data.serviceID;
+    var category = document.getElementById('view-service-category').textContent = data.category;
+    var status = document.getElementById('view-service-status').textContent = data.status;
+    var price = document.getElementById('view-service-price').textContent = "R"+data.price;
+    var duration = document.getElementById('view-service-duration').textContent = data.duration.substr(0,2) + "hrs "+data.duration.substr(3,2) + "mins";
+    var description = document.getElementById('view-service-description').textContent = data.description;
+
+    //document.getElementById('edit-service-image').value = data.image;
+    document.getElementById('edit-service-name').value = data.serviceID;
+    document.getElementById('edit-service-category').value = data.category;    
+    document.getElementById('edit-service-status').value = data.status;     
+    document.getElementById('edit-service-price').value = data.price;    
+    document.getElementById('edit-service-duration').value = data.duration; console.log("js function : "+data.duration);   
+    document.getElementById('edit-service-description').value = data.description; 
+  }    
 }
 function viewModal(pop, model_id,modal_name, modal_email, modal_cell, modal_role) {  
   var popup = document.getElementById(pop);  

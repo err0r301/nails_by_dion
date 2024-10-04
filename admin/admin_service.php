@@ -17,9 +17,11 @@
             $page = 'admin_service';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            require '../scripts/service_scripts/add_service.php';
+            require '../scripts/service_scripts/get_services.php';
+            $services = getServices();
             require '../scripts/service_scripts/edit_service.php';
             require '../scripts/service_scripts/remove_service.php';
+            require '../scripts/service_scripts/add_service.php';
               
         ?>
 
@@ -36,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="ass-category">
+                        <select name="category" class="form-selector" id="add-category">
                             <option value="Manicure">Manicure</option>
                             <option value="Pedicure">Pedicure</option>
                             <option value="Beauty Treatment">Beauty Treatment</option>
@@ -64,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label class="upload-image" for="service-image">Upload Image</label>
-                        <input type="file" name="image" id="service-image" accept="image/JPEG, image/PNG, image/JPG" required>
+                        <input type="file" name="image" class="upload_img" id="service-image" accept="image/JPEG, image/PNG, image/JPG" required>
                     </div>
                     <button type="submit" name="add" value="Add">Add</button>
                     <button type="reset">Reset</button>
@@ -78,14 +80,14 @@
                 <div class="close-btn" onclick="togglePopup('popup-edit-service')">&times;</div>
                 <h2>Edit Service</h2>
                 <form action="" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="edit-service-id" id="edit-service-id"> 
+                    <input type="hidden" name="edit-service-id" id="edit-service-id"> 
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" required>
+                        <input type="text" name="name" id="edit-service-name" required>
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="ass-category">
+                        <select name="category" class="form-selector" id="edit-service-category">
                             <option value="Manicure">Manicure</option>
                             <option value="Pedicure">Pedicure</option>
                             <option value="Beauty Treatment">Beauty Treatment</option>
@@ -94,26 +96,26 @@
                     </div>
                     <div class="form-group">
                         <label for="status">Status:</label>
-                        <select name="status" class="form-selector" id="add-status">
+                        <select name="status" class="form-selector" id="edit-service-status">
                             <option value="Active">Active</option>
                             <option value="Disabled">Disabled</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="price">Price:</label>
-                        <input type="number" name="price" required>
+                        <input type="number" name="price" id="edit-service-price" required>
                     </div>
                     <div class="form-group">
                         <label for="duration">Duration:</label>
-                        <input type="time" name="duration" required>
+                        <input type="time" name="duration" id="edit-service-duration" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea name="description" id="description-box" maxlength="150" required></textarea>
+                        <textarea name="description" id="edit-service-description" maxlength="150" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="upload-image" for="service-image">Upload Image</label>
-                        <input type="file" name="image" id="service-image" accept="image/JPEG, image/PNG, image/JPG" required>
+                        <label class="upload-image" for="edit-service-image">Upload Image</label>
+                        <input type="file" name="image" class="upload_img" id="edit-service-image" accept="image/JPEG, image/PNG, image/JPG" required>
                     </div>
                     <button type="submit" name="add" value="Add">Update</button>
                     <button type="reset">Reset</button>
@@ -139,13 +141,13 @@
             <div class="overlay" onclick="togglePopup('popup-show-service')"></div>
             <div class="content">
                 <div class="close-btn" onclick="togglePopup('popup-show-service')">&times;</div>
-                <img src="" alt="Service Image">
-                <h3>Service Name</h3>
-                <strong>Service category</strong>
-                <p>Service status</p>
-                <strong>Service price</strong>
-                <p>Service duration</p>
-                <p>Service description</p>
+                <img src="" alt="Service Image" id="view-service-img">
+                <h3 id="view-service-name">Service Name</h3>
+                <strong id="view-service-category">Service category</strong>
+                <p id="view-service-status">Service status</p>
+                <strong id="view-service-price">Service price</strong>
+                <p id="view-service-duration">Service duration</p>
+                <p id="view-service-description">Service description</p>
                 <button name="edit" value="Edit" onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
                 <button name="delete" value="Delete" onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
             
@@ -197,13 +199,10 @@
                     <!--<div class="service-cell actions"></div>-->
                 </div>
                 <?php 
-                    require '../scripts/service_scripts/get_services.php';
-                    $services = getServices();
-
                     if ($services) {  
                         while ($row = $services->fetch_assoc()) {  
                             $duration = $row['duration'];?>
-                            <div class='service-row' onclick="togglePopup('popup-show-service'); 
+                            <div class='service-row' onclick="viewService('popup-show-service', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>); 
                                                               storeID('<?php echo $row['serviceID']; ?>','delete-service-id'); 
                                                               storeID('<?php echo $row['serviceID']; ?>','edit-service-id');">
                                 <div class='service-cell image'>
