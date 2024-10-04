@@ -145,6 +145,16 @@
                 </form>
             </div>
         </div>
+
+        <!--
+        <div class="popup active" id="add_appointment_Conform">
+            <div class="overlay" onclick="togglePopup('add_appointment_Conform')"></div>
+            <div class="content">
+                <h2>Successfully deleted</h2>
+                <p>The appointment was successfully deleted</p>
+                <button type="reset" onclick="togglePopup('add_appointment_Conform')">OK</button>
+            </div>
+        </div>-->
         
         <div class="popup" id="popup-edit-appointment">
             <div class="overlay" onclick="togglePopup('popup-edit-appointment')"></div>
