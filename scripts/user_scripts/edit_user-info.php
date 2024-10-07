@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cell = $_POST['edit-cell'];
         // Validate the form data  
         echo"<script> console.log('name :$name email :$email cell :$cell')</script>";
+        $info_error = null;
         $info_error =  validateEmail($email,$info_error);
         $info_error =  validateCell($cell,$info_error);   
         $info_error =  validateName($name,$info_error); 
@@ -43,13 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user']['email'] = $email;
                     $_SESSION['user']['cell'] = $cell;
                 }
-                $edit_user_confirmation = true;
+                $edit_userInfo_confirmation = true;
             } else {
                 echo"<script> console.log('Failed to update user details.')</script>";
-                $edit_user_confirmation = false;
+                $edit_userInfo_confirmation = false;
             }
             $stmt->close();
         }
         $conn->close();
     }
 }
+

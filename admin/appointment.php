@@ -9,9 +9,6 @@
     <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
-    <?php 
-        if ($pwd_error != null){}?>
-    ?>
 </head>
 <body>
     <div class="grid-container">
@@ -319,4 +316,41 @@
         </main>
     </div>
 </body>
+<?php 
+    if ($add_appointment_confirmation != null){
+        $confirmationID = 'add_appointment_confirmation';
+        if ($add_appointment_confirmation == true) {
+            $confirmationMessage = 'The appointment was added successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to add the appointment.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($edit_appointment_confirmation != null){
+        $confirmationID = 'edit_appointment_confirmation';
+        if ($edit_appointment_confirmation == true) {
+            $confirmationMessage = 'The appointment was updated successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to update the appointment.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($remove_appointment_confirmation != null){
+        $confirmationID = 'remove_appointment_confirmation';
+        if ($remove_appointment_confirmation == true) {
+            $confirmationMessage = 'The appointment was deleted successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to delete the appointment.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+?> 
 </html>

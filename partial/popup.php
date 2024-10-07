@@ -1,5 +1,5 @@
 
-<div class="popup" id="<?php echo $confirmationID?>">
+<div class="popup active" id="<?php echo $confirmationID?>">
     <div class="overlay" onclick="togglePopup('<?php echo $confirmationID?>')"></div>
     <div class="content">
         <div class="close-btn" onclick="togglePopup('<?php echo $confirmationID?>')">&times;</div>

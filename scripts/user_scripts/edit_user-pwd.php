@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($currentPwd, $row ['password'])) {
                 echo "<script> console.log('pwd 4')</script>";
                 // check if the new password is valid
+                $pwd_error = null;
                 $pwd_error = validatePassword($newPwd, $pwd_error);
                 if (is_null($pwd_error)) {
                     echo "<script> console.log('pwd 5')</script>";

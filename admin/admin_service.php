@@ -246,4 +246,41 @@
     </div>
 </body>
 
+<?php 
+    if ($add_service_confirmation != null){
+        $confirmationID = 'add_service_confirmation';
+        if ($add_service_confirmation == true) {
+            $confirmationMessage = 'The service was added successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to add the service.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($edit_service_confirmation != null){
+        $confirmationID = 'edit_service_confirmation';
+        if ($edit_service_confirmation == true) {
+            $confirmationMessage = 'The service was updated successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to update the service.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($remove_service_confirmation != null){
+        $confirmationID = 'remove_service_confirmation';
+        if ($remove_service_confirmation == true) {
+            $confirmationMessage = 'The service was deleted successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to delete the service.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+?>
 </html>

@@ -156,4 +156,41 @@
     </div>
 </body>
 
+<?php 
+    if ($add_inventory_confirmation != null){
+        $confirmationID = 'add_inventory_confirmation';
+        if ($add_inventory_confirmation == true) {
+            $confirmationMessage = 'The product was added successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to add the product.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($edit_inventory_confirmation != null){
+        $confirmationID = 'edit_inventory_confirmation';
+        if ($edit_inventory_confirmation == true) {
+            $confirmationMessage = 'The product was updated successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to update the product.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+    
+    if ($remove_inventory_confirmation != null){
+        $confirmationID = 'remove_inventory_confirmation';
+        if ($remove_inventory_confirmation == true) {
+            $confirmationMessage = 'The product was deleted successfully!';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'Failed to delete the product.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+?>
 </html>

@@ -6,25 +6,9 @@
     <title>Admin Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <script src="../scripts/admin_script.js" defer></script>
+    <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
-    <?php 
-        if ($pwd_error != null){?>
-            <style>
-                #pwd_error{
-                    display: block;
-                }
-            </style>
-
-        
-    <?php }
-        if ($info_error != null){?>
-            <style>
-                #info_error{
-                    display: block;
-                }
-            </style>
-    <?php }?>   
 </head>
 <body>
     <div class="grid-container">
@@ -49,6 +33,8 @@
                         <b><?php echo $_SESSION['user']['email']; ?></b>
                         <br>
                         <i><?php echo $_SESSION['user']['role'];?></i>
+                        <br>
+                        <b><?php echo $edit_userInfo_confirmation ?></b>
                     </div>
                 </div>
                 <img src="../_images/profile-cover.jpg" alt="" class="profile-cover">
@@ -58,28 +44,27 @@
                 <section class="card">
                     <header>
                         <h2>Profile Information</h2>
-                        <p>Update your account's profile information and email address.</p>
-                        <div class="error" id="info_error"><p><?php echo $info_error ?></p></div>
+                        <p class="help-text"  id="help-userInfo" style="display: block;">Update your account's profile information and email address.</p>
+                        <div class="error" id="error_userInfo" style="display: none;">
+                            <p class="error_message"><?php if ($edit_userInfo_confirmation ==true){echo "User information updated successfully";}else{echo "Error updating user information";}?></p>
+                        </div>
                     </header>
 
                     <form class="profile-form" action="" method="POST" >
                         <div>
                             <label for="name">Name</label>
                             <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>">
-                            <!--<p id="name_error" style="color: red;">your name is required</p>-->
                         </div>
 
 
                         <div>
                             <label for="email">Email</label>
                             <input type="email" id="email" name="edit-email" value="<?php echo $_SESSION['user']['email']; ?>" required>
-                            <!--<p id="email_error" style="color: red;">The email you have entered is not valid</p>-->
                         </div>
 
                         <div>
                             <label for="cell">Cell No.</label>
                             <input type="text" id="cell" name="edit-cell" value="<?php echo $_SESSION['user']['cell']; ?>">
-                            <!--<p id="cell_error" style="color: red;">The phone number you have entered is not valid</p>-->
                         </div>
 
                         <button type="submit" class="profile-button">Update</button>
@@ -91,7 +76,6 @@
                     <header>
                         <h2>Update Password</h2>
                         <p>Ensure your account is using a long, random password to stay secure.</p>
-                        <div class="error" id="pwd_error"><p><?php echo $pwd_error ?></p></div>
                     </header>
 
                     <form class="profile-form" action="" method="POST">
@@ -124,4 +108,29 @@
         </main>
     </div>
 </body>
+<?php 
+if ($edit_userInfo_confirmation != null){
+    $confirmationID = 'confirmation_userInfo';
+    if ($edit_userInfo_confirmation == true) {
+        $confirmationMessage = 'User details updated successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to update user details.';
+        $confirmationImage = '../_images/cross.png';
+    }
+    require_once '../partial/popup.php';
+}
+
+if ($edit_userPwd_confirmation != null){
+    $confirmationID = 'confirmation_userPwd';
+    if ($edit_userPwd_confirmation == true) {
+        $confirmationMessage = 'User password updated successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to update user password.';
+        $confirmationImage = '../_images/cross.png';
+    }
+    require_once '../partial/popup.php';
+}
+?> 
 </html>
