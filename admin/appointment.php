@@ -175,7 +175,7 @@
                         <label for="status">Status:</label>
                         <select name="edit_appointment_status" id="edit_appointment_status" class="form-selector status">
                             <option value="Pending">Pending</option>
-                            <option value="In Progress">In Progress</option>
+                            <option value="Confirmed">Confirmed</option>
                             <option value="Complete">Complete</option>
                             <option value="Cancelled">Cancelled</option>
                         </select>
@@ -275,7 +275,7 @@
                                 <select name="status" id="status" class="table-selector" onchange="getValue('status')">
                                   <option value="All">Appointments</option>
                                   <option value="Pending">Pending</option>
-                                  <option value="In Progress">In Progress</option>
+                                  <option value="Confirmed">Confirmed</option>
                                   <option value="Complete">Complete</option>
                                   <option value="Cancelled">Cancelled</option>
                                 </select>
