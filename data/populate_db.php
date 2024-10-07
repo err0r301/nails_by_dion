@@ -178,6 +178,34 @@ VALUES
 
 checkInsert($conn, $inventoryQuery, "Inventory");
 
+
+// insert auto_notification templates
+$notificationQuery = "INSERT INTO auto_notification (autoNotificationID, message)  
+VALUES  
+    ('Appointment Confirmation', 'Dear [name], your appointment for [service] on [date] at [time] has been confirmed. We look forward to seeing you!'),  
+    ('Appointment Reminder', 'Hi [name], this is a friendly reminder of your upcoming appointment for [service] on [date] at [time]. See you soon!'),  
+    ('Appointment Cancellation', 'Hi [name], your appointment for [service] on [date] has been successfully canceled.'),  
+    ('Appointment Reschedule Confirmation', 'Dear [name], your appointment for [service] has been rescheduled to [new date] at [new time].'),  
+    ('Appointment Completed', 'Hi [name], we hope you enjoyed your service! If you loved it, feel free to leave us a review or book your next appointment.'),  
+    ('Service Review Request', 'Dear [name], thank you for choosing us for your [service]. We\'d love to hear your feedback! Please leave a review here: [link].'),  
+    ('New Offers & Promotions', 'Hi [name], we\'re offering an exclusive [discount/promotion] on [services] this month! Book now and enjoy your special treatment.'),  
+    ('Birthday Discount/Offer', 'Happy Birthday, [name]! As a special treat, we\'re offering you a [discount] on your next service. Book before [date] to redeem!'),  
+    ('Payment Receipt', 'Hi [name], thank you for your payment of [amount] for [service]. Your appointment is confirmed for [date] at [time].'),  
+    ('Missed Appointment', 'Hi [name], we noticed you missed your appointment for [service] on [date]. Please let us know if you\'d like to reschedule.'),  
+    ('Account Registration Confirmation', 'Welcome, [name]! Your account has been successfully created. We\'re excited to have you with us! Log in here: [link].'),  
+    ('Password Reset', 'Hi [name], we received a request to reset your password. Click here to set a new one: [link]. If you didn\'t request this, please ignore this message.'),  
+    ('New Appointment Booked', 'New appointment booked! Client: [name]. Service: [service]. Date: [date], Time: [time].'),  
+    ('Appointment Canceled', '[name] has canceled their appointment for [service] on [date].'),  
+    ('Appointment Rescheduled', '[name] has rescheduled their appointment for [service]. New date: [new date], New time: [new time].'),  
+    ('Daily Appointment Summary', 'Daily appointment summary: You have [X] appointments booked for today.'),  
+    ('Low Product Inventory', 'Inventory Alert: The stock of [product] is low. Please restock to ensure availability for upcoming services.'),  
+    ('Staff Assignment for New Appointment', 'Staff Alert: [name] has been assigned to [client\'s] appointment for [service] on [date] at [time].'),  
+    ('Stylist Missed Appointment', 'Appointment missed: [name] did not show up for their [service] appointment on [date]. Consider following up to reschedule.'),  
+    ('Payment Received', 'Payment of [amount] has been received from [name] for their [service] on [date].'),  
+    ('System Error/Failure Notification', 'Error Alert: The system encountered an issue with [specific feature]. Immediate attention required to prevent downtime.')";  
+
+checkInsert($conn, $notificationQuery, "Auto Notification");
+
 /* insert cart data
 $cartQuery = "INSERT INTO cart (cartID, appointmentID, serviceID)
 VALUES

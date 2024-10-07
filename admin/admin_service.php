@@ -17,11 +17,11 @@
             $page = 'admin_service';
             include '../partial/admin_header.php';
             include '../partial/admin_sidebar.php';
-            require '../scripts/service_scripts/get_services.php';
-            $services = getServices();
             require '../scripts/service_scripts/edit_service.php';
             require '../scripts/service_scripts/remove_service.php';
             require '../scripts/service_scripts/add_service.php';
+            require '../scripts/service_scripts/get_services.php';
+            $services = getServices();
               
         ?>
 
@@ -42,7 +42,7 @@
                             <option value="Manicure">Manicure</option>
                             <option value="Pedicure">Pedicure</option>
                             <option value="Beauty Treatment">Beauty Treatment</option>
-                            <option value="Hair beauty">Hair Beauty </option>
+                            <option value="Hair Beauty">Hair Beauty</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea name="description" id="description-box" maxlength="150" required></textarea>
+                        <textarea name="description" id="add-service-description" class="description-box" maxlength="150" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="upload-image" for="service-image">Upload Image</label>
@@ -91,7 +91,7 @@
                             <option value="Manicure">Manicure</option>
                             <option value="Pedicure">Pedicure</option>
                             <option value="Beauty Treatment">Beauty Treatment</option>
-                            <option value="Hair beauty">Hair Beauty </option>
+                            <option value="Hair Beauty">Hair Beauty</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -111,7 +111,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea name="description" id="edit-service-description" maxlength="150" required></textarea>
+                        <textarea name="description" id="edit-service-description" class="description-box" maxlength="150" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="upload-image" for="edit-service-image">Upload Image</label>

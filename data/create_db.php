@@ -38,7 +38,8 @@ if ($result) {
             createAppointmentTable($conn);  
             createGalleryTable($conn);  
             createInventoryTable($conn);   
-            createNotificationTable($conn);  
+            createNotificationTable($conn); 
+            createAutoNotificationTable($conn); 
             //createCartTable($conn);
             //createSaleTable($conn);
         } else {  
@@ -143,6 +144,14 @@ function createNotificationTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Notification");
+}
+
+function createAutoNotificationTable($conn){
+    $sql = "CREATE TABLE auto_notification (
+        autoNotificationID VARCHAR(50) PRIMARY KEY,
+        message VARCHAR(300) NOT NULL)";
+
+    confirmQuery($conn, $sql, "AutoNotification");
 }
 
 function createGalleryTable($conn) {

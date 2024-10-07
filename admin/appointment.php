@@ -145,16 +145,6 @@
                 </form>
             </div>
         </div>
-
-        <!--
-        <div class="popup active" id="add_appointment_Conform">
-            <div class="overlay" onclick="togglePopup('add_appointment_Conform')"></div>
-            <div class="content">
-                <h2>Successfully deleted</h2>
-                <p>The appointment was successfully deleted</p>
-                <button type="reset" onclick="togglePopup('add_appointment_Conform')">OK</button>
-            </div>
-        </div>-->
         
         <div class="popup" id="popup-edit-appointment">
             <div class="overlay" onclick="togglePopup('popup-edit-appointment')"></div>
@@ -193,6 +183,52 @@
                     <button type="submit" name="update" value="Update">Update</button>
                     <button onclick="togglePopup_edit('popup-edit-appointment')">Cancel</button>
                 </form>
+            </div>
+        </div>
+
+                <!-- Confirmation Popups -->
+        <!-- Add Appointment Confirmation Popup -->
+        <div class="popup" id="add_appointment_confirmation">
+            <div class="overlay" onclick="togglePopup('add_appointment_confirmation')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('add_appointment_confirmation')">&times;</div>
+                <div class="confirmation-img">
+                    <div class="circle">
+                        <img src="../_images/tick.png" alt="Confirmation Icon">
+                    </div>
+                </div>
+                <h2>Appointment Added Successfully!</h2>
+                <button class="confirm-btn" onclick="togglePopup('add_appointment_confirmation')">OK</button>
+            </div>
+        </div>
+
+        <!-- Edit Appointment Confirmation Popup -->
+        <div class="popup" id="edit_appointment_confirmation">
+            <div class="overlay" onclick="togglePopup('edit_appointment_confirmation')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('edit_appointment_confirmation')">&times;</div>
+                <div class="confirmation-img">
+                    <div class="circle">
+                        <img src="../_images/tick.png" alt="Confirmation Icon">
+                    </div>
+                </div>
+                <h2>Appointment Edited Successfully!</h2>
+                <button class="confirm-btn" onclick="togglePopup('edit_appointment_confirmation')">OK</button>
+            </div>
+        </div>
+
+        <!-- Delete Appointment Confirmation Popup -->
+        <div class="popup" id="delete_appointment_confirmation">
+            <div class="overlay" onclick="togglePopup('delete_appointment_confirmation')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('delete_appointment_confirmation')">&times;</div>
+                <div class="confirmation-img">
+                    <div class="circle">
+                        <img src="../_images/tick.png" alt="Confirmation Icon">
+                    </div>
+                </div>
+                <h2>Appointment Deleted Successfully!</h2>
+                <button class="confirm-btn" onclick="togglePopup('delete_appointment_confirmation')">OK</button>
             </div>
         </div>
         

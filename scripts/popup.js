@@ -35,12 +35,19 @@ function viewService(pop, data) {
 
   if(data){
     //var image = document.getElementById('view-service-').textContent = data.;
-    var name = document.getElementById('view-service-name').textContent = data.serviceID;
-    var category = document.getElementById('view-service-category').textContent = data.category;
-    var status = document.getElementById('view-service-status').textContent = data.status;
-    var price = document.getElementById('view-service-price').textContent = "R"+data.price;
-    var duration = document.getElementById('view-service-duration').textContent = data.duration.substr(0,2) + "hrs "+data.duration.substr(3,2) + "mins";
-    var description = document.getElementById('view-service-description').textContent = data.description;
+    document.getElementById('view-service-name').textContent = data.serviceID;
+    document.getElementById('view-service-category').textContent = data.category;
+    document.getElementById('view-service-status').textContent = data.status;
+    document.getElementById('view-service-price').textContent = "R"+data.price;
+    var time = "";
+    if(data.duration.substr(0,2)!="00"){
+      time = data.duration.substr(0,2)+"hrs ";
+    }
+    if(data.duration.substr(3,2)!="00"){
+      time += data.duration.substr(3,2)+"mins";
+    }
+    document.getElementById('view-service-duration').textContent = time;
+    document.getElementById('view-service-description').textContent = data.description;
 
     //document.getElementById('edit-service-image').value = data.image;
     document.getElementById('edit-service-name').value = data.serviceID;

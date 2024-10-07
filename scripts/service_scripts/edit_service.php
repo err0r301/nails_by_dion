@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {  
             $image = $targetFilePath;  
-            echo "<script> console.log('The file has been uploaded successfully. Image path: ')</script>";  
+            echo "<script> console.log('The image has been uploaded successfully. Image path: $image')</script>";  
         } else {  
             echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";  
         }
@@ -37,21 +37,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }else{
             // edit the service data in the database
-            $query = "UPDATE service SET /*name = ?,*/ description = ?, price = ?, image = ?, category = ?, duration = ?, status = ? WHERE serviceID = ?";
+            $query = "UPDATE service SET serviceID = ?,  description = ?, price = ?, image = ?, category = ?, duration = ?, status = ? WHERE serviceID = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param(/*"ssdssisi"*/"sdssiss", /*$name,*/ $description, $price, $image, $category, $duration, $status, $serviceID);
+            $stmt->bind_param("ssdsssss", $serviceID,  $description, $price, $image, $category, $duration, $status, $serviceID);
             $stmt->execute();
             // Check if the edit was successful
             if ($stmt->affected_rows == 1) {
-                echo "Service record updated successfully.";
+                echo "<script>console.log('Service record updated successfully.')</script>";
                 $stmt->close();
             } else {
-                echo "Error updating service record: " . $stmt->error;
+                echo "<script> console.log('Error updating service record: " . $stmt->error. "')</script>";
+                error_reporting(E_ALL);  
+                ini_set('display_errors', 1);  
             }
+
+            $query = "UPDATE appointment SET serviceID = ? WHERE serviceID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $serviceID, $serviceID);
+            $stmt->execute();
+            $stmt->close();
         }
+        $conn->close();
     }
 }
-
-// edit the service data in the database
-
-// Check if the edit was successful

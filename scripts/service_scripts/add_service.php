@@ -4,7 +4,7 @@ require '../data/config.php';
 echo "<script> console.log('add service')</script>";
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['duration']) && isset($_POST['status'])) {
+    if (isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['duration']) && isset($_POST['status']) && !isset($_POST['edit-service-id'])) {
         $name = $_POST['name'];
         $description = $_POST['description'];
         $price = $_POST['price'];
