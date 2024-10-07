@@ -1,8 +1,8 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$edit_userPwd_confirmation = null;
 
-$pwd_error = null;
 // Check if the form has been submitted
 echo "<script> console.log('pwd 1')</script>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,16 +36,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $stmt = $conn->prepare($query);
                         $stmt->bind_param("si", $hashedPwd, $_SESSION['user']['userID']);
                         $stmt->execute();
+
+                        if ($stmt->affected_rows > 0) {
+                            echo "<script> console.log('Password updated successfully.')</script>";
+                            $edit_userPwd_confirmation = true;
+                        } else {
+                            echo "<script> console.log('Failed to update password.')</script>";
+                            $edit_userPwd_confirmation = false;
+                        }
                         echo "<script> console.log('pwd 6')</script>";
                     } else {
-                        $pwd_error = "Confirmation password does not match";
+                        echo "<script> console.log('Confirmation password does not match.')</script>";
                     }
                 }
             } else {
-                $pwd_error = "Current password is incorrect";
+                echo "<script> console.log('Current password is incorrect.')</script>";
             }
         }else{
-            $pwd_error = "Failed to update password";
+            echo "<script> console.log('Failed to update password.')</script>";
         }
+        $stmt->close();
     }
+    $conn->close();
 }

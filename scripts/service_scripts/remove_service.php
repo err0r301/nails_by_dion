@@ -2,6 +2,7 @@
     // Include the config file
     require '../data/config.php';
     echo "<script> console.log('remove_service.php')</script>";
+    $remove_service_confirmation = null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['delete-service-id'])) {
@@ -14,8 +15,10 @@
             // Check if the data was removed successfully
             if ($result) {
                 echo "<script> console.log('Service removed successfully. ')</script>";
+                $remove_service_confirmation = true;
             } else {
                 echo "<script> console.log('Error removing service: " . $conn->error. "')</script>";
+                $remove_service_confirmation = false;
             }
         }
     }else

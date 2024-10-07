@@ -9,6 +9,9 @@
     <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
+    <?php 
+        if ($pwd_error != null){}?>
+    ?>
 </head>
 <body>
     <div class="grid-container">
@@ -188,7 +191,7 @@
 
                 <!-- Confirmation Popups -->
         <!-- Add Appointment Confirmation Popup -->
-        <div class="popup" id="add_appointment_confirmation">
+        <!--<div class="popup" id="add_appointment_confirmation">
             <div class="overlay" onclick="togglePopup('add_appointment_confirmation')"></div>
             <div class="content">
                 <div class="close-btn" onclick="togglePopup('add_appointment_confirmation')">&times;</div>
@@ -201,8 +204,7 @@
                 <button class="confirm-btn" onclick="togglePopup('add_appointment_confirmation')">OK</button>
             </div>
         </div>
-
-        <!-- Edit Appointment Confirmation Popup -->
+      
         <div class="popup" id="edit_appointment_confirmation">
             <div class="overlay" onclick="togglePopup('edit_appointment_confirmation')"></div>
             <div class="content">
@@ -217,7 +219,6 @@
             </div>
         </div>
 
-        <!-- Delete Appointment Confirmation Popup -->
         <div class="popup" id="delete_appointment_confirmation">
             <div class="overlay" onclick="togglePopup('delete_appointment_confirmation')"></div>
             <div class="content">
@@ -230,7 +231,7 @@
                 <h2>Appointment Deleted Successfully!</h2>
                 <button class="confirm-btn" onclick="togglePopup('delete_appointment_confirmation')">OK</button>
             </div>
-        </div>
+        </div>-->
         
         <!--main content-->
         <main class="main-container">

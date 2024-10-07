@@ -1,6 +1,7 @@
 <?php
     // Include the config file
     require '../data/config.php';
+    $remove_user_confirmation = null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['delete-user-id'])) {
@@ -33,6 +34,7 @@
                 
             } else {
                 echo "<script>console.log('Error removing account. '". $conn->error.")</script>";
+                $remove_user_confirmation = false;
             }
         }
     }

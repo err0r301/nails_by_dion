@@ -1,6 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$add_service_confirmation = null;
 echo "<script> console.log('add service')</script>";
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,13 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the insertion was successful
             if ($stmt->affected_rows == 1) {
-                $success = 'Service created successfully';
-                $stmt->close();
-                $conn->close();
+                echo "<script> console.log('Service created successfully')</script>";
+                $add_service_confirmation = true;
             } else {
-                $error = 'Failed to create service';
+                echo "<script> console.log('Failed to create service')</script>";
+                $add_service_confirmation = false;
             }
+            $stmt->close();
         }
+        $conn->close();
     }
 }
 

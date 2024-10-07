@@ -1,6 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$add_inventory_confirmation = null;
 echo "<script> console.log('add_inventory_item.php'); </script>";
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,13 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the insertion was successful
             if ($stmt->affected_rows == 1) {
-                $success = 'Inventory item created successfully';
-                $stmt->close();
-                $conn->close();
+                echo "<script>console.log('Inventory item created successfully');</script>";
+                $add_inventory_confirmation = true;
             } else {
-                $error = 'Failed to create inventory item';
+                echo "<script>console.log('Failed to create inventory item');</script>";
+                $add_inventory_confirmation = false;
             }
+            $stmt->close();
         }
+        $conn->close();
     }
 }
 

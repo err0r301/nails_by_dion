@@ -3,8 +3,7 @@
 require '../data/config.php';
 require '../scripts/validate_input.php';
 
-$error = null;
-$success = null;
+$add_user_confirmation = null;
 // Check if the form has been submitted
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -78,10 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Check if the insertion was successful
             if ($stmt->affected_rows == 1) {
                 $success = 'User created successfully';
-                $stmt->close();
             } else {
                 $error = 'Failed to create user';
             }
+            $stmt->close();
         }
 
         $conn->close();

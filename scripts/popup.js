@@ -35,10 +35,11 @@ function viewService(pop, data) {
 
   if(data){
     //var image = document.getElementById('view-service-').textContent = data.;
+    document.getElementById('view-service-img').src = data.image;
     document.getElementById('view-service-name').textContent = data.serviceID;
-    document.getElementById('view-service-category').textContent = data.category;
-    document.getElementById('view-service-status').textContent = data.status;
-    document.getElementById('view-service-price').textContent = "R"+data.price;
+    document.getElementById('view-service-category').textContent = "Service category : " + data.category;
+    document.getElementById('view-service-status').textContent = "Service status : " + data.status;
+    document.getElementById('view-service-price').textContent = "Service price : " + "R"+data.price;
     var time = "";
     if(data.duration.substr(0,2)!="00"){
       time = data.duration.substr(0,2)+"hrs ";
@@ -46,7 +47,7 @@ function viewService(pop, data) {
     if(data.duration.substr(3,2)!="00"){
       time += data.duration.substr(3,2)+"mins";
     }
-    document.getElementById('view-service-duration').textContent = time;
+    document.getElementById('view-service-duration').textContent = "Service duration : " + time;
     document.getElementById('view-service-description').textContent = data.description;
 
     //document.getElementById('edit-service-image').value = data.image;

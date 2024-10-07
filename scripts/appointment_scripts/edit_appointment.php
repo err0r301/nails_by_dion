@@ -1,6 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$edit_appointment_confirmation = null;
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,12 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the edit was successful
             if ($stmt->affected_rows == 1) {
                 echo "<script>console.log('Appointment updated successfully.')</script>";
-                $stmt->close();
+                $edit_appointment_confirmation = true;
             } else {
                 echo "<script>console.log('Error updating appointment.')</script>";
+                $edit_appointment_confirmation = false;
             }
+            $stmt->close();
         }
+        $conn->close();
     }
 }
-$conn->close();
 

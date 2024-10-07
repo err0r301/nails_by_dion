@@ -141,13 +141,15 @@
             <div class="overlay" onclick="togglePopup('popup-show-service')"></div>
             <div class="content">
                 <div class="close-btn" onclick="togglePopup('popup-show-service')">&times;</div>
-                <img src="" alt="Service Image" id="view-service-img">
+                <img src="" alt="Service Image" id="view-service-img" style="width: 300px; margin-top: 40px">
                 <h3 id="view-service-name">Service Name</h3>
-                <strong id="view-service-category">Service category</strong>
+                <p id="view-service-category">Service category</p>
                 <p id="view-service-status">Service status</p>
-                <strong id="view-service-price">Service price</strong>
-                <p id="view-service-duration">Service duration</p>
-                <p id="view-service-description">Service description</p>
+                <p id="view-service-price">Service price</p>
+                <p id="view-service-duration">Service duration</p> 
+                
+                <strong>Service description</strong>
+                <p id="view-service-description" style = "width: 300px; margin:5px 10px">Service description</p>
                 <button name="edit" value="Edit" onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
                 <button name="delete" value="Delete" onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
             

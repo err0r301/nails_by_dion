@@ -1,6 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$edit_service_confirmation = null;
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the edit was successful
             if ($stmt->affected_rows == 1) {
                 echo "<script>console.log('Service record updated successfully.')</script>";
-                $stmt->close();
+                $edit_service_confirmation = true;
             } else {
                 echo "<script> console.log('Error updating service record: " . $stmt->error. "')</script>";
-                error_reporting(E_ALL);  
-                ini_set('display_errors', 1);  
+                $edit_service_confirmation = false; 
             }
+            $stmt->close();
 
             $query = "UPDATE appointment SET serviceID = ? WHERE serviceID = ?";
             $stmt = $conn->prepare($query);

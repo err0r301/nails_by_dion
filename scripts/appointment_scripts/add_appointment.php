@@ -1,7 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
-
+$add_appointment_confirmation = null;
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,13 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Check if the insertion was successful
             if ($stmt->affected_rows == 1) {
-                $success = 'Appointment created successfully';
-                $stmt->close();
-                $conn->close();
+                echo "<script>console.log('Appointment created successfully')</script>";
+                $add_appointment_confirmation = true;
             } else {
-                $error = 'Failed to create appointment';
+                echo "<script>console.log('Failed to create appointment')</script>";
+                $add_appointment_confirmation = false;
             }
+            $stmt->close();
         }
+        $conn->close();
     }
 }
 

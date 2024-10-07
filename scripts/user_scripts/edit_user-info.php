@@ -1,9 +1,9 @@
 <?php
 // Include the config file
 require '../data/config.php';
+$edit_userInfo_confirmation = null;
 //require '../scripts/validate_input.php';
 
-$info_error = null;
 // Check if the form has been submitted
 echo"<script> console.log('edit-user-info')</script>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ( is_null($info_error)) {
             if (isset($_POST['edit-role'])) {
                 $role = $_POST['edit-role'];
-                
                 $userID = $_POST['userID'];   
                 $query = "UPDATE admin SET role = ? WHERE userID = '$userID'";
                 $stmt = $conn->prepare($query);
@@ -38,16 +37,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the update was successful
             
             if ($stmt->affected_rows > 0) {
-                $success = "User details updated successfully!";
+                echo"<script> console.log('User details updated successfully!')</script>";
                 if (!isset($_POST['role'])) {
                     $_SESSION['user']['name'] = $name;
                     $_SESSION['user']['email'] = $email;
                     $_SESSION['user']['cell'] = $cell;
                 }
+                $edit_user_confirmation = true;
             } else {
-                $info_error = "Failed to update user details.";
+                echo"<script> console.log('Failed to update user details.')</script>";
+                $edit_user_confirmation = false;
             }
             $stmt->close();
         }
+        $conn->close();
     }
 }
