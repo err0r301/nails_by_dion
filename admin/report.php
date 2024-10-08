@@ -85,7 +85,7 @@
                         <div>
                             <h3>Monthly Report</h3>
                             <p>Sales this month: R <?= $report['sales'] ?></p>
-                            <p>Appointments this month: <?$report['appointments']?></p>
+                            <p>Appointments this month: <?= $report['appointments']?></p>
                             <p>Number of customers: <?= $report['users'] ?></p>
                         </div>
                         

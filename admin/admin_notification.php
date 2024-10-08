@@ -41,7 +41,6 @@
                             <div class="message-start">
                                 <img src="../_images/profile-pic blank.jpeg" alt="Profile picture">
                                 <p class="message-name"><?php echo $notification["sender"]?></p>
-                                <p class="message-title"><?php echo $notification["title"]?></p>
                             </div>
                             <p class="message-time"><?php echo $notification["time"]?></p>
                         </div>
