@@ -26,15 +26,13 @@
         <main class="main-container">
             <div class="profile">
                 <div class="profile-avatar">
-                    <img src="../_images/profile-pic blank.jpeg" alt="Profile Image" class="profile-img">
+                    <img src="<?php echo $_SESSION['user']['image'];?>" alt="Profile Image" class="profile-img">
                     <div class="profile-info">
                         <b id="profile-name" ><?php echo $_SESSION['user']['name']; ?></b>
                         <br>
                         <b><?php echo $_SESSION['user']['email']; ?></b>
                         <br>
                         <i><?php echo $_SESSION['user']['role'];?></i>
-                        <br>
-                        <b><?php echo $edit_userInfo_confirmation ?></b>
                     </div>
                 </div>
                 <img src="../_images/profile-cover.jpg" alt="" class="profile-cover">
@@ -45,9 +43,6 @@
                     <header>
                         <h2>Profile Information</h2>
                         <p class="help-text"  id="help-userInfo" style="display: block;">Update your account's profile information and email address.</p>
-                        <div class="error" id="error_userInfo" style="display: none;">
-                            <p class="error_message"><?php if ($edit_userInfo_confirmation ==true){echo "User information updated successfully";}else{echo "Error updating user information";}?></p>
-                        </div>
                     </header>
 
                     <form class="profile-form" action="" method="POST" >

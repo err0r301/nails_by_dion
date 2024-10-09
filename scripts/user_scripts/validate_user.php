@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($pwd, $row['password'])) {
-            $role = null;
+            $a_row = null;
             if ($row['userType'] == 'Admin') {
                 $getRole = "SELECT * FROM admin WHERE userID = " . $row['userID'];
-                $role = $conn->query($getRole);
-                $role = $role->fetch_assoc();
+                $a_row = $conn->query($getRole);
+                $a_row = $a_row->fetch_assoc();
             }
             
             // password is correct
@@ -38,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'email' => $row['email'],
                 'cell' => $row['cell'],
                 'userType' => $row['userType'],
-                'role'=> $role['role']
+                'role'=> $a_row['role'],
+                'image' => $a_row['profileImage']
             );
             
             if ($_SESSION['user']['userType'] == 'Client') {

@@ -72,7 +72,7 @@
  
                                 <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($memberID); ?>','<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>'); storeID('<?php echo addslashes( $memberID); ?>','delete-member-id');">
                                         <div class="team-card">
-                                            <img id="team-pic" src="../_images/<?php echo $image?>" alt="team-profile photo">
+                                            <img id="team-pic" src="<?php echo $image?>" alt="team-profile photo">
                                             <p id="team-name"><?php echo $name ?></p>
                                             <p id="team-email"><?php echo $email ?></p>
                                             <p class="team-role"><?php echo $role ?></p>
