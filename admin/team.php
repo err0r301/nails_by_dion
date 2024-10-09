@@ -109,7 +109,7 @@
                         <p id="modal-cell"></p>
                         <p id="modal-role"></p>
                         <div class="modal-buttons">
-                            <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member', '<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>');">Edit</button>
+                            <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member');">Edit</button>
                             <button id="delete-button" onclick="togglePopup('popup-delete-member');togglePopup('popup-view-member');">Delete</button> 
                         </div>
                     </div>
@@ -152,6 +152,11 @@
     <script>
         const modal = document.getElementById("team-modal");
         const modalClose = document.getElementsByClassName("close")[0];
+        var m_id;
+        var m_name;  
+        var m_email;
+        var m_cell;
+        var m_role;
 
         function showTeamModal(name,email,phone,role) {
             document.getElementById("modal-name").textContent = name;
@@ -160,9 +165,45 @@
             document.getElementById("modal-role").textContent = role;
             modal.style.display = "block";
         }
+
         modalClose.onclick = function() {
             modal.style.display = "none";
         }
+
+        function viewModal(pop, model_id,modal_name, modal_email, modal_cell, modal_role) {  
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");  
+
+            
+            var name = document.getElementById('modal-name');  
+            var email = document.getElementById('modal-email');  
+            var cell = document.getElementById('modal-cell');  
+            var role = document.getElementById('modal-role'); 
+            
+            m_id = model_id;
+            name.textContent  = m_name = modal_name;
+            email.textContent = m_email = modal_email;
+            cell.textContent  = m_cell= modal_cell;
+            role.textContent  = m_role = modal_role;   
+        }
+
+        function editModal(pop) {  
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");  
+            
+            var id = document.getElementById('edit-member-id');
+            var name = document.getElementById('edit-name');  
+            var email = document.getElementById('edit-email');  
+            var cell = document.getElementById('edit-cell');  
+            var role = document.getElementById('edit-role'); 
+            
+            id.value = m_id;
+            name.value = m_name;
+            email.value = m_email;
+            cell.value= m_cell;
+            role.value= m_role;   
+        }
+
     </script>
 </body>
 <?php 

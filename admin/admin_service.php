@@ -244,6 +244,38 @@
             </div>
         </main>
     </div>
+    <script>
+        function viewService(pop, data) {
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");
+
+            if(data){
+                //var image = document.getElementById('view-service-').textContent = data.;
+                document.getElementById('view-service-img').src = data.image;
+                document.getElementById('view-service-name').textContent = data.serviceID;
+                document.getElementById('view-service-category').textContent = "Service category : " + data.category;
+                document.getElementById('view-service-status').textContent = "Service status : " + data.status;
+                document.getElementById('view-service-price').textContent = "Service price : " + "R"+data.price;
+                var time = "";
+                if(data.duration.substr(0,2)!="00"){
+                time = data.duration.substr(0,2)+"hrs ";
+                }
+                if(data.duration.substr(3,2)!="00"){
+                time += data.duration.substr(3,2)+"mins";
+                }
+                document.getElementById('view-service-duration').textContent = "Service duration : " + time;
+                document.getElementById('view-service-description').textContent = data.description;
+
+                //document.getElementById('edit-service-image').value = data.image;
+                document.getElementById('edit-service-name').value = data.serviceID;
+                document.getElementById('edit-service-category').value = data.category;    
+                document.getElementById('edit-service-status').value = data.status;     
+                document.getElementById('edit-service-price').value = data.price;    
+                document.getElementById('edit-service-duration').value = data.duration; console.log("js function : "+data.duration);   
+                document.getElementById('edit-service-description').value = data.description; 
+            }    
+            }
+    </script>
 </body>
 
 <?php 

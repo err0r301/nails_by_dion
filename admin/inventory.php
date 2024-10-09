@@ -63,7 +63,7 @@
                     &times;</div>
                 <h2>Edit Product</h2>
                 <form action="" method="post">
-                <input type="hidden" name="edit-appointment-id" id="edit-appointment-id">
+                <input type="hidden" name="edit-product-id" id="edit-product-id">
                     <div class="form-group">
                         
                         <input type="text" name="edit-product-name" id="edit-product-name" placeholder="Product name" required>
@@ -142,7 +142,7 @@
                                         <td><?php echo $row['stock'] ?></td>
                                         <td><?php echo $row['price'] ?></td>
                                         <td>
-                                            <button class='crud-btn p-btn-edit' onclick="togglePopup('popup-edit-product','edit-appointment-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-pen-to-square'></i></button>
+                                            <button class='crud-btn p-btn-edit' onclick="editPopup('popup-edit-product', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>)"><i class='fa fa-pen-to-square'></i></button>
                                             <button class='crud-btn p-btn-delete' onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-trash-can'></i></button>
                                         </td>
                                     </tr> 
@@ -154,6 +154,26 @@
             </div>
         </main>
     </div>
+    <script>
+        function editPopup(pop, data) {  
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");  
+            
+            var id = document.getElementById('edit-product-id');  
+            var name = document.getElementById('edit-product-name'); 
+            var stock = document.getElementById('edit-product-stock');
+            var Price = document.getElementById('edit-product-price');    
+
+            if(data) {
+                console.log('date value: ',data); 
+                id.value = data.inventoryID;
+                name.value = data.name;
+                stock.value = data.stock;
+                Price.value = data.price;    
+            }
+            
+        }
+    </script>
 </body>
 
 <?php 

@@ -76,6 +76,10 @@
                     <p id="view-time-value"></p>
                 </div>
                 <div class="form-group">
+                    <p class="view-p"> Stylist :</p>
+                    <p id="view-stylist-value"></p>
+                </div>
+                <div class="form-group">
                     <p class="view-p"> Appointment Status :</p>
                     <p id="view-status-value"></p>
                 </div>
@@ -172,7 +176,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="status">Status:</label>
+                        <label for="edit_appointment_status">Status:</label>
                         <select name="edit_appointment_status" id="edit_appointment_status" class="form-selector status">
                             <option value="Pending">Pending</option>
                             <option value="Confirmed">Confirmed</option>
@@ -303,7 +307,7 @@
                                 <td><?php echo htmlspecialchars($appointment['status']); ?></td>  
                                 <td>   
                                     <button class='crud-btn btn-view' onclick="viewPopup('popup-view-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-eye'></i></button>  
-                                    <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-appointment', 'edit-appointment-id',<?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-pen-to-square'></i></button>  
+                                    <button class='crud-btn btn-edit' onclick="editPopup('popup-edit-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-pen-to-square'></i></button>  
                                     <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-appointment', 'delete-appointment-id', <?php echo ($appointment['appointmentID']); ?>)"><i class='fa fa-trash-can'></i></button>  
                                 </td>  
                             </tr>  
@@ -315,6 +319,51 @@
             </div>
         </main>
     </div>
+    <script>
+        function viewPopup(pop, data) {  
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");  
+
+            var appointmentID = document.getElementById('view-id-value');  
+            var name = document.getElementById('view-name-value');  
+            var date = document.getElementById('view-date-value');  
+            var time = document.getElementById('view-time-value'); 
+            var status = document.getElementById('view-status-value');
+            var stylist = document.getElementById('view-stylist-value');  
+            var service = document.getElementById('view-service-value');  
+             
+            
+            if(data) {  
+                console.log('date value: ',data);
+                appointmentID.textContent = data.appointmentID; 
+                name.textContent = data.client;   
+                date.textContent = data.date.substr(0, 10);  
+                time.textContent = data.date.substr(11, 5);  
+                service.textContent = data.service;
+                status.textContent = data.status;
+                stylist.textContent = data.stylist;
+            }  
+        }
+
+        function editPopup(pop, data) {  
+            var popup = document.getElementById(pop);  
+            popup.classList.toggle("active");  
+            
+            var date = document.getElementById('edit_appointment_date');  
+            var time = document.getElementById('edit_appointment_time'); 
+            var status = document.getElementById('edit_appointment_status');
+            var stylist = document.getElementById('edit_appointment_stylist');    
+
+            if(data) {
+                console.log('date value: ',data); 
+                date.value = data.date.substr(0, 10);
+                time.value = data.date.substr(11, 5);
+                status.value = data.status;
+                stylist.value = data.stylist;    
+            }
+            
+        }
+    </script>
 </body>
 <?php 
     if ($add_appointment_confirmation != null){

@@ -5,8 +5,8 @@ $edit_inventory_confirmation = null;
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['edit-appointment-id'])) {
-        $inventoryID = $_POST['edit-appointment-id'];
+    if (isset($_POST['edit-product-id'])) {
+        $inventoryID = $_POST['edit-product-id'];
         $name = $_POST['edit-product-name'];
         $stock = $_POST['edit-product-stock'];
         $price = $_POST['edit-product-price'];
