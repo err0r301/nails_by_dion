@@ -164,4 +164,31 @@
             modal.style.display = "none";
         }
     </script>
+</body>
+<?php 
+if ($edit_userInfo_confirmation != null){
+    $confirmationID = 'confirmation_userInfo';
+    if ($edit_userInfo_confirmation == true) {
+        $confirmationMessage = 'User details updated successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to update user details.';
+        $confirmationImage = '../_images/cross.png';
+    }
+    require_once '../partial/popup.php';
+}
+
+if ($remove_user_confirmation != null){
+    $confirmationID = 'confirmation_userInfo';
+    if ($remove_user_confirmation == true) {
+        $confirmationMessage = 'User details deleted successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to delete user details.';
+        $confirmationImage = '../_images/cross.png';
+    }
+    require_once '../partial/popup.php';
+}
+?>
+</html>
     

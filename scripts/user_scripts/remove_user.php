@@ -26,6 +26,7 @@
             // Check if the data was removed successfully
             if ($result3) {
                 echo "<script>console.log('Account removed successfully.')</script>";
+                $remove_user_confirmation = true;
                 if ($row['userType'] == 'Client') {
                     header("Location: ../client/index.php");
                     session_start(); 

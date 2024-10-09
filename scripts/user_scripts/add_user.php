@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         echo "<script> console.log('test 1')</script>";
         // error massages
-        
+        $error = null;
         $error = validatePassword($pwd,$error);  // not working
         $error = validateCell($cell,$error);
         $error = validateEmail($email,$error);
@@ -77,10 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Check if the insertion was successful
             if ($stmt->affected_rows == 1) {
                 $success = 'User created successfully';
+                $add_user_confirmation = true;
             } else {
                 $error = 'Failed to create user';
+                $add_user_confirmation = false;
             }
             $stmt->close();
+        }else{
+            $add_user_confirmation = false;
         }
 
         $conn->close();
