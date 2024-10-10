@@ -156,7 +156,7 @@
                 <div class="close-btn" onclick="togglePopup('popup-edit-appointment')">&times;</div>
                 <h2>Edit Appointment</h2>
                 <form action="" method="post">
-                <input type="hidden" name="edit-appointment-id" id="edit-appointment-id">
+                <input type="hidden" name="edit_appointment_id" id="edit_appointment_id">
                     <div class="form-group">
                         <label for="date">Date:</label>
                         <input type="date" name="edit_appointment_date" id="edit_appointment_date" class="date" required>
@@ -349,6 +349,7 @@
             var popup = document.getElementById(pop);  
             popup.classList.toggle("active");  
             
+            var id = document.getElementById('edit_appointment_id');
             var date = document.getElementById('edit_appointment_date');  
             var time = document.getElementById('edit_appointment_time'); 
             var status = document.getElementById('edit_appointment_status');
@@ -356,6 +357,7 @@
 
             if(data) {
                 console.log('date value: ',data); 
+                id.value = data.appointmentID;
                 date.value = data.date.substr(0, 10);
                 time.value = data.date.substr(11, 5);
                 status.value = data.status;

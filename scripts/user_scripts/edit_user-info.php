@@ -40,9 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->affected_rows > 0) {
                 echo"<script> console.log('User details updated successfully!')</script>";
                 if (!isset($_POST['role'])) {
-                    $_SESSION['user']['name'] = $name;
-                    $_SESSION['user']['email'] = $email;
-                    $_SESSION['user']['cell'] = $cell;
+                    if ($_SESSION['user']['userID'] == $userID) {
+                        $_SESSION['user']['name'] = $name;
+                        $_SESSION['user']['email'] = $email;
+                        $_SESSION['user']['cell'] = $cell;
+                    }
                 }
                 $edit_userInfo_confirmation = true;
             } else {

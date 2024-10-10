@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ( is_null($error)) {
             // Hash the password
             $password_hash = password_hash($pwd, PASSWORD_DEFAULT);
+            $email = strtolower($email);
 
             // Insert the user data into the database
             $query = "INSERT INTO user (userID, name, email, cell, password, userType   ) VALUES (?, ?, ?, ?, ?, ?)";

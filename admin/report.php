@@ -83,7 +83,7 @@
                     <div class="report-header">
                         <img src="../_images/logo.png" alt="Salon Logo" style="width: 200px;">
                         <div>
-                            <h3>Monthly Report</h3>
+                            <h3><?php echo date("F Y");?></h3>
                             <p>Sales this month: R <?= $report['sales'] ?></p>
                             <p>Appointments this month: <?= $report['appointments']?></p>
                             <p>Number of customers: <?= $report['users'] ?></p>
@@ -123,7 +123,7 @@
             const element = document.querySelector('.report-container');
 
             const options = {
-                filename: 'June-2024_report.pdf',
+                filename: '<?php echo date("F-Y");?>_report.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }

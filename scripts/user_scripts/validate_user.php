@@ -4,13 +4,13 @@ require '../data/config.php';
 $error =  false;
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "<script> console.log('pwd :$_POST[password]')</script>";
+    $email = strtolower($_POST['email']);
+    echo "<script> console.log('pwd :$_POST[password] email :$email')</script>";
     if (isset($_POST['password'])){
     $pwd = $_POST['password'];
     }else{
         $error = true;
     }
-    $email = $_POST['email'];
 
     // check if the user can be found in the database
     $query = "SELECT * FROM user WHERE email = ?";

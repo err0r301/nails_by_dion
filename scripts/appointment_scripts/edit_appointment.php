@@ -5,8 +5,8 @@ $edit_appointment_confirmation = null;
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['edit-appointment-id'])) {
-        $appointmentID = $_POST['edit-appointment-id'];
+    if (isset($_POST['edit_appointment_id'])) {
+        $appointmentID = $_POST['edit_appointment_id'];
         $scheduled  = ($_POST['edit_appointment_date'] . ' ' . $_POST['edit_appointment_time']);
         $scheduledDateTime = date('Y-m-d H:i:s', strtotime($scheduled));
         //$stylistID = $_POST['edit_appointment_stylist'];
