@@ -1,6 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
+require '../scripts/revenue_scrips.php';
 $edit_appointment_confirmation = null;
 
 // Check if the form has been submitted
@@ -18,6 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>console.log('Please fill in all required fields.')</script>";
             echo "<script>console.log('appointmentID : $appointmentID scheduledDateTime : $scheduledDateTime status :   $status stylist :$stylist')</script>";
         } else {
+            $newAppointment = array(
+                'appointmentID' => $appointmentID,
+                'dateScheduled' => $scheduledDateTime,
+                'status_' => $status
+            );
+            add_removeToRevenue($newAppointment);
             // edit the appointment data in the database
             $query = "UPDATE appointment SET dateScheduled = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
             $stmt = $conn->prepare($query);
@@ -38,3 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+function getAppointment($conn,$appointmentID) {
+    // get the appointment record
+    $query = "SELECT * FROM appointment WHERE appointmentID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("d", $appointmentID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $appointment = $result->fetch_assoc();
+    echo "<script>console.log('')</script>";
+    return $appointment;
+}
