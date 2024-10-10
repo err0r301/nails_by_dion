@@ -129,7 +129,7 @@
                             ?>
                         </select>
                     </div>
-                    <button type="submit" name="add" value="Add">Add</button>
+                    <button class="green-btn" type="submit" name="add" value="Add">Add</button>
                     <button type="reset">Reset</button>
                 </form>
             </div>
@@ -144,7 +144,7 @@
                 <p>Are you sure you want to delete this appointment?</p>
                 <form action="" method="post">
                     <input type="hidden" name="delete-appointment-id" id="delete-appointment-id"> 
-                    <button type="submit" id="delete-appointment-btn" value="Delete">Delete</button>
+                    <button class="red-btn" type="submit" id="delete-appointment-btn" value="Delete">Delete</button>
                     <button type="reset" onclick="togglePopup('popup-delete-appointment')">Cancel</button>
                 </form>
             </div>
@@ -184,7 +184,7 @@
                             <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
-                    <button type="submit" name="update" value="Update">Update</button>
+                    <button class="blue-btn" type="submit" name="update" value="Update">Update</button>
                     <button onclick="togglePopup_edit('popup-edit-appointment')">Cancel</button>
                 </form>
             </div>

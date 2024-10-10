@@ -50,7 +50,7 @@
                         
                         <input type="number" id="product-price" name="product-price" placeholder="Price (ZAR)" required>
                     </div>
-                    <button type="submit">Add</button>
+                    <button class="green-btn" type="submit">Add</button>
                 </form>
             </div>
         </div>
@@ -76,7 +76,7 @@
                         
                         <input type="number" name="edit-product-price" id="edit-product-price" placeholder="Price (ZAR)" required>
                     </div>
-                    <button type="submit" id="save-edit-btn">Save</button>
+                    <button class="blue-btn" type="submit" id="save-edit-btn">Update</button>
                 </form>
             </div>
         </div>
@@ -89,7 +89,7 @@
                 <p>Are you sure you want to delete this product?</p>  
                 <form action="" method="POST">  
                     <input type="hidden" name="delete-product-id" id="delete-product-id">  
-                    <button type="submit" id="delete-product-btn">Delete</button>  
+                    <button class="red-btn" type="submit" id="delete-product-btn">Delete</button>  
                     <button type="button" onclick="togglePopup('popup-delete-product')">Cancel</button>  
                 </form>  
             </div>  

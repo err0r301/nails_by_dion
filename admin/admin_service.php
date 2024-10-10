@@ -68,7 +68,7 @@
                         <label class="upload-image" for="service-image">Upload Image</label>
                         <input type="file" name="image" class="upload_img" id="service-image" accept="image/JPEG, image/PNG, image/JPG" required>
                     </div>
-                    <button type="submit" name="add" value="Add">Add</button>
+                    <button class="green-btn" type="submit" name="add" value="Add">Add</button>
                     <button type="reset">Reset</button>
                 </form>
             </div>
@@ -117,7 +117,7 @@
                         <label class="upload-image" for="edit-service-image">Upload Image</label>
                         <input type="file" name="image" class="upload_img" id="edit-service-image" accept="image/JPEG, image/PNG, image/JPG" required>
                     </div>
-                    <button type="submit" name="add" value="Add">Update</button>
+                    <button class="blue-btn" type="submit" name="add" value="Add">Update</button>
                     <button type="reset">Reset</button>
                 </form>
             </div>
@@ -131,7 +131,7 @@
                 <p>Are you sure you want to delete this service?</p>
                 <form action="" method="post">
                     <input type="hidden" name="delete-service-id" id="delete-service-id"> 
-                    <button type="submit" id="delete-service-btn" value="Delete">Delete</button>
+                    <button class="red-btn" type="submit" id="delete-service-btn" value="Delete">Delete</button>
                     <button type="reset" onclick="togglePopup('popup-delete-service')">Cancel</button>
                 </form>
             </div>
@@ -150,8 +150,8 @@
                 
                 <strong>Service description</strong>
                 <p id="view-service-description" style = "width: 300px; margin:5px 10px">Service description</p>
-                <button name="edit" value="Edit" onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
-                <button name="delete" value="Delete" onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
+                <button class="blue-btn" name="edit" value="Edit" onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
+                <button class="red-btn" name="delete" value="Delete" onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
             
                 <!--<div class="rightColumn">
                     <div id="service-days">

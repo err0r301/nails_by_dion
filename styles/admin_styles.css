@@ -849,7 +849,8 @@ body {
 
 .add-card button {
   padding: 10px 20px;
-  background-color: #cea984;
+  background-color: black;
+  font-size: medium;
   color: white;
   border: none;
   border-radius: 5px;
@@ -1083,7 +1084,7 @@ background-color: #3270e4;
   transition: background-color 0.3s, color 0.3s;
 }
 #edit-member-form button:hover{
-  background-color: #3ed392;
+  background-color: #3270e4;
 }
 /* ------------ Profile ------------ */
 
@@ -1358,7 +1359,7 @@ background-color: #3270e4;
   display: none;}
 
 .upload-image {
-  background-color: red;
+  background-color: black;
   color: var(--light);
   padding: 10px;
   border-radius: 5px;

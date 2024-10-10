@@ -273,6 +273,62 @@ function togglePopup_add(id) {
   const popup = document.getElementById(id);
   popup.classList.toggle("active");
 }
+
+    document.querySelector('.search-bar').addEventListener('input', function() {
+
+        let searchTerm = this.value.toLowerCase();
+
+        let serviceRows = document.querySelectorAll('.service-row');
+
+        serviceRows.forEach(function(row) {
+            let serviceName = row.querySelector('.service-cell.image span').textContent.toLowerCase(); 
+            let serviceCategory = row.querySelector('.service-cell.category').textContent.toLowerCase(); 
+            let serviceStatus = row.querySelector('.service-cell.status-cell').textContent.toLowerCase(); 
+            let servicePrice = row.querySelector('.service-cell.price').textContent.toLowerCase(); 
+
+            if (
+                serviceName.includes(searchTerm) ||
+                serviceCategory.includes(searchTerm) ||
+                serviceStatus.includes(searchTerm) ||
+                servicePrice.includes(searchTerm)
+            ) {
+                row.style.display = '';  
+            } else {
+                row.style.display = 'none';  
+            }
+        });
+    });
+
+
+// INVENTORY
+
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.querySelector('.search-bar');
+
+  if (searchInput) {  
+      searchInput.addEventListener('input', function () {
+          let searchTerm = this.value.toLowerCase();  
+          let tableRows = document.querySelectorAll('#product_table tbody tr');  
+
+          tableRows.forEach(function (row) {
+              let itemName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+              let itemStock = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+              let itemPrice = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+
+              if (itemName.includes(searchTerm) || itemStock.includes(searchTerm) || itemPrice.includes(searchTerm)) {
+                  row.style.display = '';  
+              } else {
+                  row.style.display = 'none';  
+              }
+          });
+      });
+  } else {
+      console.log("Search bar not found.");
+  }
+});
+
+
+
 // TEAM
 
 

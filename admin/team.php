@@ -51,7 +51,7 @@
                                     <input type="text" id="member-role" name="add-role" placeholder="Role" required>
                                     <label class="upload-image" for="admin-image">Upload Image</label>
                                     <input type="file" name="add-image" id="admin-image" accept="image/JPEG, image/PNG, image/JPG" required>
-                                    <button type="submit">Add</button>
+                                    <button class="green-btn" type="submit">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -94,7 +94,7 @@
                         <div class="close-btn" onclick="togglePopup('popup-generated-pwd')">&times;</div>
                         <h2>Generated Password</h2>
                         <strong>Password : <?php echo $pwd;?></strong>
-                        <button onclick="togglePopup('popup-generated-pwd')">close</button> 
+                        <button class="red-btn" onclick="togglePopup('popup-generated-pwd')">close</button> 
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@
                             <input type="email" id="edit-email" name="edit-email" placeholder="Email" required>
                             <input type="text" id="edit-cell" name="edit-cell" placeholder="Phone number" required>
                             <input type="text" id="edit-role" name="edit-role" placeholder="Role" required>
-                            <button type="submit">Save</button>
+                            <button class="blue-btn" type="submit">Update</button>
                         </form>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <p>Are you sure you want to remove this employee?</p>
                         <form action="" method="post">
                             <input type="hidden" name="delete-user-id" id="delete-member-id"> 
-                            <button type="submit" id="delete-member-btn" value="Delete">Delete</button>
+                            <button class="red-btn" type="submit" id="delete-member-btn" value="Delete">Delete</button>
                             <button type="reset" onclick="togglePopup('popup-delete-member')">Cancel</button>
                         </form>
                     </div>
