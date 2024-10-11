@@ -101,7 +101,7 @@ function sendNotification($oldAppointment, $newAppointment) {
      }
 
      if ($oldAppointment['status_'] != "Complete" && $newAppointment['status_'] == "Complete") {
-        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Completed''";
+        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Completed'";
         $result = $conn->query($query);
      }
 
