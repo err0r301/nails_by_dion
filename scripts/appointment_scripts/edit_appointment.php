@@ -1,7 +1,7 @@
 <?php
 // Include the config file
 require '../data/config.php';
-require '../scripts/revenue_scrips.php';
+require '../scripts/appointment_status_change.php';
 $edit_appointment_confirmation = null;
 
 // Check if the form has been submitted

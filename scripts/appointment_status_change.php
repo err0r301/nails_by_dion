@@ -13,6 +13,7 @@ function add_removeToRevenue($newAppointment) {
 
     if ($result->num_rows > 0) {  
         $oldAppointment = $result->fetch_assoc();  
+        sendNotification($oldAppointment, $newAppointment);
         $date = new DateTime($newAppointment['dateScheduled']);  
         $date = $date->format('Y-m');  
 
@@ -82,4 +83,65 @@ function add_removeToRevenue($newAppointment) {
         if ($stmt3) $stmt3->close();  
         $conn->close();  
     }  
+}
+
+function sendNotification($oldAppointment, $newAppointment) {
+    require '../data/config.php';
+    $notification_message = null;
+    $message = null;
+    
+     if ($oldAppointment['status_'] != "Confirmed" && $newAppointment['status_'] == "Confirmed") {
+        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Confirmation'";
+        $result = $conn->query($query);
+     }
+
+     if ($oldAppointment['status_'] != "Cancelled" && $newAppointment['status_'] == "Cancelled") {
+        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Cancellation'";
+        $result = $conn->query($query);
+     }
+
+     if ($oldAppointment['status_'] != "Complete" && $newAppointment['status_'] == "Complete") {
+        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Completed''";
+        $result = $conn->query($query);
+     }
+
+     if ($oldAppointment['dateScheduled'] != $newAppointment['dateScheduled']) {
+        $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Reschedule Confirmation'";
+        $result = $conn->query($query);
+     }
+
+     if ($result->num_rows > 0) {
+        $notification_message = $result->fetch_assoc();
+        $message = $notification_message['message'];
+        $date = new DateTime($newAppointment['dateScheduled']);
+        $query = "SELECT * FROM user WHERE userID = $oldAppointment[userID]";
+        $result = $conn->query($query);
+        $user = $result->fetch_assoc();
+        $message = getMessage($message, $user['name'], $oldAppointment['serviceID'], $date->format('l, F j, Y'), $date->format('g:i A'));
+     }
+     
+        // add notification to database
+        $query = "INSERT INTO notification (userID, message) VALUES (?, ?)";
+        $stmt_notification = $conn->prepare($query);
+        $stmt_notification->bind_param("is", $oldAppointment['userID'], $message);
+        $stmt_notification->execute();
+        if ($stmt_notification->affected_rows == 1) {
+            echo "<script>console.log('Notification sent successfully.')</script>";
+        } else {
+            echo "<script>console.log('Error sending notification: " . $conn->error. "')</script>";
+        }
+        $stmt_notification->close();
+        $conn->close();
+
+}
+
+function getMessage($temp, $name, $service, $date, $time) {
+    $message = null;
+    $message = str_replace('[name]', $name, $temp);
+    if (strpos($message, '[service]') !== false) {
+        $message = str_replace('[service]', $service, $message);
+        $message = str_replace('[date]', $date, $message);
+        $message = str_replace('[time]', $time, $message);
+    }
+    return $message;
 }

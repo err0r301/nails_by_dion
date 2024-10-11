@@ -184,8 +184,8 @@ $notificationQuery = "INSERT INTO auto_notification (autoNotificationID, message
 VALUES  
     ('Appointment Confirmation', 'Dear [name], your appointment for [service] on [date] at [time] has been confirmed. We look forward to seeing you!'),  
     ('Appointment Reminder', 'Hi [name], this is a friendly reminder of your upcoming appointment for [service] on [date] at [time]. See you soon!'),  
-    ('Appointment Cancellation', 'Hi [name], your appointment for [service] on [date] has been successfully canceled.'),  
-    ('Appointment Reschedule Confirmation', 'Dear [name], your appointment for [service] has been rescheduled to [new date] at [new time].'),  
+    ('Appointment Cancellation', 'Hi [name], your appointment for [service] on [date] at [time] has been successfully canceled.'),  
+    ('Appointment Reschedule Confirmation', 'Dear [name], your appointment for [service] has been rescheduled to [date] at [time].'),  
     ('Appointment Completed', 'Hi [name], we hope you enjoyed your service! If you loved it, feel free to leave us a review or book your next appointment.'),  
     ('Service Review Request', 'Dear [name], thank you for choosing us for your [service]. We\'d love to hear your feedback! Please leave a review here: [link].'),  
     ('New Offers & Promotions', 'Hi [name], we\'re offering an exclusive [discount/promotion] on [services] this month! Book now and enjoy your special treatment.'),  

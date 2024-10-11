@@ -136,7 +136,7 @@ function createInventoryTable($conn) {
 function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
-        dateTime_ DATETIME NOT NULL,
+        dateTime_ DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         message VARCHAR(300) NOT NULL,
         status_ VARCHAR(10) NOT NULL DEFAULT 'Unread',
         userID INT NOT NULL,
