@@ -192,7 +192,7 @@ VALUES
     ('Birthday Discount/Offer', 'Happy Birthday, [name]! As a special treat, we\'re offering you a [discount] on your next service. Book before [date] to redeem!'),  
     ('Payment Receipt', 'Hi [name], thank you for your payment of [amount] for [service]. Your appointment is confirmed for [date] at [time].'),  
     ('Missed Appointment', 'Hi [name], we noticed you missed your appointment for [service] on [date]. Please let us know if you\'d like to reschedule.'),  
-    ('Account Registration Confirmation', 'Welcome, [name]! Your account has been successfully created. We\'re excited to have you with us! Log in here: [link].'),  
+    ('Account Registration Confirmation', 'Welcome, [name]! Your account has been successfully created. We\'re excited to have you with us!'),  
     ('Password Reset', 'Hi [name], we received a request to reset your password. Click here to set a new one: [link]. If you didn\'t request this, please ignore this message.'),  
     ('New Appointment Booked', 'New appointment booked! Client: [name]. Service: [service]. Date: [date], Time: [time].'),  
     ('Appointment Canceled', '[name] has canceled their appointment for [service] on [date].'),  

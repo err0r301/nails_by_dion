@@ -114,7 +114,7 @@
                         <select name="stylist" class="form-selector status" required>
                             <?php
                                 foreach ($stylists as $stylist) {
-                                    echo "<option value=" . $stylist['name'] . ">" . $stylist['name'] . "</option>";
+                                    echo "<option value='" . $stylist['name'] . "'>" . $stylist['name'] . "</option>";
                                 }
                             ?>
                         </select>
@@ -124,8 +124,9 @@
                         <select name="service" class="form-selector services">
                             <?php
                                 foreach ($services as $service) {
-                                    echo "<option value=" . $service['serviceID'] . ">" . $service['serviceID'] . "</option>";
+                                    echo "<option value='" . $service['serviceID'] . "'>" . $service['serviceID'] . "</option>";
                                 }
+                                
                             ?>
                         </select>
                     </div>
