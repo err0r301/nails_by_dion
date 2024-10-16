@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Please fill in all fields';
         } else {
             // Insert the appointment data into the database
-            $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, dateScheduled, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, scheduledDateTime, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
             $stmt->bind_param(/*"iiissi"*/"iissss", $appointmentID, $userID, /*$stylistID*/$stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
             $stmt->execute();

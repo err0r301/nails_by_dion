@@ -125,7 +125,7 @@ checkInsert($conn, $serviceQuery, "Service");
                 (19, 6, 'Jenny','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 4),
                 (20, 7, 'James','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 5)";*/
 
-$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, dateScheduled, status_, serviceID, sessions) 
+$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, scheduledDateTime, status_, serviceID, sessions) 
                     VALUES  
                     (1, 6, 'Dion','2024-10-01 10:32:00','2024-10-03 07:00:00', 'Pending', 'Classic Manicure', 1),
                     (2, 7, 'Jane','2024-10-01 12:53:00','2024-10-03 08:00:00', 'Complete', 'Gel Manicure', 1),

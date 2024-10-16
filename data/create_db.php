@@ -112,7 +112,7 @@ function createAppointmentTable($conn) {
         stylist VARCHAR(30) NOT NULL,
         sessions INT NOT NULL DEFAULT 1,
         dateBooked DATETIME NOT NULL,
-        dateScheduled DATETIME NOT NULL,
+        scheduledDateTime DATETIME NOT NULL,
         /*serviceID INT NOT NULL,*/
         serviceID VARCHAR(100) NOT NULL,
         status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',

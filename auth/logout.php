@@ -1,7 +1,3 @@
-<?php 
-    if(!isset($_SESSION['user']))
-    header('Location: /../auth/login.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +31,7 @@
                     </button>
                 </a>
                 <a href="../auth/login.php">
-                    <button class="btn" style="<?php if($_SESSION["user"]["userType"]=="Admin"){echo "display: inline-block;";}else{echo "display: none;";}?>">
+                    <button class="btn">
                         Login
                     </button>
                 </a>

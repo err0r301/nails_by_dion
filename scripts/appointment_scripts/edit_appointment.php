@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $newAppointment = array(
                 'appointmentID' => $appointmentID,
-                'dateScheduled' => $scheduledDateTime,
+                'scheduledDateTime' => $scheduledDateTime,
                 'status_' => $status
             );
             add_removeToRevenue($newAppointment);
             // edit the appointment data in the database
-            $query = "UPDATE appointment SET dateScheduled = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
+            $query = "UPDATE appointment SET scheduledDateTime = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sssi", $scheduledDateTime, $status, /*$stylistID*/$stylist, $appointmentID);
             $stmt->execute();

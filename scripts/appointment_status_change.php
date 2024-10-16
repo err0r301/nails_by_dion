@@ -14,7 +14,7 @@ function add_removeToRevenue($newAppointment) {
     if ($result->num_rows > 0) {  
         $oldAppointment = $result->fetch_assoc();  
         sendNotification($oldAppointment, $newAppointment);
-        $date = new DateTime($newAppointment['dateScheduled']);  
+        $date = new DateTime($newAppointment['scheduledDateTime']);  
         $date = $date->format('Y-m');  
 
         //get the cost of the service  
@@ -105,7 +105,7 @@ function sendNotification($oldAppointment, $newAppointment) {
         $result = $conn->query($query);
      }
 
-     if ($oldAppointment['dateScheduled'] != $newAppointment['dateScheduled']) {
+     if ($oldAppointment['scheduledDateTime'] != $newAppointment['scheduledDateTime']) {
         $query = "SELECT * FROM auto_notification WHERE autoNotificationID = 'Appointment Reschedule Confirmation'";
         $result = $conn->query($query);
      }
@@ -113,7 +113,7 @@ function sendNotification($oldAppointment, $newAppointment) {
      if ($result->num_rows > 0) {
         $notification_message = $result->fetch_assoc();
         $message = $notification_message['message'];
-        $date = new DateTime($newAppointment['dateScheduled']);
+        $date = new DateTime($newAppointment['scheduledDateTime']);
         $query = "SELECT * FROM user WHERE userID = $oldAppointment[userID]";
         $result = $conn->query($query);
         $user = $result->fetch_assoc();

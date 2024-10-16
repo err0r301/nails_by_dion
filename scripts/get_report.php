@@ -16,7 +16,7 @@ function getReport(){
 
     // get appointments this month
     $appointments = 0;
-    $query = "SELECT * FROM appointment WHERE MONTH(dateScheduled) = MONTH(NOW()) AND YEAR(dateScheduled) = YEAR(NOW())";
+    $query = "SELECT * FROM appointment WHERE MONTH(scheduledDateTime) = MONTH(NOW()) AND YEAR(scheduledDateTime) = YEAR(NOW())";
     $appointment_result = $conn->query($query);
     if ($appointment_result->num_rows > 0){
         $appointments = $appointment_result->num_rows;
