@@ -16,9 +16,12 @@ th {
     
 }
 
+
+
 .oddRow:nth-child(even) 
 {
     background-color: transparent;  
+    
     
 }
 
@@ -35,15 +38,17 @@ th {
             display: none;
         }
 
-        .popupBlock 
+
+
+        .popupBlockBill
         {
-            background-color: white;
-            margin-top: 3% ;
-            margin-left:13%;
+            background-color: rgb(255, 255, 255);
+            margin-top:50px ;
+            margin-left:11%;
             padding: 20px;
             border: 1px solid #888888;
-            width: 70%;
-            height: 80%;
+            width: 1050px;
+            height: fit-content;
             font-weight: bolder;
             border-radius: 20px;
         }
@@ -78,13 +83,34 @@ th {
             transition: all 200ms ease-in-out;
         }
 
+        .fb-share-button
+        {
+            position: absolute;
+            top:100px;
+            left:200px;
+            background-color: transparent;
+            color: transparent;
+            
+        }
+
+        #map 
+        {
+            border-style: solid;
+            border-width: 1px;
+            border-color: green;
+            border-radius: 15px;
+            height: 360px;
+            width: 700px;
+            margin-left:110px;
+            
+        }
         .closePopup
         {
             background-color: burlywood;
             border-style:none;
             width: 2cm;
             height: 1cm;
-            margin-left: 200px;
+            margin-left: 50px;
 
             color: white;
             border-radius: 15px;
@@ -95,11 +121,11 @@ th {
 
         .closePopupAppointments
         {
-            background-color: rgb(180, 145, 101);
+            background-color: burlywood;
             border-style:none;
             width: 2cm;
             height: 1cm;
-            margin-left: 400px;
+            margin-left: 200px;
 
             color: white;
             border-radius: 15px;
@@ -120,9 +146,66 @@ th {
             transition: all 200ms ease-in-out;
         }
 
+        .closePopupAppointments:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        .locationButton:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        .appointmentButton:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        #closePopupBill:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        #closePopupNotice:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        #sendButton:hover
+        {
+            background-color: rgb(180, 145, 101);
+            transition: all 200ms ease-in-out;
+        }
+
+        #billDescription
+        {
+            width: 730px;
+            font-weight: 200;
+            font-size: 10pt;
+            text-align: center;
+            margin-left: 160px;
+        }
+
         .show 
         {
             display: block;   
+        }
+
+        .oddRow:hover
+        {
+            background-color: burlywood;
+            
+            color: white;
+        }
+
+        .evenRow:hover
+        {
+            background-color: burlywood;
         }
 
         .contentblock
@@ -263,6 +346,96 @@ th {
 
         }
 
+        #gallerythumbnailDialog
+        {
+            position: absolute;
+            left:590px;
+            height: 300px;
+            top: 210px;
+            width:300px;
+            border-radius: 20px;
+            
+        }
+
+        #imgDetails
+        {
+            position: absolute;
+            left:800px;
+            bottom:200px;
+        }
+
+        #dialogButtonBook
+        {
+            background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            position: absolute;
+            left: 600px;
+            top:550px;
+            color: white;
+            border-radius: 15px;
+        }
+
+        #galleryScrollButton1
+        {
+            position:absolute;
+            top:320px;
+            left:360px;
+            font-size: 32px;
+            text-align: center;
+            color: white;
+            background-color: #d4d4d4;
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;  
+        }
+
+        #galleryScrollButton1:hover
+        {
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;
+            transition: all 250ms ease-in-out;
+            background-color: black;
+        }
+
+        #galleryScrollButton2:hover
+        {
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;
+            transition: all 250ms ease-in-out;
+            background-color: black;
+        }
+
+        #galleryScrollButton2
+        {
+            position:absolute;
+            top:320px;
+            left:1080px;
+            font-size: 32px;
+            text-align: center;
+            color: white;
+            background-color: #d4d4d4;
+            width: 0.9cm;
+            height: 0.9cm;
+            border-radius: 100px;  
+        }
+
+        #dialogClosePopup
+        {
+            background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            position: absolute;
+            left: 700px;
+            top:550px;
+            color: white;
+            border-radius: 15px;
+        }
+
         /*Grid services*/
          .gridBlock
          {
@@ -282,9 +455,43 @@ th {
             padding: 18px;
          }
 
+         #sometext
+         {
+            width:2cm;
+            height:1cm;
+            border-radius: 10px;
+            border-style: none;
+            color:black;
+            position:absolute;
+            left:1080px;
+            top:110px;
+         }
+
+         iframe
+         {
+            position: fixed;
+            right:200px;
+            bottom:100px;
+            border-radius: 10px;
+         }
+
+         #sometext:hover
+         {
+            width:2cm;
+            height:1cm;
+            border-radius: 10px;
+            border-style: none;
+            color:white;
+            background-color: rgb(0, 118, 197);
+            position:absolute;
+            left:1080px;
+            top:110px;
+         }
+
          .serviceCategories
          {
             margin-left:50px;
+            padding-right: 10px;
             color: #8c775b;
             font-size: 16pt;
             font-family: sans-serif;
@@ -293,19 +500,21 @@ th {
          .notice
          {
             position: fixed;
+            right:630px;
+            top:10px;
             height: 50px;
-            background-color: rgba(255, 255, 255, 0);
+            background-color: #fff3e700;
             
             border-radius: 100px;
 
-            margin-left: 1200px;
+            z-index:1000;
             padding: 0px;
 
          }
 
          .noticeMessage
          {
-            color: #00000000;
+            color: #000000;
             font-size: 10pt;
             margin: 10px;
             padding: 7px;;
@@ -409,6 +618,15 @@ th {
             font-size: 10pt;
             text-align: center;
             margin-left: 80px;
+        }
+
+        .locationDialogDecription
+        {
+            width: fit-content;
+            font-weight: 200;
+            font-size: 10pt;
+            text-align: center;
+            margin-left: 280px;
         }
 
         .tableHeadingRed
@@ -548,24 +766,34 @@ th {
     display: none;
 }
 
-.popupBlock 
-{
-    background-color: white;
-    margin-top: 3% ;
-    margin-left:13%;
-    padding: 20px;
-    border: 1px solid #888888;
-    width: 70%;
-    height: 80%;
-    font-weight: bolder;
-    border-radius: 20px;
-}
+
+
+
 
 .statusTable
 {
     margin-left:100px;
+
     border-radius: 20px;
     background-color: #f0dfd0;
+    padding:35px;
+}
+
+.appointmentsTable
+{
+    margin-left:100px;
+    border-radius: 20px;
+    background-color: #f0dfd0;
+    padding:35px;
+}
+
+
+.statusTableBill
+{
+    margin-left:100px;
+
+    border-radius: 20px;
+    background-color: #ffffff;
     padding:35px;
 }
 
@@ -595,6 +823,72 @@ th {
     font-weight:600;
     background-color:  #e3cfbb;
     
+}
+
+.appointmentTable
+{
+    margin-left:100px;
+    border-radius: 20px;
+    background-color: #f0dfd0;
+    padding:35px;
+}
+
+.appointmentButton
+{
+    background-color: burlywood;
+    border-style:none;
+    width: 5cm;
+    height: 1cm;
+    margin-left: 1100px;
+    margin-top:20px;
+    color: white;
+    border-radius: 15px;
+}
+
+
+
+.locationButton
+{
+    background-color: burlywood;
+    border-style:none;
+    width: 5cm;
+    height: 1cm;
+    margin-left: 1000px;
+    margin-top:20px;
+    color: white;
+    border-radius: 15px;
+}
+
+.deleteButton
+{
+    background-color: burlywood;
+    border-style:none;
+    width: 2cm;
+    height: 1cm;
+    color: white;
+    border-radius: 15px;
+}
+
+.appointmentMessageCol
+{
+    padding:20px;
+    border-radius: 0px 10px 0px 0px;
+    width: 850px;
+    text-align: center;
+    color: #655033;
+    font-weight:600;
+    background-color:  #e3cfbb;
+}
+
+.headingCellBill
+{
+    padding:20px;
+    border-radius: 10px 0px 0px 0px;
+    width: 15px;
+    text-align: center;
+    color: black;
+    font-weight:600;
+    background-color:  #f0edea;
 }
 
 .headingCellAppoint1
@@ -685,8 +979,9 @@ margin-left: 5%;
 .leftAppointmentCell
 {
     padding:20px;
+    
     border-radius: 10px 0px 0px 10px;
-    width: 15px;
+    width: 200px;
     text-align: center;
     
 }
@@ -699,8 +994,11 @@ margin-left: 5%;
 
 .appointmentCell
 {
-    width: 470px;
-    padding-left: 20px;
+    width: 200px;
+    margin-bottom: 500px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 0px;
     border-radius: 0px 10px 10px 0px;
 }
 
@@ -733,8 +1031,9 @@ margin-left: 5%;
 .leftAppointmentCell, .appointmentTimeCell, .appointmentCell, .statusCell, .statusCell2
 {
     font-weight: 100;
-    font-size: 11pt;
+    font-size: 12pt;
     color: #606060;
+
 }
 
 .appointmentInfo
@@ -789,6 +1088,11 @@ margin-left: 5%;
 
 /*gallery page*/
 
+@keyframes popupAnimae
+{
+    from{background-color: rgb(255, 255, 255);}
+    to{background-color: rgb(255, 255, 255);}    
+}
 
 .popupBackground 
 {
@@ -801,19 +1105,26 @@ margin-left: 5%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     display: none;
+
 }
 
-.popupBlock 
+.popupBlock
 {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     margin-top: 3% ;
     margin-left:13%;
     padding: 20px;
     border: 1px solid #888888;
-    width: 70%;
-    height: 80%;
+    width: 1050px;
+    height: 565px;
     font-weight: bolder;
     border-radius: 20px;
+
+        
+    animation-name: popupAnimae;
+    animation-duration: 5s;
+    animation-iteration-count: 4s;
+
 }
 
 .monthHeading
@@ -906,6 +1217,22 @@ margin-left: 5%;
             width: 900px;
             background-color: white;
             margin-left: 75px;
+            margin-top:0px;
+        }
+
+        #paneContentMap
+        {
+            width: 900px;
+            background-color: white;
+            margin-left: 75px;
+            margin-top:0px;
+        }
+
+        #paneContentBill
+        {
+            width: 900px;
+            background-color: white;
+            margin-left: 40px;
             margin-top:70px;
         }
 
@@ -919,22 +1246,51 @@ margin-left: 5%;
             font-size: 10pt;
         }
 
-        #shortlisted
+        #bill
         {
-            height: 100px;
+            height: 20px;
             width: 100px;
             position: fixed;
-            margin-left: 92%;
-            margin-top: 25%;
-            opacity: 0.2;
-
+            margin-left: 655px;
+            margin-top: 310px;
+            background-color: white;
+            border-radius: 15px;
+            text-align: center ;
+            padding:10px;
             
+        }
+
+        #bill:hover
+        {
+            height: 20px;
+            width: 100px;
+            position: fixed;
+            margin-left: 655px;
+            margin-top: 310px;
+            background-color: rgb(0, 0, 0);
+            border-radius: 15px;
+            text-align: center ;
+            padding:10px;
+        
+            padding:10px;
+            color: white;
+            border-radius: 15px;
+            border-style: solid;
+
+            transition: all 200ms ease-in-out;
+        }
+
+        .appointmentImage
+        {
+            border-radius:10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
 
 
         #serviceList
         {
-            margin-left:7%;
+            margin-left:8px;
         }
 
 
@@ -971,7 +1327,7 @@ margin-left: 5%;
         border-color: rgb(220, 220, 220);
         border-radius: 20px;
         height: 30px;
-        width: 800px;
+        width: 700px;
         
     }
 
@@ -981,8 +1337,8 @@ margin-left: 5%;
             border-style:none;
             width: 2cm;
             height: 1cm;
-            margin-left: 0px;
-
+            margin-left: 20px;
+            margin-top:15px;
             color: white;
             border-radius: 15px;
     }
@@ -997,6 +1353,19 @@ margin-left: 5%;
             height: 1cm;
             margin-left: 500px;
 
+            color: white;
+            border-radius: 15px;
+    }
+
+    #closePopupBill
+    {
+        margin-left: 0px;
+        margin-top: 50px;
+        background-color: burlywood;
+            border-style:none;
+            width: 2cm;
+            height: 1cm;
+            margin-left: 500px;
             color: white;
             border-radius: 15px;
     }

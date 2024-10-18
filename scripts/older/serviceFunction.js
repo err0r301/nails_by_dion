@@ -137,9 +137,9 @@ class controller2 //services' page
             
 
             
-            var st=['Vusi','Dion','Mpho']
+            var stylists=['Vusi','Dion','Mpho']
             var  activeService='Massage';
-            var stylist=st[Math.floor(Math.random()*3)];
+            var stylist=stylists[Math.floor(Math.random()*3)];
 
             //get values on selectors
             var serviceThumnail=document.getElementById('thumbnailDialog');
@@ -147,7 +147,7 @@ class controller2 //services' page
             
             //get selector values
             var stylistValue=document.getElementById('stylistSelector');
-            var stylistValuefinal=stylistValue.options[stylistValue.selectedIndex].text;
+            var stylistValuefinal=stylistValue.options[stylistValue.selectedIndex].value;
             var dayValue=document.getElementById('daySelectorf');
             var dayValuefinal=dayValue.options[dayValue.selectedIndex].text;
             var monthValue=document.getElementById('monthSelector');
@@ -261,7 +261,7 @@ class controller2 //services' page
                     +"&path=1",true);
                    requestor.send();
 
-                    internalMsg.textContent='Successfully Done, refresh to see changes!';    
+                    internalMsg.textContent='Successfully Done!';    
 
 
                     setTimeout(function()
@@ -353,7 +353,7 @@ class controller2 //services' page
                         +"&path=1",true);
                         requestor.send();
 
-                    externalMsg.textContent='Successfully Done, refresh to see changes!!';
+                    externalMsg.textContent='Successfully Done!';
                     externalMsg.style.color='black';
                     noticeBox.style.backgroundColor='#fff3e7';
 
@@ -518,7 +518,7 @@ class controller2 //services' page
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                externalMsg.textContent='Successfully Done, refresh to see changes!';
+                externalMsg.textContent='Successfully Done!';
                 externalMsg.style.color='black';
                 noticeBox.style.backgroundColor='#fff3e7';
 
@@ -542,7 +542,7 @@ class controller2 //services' page
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                externalMsg.textContent='Successfully Done, refresh to see changes!!';
+                externalMsg.textContent='Successfully Done!';
                 externalMsg.style.color='black';
                 noticeBox.style.backgroundColor='#fff3e7';
 

@@ -1248,10 +1248,9 @@ background-color: #3270e4;
   border: none;
   font-size: 16px;
   border-radius: 4px;
-  padding: 10px 16px;
+  padding: 5px 16px;
   transition: 0.2s;
   cursor: pointer;
-  width: 160px;
 }
 .app-content-headerButton:hover {
   background-color: var(--primary);
@@ -1287,7 +1286,6 @@ background-color: #3270e4;
   background-color: rgb(242, 242, 245);
   border: 1px solid rgb(231, 231, 232);
   border-radius: 5px;
-  margin : 20px 10px 20px 0px;
 }
 
 .app-content-search:hover{

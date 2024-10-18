@@ -170,7 +170,7 @@
         <main class="main-container">
             <div class="top">
                 <h1 class="main-title font-weight-bold">SERVICES</h1>
-                
+                <button class="app-content-headerButton" onclick="togglePopup_add('popup-add-service')">Add Service</button>
             </div>
 
             <div class="app-content-actions">
@@ -180,7 +180,7 @@
                 </div>
                 
                 <div class="app-content-actions-wrapper">
-                <button class="app-content-headerButton" onclick="togglePopup_add('popup-add-service')">Add Service</button>
+                    
                     <button class="action-button service-list active" title="List View">
                         <i class="fa fa-list-ul"></i>
                     </button>

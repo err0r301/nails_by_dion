@@ -106,7 +106,7 @@ class appointer
    // $userID=$_SESSION['user'];
   
     mysqli_select_db($con,$dbName);
-    $sql='select * from appointment;';
+    $sql='select * from appointments;';
     $result = mysqli_query($con,$sql);
     
     /*echo "<h3 class='subheading'>Bookings' Status</h3>";
@@ -129,7 +129,7 @@ class appointer
     echo "<button class='locationButton' onclick='newManager.showPopMap()'>Get Location</button><br><br>";
     
     mysqli_select_db($con,$dbName);
-    $records="select count(*) from appointment;";
+    $records="select count(*) from appointments;";
     $result = mysqli_query($con,$records);
     $row = mysqli_fetch_array($result);
                   
@@ -156,7 +156,7 @@ class appointer
     echo"<p id='billDescription' class='tableHeading'>---No Appointments, Please Select Service to Book, Bookings will appear here.---</p>";
   }
 
-  $sql='select * from appointment;';
+  $sql='select * from appointments;';
   $result = mysqli_query($con,$sql);
   $rowNum=1;
   $count=1;
@@ -213,7 +213,7 @@ class appointer
       $count++;
   }
 
-  $total="select sum(servicePrice) from appointment;";
+  $total="select sum(servicePrice) from appointments;";
   $row = mysqli_fetch_array(mysqli_query($con,$total));
   //$onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". 1 .",". $this->flipData($row['stylist'],'stylist') ;
 
@@ -329,7 +329,7 @@ class appointer
     $sessions=intval($_GET['sessions']);
 
     {
-      $sql="UPDATE appointment SET stylist='".$_GET['stylist']."', scheduledDateTime='". $date ."', sessions=". $_GET['sessions']." WHERE appointmentID=".$_GET['appointmentID'].";";
+      $sql="UPDATE appointments SET stylist='".$_GET['stylist']."', scheduledDateTime='". $date ."', sessions=". $_GET['sessions']." WHERE appointmentID=".$_GET['appointmentID'].";";
       //$sql="insert into appointments values(appointmentID, 'userName',". $date.", '20:27', 'approved','tyr');";//
       
       $result = mysqli_query($con,$sql);
@@ -355,7 +355,7 @@ class appointer
 
 
 
-    $sql='delete from appointment where appointmentID='. $_GET['appointmentID'];
+    $sql='delete from appointments where appointmentID='. $_GET['appointmentID'];
     $result = mysqli_query($con,$sql);
   }
 
@@ -377,7 +377,7 @@ class appointer
 
 
 
-    $sql='delete from appointment;';
+    $sql='delete from appointments;';
     mysqli_query($con,$sql);
   }
 

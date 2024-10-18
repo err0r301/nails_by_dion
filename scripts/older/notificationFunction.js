@@ -106,10 +106,10 @@ class formatter
                   }
                   ,2500);
 
-                requestor.open("GET","/scripts/pullNotifications.php?notificationReply="+replyBox.value,true);
+                requestor.open("GET","/scripts/pullNotifications.php?notificationReply="+sentMessage,true);
                 requestor.send();
                 //document.getElementById("msg").innerHTML=sentMessage;
-                this.sendEmail();
+                //this.sendEmail();
 
                 
             }

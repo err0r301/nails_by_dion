@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'scheduledDateTime' => $scheduledDateTime,
                 'status_' => $status
             );
-            add_removeToRevenue($newAppointment);
+            //add_removeToRevenue($newAppointment);
             // edit the appointment data in the database
             $query = "UPDATE appointment SET scheduledDateTime = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
             $stmt = $conn->prepare($query);

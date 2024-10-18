@@ -1,23 +1,58 @@
 class manager {
 
         sessionNewValue=0;
-    service1=['../_images/1.jpg','Classic','R400.00','0','1 hour', 'a description of service'];
-    service2=['../_images/2.jpg','Hybrid','R400.00','0','2 hours', 'b description of service'];
-    service3=['../_images/3.jpg','Strip Lash','R450.00','0','1.5 hours', 'c description of service which may be long or short, it will depend on the service at hand'];
-    service4=['../_images/20.png','Volume','R600.00','0','2 hours', 'd description of service'];
-    service5=['../_images/21.jpg ','Mega Volume','R800.00','0','1.5 hour', 'e description of service'];
-    service6=['../_images/4.png','Nail Art','R30.00','0','2 hours', 'f description of service'];
-    service7=['../_images/5.png','Acrylic','R420.00','0','2 hour', 'g description of service'];
-    service8=['../_images/6.png','Gel','R370.00','0','1.5 hour', 'h description of service'];
-    service9=['../_images/14.png','Silk','R390.00','0','1 hour', 'i description of service'];
-    service10=['../_images/16.png','Soak Off','R130.00','0','2 hours', 'j description of service'];
-    services=[this.service1, this.service2, this.service3, this.service4, this.service5,
-            this.service6, this.service7, this.service8, this.service9, this.service10];
+        service1=['../_images/1.jpg','Classic','R400.00','0','1 hour', 'A natural look with individual lashes applied, enhancing length and subtle volume.'];
+        service2=['../_images/2.jpg','Hybrid','R400.00','0','2 hours', 'A mix of classic and volume lashes, offering a fuller yet natural style.'];
+        service3=['../_images/3.jpg','Strip Lash','R450.00','0','1.5 hours', 'Temporary lash strips applied for a dramatic, one-day look.'];
+        service4=['../_images/20.png','Volume','R600.00','0','2 hours', 'Lightweight lashes applied in clusters, creating a dense, voluminous effect.'];
+        service5=['../_images/21.jpg ','Mega Volume','R800.00','0','1.5 hour', 'Ultra-light lashes applied in multiple layers for maximum fullness and boldness.'];
+
+        service6=['../_images/4.png','Nail Art','R30.00','0','2 hours', 'Custom designs painted or applied to nails, offering a unique and artistic finish.'];
+        service7=['../_images/5.png','Acrylic','R420.00','0','2 hour', 'Durable nail extensions using a mix of powder and liquid, creating a strong, long-lasting look.'];
+        service8=['../_images/6.png','Gel','R370.00','0','1.5 hour', 'A glossy, flexible finish using gel polish, cured under UV light for a chip-resistant shine.'];
+        service9=['../_images/14.png','Silk','R390.00','0','1 hour', 'Thin silk wraps applied to nails, ideal for strengthening weak or damaged nails.'];
+        service10=['../_images/16.png','Soak Off','R130.00','0','2 hours', 'Gentle removal of gel or acrylic nails using a soaking process to preserve the natural nail.'];
+
+        service11=['../_images/17.png','Knotless','R850.00','0','1 hour', 'Braids without knots at the root, offering a lightweight and more natural-looking style.'];
+        service12=['../_images/19.png','Small','R400.00','0','2 hours', 'Fine, closely packed braids, providing a detailed, intricate appearance.'];
+        service13=['../_images/18.png','Medium','R450.00','0','1.5 hours', 'Moderately sized braids, balancing fullness and flexibility for easier styling.'];
+        service14=['../_images/7.png','Large','R600.00','0','2 hours', 'Bigger braids, delivering a bold look with faster installation and lower maintenance.'];
+        service15=['../_images/8.png ','Thick','R800.00','0','1.5 hour', 'Full, dense braids, ideal for voluminous hairstyles and a more dramatic effect.'];
+
+        service16=['../_images/23.jpeg','Full Body','R30.00','0','2 hours', 'Complete hair removal from head to toe, covering all major areas for smooth, even skin.'];
+        service17=['../_images/24.jpeg','Underarms','R420.00','0','2 hour', 'Hair removal from the underarm area, providing a clean and fresh look.'];
+        service18=['../_images/12.jpg','Bikini','R370.00','0','1.5 hour', 'Hair removal along the bikini line, offering a neat and well-groomed appearance.'];
+        service19=['../_images/10.jpg','Brazilian','R390.00','0','1 hour', 'Complete removal of hair from the bikini area, including the front and back for a smooth finish.'];
+        service20=['../_images/11.jpg','Face','R130.00','0','2 hours', 'Gentle hair removal from the facial area, targeting the upper lip, chin, and cheeks for a flawless complexion.'];
+        services=[this.service1, this.service2, this.service3, this.service4, this.service5,
+                  this.service6, this.service7, this.service8, this.service9, this.service10,
+                  this.service11, this.service12, this.service13, this.service14, this.service15,
+                  this.service16, this.service17, this.service18, this.service19, this.service20];
     stylistState=[0,0,0,0,0,0];    
     serviceNumber=0;
     appointmentID=0;
+    
+    getDescription(serviceName)
+    {
+        var serviceInstance=0;
+        var nameOfService=1;
+        var serviceDescription=5;
+        var description;
 
-    showPope(appointmentID,service, stylistoption, day, month, hour, min, sessions)
+        while(this.services[serviceInstance]!=null || this.services[serviceInstance]!='undefined')
+        {
+            if(this.services[serviceInstance][nameOfService]==serviceName)
+            {
+                description=this.services[serviceInstance][serviceDescription];
+                break;
+            };
+            serviceInstance++;
+        }
+
+        return "XX";
+    }
+
+    showPope(appointmentID,service, stylistoption, day, month, hour, min, sessions,thumbnailsrc)
     {
             
             this.appointmentID=appointmentID;
@@ -28,9 +63,9 @@ class manager {
             var price=document.getElementById('price');
             var duration =document.getElementById('duration');
 
-            thumbnail.setAttribute('src', this.services[service-1][0]);
+            thumbnail.setAttribute('src', thumbnailsrc);
             serviceName.textContent=this.services[service-1][1];
-            description.textContent=this.services[service-1][5];
+            description.textContent=this.services[service-1][5];//this.getDescription(service);
             price.textContent=this.services[service-1][2];
             duration.textContent=this.services[service-1][4];
 
@@ -50,7 +85,7 @@ class manager {
             //collect table record values and assign
             //use the service number to target by id on DOM
             //get inner values, target all columns
-            var tablestylist=document.getElementById('stylist'+service).innerHTML;
+            //var tablestylist=document.getElementById('stylist'+service).innerHTML;
             //find above variable in options by comparing option IDs
             //compare them to options, function(tablestylist, optionid)=>return found/not found
             
@@ -77,9 +112,74 @@ class manager {
 
     }
 
+    requestor = new XMLHttpRequest();
+
+    deleteAppointment(AppointmentID)
+    {
+        this.requestor.open("GET",'/scripts/pullAppointments.php?'+"appointmentID="+AppointmentID+"&path=3"                    
+            ,true);
+        this.requestor.send();
+
+        var externalMsg=document.getElementById('externalMsg');
+                var noticeBox=document.getElementById('noticeBox');
+                
+                
+                externalMsg.textContent='Successfully done, refresh to see changes!';
+                externalMsg.style.color='black';
+                noticeBox.style.backgroundColor='#fff3e7';
+
+                setTimeout(function()
+                {
+                    externalMsg.textContent='';
+                    noticeBox.style.backgroundColor='#ffffff00';
+                }
+                ,2500);
+                
+    }
+
+    deleteAllAppointments()
+    {
+        this.requestor.open("GET",'/scripts/pullAppointments.php?'+"path=4"                    
+            ,true);
+        this.requestor.send();
+
+        var externalMsg=document.getElementById('externalMsg');
+                var noticeBox=document.getElementById('noticeBox');
+                
+                
+                externalMsg.textContent='Successfully done, refresh to see changes!';
+                externalMsg.style.color='black';
+                noticeBox.style.backgroundColor='#fff3e7';
+
+                setTimeout(function()
+                {
+                    externalMsg.textContent='';
+                    noticeBox.style.backgroundColor='#ffffff00';
+                }
+                ,2500);
+                
+    }
+
+
+
+    showPopBill(service)
+            {       
+                //buttonBook.setAttribute('onclick','myController2.bookService('+service+',true)');
+
+                popupBackBill.classList.add("show");
+
+            }
+    
+    showPopMap()
+    {       
+        //buttonBook.setAttribute('onclick','myController2.bookService('+service+',true)');
+
+        popupBackMap.classList.add("show");
+
+    }
+
     bookService(service, inDialog)
     {
-
         var serviceOneData;
         var bookingNumber=sessionStorage.length+1;
         var sessionsNeeded=this.sessionNewValue;
@@ -93,12 +193,13 @@ class manager {
         if(inDialog)
         {
             //get selector values
+
             var stylistValue=document.getElementById('stylistSelector');
             var stylistValuefinal=stylistValue.options[stylistValue.selectedIndex].text;
             var dayValue=document.getElementById('daySelectorf');
             var dayValuefinal=dayValue.options[dayValue.selectedIndex].text;
             var monthValue=document.getElementById('monthSelector');
-            var monthValuefinal=monthValue.options[monthValue.selectedIndex].text;
+            var monthValuefinal=monthValue.value;
             var hourValue=document.getElementById('hourSelector');
             var hourValuefinal=hourValue.options[hourValue.selectedIndex].text;
             var minValue=document.getElementById('minSelector');
@@ -111,12 +212,14 @@ class manager {
         // var dayfound=document.getElementById('daySelectorf').value;
         requestor.open("GET",'/scripts/pullAppointments.php?log='+service
             +"&appointmentID="+this.appointmentID+"&service="+this.activeService
-            +"&stylist="+stylistValuefinal+"&day="+dayValuefinal+"&month="+monthValuefinal
+            +"&stylist="+stylistValuefinal
+            +"&day="+dayValuefinal
+            +"&month="+monthValuefinal
             +"&hour="+hourValuefinal+"&min="+minValuefinal+"&sessions="+sessionValuefinal+"&path=2"                    
             ,true);
         requestor.send();
 
-            internalMsg.textContent='Service Booked Successfully!';    
+            internalMsg.textContent='Successfully done, refresh to see changes!!';    
 
 
             setTimeout(function()
@@ -129,7 +232,7 @@ class manager {
             requestor.open("GET",'/scripts/logBookings.php?log='+service+"&day="+1,true);
             requestor.send();
 
-            externalMsg.textContent='Service Booked Successfully!';
+            externalMsg.textContent='Successfully done, refresh to see changes!!';
             externalMsg.style.color='black';
             noticeBox.style.backgroundColor='white';
 
@@ -143,6 +246,8 @@ class manager {
         }
 
     }
+
+
 
     activeService='make-up';
     stylist='Dion';
@@ -256,6 +361,23 @@ class manager {
 }
 class formatter
         {
+            initMap() {
+                // The location you want to center the map on (latitude, longitude)
+                const location = { lat: -26.03436001195125, lng: 28.00879726679443 };
+            
+                // Initialize the map
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 13,
+                    center: location
+                });
+            
+                // Add a marker
+                const marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+
             showStatus()
             {
                 var space=document.createElement('br');
@@ -556,6 +678,16 @@ class formatter
             removePop()
             {
                 popupBack.classList.remove("show");
+            }
+
+            removePopBill()
+            {
+                popupBackBill.classList.remove("show");
+            }
+
+            removePopMap()
+            {
+                popupBackMap.classList.remove("show");
             }
 
             removeByBackground()

@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link rel="stylesheet" href="/../styles/client_styles_root0.css">
-    <link rel="stylesheet" href="/../styles/main_styles_root1.css">
+    <link rel="stylesheet" href="/../styles/client_styles.css">
+    <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/style.css">
     <script src="../scripts/galleryFunction.js" ></script>
 </head>
 <body>
-    
     <?php $page = 'gallery'; include '../partial/header.php';?>
     <img src="_images\logo.png" id="shortlisted" onclick="myController.showPop(1000)">
     
 
     <div class='notice'>
-        <p class='noticeMessage'></p>
+        <p class='noticeMessage'>Service added to appointments</p>
     </div>
 
     <table id='galleryTable'>
@@ -32,8 +31,7 @@
                 <table class='imageTable'>
                     <tr>
                         <td class='imageColumn'>
-                        <img id='galleryImage1' class='galleryImage' src="../_images\5.png"  onclick="myController.showPop()">
-
+                            <img id='galleryImage1' class='galleryImage' src="../_images\14.png"  onclick="myController.showPop()">
                         </td>
                         <td >
                             <table>
@@ -305,13 +303,149 @@
 		<div class="popupBlock"  ><!--popup block-->
             
             <div class="contentblock">
-            <h2 class='headingCol'>Portfolio Work</h2>
+            <h2 class='headingCol'>heading</h2>
             <p  class='tableHeading'>This will be the description of the service selected by a user</p>
-            <div id='galleryScrollButton1' onclick='myController.scrollImage("backward")'><</div>
-            <img id='gallerythumbnailDialog' class='dialogThumbnail' src="../_images\10.jpg" >
-            <div id='galleryScrollButton2'  onclick='myController.scrollImage("forward")'>></div>
+                <table class='dialogServicesInfo'>
+                    
+                    <tr class='detailsRow'>
+                        <td class='dialogServiceCell'>
+                            <img id='thumbnailDialog' class='dialogThumbnail' src="../_images\10.jpg" >
+                        </td>
+                        <td class='dialogDescriptionCell'>
+                            
+                            <table class ='dialogInfoTable'>
+                                
+                                <tr>
+                                    <td class='serviceDetailCellH'>Price</td>
+                                    <td class='serviceDetailCellH'>duration</td>
+                                    <td class='serviceDetailCellH' >time</td>
+                                    <td class='serviceDetailCellH' >
+                                        <p class='tableHeadingRed'>
+                                            Sessions Required
+                                        </p>
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <td class='serviceDetailCell'>R 100.00</td>
+                                    <td class='serviceDetailCell'>2 hrs</td>
+                                    <td class='serviceDetailCell'>14:30</td>
+                                    <td class='serviceDetailCell'>
+                                    <table class='sessionTable'>
+                                        <tr>
+                                            <td class='sessionCol'>
+                                            <img src="../_images\addButton.png" class='addButtonDialog'>
+                                            </td>
+                                            <td class='sessionColvalue'>1</td>
+                                            <td class='sessionCol'>
+                                                <img src="../_images\addButton.png" class='addButtonDialog'>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </td>   
+                                </tr>
+                            </table>
+                        </td>
+                        <td class='headingCol'>
+                        
+                                    
+                                
+                            
+                        </td>
+                    </tr>
+                </table>
+
+                            <table class='mainStylistTable'>
+                                    <tr>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\7.png"  width="20">
+                                                    </td>    
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Dion</td>
+                                                </tr>
+                                            </table >
+                                        </td>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\4.png"  width="20">
+                                                    </td>  
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Thando</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\2.jpg"  width="20">
+                                                    </td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Mpho</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\4.png"  width="20">
+                                                    </td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Sipho</td> 
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\4.png"  width="20">
+                                                    </td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Sizwe</td> 
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class='dialogStylistTable'>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>
+                                                        <img class='stylistThumbnail' src="../_images\4.png"  width="20">
+                                                    </td>   
+                                                </tr>
+                                                <tr>
+                                                    <td class='dialogStylistCell'>Vusi</td> 
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        
+                                       
+                                           
+                                    </tr>
+                            </table>
                             <p  class='tableHeading'>Please select a stylist from the list.</p>
-                <button id='dialogClosePopup' class="dialogButton" onclick='myController.removePop()'>Close</button>
+            
+                            
+                            
+                            
+                            
+                        
+                   
+
+                
+                <button id='buttonBook' class="bookButton" >Book</button>
+
+                <button id='closePopup' class="closePopup" >Close</button>
 
             </div>
 
@@ -341,7 +475,7 @@
 myController=new controller();
         myController.applyImages();
         shortlisted.addEventListener("click", function () { myController.showPop(); });
-        //closePopup.addEventListener("click", function () { myController.removePop();});
+        closePopup.addEventListener("click", function () { myController.removePop();});
         window.addEventListener("click", function (event) {myController.removeByBackground();});
 
 </script>
