@@ -302,31 +302,42 @@ function togglePopup_add(id) {
 
 // INVENTORY
 
-document.addEventListener('DOMContentLoaded', function () {
-  const searchInput = document.querySelector('.search-bar');
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBar = document.getElementById("unique-search-bar");
+    let inventoryData = [];
 
-  if (searchInput) {  
-      searchInput.addEventListener('input', function () {
-          let searchTerm = this.value.toLowerCase();  
-          let tableRows = document.querySelectorAll('#product_table tbody tr');  
+    // Fetch inventory items from the backend
+    fetch('path_to_inventory_php_script.php')
+        .then(response => response.json())
+        .then(data => {
+            inventoryData = data; // Store the inventory items
+            displayItems(inventoryData); // Optionally display them initially
+        })
+        .catch(error => console.error('Error fetching inventory:', error));
 
-          tableRows.forEach(function (row) {
-              let itemName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-              let itemStock = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-              let itemPrice = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+    // Event listener for search input
+    searchBar.addEventListener("input", function () {
+        const searchTerm = searchBar.value.toLowerCase();
+        const filteredItems = inventoryData.filter(item => {
+            // Assuming 'name' is a key in your inventory items
+            return item.name.toLowerCase().includes(searchTerm);
+        });
+        displayItems(filteredItems); // Display only filtered items
+    });
 
-              if (itemName.includes(searchTerm) || itemStock.includes(searchTerm) || itemPrice.includes(searchTerm)) {
-                  row.style.display = '';  
-              } else {
-                  row.style.display = 'none';  
-              }
-          });
-      });
-  } else {
-      console.log("Search bar not found.");
-  }
+    // Function to display inventory items (adapt it to your needs)
+    function displayItems(items) {
+        const inventoryContainer = document.getElementById("inventory-list"); // Change ID as per your HTML
+        inventoryContainer.innerHTML = ""; // Clear previous results
+
+        items.forEach(item => {
+            // Create a list item or card for each inventory entry (adapt to your design)
+            const itemElement = document.createElement("div");
+            itemElement.textContent = item.name + " - " + item.price; // Example of displaying name and price
+            inventoryContainer.appendChild(itemElement);
+        });
+    }
 });
-
 
 
 // TEAM

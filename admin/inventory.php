@@ -106,7 +106,7 @@
             <div class="app-content-actions">
                 <div class="app-content-search">
                     <i class="fa fa-search"></i>
-                    <input class="search-bar" placeholder="Search..." type="search">
+                    <input id="unique-search-bar" class="search-bar" placeholder="Search..." type="search">
                 </div>
             </div>
 
