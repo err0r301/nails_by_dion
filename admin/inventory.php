@@ -95,64 +95,72 @@
             </div>  
         </div> 
 
-        <!-- Main -->
-        <main class="main-container">
-            <div class="top">
-                <h1 class="main-title font-weight-bold">INVENTORY</h1>
-                <button class="app-content-headerButton" onclick="togglePopup('popup-add-product')">Add
-                    Product</button>
-            </div>
+       <!-- Main -->
+       <main class="main-container">
+    <div class="top">
+        <h1 class="main-title font-weight-bold">INVENTORY</h1>
+        <button class="app-content-headerButton" onclick="togglePopup('popup-add-product')">Add Product</button>
+    </div>
 
-            <div class="app-content-actions">
-                <div class="app-content-search">
-                    <i class="fa fa-search"></i>
-                    <input class="search-bar" placeholder="Search..." type="search">
-                </div>
-            </div>
+    <div class="app-content-actions">
+        <div class="app-content-search">
+            <i class="fa fa-search"></i>
+            <input class="search-bar" placeholder="Search..." type="search" id="product-search" onkeyup="searchProducts()">
+        </div>
+    </div>
 
-            <div class="table-container">
-                <table class="table" id="product_table">
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0,'product_table','product_arrow_1')">#<i class="arrow"
-                                    id="product_arrow_1"></i></th>
-                            <th onclick="sortTable(1,'product_table','product_arrow_2')">Item<i class="arrow"
-                                    id="product_arrow_2"></i></th>
-                            <th onclick="sortTable(2,'product_table','product_arrow_3')">Stock<i class="arrow"
-                                    id="product_arrow_3"></i></th>
-                            <th onclick="sortTable(3,'product_table','product_arrow_4')">Price<i class="arrow"
-                                    id="product_arrow_4"></i></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        include '../scripts/inventory_scripts/get_inventory_items.php';
-                        $inventories = getInventoryItems();
-  
-                        if ($inventories) {  
-                            while ($row = $inventories->fetch_assoc()) {  
-                                if ($row ['inventoryID'] < 10) {
-                                    $row['inventoryID'] = "0" . $row['inventoryID'];
-                                }
-                                ?>
-                                    <tr>
-                                        <td><?php echo $row['inventoryID'] ?></td>
-                                        <td><?php echo $row['name'] ?></td>
-                                        <td><?php echo $row['stock'] ?></td>
-                                        <td><?php echo $row['price'] ?></td>
-                                        <td>
-                                            <button class='crud-btn p-btn-edit' onclick="editPopup('popup-edit-product', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>)"><i class='fa fa-pen-to-square'></i></button>
-                                            <button class='crud-btn p-btn-delete' onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)"><i class='fa fa-trash-can'></i></button>
-                                        </td>
-                                    </tr> 
-                           <?php }  
+    <div class="inventory-area-wrapper tableView">
+        <!-- Header Row (Table headings) -->
+        <div class="inventory-header">
+            <div class="inventory-cell id">#</div>
+            <div class="inventory-cell name">Product Name</div>
+            <div class="inventory-cell stock">Stock</div>
+            <div class="inventory-cell price">Price</div>
+            <div class="inventory-cell actions"></div>
+        </div>
+        
+        <!-- Inventory Items -->
+        <div id="inventory-items">
+            <?php 
+                include '../scripts/inventory_scripts/get_inventory_items.php';
+                $inventories = getInventoryItems();
+
+                if ($inventories) {  
+                    while ($row = $inventories->fetch_assoc()) {  
+                        if ($row['inventoryID'] < 10) {
+                            $row['inventoryID'] = "0" . $row['inventoryID'];
                         }
                         ?>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+                        <div class="inventory-row">
+                            <div class="inventory-cell id">
+                                <span><?php echo $row['inventoryID']; ?></span>
+                            </div>
+                            <div class="inventory-cell name">
+                                <span><?php echo $row['name']; ?></span>
+                            </div>
+                            <div class="inventory-cell stock">
+                                <span><?php echo $row['stock']; ?></span>
+                            </div>
+                            <div class="inventory-cell price">
+                                <span>R<?php echo $row['price']; ?></span>
+                            </div>
+                            <div class="inventory-cell actions">
+                                <button class="crud-btn p-btn-edit" onclick="editPopup('popup-edit-product', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>)">
+                                    <i class="fa fa-pen-to-square"></i>
+                                </button>
+                                <button class="crud-btn p-btn-delete" onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)">
+                                    <i class="fa fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <?php }  
+                }
+            ?>
+        </div>
+    </div>
+</main>
+
+
     </div>
     <script>
         function editPopup(pop, data) {  
