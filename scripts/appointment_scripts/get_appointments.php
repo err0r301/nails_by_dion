@@ -59,6 +59,11 @@ function getAppointments(){
     }
     // Close the connection
     $conn->close();
+
+    // sort the appointments by appointmentID
+    usort($appointments, function($a, $b) {
+        return $a['appointmentID'] - $b['appointmentID'];
+    });
     return $appointments;
 } 
 
