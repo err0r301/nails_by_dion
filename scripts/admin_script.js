@@ -274,70 +274,70 @@ function togglePopup_add(id) {
   popup.classList.toggle("active");
 }
 
-    document.querySelector('.search-bar').addEventListener('input', function() {
+document.querySelector('.search-bar').addEventListener('input', function() {
 
-        let searchTerm = this.value.toLowerCase();
+  let searchTerm = this.value.toLowerCase();
 
-        let serviceRows = document.querySelectorAll('.service-row');
+  let serviceRows = document.querySelectorAll('.service-row');
+  let found = false;
+  let title = document.querySelector('.main-title');
 
-        serviceRows.forEach(function(row) {
-            let serviceName = row.querySelector('.service-cell.image span').textContent.toLowerCase(); 
-            let serviceCategory = row.querySelector('.service-cell.category').textContent.toLowerCase(); 
-            let serviceStatus = row.querySelector('.service-cell.status-cell').textContent.toLowerCase(); 
-            let servicePrice = row.querySelector('.service-cell.price').textContent.toLowerCase(); 
+  serviceRows.forEach(function(row) {
+      let serviceName = row.querySelector('.service-cell.image span').textContent.toLowerCase(); 
+      let serviceCategory = row.querySelector('.service-cell.category').textContent.toLowerCase(); 
+      let serviceStatus = row.querySelector('.service-cell.status-cell').textContent.toLowerCase(); 
+      let servicePrice = row.querySelector('.service-cell.price').textContent.toLowerCase(); 
 
-            if (
-                serviceName.includes(searchTerm) ||
-                serviceCategory.includes(searchTerm) ||
-                serviceStatus.includes(searchTerm) ||
-                servicePrice.includes(searchTerm)
-            ) {
-                row.style.display = '';  
-            } else {
-                row.style.display = 'none';  
-            }
-        });
-    });
+      if (
+          serviceName.includes(searchTerm) ||
+          serviceCategory.includes(searchTerm) ||
+          serviceStatus.includes(searchTerm) ||
+          servicePrice.includes(searchTerm)
+      ) {
+          row.style.display = '';  // Show row if it matches the search
+          found = true;  // Mark that at least one result is found
+      } else {
+          row.style.display = 'none';  // Hide rows that don't match
+      }
+  });
+  
+
+  // Update title based on whether any services were found
+  if (found) {
+      title.textContent = "SERVICES";
+  } else {
+      title.textContent = "Results Not Found...";
+  }
+});
+
 
 
 // INVENTORY
 
-document.addEventListener("DOMContentLoaded", function () {
-    const searchBar = document.getElementById("unique-search-bar");
-    let inventoryData = [];
+function searchProducts() {
+  const searchInput = document.getElementById('product-search').value.toLowerCase();
+  const inventoryItems = document.getElementById('inventory-items').getElementsByClassName('inventory-row');
+  const title = document.querySelector('.main-title');
+  let found = false;
 
-    // Fetch inventory items from the backend
-    fetch('path_to_inventory_php_script.php')
-        .then(response => response.json())
-        .then(data => {
-            inventoryData = data; // Store the inventory items
-            displayItems(inventoryData); // Optionally display them initially
-        })
-        .catch(error => console.error('Error fetching inventory:', error));
+  for (let i = 0; i < inventoryItems.length; i++) {
+      const productName = inventoryItems[i].getElementsByClassName('name')[0].innerText.toLowerCase();
+      if (productName.includes(searchInput)) {
+          inventoryItems[i].style.display = "grid";
+          found = true;  // At least one result found
+      } else {
+          inventoryItems[i].style.display = "none";
+      }
+  }
 
-    // Event listener for search input
-    searchBar.addEventListener("input", function () {
-        const searchTerm = searchBar.value.toLowerCase();
-        const filteredItems = inventoryData.filter(item => {
-            // Assuming 'name' is a key in your inventory items
-            return item.name.toLowerCase().includes(searchTerm);
-        });
-        displayItems(filteredItems); // Display only filtered items
-    });
+  // Change title based on search results
+  if (found) {
+      title.textContent = "INVENTORY";
+  } else {
+      title.textContent = "Results Not Found...";
+  }
+}
 
-    // Function to display inventory items (adapt it to your needs)
-    function displayItems(items) {
-        const inventoryContainer = document.getElementById("inventory-list"); // Change ID as per your HTML
-        inventoryContainer.innerHTML = ""; // Clear previous results
-
-        items.forEach(item => {
-            // Create a list item or card for each inventory entry (adapt to your design)
-            const itemElement = document.createElement("div");
-            itemElement.textContent = item.name + " - " + item.price; // Example of displaying name and price
-            inventoryContainer.appendChild(itemElement);
-        });
-    }
-});
 
 
 // TEAM

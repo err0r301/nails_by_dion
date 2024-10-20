@@ -906,7 +906,7 @@ padding-bottom: 1%;
 }
 
 .team-card {
-  background-color: #e3cfbb;
+  background-color: var(--light);
   width: 200px;
   /*height: 270px;       Height with buttons included*/
   height: 250px;
@@ -914,15 +914,19 @@ padding-bottom: 1%;
   text-align: center;
   justify-content: center;
   border-radius: 15px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0px 8px 16px 0px rgba(0.2, 0.2, 0.2, 0.2);*/
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin: 0px;
   padding: 10px;
   padding-bottom: 0px;
+  color: black;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 .team-card:hover{
   transform: scale(1.1);
+  background-color: var(--secondary);
+  color: white;
 }
 
 .trash{
@@ -1578,6 +1582,81 @@ background-color: #3270e4;
 .gridView .cell-label {
   opacity: 0.6;
 }
+
+/* --------------Inventory------------ */
+
+.inventory-area-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.inventory-header, .inventory-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
+}
+
+.inventory-header {
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 7px;
+  /*border-bottom: 1px solid #ddd; */
+}
+
+.inventory-row {
+  background-color: #fff;
+  /*border-bottom: 1px solid #ddd; */
+}
+
+.inventory-row:hover {
+  background-color: #f1f1f1;
+}
+
+.inventory-cell {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.crud-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.crud-btn i {
+  font-size: 16px;
+  color: #555;
+}
+
+.crud-btn.p-btn-edit i {
+  color: #555;
+}
+
+.crud-btn.p-btn-delete i {
+  color: #555;
+}
+
+.main-title {
+  opacity: 1;
+  transition: opacity 0.5s ease;  /* 0.5s is the transition duration */
+}
+
+.main-title.fade-out {
+  opacity: 0;  /* Fades out */
+}
+
+
+
+
 
 
 
