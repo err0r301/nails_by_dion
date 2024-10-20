@@ -153,7 +153,7 @@ checkInsert($conn, $appointmentQuery, "Appointment");
 
 
 // insert gallery data
-$galleryQuery = "INSERT INTO gallery (galleryID, image, date) 
+/*$galleryQuery = "INSERT INTO gallery (galleryID, image, date) 
                 VALUES 
                 (1, 'gallery_1', '2022-01-01 12:00:00'),
                 (2, 'gallery_2', '2022-01-05 14:00:00'),
@@ -165,7 +165,7 @@ $galleryQuery = "INSERT INTO gallery (galleryID, image, date)
                 (8, 'gallery_8', '2022-02-01 16:00:00'),
                 (9, 'gallery_9', '2022-02-05 12:00:00')";
 
-checkInsert($conn, $galleryQuery, "Gallery");
+checkInsert($conn, $galleryQuery, "Gallery");*/
 
 // insert inventory data
 $inventoryQuery = "INSERT INTO inventory (inventoryID, name, price,stock)

@@ -6,6 +6,7 @@ function getAppointments(){
 
     // Include the config file
     require '../data/config.php';
+    $appointments = [];
 
     // get the appointments from the database
     /*$query = "SELECT user.name as client, appointment.appointmentID as appointmentID, appointment.dateScheduled as date, appointment.status as status
@@ -13,7 +14,7 @@ function getAppointments(){
             INNER JOIN user 
             ON appointment.userID = user.userID";*/
 
-    $query = "SELECT  u.name AS client, a.appointmentID AS appointmentID,  a.scheduledDateTime AS date,  a.status_ AS status,  a.stylist AS stylist,  a.serviceID AS service
+    $query = "SELECT  u.email AS client, a.appointmentID AS appointmentID,  a.scheduledDateTime AS date,  a.status_ AS status,  a.stylist AS stylist,  a.serviceID AS service
     FROM   
         appointment a  
     JOIN   
@@ -22,13 +23,43 @@ function getAppointments(){
         service s ON a.serviceID = s.serviceID";  
     $appointment_result = $conn->query($query);
 
+    $query2 = "SELECT * FROM appointment Where userID IS NULL";
+    $result = $conn->query($query2);
+
     // Check if the data was retrieved successfully
+    if ($result->num_rows > 0) {  
+        while($row = $result->fetch_assoc()) {  
+            $appointments[] = array(
+                'client' => $row["userEmail"],
+                'appointmentID' => $row["appointmentID"],
+                'date' => $row["scheduledDateTime"],
+                'status' => $row["status_"],
+                'stylist' => $row["stylist"],
+                'service' => $row["serviceID"]
+            );  
+            echo " <script> console.log('user: " . $row["userEmail"] . "') </script>";
+        }  
+    }else{
+        echo " <script> console.log('userEmail not found') </script>";
+    }
+
     if ($appointment_result->num_rows <= 0) {
-        echo "No appointments found";                                   ////////////////////////
+        echo "No appointments found";                                 
+    }else{
+        while($row = $appointment_result->fetch_assoc()) {
+        $appointments[] = array(
+            'client' => $row["client"],
+            'appointmentID' => $row["appointmentID"],
+            'date' => $row["date"],
+            'status' => $row["status"],
+            'stylist' => $row["stylist"],
+            'service' => $row["service"]
+        );
+        }
     }
     // Close the connection
     $conn->close();
-    return $appointment_result;
+    return $appointments;
 } 
 
  

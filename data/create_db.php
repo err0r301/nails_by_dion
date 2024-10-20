@@ -36,7 +36,7 @@ if ($result) {
             createAdminTable($conn);    
             createServiceTable($conn);  
             createAppointmentTable($conn);  
-            createGalleryTable($conn);  
+            //createGalleryTable($conn);  
             createInventoryTable($conn);   
             createNotificationTable($conn); 
             createAutoNotificationTable($conn); 
@@ -107,16 +107,16 @@ function createAdminTable($conn) {
 function createAppointmentTable($conn) {
     $sql = "CREATE TABLE appointment (
         appointmentID INT AUTO_INCREMENT PRIMARY KEY,
-        userID INT NOT NULL,
+        userID INT,
         /*adminID INT NOT NULL,*/
         stylist VARCHAR(30) NOT NULL,
         sessions INT NOT NULL DEFAULT 1,
         dateBooked DATETIME NOT NULL,
         scheduledDateTime DATETIME NOT NULL,
-        /*serviceID INT NOT NULL,*/
         serviceID VARCHAR(100) NOT NULL,
-        status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',
-        FOREIGN KEY (userID) REFERENCES user(userID)
+        userEmail VARCHAR(100),
+        status_ VARCHAR(20) NOT NULL DEFAULT 'Pending'
+        /*FOREIGN KEY (userID) REFERENCES user(userID)*/
     )";
 
     confirmQuery($conn, $sql, "Appointment");
@@ -139,8 +139,8 @@ function createNotificationTable($conn) {
         dateTime_ DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         message VARCHAR(300) NOT NULL,
         status_ VARCHAR(10) NOT NULL DEFAULT 'Unread',
-        userID INT NOT NULL,
-        FOREIGN KEY (userID) REFERENCES user(userID)
+        userID INT NOT NULL
+        /*FOREIGN KEY (userID) REFERENCES user(userID)*/
     )";
 
     confirmQuery($conn, $sql, "Notification");
@@ -154,7 +154,7 @@ function createAutoNotificationTable($conn){
     confirmQuery($conn, $sql, "AutoNotification");
 }
 
-function createGalleryTable($conn) {
+/*function createGalleryTable($conn) {
     $sql = "CREATE TABLE gallery (
         galleryID INT AUTO_INCREMENT PRIMARY KEY,
         image VARCHAR(150) NOT NULL,
@@ -162,7 +162,7 @@ function createGalleryTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Gallery");
-}
+}*/
 
 /*function createCartTable($conn) {
     $sql = "CREATE TABLE cart (

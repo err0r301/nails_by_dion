@@ -24,9 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Please fill in all fields';
         } else {
             // Insert the appointment data into the database
-            $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, scheduledDateTime, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param(/*"iiissi"*/"iissss", $appointmentID, $userID, /*$stylistID*/$stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
+            if ($userID == $client_email) {
+                $query = "INSERT INTO appointment (appointmentID,stylist, dateBooked, scheduledDateTime, serviceID, userEmail) VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("isssss", $appointmentID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID, $client_email);
+            }else{
+                $query = "INSERT INTO appointment (appointmentID, userID,stylist, dateBooked, scheduledDateTime, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("iissss", $appointmentID, $userID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
+            }
+            
             $stmt->execute();
 
             // Check if the insertion was successful
@@ -43,14 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function getEmail($conn, $email){
-    $query = "SELECT userID FROM user WHERE email = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    return $row['userID'];
+function getEmail($conn, $email){   
+    $query = "SELECT userID FROM user WHERE email = ?";  
+    $stmt = $conn->prepare($query);  
+    $stmt->bind_param("s", $email);  
+    $stmt->execute();  
+    $result = $stmt->get_result();  
+    $row = $result->fetch_assoc();  
+
+    if ($row !== null && isset($row['userID'])) {  
+        return $row['userID'];  
+    } else {   
+        return $email; 
+    }  
 }
 
 function getMaxID($conn){
