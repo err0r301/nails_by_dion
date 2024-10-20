@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userID = getEmail($conn, $client_email);
         $appointmentID = getMaxID($conn) + 1;
 
-        echo "<script> console.log('client email: $client_email -- stylist : $stylist -- booked date :$bookedDateTime -- scheduled date :$scheduledDateTime -- user id :$userID')</script>";
+        echo "<script> console.log('client email: $client_email -- stylist : $stylist -- booked date :$bookedDateTime -- scheduled date :$scheduledDateTime -- user id :$userID service name :$serviceID')</script>";
 
     // Validate the form data
         if (empty($userID) || empty(/*$stylistID*/$stylist) || empty($bookedDateTime) || empty($scheduledDateTime) || empty($serviceID)) {
             $error = 'Please fill in all fields';
         } else {
             // Insert the appointment data into the database
-            $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, dateScheduled, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO appointment (appointmentID, userID, /*adminID*/stylist, dateBooked, scheduledDateTime, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
             $stmt->bind_param(/*"iiissi"*/"iissss", $appointmentID, $userID, /*$stylistID*/$stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
             $stmt->execute();

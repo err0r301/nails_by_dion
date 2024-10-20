@@ -1,5 +1,5 @@
 <!--<?php
-    require ('../scripts/updateUser.php');
+    
 ?>-->
 <!DOCTYPE html>
 <html lang="en">
@@ -17,29 +17,36 @@
         $page = 'profile'; 
         $unsubcribe = false;
         $pop = false;
-        include '../partial/header.php';?>
+        include '../partial/header.php';
+        error_reporting(E_ALL);  
+        ini_set('display_errors', 1); 
+        require '../scripts/validate_input.php';
+        require '../scripts/user_scripts/remove_user.php';
+        require '../scripts/user_scripts/edit_user-pwd.php';
+        require '../scripts/user_scripts/edit_user-info.php';
+        ?>
     <section>
         <header>
             <h2>Profile Information</h2>
             <p>Update your account's profile information and email address.</p>
         </header>
 
-        <form class="profile-form">
+        <form class="profile-form" action="" method="POST">
             <div>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<?php echo $_SESSION['user']['name']; ?>" required>
+                <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>" required>
                 <p class="error" id="name_error"></p>    
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>" required>
+                <input type="email" id="email" name="edit-email" value="<?php echo $_SESSION['user']['email']; ?>" required>
                 <p class="error" id="email_error"></p>
             </div>
 
             <div>
                 <label for="cell">Cell No.</label>
-                <input type="text" id="cell" name="cell" value="<?php echo $_SESSION['user']['cell']; ?>">
+                <input type="text" id="cell" name="edit-cell" value="<?php echo $_SESSION['user']['cell']; ?>">
                 <p class="error" id="email_error"></p>
             </div>
 
@@ -54,7 +61,7 @@
             <p>Ensure your password is 8 characters long and contains a special character, upper case letter, lower case letter, and a number.</p>
         </header>
 
-        <form class="profile-form">
+        <form class="profile-form" action="" method="POST">
             <div>
                 <label for="update_password_current">Current Password</label>
                 <input type="password" id="update_password_current" name="current_password" required>
@@ -82,19 +89,26 @@
 
     <section>
         <header>
-            <h2>Unsubscribe</h2>
-            <p>Once your have unsubscribed, you will no longer receive important updates, promotions, and exclusive offers.</p>
+            <h2>Delete Account</h2>
+            <p>Once your account is deleted, you will no longer be able to access it.</p>
         </header>
 
-        <button class="unsubscribe profile-button" onclick="togglePopup('popup-register')">Unsubscribe</button>
+        <button class="unsubscribe profile-button" onclick="togglePopup('popup-confirm')">Delete Account</button>
 
-        <div class='popup' id='popup-register'>
-                    <div class='overlay' onclick="togglePopup('popup-register')" ></div>
-                    <div class='content'>
-                        <h2>You are now unsubscribed</h2>
-                            <button onclick="togglePopup('popup-register')"> Back</button>  
-                    </div>
-                </div>
+
+        <div class='popup' id='popup-confirm'>
+            <div class='overlay' onclick="togglePopup('popup-confirm')" ></div>
+            <div class='content'>
+                <h2>Confirmation</h2>
+                <p>Are you sure you want to delete your account?   </p>
+                <form action="" method="POST">
+                <input type="hidden" name="delete-user-id" id="delete-user-id" value="<?php echo $_SESSION['user']['userID']; ?>"> 
+                    <button type="reset" onclick="togglePopup('popup-confirm')"> Back</button>  
+                    <button type="submit" onclick="togglePopup('popup-confirm')">Delete</button>
+                </form>
+                    
+            </div>
+        </div>
     </section>
 
     <script>

@@ -28,17 +28,17 @@
             <div class="error"><p><?php echo $error ?></p></div>
             <form  action="" method="POST" class="form">
                 <div class="input-field">
-                    <input id="name" type="text" name="name" placeholder="" autocomplete="off"/>
+                    <input id="name" type="text" name="add-name" placeholder="" autocomplete="off"/>
                     <label for="username">Full Name</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="email" type="email" name="email" placeholder="" autocomplete="off"/>
+                    <input id="email" type="email" name="add-email" placeholder="" autocomplete="off"/>
                     <label for="email">Email</label>
                 </div>
 
                 <div class="input-field">
-                    <input id="cell" type="text" name="cell" placeholder="" autocomplete="off"/>
+                    <input id="cell" type="text" name="add-cell" placeholder="" autocomplete="off"/>
                     <label for="cell">Cell no.</label>
                 </div>
 

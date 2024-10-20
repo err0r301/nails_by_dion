@@ -125,7 +125,7 @@ checkInsert($conn, $serviceQuery, "Service");
                 (19, 6, 'Jenny','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 4),
                 (20, 7, 'James','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 5)";*/
 
-$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, dateScheduled, status_, serviceID, sessions) 
+$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, scheduledDateTime, status_, serviceID, sessions) 
                     VALUES  
                     (1, 6, 'Dion','2024-10-01 10:32:00','2024-10-03 07:00:00', 'Pending', 'Classic Manicure', 1),
                     (2, 7, 'Jane','2024-10-01 12:53:00','2024-10-03 08:00:00', 'Complete', 'Gel Manicure', 1),
@@ -184,15 +184,15 @@ $notificationQuery = "INSERT INTO auto_notification (autoNotificationID, message
 VALUES  
     ('Appointment Confirmation', 'Dear [name], your appointment for [service] on [date] at [time] has been confirmed. We look forward to seeing you!'),  
     ('Appointment Reminder', 'Hi [name], this is a friendly reminder of your upcoming appointment for [service] on [date] at [time]. See you soon!'),  
-    ('Appointment Cancellation', 'Hi [name], your appointment for [service] on [date] has been successfully canceled.'),  
-    ('Appointment Reschedule Confirmation', 'Dear [name], your appointment for [service] has been rescheduled to [new date] at [new time].'),  
+    ('Appointment Cancellation', 'Hi [name], your appointment for [service] on [date] at [time] has been successfully canceled.'),  
+    ('Appointment Reschedule Confirmation', 'Dear [name], your appointment for [service] has been rescheduled to [date] at [time].'),  
     ('Appointment Completed', 'Hi [name], we hope you enjoyed your service! If you loved it, feel free to leave us a review or book your next appointment.'),  
     ('Service Review Request', 'Dear [name], thank you for choosing us for your [service]. We\'d love to hear your feedback! Please leave a review here: [link].'),  
     ('New Offers & Promotions', 'Hi [name], we\'re offering an exclusive [discount/promotion] on [services] this month! Book now and enjoy your special treatment.'),  
     ('Birthday Discount/Offer', 'Happy Birthday, [name]! As a special treat, we\'re offering you a [discount] on your next service. Book before [date] to redeem!'),  
     ('Payment Receipt', 'Hi [name], thank you for your payment of [amount] for [service]. Your appointment is confirmed for [date] at [time].'),  
     ('Missed Appointment', 'Hi [name], we noticed you missed your appointment for [service] on [date]. Please let us know if you\'d like to reschedule.'),  
-    ('Account Registration Confirmation', 'Welcome, [name]! Your account has been successfully created. We\'re excited to have you with us! Log in here: [link].'),  
+    ('Account Registration Confirmation', 'Welcome, [name]! Your account has been successfully created. We\'re excited to have you with us!'),  
     ('Password Reset', 'Hi [name], we received a request to reset your password. Click here to set a new one: [link]. If you didn\'t request this, please ignore this message.'),  
     ('New Appointment Booked', 'New appointment booked! Client: [name]. Service: [service]. Date: [date], Time: [time].'),  
     ('Appointment Canceled', '[name] has canceled their appointment for [service] on [date].'),  

@@ -4,6 +4,8 @@ require '../data/config.php';
 require '../scripts/validate_input.php';
 
 $add_user_confirmation = null;
+$error = null;
+echo "<script> console.log('add_user.php')</script>";
 // Check if the form has been submitted
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         echo "<script> console.log('test 1')</script>";
         // error massages
-        $error = null;
         $error = validatePassword($pwd,$error);  // not working
         $error = validateCell($cell,$error);
         $error = validateEmail($email,$error);

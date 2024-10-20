@@ -59,7 +59,7 @@ class serviceLogger
     $sessions=intval($_GET['sessions']);
     $serviceThumbnail=$_GET['serviceThumbnail'];
     {
-      $sql='insert into appointment values(appointmentID, "11","'.$date.' 21:00", "'.$date.' '. $time .'","'. $stylist .'",'. $sessions .', "Pending", "'. $service .'", "'.$serviceThumbnail.'",'.$_GET['servicePrice'].');';
+      $sql='insert into appointments values(appointmentID, "userName","'.$date.' 21:00", "'.$date.' '. $time .'","'. $stylist .'",'. $sessions .', "Unconfirmed", "'. $service .'", "'.$serviceThumbnail.'",'.$_GET['servicePrice'].');';
       //$sql="insert into appointments values(appointmentID, 'userName',". $date.", '20:27', 'approved','tyr');";//
       
       $result = mysqli_query($con,$sql);
@@ -75,12 +75,37 @@ class serviceLogger
   {
     //read the database for data needed for the service
 
+    //$key = intval($_GET['k']);
+    
+    $serverName="localhost";
+    $userName="root";
+    $password="12345";
+    $dbName="nails_by_dion_database";
+  
+    $con=mysqli_connect($serverName, $userName, $password, $dbName);
+  
+    if (!$con) 
+    {
+      die('Could not connect: ' . mysqli_connect_error($con));
+    }
+
+   // $userID=$_SESSION['user'];
+  
+    mysqli_select_db($con,$dbName);
+    $sql='select * from service where monthlyRevenue=13000;';
+    $result = mysqli_query($con,$sql);
+    
+    mysqli_select_db($con,$dbName);
+    //$records="select count(*) from appointments;";
+    //$result = mysqli_query($con,$result);
+    $row = mysqli_fetch_array($result);
+
     echo "
                 
-                <img src='../_images/". 3 .".jpg' width='150' height='150' class='gridImage' onclick='myController2.showPop(". 2 .")'>            
+                <img src='". $row['image'] ."' width='150' height='150' class='gridImage' onclick='myController2.showPop(". 2 .")'>            
                 <table class='labelTable'>
                     <tr >
-                        <td class='labelTableCell'><p id='sDetails' class='serviceLabel' ><p id='sDetails' class='serviceLabel'>"."big hybrid"."</p><p class='price'> R500.00</p></p></td class='gridBlock'></td>
+                        <td class='labelTableCell'><p id='sDetails' class='serviceLabel' ><p id='sDetails' class='serviceLabel'>".$row['serviceID']."</p><p class='price'> ".$row['price']."</p></p></td class='gridBlock'></td>
                         <td class='labelTableCellAdd'>
                             <div class='addButton' onclick='myController2.bookService(false, '../_images/". 2 .".jpg', '"."big hybrid"."')'>+</div>
                         </td>
@@ -108,7 +133,7 @@ class serviceLogger
 
 
 
-    $sql='delete from appointment where appointmentID='. $_GET['appointmentID'];
+    $sql='delete from appointments where appointmentID='. $_GET['appointmentID'];
     $result = mysqli_query($con,$sql);
   }
 }

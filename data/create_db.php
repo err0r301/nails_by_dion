@@ -112,7 +112,7 @@ function createAppointmentTable($conn) {
         stylist VARCHAR(30) NOT NULL,
         sessions INT NOT NULL DEFAULT 1,
         dateBooked DATETIME NOT NULL,
-        dateScheduled DATETIME NOT NULL,
+        scheduledDateTime DATETIME NOT NULL,
         /*serviceID INT NOT NULL,*/
         serviceID VARCHAR(100) NOT NULL,
         status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',
@@ -136,7 +136,7 @@ function createInventoryTable($conn) {
 function createNotificationTable($conn) {
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
-        dateTime_ DATETIME NOT NULL,
+        dateTime_ DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         message VARCHAR(300) NOT NULL,
         status_ VARCHAR(10) NOT NULL DEFAULT 'Unread',
         userID INT NOT NULL,

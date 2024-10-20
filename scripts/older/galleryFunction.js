@@ -4,8 +4,8 @@ class controller //services' page
 
             showPop(service)
             {
-                var dialogThumbnail=document.getElementById('gallerythumbnailDialog');
-                /*switch(service)
+                
+                switch(service)
                 {
                     case 1:
  
@@ -58,42 +58,14 @@ class controller //services' page
                     default:
                     
                     break;
-                }*/
+                }
 
-                dialogThumbnail.setAttribute('src',service);
+
                 popupBack.classList.add("show");
                 
                 
             }
 
-            scrollImage(direction)
-            {
-                var imageNumber=0;
-                var valueAssigned=Math.floor(Math.random()*14);
-                var imageValues=['1.jpg', '2.jpg', '3.jpg', '20.png', '21.jpg',
-                                 '4.png', '5.png', '6.png', '14.png', '16.png', 
-                                 '17.png', '19.png', '18.png', '7.png', ',8.png',
-                                 '23.jpeg', '24.jpeg', '12.jpg', '10.jpg', '11.jpg'];
-
-                switch(direction)
-                {
-                    
-                    case 'backward':
-                        var gallerythumbnailDialog=document.getElementById("gallerythumbnailDialog");
-                        gallerythumbnailDialog.setAttribute("src",'../_images/'+imageValues[valueAssigned]);
-                        break;
-                    
-                    case 'forward':
-                        var gallerythumbnailDialog=document.getElementById("gallerythumbnailDialog");
-                        gallerythumbnailDialog.setAttribute("src",'../_images/'+imageValues[valueAssigned]);
-                        break;
-                    
-                    default:
-
-                        break;
-                }
-
-            }
             
             bookService(data)
             {
@@ -160,7 +132,6 @@ class controller //services' page
 
                     var image=document.getElementById('galleryImage'+imageNumber);
                     image.setAttribute('src','../_images/'+imageValues[valueAssigned]);
-                    image.setAttribute('onclick',"myController.showPop('../_images/"+imageValues[valueAssigned]+"')")
                     imageNumber++;
                 }
             }

@@ -13,7 +13,7 @@
                 emailjs.init
                 (
                     {
-                        publicKey: "nzmkVas81KRUFbhs1",
+                        publicKey: "",
                     }
                 );
             }

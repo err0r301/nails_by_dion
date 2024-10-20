@@ -48,14 +48,15 @@ $key = intval($_GET['k']);
 
   echo "</table><br><br>";
   
- if(isset($_GET['notificationReply']))
+ // if($_GET['notificationReply']>0)
   {
     $notReply="'". $_GET['notificationReply'] ."'";
 
   //use objects
-  $sql='insert into notification values(notificationID, "2024-05-26 08:27",'. $notReply.', "approved", 14);';
+  $sql='insert into notification values(notificationID, "2024-05-26 08:27",'. $notReply.', "Unread", 12);';
     $result = mysqli_query($con,$sql);
   }
+
   $sql='delete from notification where message=""';
   mysqli_query($con,$sql);
     mysqli_close($con);
