@@ -375,7 +375,7 @@ body {
 .crud-btn:hover{
   opacity: 1;
   cursor: pointer;
-}
+} 
 
 .btn-add{
   color: white;
@@ -906,7 +906,7 @@ padding-bottom: 1%;
 }
 
 .team-card {
-  background-color: var(--light);
+  background-color: #f9f9f9;
   width: 200px;
   /*height: 270px;       Height with buttons included*/
   height: 250px;
@@ -1229,6 +1229,31 @@ background-color: #3270e4;
 }
 
 /* ---------- Services --------------*/
+
+/*.btn-container {
+  
+    display: flex;
+    flex-direction: row; /* Horizontal layout 
+  
+}*/
+
+
+.service-container {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  gap: 20px; /* Space between image and text */
+}
+
+#view-service-img {
+  width: 300px;
+  height: auto;
+}
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px; /* Limit the width of the text section */
+}
 .app-content {
   padding: 16px;
   height: 100%;
@@ -1602,6 +1627,8 @@ background-color: #3270e4;
 .inventory-header {
   background-color: var(--secondary);
   color: white;
+  font-weight: bold;
+  font-size: 15px;
   border-radius: 7px;
   /*border-bottom: 1px solid #ddd; */
 }
@@ -1611,9 +1638,9 @@ background-color: #3270e4;
   /*border-bottom: 1px solid #ddd; */
 }
 
-.inventory-row:hover {
-  background-color: #f1f1f1;
-}
+/*.inventory-row:hover {
+  background-color: #f1f1f1;  
+}*/
 
 .inventory-cell {
   display: flex;
@@ -1626,7 +1653,7 @@ background-color: #3270e4;
   gap: 10px;
 }
 
-.crud-btn {
+/*.crud-btn {
   border: none;
   background: none;
   cursor: pointer;
@@ -1634,15 +1661,17 @@ background-color: #3270e4;
 
 .crud-btn i {
   font-size: 16px;
-  color: #555;
+  color: #555;  
+}*/
+
+
+.crud-btn.p-btn-edit i:hover{
+  color: rgb(32, 197, 32);
 }
 
-.crud-btn.p-btn-edit i {
-  color: #555;
-}
 
-.crud-btn.p-btn-delete i {
-  color: #555;
+.crud-btn.p-btn-delete i:hover {
+  color: red;
 }
 
 .main-title {
