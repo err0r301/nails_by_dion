@@ -130,28 +130,28 @@ checkInsert($conn, $serviceQuery, "Service");
                 (19, 6, 'Jacob','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 4),
                 (20, 7, 'Vusi','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 5)";*/
 
-$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, scheduledDateTime, status_, serviceID, sessions) 
+$appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, scheduledDateTime, status_, serviceID, sessions, serviceThumbnail, servicePrice) 
                     VALUES  
-                    (1, 6, 'Dion','2024-10-01 10:32:00','2024-10-03 07:00:00', 'Pending', 'Classic Manicure', 1),
-                    (2, 7, 'Jane','2024-10-01 12:53:00','2024-10-03 08:00:00', 'Complete', 'Gel Manicure', 1),
-                    (3, 8, 'Mpho','2024-10-02 11:25:00','2024-10-03 10:00:00', 'Pending', 'French Manicure', 1),
-                    (4, 9, 'Jacob','2024-10-02 11:53:00','2024-10-03 12:00:00', 'Pending', 'Classic Pedicure', 1),
-                    (5, 10, 'Vusi','2024-10-02 14:13:00','2024-10-03 14:00:00', 'Cancelled', 'Gel Pedicure', 1),
-                    (6, 11, 'Dion','2024-10-03 16:34:00','2024-10-04 08:00:00', 'Pending', 'Paraffin Treatment', 2),
-                    (7, 12, 'Jane','2024-10-03 15:15:00','2024-10-04 10:00:00', 'Complete', 'Facial', 2),
-                    (8, 13, 'Mpho','2024-10-03 12:42:00','2024-10-04 11:00:00', 'Pending', 'Microdermabrasion', 2),
-                    (9, 14, 'Jacob','2024-10-03 13:35:00','2024-10-04 13:00:00', 'Cancelled', 'Chemical Peel', 2),
-                    (10, 6, 'Vusi','2024-10-03 16:59:00','2024-10-04 15:00:00', 'Pending', 'Haircut', 2),
-                    (11, 7, 'Dion','2024-10-04 17:24:00','2024-10-05 09:00:00', 'Complete', 'Hair Color', 3),
-                    (12, 8, 'Jane','2024-10-04 11:52:00','2024-10-05 11:00:00', 'Complete', 'Highlights', 3),
-                    (13, 9, 'Mpho','2024-10-04 18:13:00','2024-10-05 13:00:00', 'Complete', 'Blowout', 3),
-                    (14, 10, 'Jacob','2024-10-03 19:02:00','2024-10-05 15:00:00', 'Complete', 'Hair Extensions', 3),
-                    (15, 11, 'Vusi','2024-10-01 14:41:00','2024-10-05 17:00:00', 'Complete', 'Keratin Treatment', 3),
-                    (16, 12, 'Dion','2024-10-03 11:52:00','2024-10-06 08:00:00', 'Pending', 'Classic Manicure', 1),
-                    (17, 13, 'Jane','2024-10-01 14:31:00','2024-10-06 10:00:00', 'Pending', 'Gel Manicure', 1),
-                    (18, 14, 'Mpho','2024-10-04 12:14:00','2024-10-06 15:00:00', 'Pending', 'French Manicure', 1),
-                    (19, 6, 'Jacob','2024-10-05 04:35:00','2024-10-07 10:00:00', 'Cancelled', 'Classic Pedicure', 1),
-                    (20, 7, 'Vusi','2024-10-06 08:24:00','2024-10-07 13:00:00', 'Complete', 'Gel Pedicure', 1)";
+                    (1, 6, 'Dion','2024-10-01 10:32:00','2024-10-03 07:00:00', 'Pending', 'Classic', 1, '../_images/1.jpg',250),
+                    (2, 7, 'Jane','2024-10-01 12:53:00','2024-10-03 08:00:00', 'Complete', 'hybrid', 1, '../_images/2.jpg',350),
+                    (3, 8, 'Mpho','2024-10-02 11:25:00','2024-10-03 10:00:00', 'Pending', 'Strip Lash', 1, '../_images/3.jpg',300),
+                    (4, 9, 'Jacob','2024-10-02 11:53:00','2024-10-03 12:00:00', 'Pending', 'Volume', 1, '../_images/20.png',300),
+                    (5, 10, 'Vusi','2024-10-02 14:13:00','2024-10-03 14:00:00', 'Cancelled', 'Mega Vol', 1, '../_images/21.jpg',400),
+                    (6, 11, 'Dion','2024-10-03 16:34:00','2024-10-04 08:00:00', 'Pending', 'Nail Art', 2, '../_images/4.png',150),
+                    (7, 12, 'Jane','2024-10-03 15:15:00','2024-10-04 10:00:00', 'Complete', 'Acrylic', 2, '../_images/5.png',500),
+                    (8, 13, 'Mpho','2024-10-03 12:42:00','2024-10-04 11:00:00', 'Pending', 'Gel', 2, '../_images/6.png',750),
+                    (9, 14, 'Jacob','2024-10-03 13:35:00','2024-10-04 13:00:00', 'Cancelled', 'Silk', 2, '../_images/14.png',800),
+                    (10, 6, 'Vusi','2024-10-03 16:59:00','2024-10-04 15:00:00', 'Pending', 'Soak Off', 2, '../_images/16.png',400),
+                    (11, 7, 'Dion','2024-10-04 17:24:00','2024-10-05 09:00:00', 'Complete', 'Knotless', 3, '../_images/17.png',600),
+                    (12, 8, 'Jane','2024-10-04 11:52:00','2024-10-05 11:00:00', 'Complete', 'Small', 3, '../_images/19.png',800),
+                    (13, 9, 'Mpho','2024-10-04 18:13:00','2024-10-05 13:00:00', 'Complete', 'Medium', 3, '../_images/18.png',350),
+                    (14, 10, 'Jacob','2024-10-03 19:02:00','2024-10-05 15:00:00', 'Complete', 'Large', 3, '../_images/7.png',700),
+                    (15, 11, 'Vusi','2024-10-01 14:41:00','2024-10-05 17:00:00', 'Complete', 'Thick', 3, '../_images/8.png',850),
+                    (16, 12, 'Dion','2024-10-03 11:52:00','2024-10-06 08:00:00', 'Pending', 'Full Body', 1, '../_images/23.jpeg',600),
+                    (17, 13, 'Jane','2024-10-01 14:31:00','2024-10-06 10:00:00', 'Pending', 'Underarms', 1, '../_images/24.jpeg',800),
+                    (18, 14, 'Mpho','2024-10-04 12:14:00','2024-10-06 15:00:00', 'Pending', 'Bikini', 1, '../_images/12.jpg',350),
+                    (19, 6, 'Jacob','2024-10-05 04:35:00','2024-10-07 10:00:00', 'Cancelled', 'Brazilian', 1, '../_images/10.jpg',700),
+                    (20, 7, 'Vusi','2024-10-06 08:24:00','2024-10-07 13:00:00', 'Complete', 'Face', 1, '../_images/11.jpg',850)";
 
 
 checkInsert($conn, $appointmentQuery, "Appointment");

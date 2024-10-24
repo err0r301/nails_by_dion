@@ -23,15 +23,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($userID) || empty(/*$stylistID*/$stylist) || empty($bookedDateTime) || empty($scheduledDateTime) || empty($serviceID)) {
             $error = 'Please fill in all fields';
         } else {
+            // get thumbnail and price from services table
+            $query = "SELECT image, price FROM service WHERE serviceID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $serviceID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $service = $result->fetch_assoc();
+            $image = $service['image'];
+            $price = $service['price'];
             // Insert the appointment data into the database
             if ($userID == $client_email) {
-                $query = "INSERT INTO appointment (appointmentID,stylist, dateBooked, scheduledDateTime, serviceID, userEmail) VALUES (?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO appointment (appointmentID,stylist, dateBooked, scheduledDateTime, serviceID, userEmail, serviceThumbnail, servicePrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($query);
-                $stmt->bind_param("isssss", $appointmentID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID, $client_email);
+                $stmt->bind_param("issssssi", $appointmentID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID, $client_email, $image, $price);
             }else{
-                $query = "INSERT INTO appointment (appointmentID, userID,stylist, dateBooked, scheduledDateTime, serviceID) VALUES (?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO appointment (appointmentID, userID,stylist, dateBooked, scheduledDateTime, serviceID, serviceThumbnail, servicePrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($query);
-                $stmt->bind_param("iissss", $appointmentID, $userID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID);
+                $stmt->bind_param("iisssssi", $appointmentID, $userID, $stylist, $bookedDateTime, $scheduledDateTime, $serviceID, $image, $price);
             }
             
             $stmt->execute();
