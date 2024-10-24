@@ -17,10 +17,10 @@ function checkInsert($conn,$query, $dataName) {
 // Dummy data
 // insert multiple recodes of user data
 $pwd1 = password_hash('Admin@123', PASSWORD_DEFAULT);
-$pwd2 = password_hash('Jane@123', PASSWORD_DEFAULT);
-$pwd3 = password_hash('John@123', PASSWORD_DEFAULT);
-$pwd4 = password_hash('Jenny@123', PASSWORD_DEFAULT);
-$pwd5 = password_hash('James@123', PASSWORD_DEFAULT);
+$pwd2 = password_hash('Mpho@123', PASSWORD_DEFAULT);
+$pwd3 = password_hash('Vusi@123', PASSWORD_DEFAULT);
+$pwd4 = password_hash('Jacob@123', PASSWORD_DEFAULT);
+$pwd5 = password_hash('Jane@123', PASSWORD_DEFAULT);
 $pwd6 = password_hash('Emily@123', PASSWORD_DEFAULT);
 $pwd7 = password_hash('Oliver@123', PASSWORD_DEFAULT);
 $pwd8 = password_hash('Tester@123', PASSWORD_DEFAULT);
@@ -34,10 +34,10 @@ $pwd14 = password_hash('Lily@123', PASSWORD_DEFAULT);
 $userQuery = "INSERT INTO user (userID, name, email, cell, password, userType) 
                 VALUES 
                 (1,'Dion', 'admin@nailsbydion.com', '0781234567', '$pwd1', 'Admin'),
-                (2,'Jane', 'jane@test.com', '0782345678', '$pwd2', 'Admin'),
-                (3,'John', 'john@test.com', '0783456789', '$pwd3', 'Admin'),
-                (4,'Jenny', 'jenny@test.com', '0784567890', '$pwd4', 'Admin'),
-                (5,'James', 'james@test.com', '0785678901', '$pwd5', 'Admin'),
+                (2,'Mpho', 'mpho@test.com', '0782345678', '$pwd2', 'Admin'),
+                (3,'Vusi', 'vusi@test.com', '0783456789', '$pwd3', 'Admin'),
+                (4,'Jacob', 'jacob@test.com', '0784567890', '$pwd4', 'Admin'),
+                (5,'Jane', 'jane@test.com', '0785678901', '$pwd5', 'Admin'),
                 (6,'Emily', 'emily@test.com', '0786789012', '$pwd6', 'Client'),
                 (7,'Oliver', 'oliver@test.com', '0787890123', '$pwd7', 'Client'),
                 (8,'Tester', 'test@test.com', '0788901234', '$pwd8', 'Client'),
@@ -83,21 +83,26 @@ checkInsert($conn, $adminQuery, "Admin");
 
 $serviceQuery = "INSERT INTO service (serviceID, category, status, price, duration, description, image, monthlyRevenue) 
                 VALUES 
-                ('Classic Manicure', 'Manicure', 'Disabled', 250, '00:30:00', 'A classic manicure treatment to keep your nails looking and feeling great', '../_images/1.jpg', 8000),
-                ('Gel Manicure', 'Manicure', 'Disabled', 350, '00:45:00', 'A gel manicure treatment to keep your nails looking and feeling great', '../_images/2.jpg', 9000),
-                ('French Manicure', 'Manicure', 'Active', 300, '00:45:00', 'A French manicure treatment to keep your nails looking and feeling great', '../_images/3.jpg', 10000),
-                ('Classic Pedicure', 'Pedicure', 'Disabled', 300, '00:45:00', 'A classic pedicure treatment to keep your feet looking and feeling great', '../_images/4.png', 11000),
-                ('Gel Pedicure', 'Pedicure', 'Active', 400, '01:00:00', 'A gel pedicure treatment to keep your feet looking and feeling great', '../_images/5.png', 12000),
-                ('Paraffin Treatment', 'Pedicure', 'Active', 150, '00:30:00', 'A paraffin treatment to keep your feet looking and feeling great', '../_images/6.png', 13000),
-                ('Facial', 'Beauty Treatment', 'Disabled', 500, '01:30:00', 'A facial treatment to keep your skin looking and feeling great', '../_images/7.png', 14000),
-                ('Microdermabrasion', 'Beauty Treatment', 'Active', 750, '01:45:00', 'A microdermabrasion treatment to keep your skin looking and feeling great', '../_images/8.png', 15000),
-                ('Chemical Peel', 'Beauty Treatment', 'Active', 800, '02:00:00', 'A chemical peel treatment to keep your skin looking and feeling great', '../_images/9.png', 16000),
-                ('Haircut', 'Hair Beauty', 'Disabled', 400, '00:45:00', 'A haircut treatment to keep your hair looking and feeling great', '../_images/10.jpg', 17000),
-                ('Hair Color', 'Hair Beauty', 'Active', 600, '02:00:00', 'A hair color treatment to keep your hair looking and feeling great', '../_images/11.jpg', 18000),
-                ('Highlights', 'Hair Beauty', 'Active', 800, '02:30:00', 'A highlights treatment to keep your hair looking and feeling great', '../_images/12.jpg', 19000),
-                ('Blowout', 'Hair Beauty', 'Active', 350, '00:45:00', 'A blowout treatment to keep your hair looking and feeling great', '../_images/13.png', 20000),
-                ('Hair Extensions', 'Hair Beauty', 'Active', 700, '03:00:00', 'A hair extensions treatment to keep your hair looking and feeling great', '../_images/14.png', 21000),
-                ('Keratin Treatment', 'Hair Beauty', 'Disabled', 850, '03:30:00', 'A keratin treatment to keep your hair looking and feeling great', '../_images/15.png', 30000)";
+                ('Classic', 'Eyes', 'Disabled', 250, '00:30:00', 'A classic manicure treatment to keep your nails looking and feeling great', '../_images/1.jpg', 8000),
+                ('hybrid', 'Eyes', 'Disabled', 350, '00:45:00', 'A gel manicure treatment to keep your nails looking and feeling great', '../_images/2.jpg', 9000),
+                ('Strip Lash', 'Eyes', 'Active', 300, '00:45:00', 'A French manicure treatment to keep your nails looking and feeling great', '../_images/3.jpg', 10000),
+                ('Volume', 'Eyes', 'Disabled', 300, '00:45:00', 'A classic pedicure treatment to keep your feet looking and feeling great', '../_images/20.png', 11000),
+                ('Mega Vol', 'Eyes', 'Active', 400, '01:00:00', 'A gel pedicure treatment to keep your feet looking and feeling great', '../_images/21.jpg', 12000),
+                ('Nail Art', 'Nails', 'Active', 150, '00:30:00', 'A paraffin treatment to keep your feet looking and feeling great', '../_images/4.png', 13000),
+                ('Acrylic', 'Nails', 'Disabled', 500, '01:30:00', 'A facial treatment to keep your skin looking and feeling great', '../_images/5.png', 14000),
+                ('Gel', 'Nails', 'Active', 750, '01:45:00', 'A microdermabrasion treatment to keep your skin looking and feeling great', '../_images/6.png', 15000),
+                ('Silk', 'Nails', 'Active', 800, '02:00:00', 'A chemical peel treatment to keep your skin looking and feeling great', '../_images/14.png', 16000),
+                ('Soak Off', 'Nails', 'Disabled', 400, '00:45:00', 'A haircut treatment to keep your hair looking and feeling great', '../_images/16.png', 17000),
+                ('Knotless', 'Hair', 'Active', 600, '02:00:00', 'A hair color treatment to keep your hair looking and feeling great', '../_images/17.png', 18000),
+                ('Small', 'Hair', 'Active', 800, '02:30:00', 'A highlights treatment to keep your hair looking and feeling great', '../_images/19.png', 19000),
+                ('Medium', 'Hair', 'Active', 350, '00:45:00', 'A blowout treatment to keep your hair looking and feeling great', '../_images/18.png', 20000),
+                ('Large', 'Hair', 'Active', 700, '03:00:00', 'A hair extensions treatment to keep your hair looking and feeling great', '../_images/7.png', 21000),
+                ('Thick', 'Hair', 'Disabled', 850, '03:30:00', 'A keratin treatment to keep your hair looking and feeling great', '../_images/8.png', 30000),
+                ('Full Body', 'Waxing', 'Active', 600, '02:00:00', 'A hair color treatment to keep your hair looking and feeling great', '../_images/23.jpeg', 18000),
+                ('Underarms', 'Waxing', 'Active', 800, '02:30:00', 'A highlights treatment to keep your hair looking and feeling great', '../_images/24.jpeg', 19000),
+                ('Bikini', 'Waxing', 'Active', 350, '00:45:00', 'A blowout treatment to keep your hair looking and feeling great', '../_images/12.jpg', 20000),
+                ('Brazilian', 'Waxing', 'Active', 700, '03:00:00', 'A hair extensions treatment to keep your hair looking and feeling great', '../_images/10.jpg', 21000),
+                ('Face', 'Waxing', 'Disabled', 850, '03:30:00', 'A keratin treatment to keep your hair looking and feeling great', '../_images/11.jpg', 30000)";
 
 checkInsert($conn, $serviceQuery, "Service");
 
@@ -106,47 +111,47 @@ checkInsert($conn, $serviceQuery, "Service");
                 VALUES  
                 (1, 6, 'Dion','2022-01-01 10:32:00','2022-01-03 07:00:00', 'Pending', 1),
                 (2, 7, 'Jane','2022-01-01 12:53:00','2022-01-03 08:00:00', 'Complete', 2),
-                (3, 8, 'John','2022-01-02 11:25:00','2022-01-03 10:00:00', 'Pending', 3),
-                (4, 9, 'Jenny','2022-01-02 11:53:00','2022-01-03 12:00:00', 'Pending', 4),
-                (5, 10, 'James','2022-01-02 14:13:00','2022-01-03 14:00:00', 'Cancelled', 5),
+                (3, 8, 'Mpho','2022-01-02 11:25:00','2022-01-03 10:00:00', 'Pending', 3),
+                (4, 9, 'Jacob','2022-01-02 11:53:00','2022-01-03 12:00:00', 'Pending', 4),
+                (5, 10, 'Vusi','2022-01-02 14:13:00','2022-01-03 14:00:00', 'Cancelled', 5),
                 (6, 11, 'Dion','2022-01-03 16:34:00','2022-01-04 08:00:00', 'Pending', 6),
                 (7, 12, 'Jane','2022-01-03 15:15:00','2022-01-04 10:00:00', 'Complete', 7),
-                (8, 13, 'John','2022-01-03 12:42:00','2022-01-04 11:00:00', 'Pending', 8),
-                (9, 14, 'Jenny','2022-01-03 13:35:00','2022-01-04 13:00:00', 'Cancelled', 9),
-                (10, 6, 'James','2022-01-03 16:59:00','2022-01-04 15:00:00', 'Pending', 10),
+                (8, 13, 'Mpho','2022-01-03 12:42:00','2022-01-04 11:00:00', 'Pending', 8),
+                (9, 14, 'Jacob','2022-01-03 13:35:00','2022-01-04 13:00:00', 'Cancelled', 9),
+                (10, 6, 'Vusi','2022-01-03 16:59:00','2022-01-04 15:00:00', 'Pending', 10),
                 (11, 7, 'Dion','2022-01-04 17:24:00','2022-01-05 09:00:00', 'Complete', 11),
                 (12, 8, 'Jane','2022-01-04 11:52:00','2022-01-05 11:00:00', 'Complete', 12),
-                (13, 9, 'John','2022-01-04 18:13:00','2022-01-05 13:00:00', 'Complete', 13),
-                (14, 10, 'Jenny','2022-01-03 19:02:00','2022-01-05 15:00:00', 'Complete', 14),
-                (15, 11, 'James','2022-01-01 14:41:00','2022-01-05 17:00:00', 'Complete', 15),
+                (13, 9, 'Mpho','2022-01-04 18:13:00','2022-01-05 13:00:00', 'Complete', 13),
+                (14, 10, 'Jacob','2022-01-03 19:02:00','2022-01-05 15:00:00', 'Complete', 14),
+                (15, 11, 'Vusi','2022-01-01 14:41:00','2022-01-05 17:00:00', 'Complete', 15),
                 (16, 12, 'Dion','2022-01-03 11:52:00','2022-01-06 08:00:00', 'Pending', 1),
                 (17, 13, 'Jane','2022-01-01 14:31:00','2022-01-06 10:00:00', 'Pending', 2),
-                (18, 14, 'John','2022-01-04 12:14:00','2022-01-06 15:00:00', 'Pending', 3),
-                (19, 6, 'Jenny','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 4),
-                (20, 7, 'James','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 5)";*/
+                (18, 14, 'Mpho','2022-01-04 12:14:00','2022-01-06 15:00:00', 'Pending', 3),
+                (19, 6, 'Jacob','2022-01-05 04:35:00','2022-01-07 10:00:00', 'Cancelled', 4),
+                (20, 7, 'Vusi','2022-01-06 08:24:00','2022-01-07 13:00:00', 'Complete', 5)";*/
 
 $appointmentQuery = "INSERT INTO appointment (appointmentID, userID, stylist, dateBooked, scheduledDateTime, status_, serviceID, sessions) 
                     VALUES  
                     (1, 6, 'Dion','2024-10-01 10:32:00','2024-10-03 07:00:00', 'Pending', 'Classic Manicure', 1),
                     (2, 7, 'Jane','2024-10-01 12:53:00','2024-10-03 08:00:00', 'Complete', 'Gel Manicure', 1),
-                    (3, 8, 'John','2024-10-02 11:25:00','2024-10-03 10:00:00', 'Pending', 'French Manicure', 1),
-                    (4, 9, 'Jenny','2024-10-02 11:53:00','2024-10-03 12:00:00', 'Pending', 'Classic Pedicure', 1),
-                    (5, 10, 'James','2024-10-02 14:13:00','2024-10-03 14:00:00', 'Cancelled', 'Gel Pedicure', 1),
+                    (3, 8, 'Mpho','2024-10-02 11:25:00','2024-10-03 10:00:00', 'Pending', 'French Manicure', 1),
+                    (4, 9, 'Jacob','2024-10-02 11:53:00','2024-10-03 12:00:00', 'Pending', 'Classic Pedicure', 1),
+                    (5, 10, 'Vusi','2024-10-02 14:13:00','2024-10-03 14:00:00', 'Cancelled', 'Gel Pedicure', 1),
                     (6, 11, 'Dion','2024-10-03 16:34:00','2024-10-04 08:00:00', 'Pending', 'Paraffin Treatment', 2),
                     (7, 12, 'Jane','2024-10-03 15:15:00','2024-10-04 10:00:00', 'Complete', 'Facial', 2),
-                    (8, 13, 'John','2024-10-03 12:42:00','2024-10-04 11:00:00', 'Pending', 'Microdermabrasion', 2),
-                    (9, 14, 'Jenny','2024-10-03 13:35:00','2024-10-04 13:00:00', 'Cancelled', 'Chemical Peel', 2),
-                    (10, 6, 'James','2024-10-03 16:59:00','2024-10-04 15:00:00', 'Pending', 'Haircut', 2),
+                    (8, 13, 'Mpho','2024-10-03 12:42:00','2024-10-04 11:00:00', 'Pending', 'Microdermabrasion', 2),
+                    (9, 14, 'Jacob','2024-10-03 13:35:00','2024-10-04 13:00:00', 'Cancelled', 'Chemical Peel', 2),
+                    (10, 6, 'Vusi','2024-10-03 16:59:00','2024-10-04 15:00:00', 'Pending', 'Haircut', 2),
                     (11, 7, 'Dion','2024-10-04 17:24:00','2024-10-05 09:00:00', 'Complete', 'Hair Color', 3),
                     (12, 8, 'Jane','2024-10-04 11:52:00','2024-10-05 11:00:00', 'Complete', 'Highlights', 3),
-                    (13, 9, 'John','2024-10-04 18:13:00','2024-10-05 13:00:00', 'Complete', 'Blowout', 3),
-                    (14, 10, 'Jenny','2024-10-03 19:02:00','2024-10-05 15:00:00', 'Complete', 'Hair Extensions', 3),
-                    (15, 11, 'James','2024-10-01 14:41:00','2024-10-05 17:00:00', 'Complete', 'Keratin Treatment', 3),
+                    (13, 9, 'Mpho','2024-10-04 18:13:00','2024-10-05 13:00:00', 'Complete', 'Blowout', 3),
+                    (14, 10, 'Jacob','2024-10-03 19:02:00','2024-10-05 15:00:00', 'Complete', 'Hair Extensions', 3),
+                    (15, 11, 'Vusi','2024-10-01 14:41:00','2024-10-05 17:00:00', 'Complete', 'Keratin Treatment', 3),
                     (16, 12, 'Dion','2024-10-03 11:52:00','2024-10-06 08:00:00', 'Pending', 'Classic Manicure', 1),
                     (17, 13, 'Jane','2024-10-01 14:31:00','2024-10-06 10:00:00', 'Pending', 'Gel Manicure', 1),
-                    (18, 14, 'John','2024-10-04 12:14:00','2024-10-06 15:00:00', 'Pending', 'French Manicure', 1),
-                    (19, 6, 'Jenny','2024-10-05 04:35:00','2024-10-07 10:00:00', 'Cancelled', 'Classic Pedicure', 1),
-                    (20, 7, 'James','2024-10-06 08:24:00','2024-10-07 13:00:00', 'Complete', 'Gel Pedicure', 1)";
+                    (18, 14, 'Mpho','2024-10-04 12:14:00','2024-10-06 15:00:00', 'Pending', 'French Manicure', 1),
+                    (19, 6, 'Jacob','2024-10-05 04:35:00','2024-10-07 10:00:00', 'Cancelled', 'Classic Pedicure', 1),
+                    (20, 7, 'Vusi','2024-10-06 08:24:00','2024-10-07 13:00:00', 'Complete', 'Gel Pedicure', 1)";
 
 
 checkInsert($conn, $appointmentQuery, "Appointment");

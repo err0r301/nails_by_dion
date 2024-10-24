@@ -115,7 +115,9 @@ function createAppointmentTable($conn) {
         scheduledDateTime DATETIME NOT NULL,
         serviceID VARCHAR(100) NOT NULL,
         userEmail VARCHAR(100),
-        status_ VARCHAR(20) NOT NULL DEFAULT 'Pending'
+        status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',
+        serviceThumbnail VARCHAR(20),
+        servicePrice INT
         /*FOREIGN KEY (userID) REFERENCES user(userID)*/
     )";
 

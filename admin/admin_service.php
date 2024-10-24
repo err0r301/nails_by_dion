@@ -40,10 +40,10 @@
                     <div class="form-group">
                         <label for="category">Category:</label>
                         <select name="category" class="form-selector" id="add-category">
-                            <option value="Manicure">Manicure</option>
-                            <option value="Pedicure">Pedicure</option>
-                            <option value="Beauty Treatment">Beauty Treatment</option>
-                            <option value="Hair Beauty">Hair Beauty</option>
+                            <option value="Eyes">Eyes</option>
+                            <option value="Nails">Nails</option>
+                            <option value="Hair">Hair</option>
+                            <option value="Waxing">Waxing</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -90,11 +90,11 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="edit-service-category">
-                            <option value="Manicure">Manicure</option>
-                            <option value="Pedicure">Pedicure</option>
-                            <option value="Beauty Treatment">Beauty Treatment</option>
-                            <option value="Hair Beauty">Hair Beauty</option>
+                        <select name="category" class="form-selector" id="add-category">
+                            <option value="Eyes">Eyes</option>
+                            <option value="Nails">Nails</option>
+                            <option value="Hair">Hair</option>
+                            <option value="Waxing">Waxing</option>
                         </select>
                     </div>
                     <div class="form-group">
