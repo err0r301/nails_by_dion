@@ -4,6 +4,7 @@ require '../data/config.php';
 require '../scripts/validate_input.php';
 
 $add_user_confirmation = null;
+$success = null;
 $error = null;
 echo "<script> console.log('add_user.php')</script>";
 // Check if the form has been submitted
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = strtolower($email);
 
             // Insert the user data into the database
-            $query = "INSERT INTO user (userID, name, email, cell, password, userType   ) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO user (userID, name, email, cell, password, userType) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("isssss", $userID, $name, $email, $cell, $password_hash, $userType);
             $stmt->execute();

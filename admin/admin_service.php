@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="add-category">
+                        <select name="category" class="form-selector" id="edit-service-category">
                             <option value="Eyes">Eyes</option>
                             <option value="Nails">Nails</option>
                             <option value="Hair">Hair</option>
@@ -118,9 +118,10 @@
                             maxlength="150" required></textarea>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="originImage" id="edit-service-originImage">
                         <label class="upload-image" for="edit-service-image">Upload Image</label>
                         <input type="file" name="image" class="upload_img" id="edit-service-image"
-                            accept="image/JPEG, image/PNG, image/JPG" required>
+                            accept="image/JPEG, image/PNG, image/JPG">
                     </div>
                     <button class="blue-btn" type="submit" name="add" value="Add">Update</button>
                     <button type="reset">Reset</button>
@@ -288,6 +289,7 @@
             document.getElementById('edit-service-duration').value = data.duration;
             console.log("js function : " + data.duration);
             document.getElementById('edit-service-description').value = data.description;
+            document.getElementById('edit-service-originImage').value = data.image;
         }
     }
     </script>

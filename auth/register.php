@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="/../styles/main_styles.css"> 
+    <script src="../scripts/popup.js"></script>
     <?php if ($error != null){?>
         <style>
             .error{
@@ -55,5 +56,18 @@
         </div>
     </div>
 </body>
+<?php 
+    if ($add_user_confirmation != null){
+        $confirmationID = 'add_user_confirmation';
+        if ($add_user_confirmation == true) {
+            $confirmationMessage = 'The registration was successful! Please sign in.';
+            $confirmationImage = '../_images/tick.png';
+        } else {
+            $confirmationMessage = 'The registration was unsuccessful!.';
+            $confirmationImage = '../_images/cross.png';
+        }
+        require_once '../partial/popup.php';
+    }
+?>
 </html>
 

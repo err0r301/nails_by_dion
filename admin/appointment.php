@@ -181,7 +181,7 @@
                         <select name="edit_appointment_status" id="edit_appointment_status" class="form-selector status">
                             <option value="Pending">Pending</option>
                             <option value="Confirmed">Confirmed</option>
-                            <option value="Complete">Complete</option>
+                            <option value="Complete">Complete</option> 
                             <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
