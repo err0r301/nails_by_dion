@@ -139,6 +139,26 @@ body {
   color: rgb(38, 38, 217);
 }
 
+.form-control {
+  width: 300px;
+  padding: 5px;
+  border: 1px solid var(--text);
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.description-box {
+  height: 70px;
+}
+
+.popup .form-group input,
+.popup .form-group select,
+.popup .form-group textarea {
+  width: 100%; /* Use the full width defined in the form-control class */
+}
+
+
 /* --------- Logout ---------- */
 
 #logout-buttons{
@@ -303,3 +323,4 @@ background-color:rgb(19, 165, 19);
 .blue-btn:hover{
   background-color: #3270e4;
 }
+

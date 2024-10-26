@@ -33,46 +33,54 @@
                 <div class="close-btn" onclick="togglePopup_add('popup-add-service')">&times;</div>
                 <h2>Add Service</h2>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" required>
+                    <div class="service-container">
+                        <div class="service-details">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category:</label>
+                                <select name="category" class="form-selector form-control" id="add-category">
+                                    <option value="Eyes">Eyes</option>
+                                    <option value="Nails">Nails</option>
+                                    <option value="Hair">Hair</option>
+                                    <option value="Waxing">Waxing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select name="status" class="form-selector form-control" id="add-status">
+                                    <option value="Active">Active</option>
+                                    <option value="Disabled">Disabled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" name="price" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="service-details">
+                            <div class="form-group">
+                                <label for="duration">Duration:</label>
+                                <input type="time" name="duration" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea name="description" id="add-service-description" class="description-box form-control"
+                                    maxlength="150" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="upload-image" for="service-image">Upload Image</label>
+                                <input type="file" name="image" class="upload_img" id="service-image"
+                                    accept="image/JPEG, image/PNG, image/JPG" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="add-category">
-                            <option value="Eyes">Eyes</option>
-                            <option value="Nails">Nails</option>
-                            <option value="Hair">Hair</option>
-                            <option value="Waxing">Waxing</option>
-                        </select>
+                    <div class="service-buttons">
+                        <button class="green-btn" type="submit" name="add" value="Add">Add</button>
+                        <button type="reset">Reset</button>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status:</label>
-                        <select name="status" class="form-selector" id="add-status">
-                            <option value="Active">Active</option>
-                            <option value="Disabled">Disabled</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price:</label>
-                        <input type="number" name="price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duration:</label>
-                        <input type="time" name="duration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea name="description" id="add-service-description" class="description-box"
-                            maxlength="150" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="upload-image" for="service-image">Upload Image</label>
-                        <input type="file" name="image" class="upload_img" id="service-image"
-                            accept="image/JPEG, image/PNG, image/JPG" required>
-                    </div>
-                    <button class="green-btn" type="submit" name="add" value="Add">Add</button>
-                    <button type="reset">Reset</button>
                 </form>
             </div>
         </div>
@@ -83,48 +91,56 @@
                 <div class="close-btn" onclick="togglePopup('popup-edit-service')">&times;</div>
                 <h2>Edit Service</h2>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="edit-service-id" id="edit-service-id">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" id="edit-service-name" required>
+                    <div class="service-container">
+                        <div class="service-details">
+                            <input type="hidden" name="edit-service-id" id="edit-service-id">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" id="edit-service-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category:</label>
+                                <select name="category" class="form-selector form-control" id="edit-service-category">
+                                    <option value="Eyes">Eyes</option>
+                                    <option value="Nails">Nails</option>
+                                    <option value="Hair">Hair</option>
+                                    <option value="Waxing">Waxing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select name="status" class="form-selector form-control" id="edit-service-status">
+                                    <option value="Active">Active</option>
+                                    <option value="Disabled">Disabled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" name="price" class="form-control" id="edit-service-price" required>
+                            </div>
+                        </div>
+                        <div class="service-details">
+                            <div class="form-group">
+                                <label for="duration">Duration:</label>
+                                <input type="time" name="duration" class="form-control" id="edit-service-duration" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea name="description" id="edit-service-description" class="description-box form-control"
+                                    maxlength="150" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="originImage" id="edit-service-originImage">
+                                <label class="upload-image" for="edit-service-image">Upload Image</label>
+                                <input type="file" name="image" class="upload_img" id="edit-service-image"
+                                    accept="image/JPEG, image/PNG, image/JPG">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select name="category" class="form-selector" id="edit-service-category">
-                            <option value="Eyes">Eyes</option>
-                            <option value="Nails">Nails</option>
-                            <option value="Hair">Hair</option>
-                            <option value="Waxing">Waxing</option>
-                        </select>
+                    <div class="service-buttons">
+                        <button class="blue-btn" type="submit" name="add" value="Add">Update</button>
+                        <button type="reset">Reset</button>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status:</label>
-                        <select name="status" class="form-selector" id="edit-service-status">
-                            <option value="Active">Active</option>
-                            <option value="Disabled">Disabled</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price:</label>
-                        <input type="number" name="price" id="edit-service-price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duration:</label>
-                        <input type="time" name="duration" id="edit-service-duration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea name="description" id="edit-service-description" class="description-box"
-                            maxlength="150" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" name="originImage" id="edit-service-originImage">
-                        <label class="upload-image" for="edit-service-image">Upload Image</label>
-                        <input type="file" name="image" class="upload_img" id="edit-service-image"
-                            accept="image/JPEG, image/PNG, image/JPG">
-                    </div>
-                    <button class="blue-btn" type="submit" name="add" value="Add">Update</button>
-                    <button type="reset">Reset</button>
                 </form>
             </div>
         </div>
@@ -159,11 +175,11 @@
                         <strong>Service description</strong>
                         <p id="view-service-description" style="width: 300px; margin:5px 10px">Service description</p>
                         <div class="btn-container">
-                        <button class="blue-btn" name="edit" value="Edit"
-                            onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
-                        <button class="red-btn" name="delete" value="Delete"
-                            onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
-</div>
+                            <button class="blue-btn" name="edit" value="Edit"
+                                onclick="togglePopup('popup-edit-service'); togglePopup('popup-show-service');">Edit</button>
+                            <button class="red-btn" name="delete" value="Delete"
+                                onclick="togglePopup('popup-delete-service'); togglePopup('popup-show-service');">Delete</button>
+                        </div>
                     </div>
                 </div>
                 <!--<div class="rightColumn">
