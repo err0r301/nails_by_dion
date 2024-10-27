@@ -11,11 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $currentPwd = $_POST['current_password'];   
         $newPwd = $_POST['new_password'];   
         $confirmPwd = $_POST['confirm_password'];
-        echo "<script> console.log('pwd 2')</script>";
         // Validate the form data
         $pwd_error = null;
         $pwd_error = validatePassword($newPwd, $pwd_error);
+        echo "<script> console.log('pwd 2. error : $pwd_error')</script>";
         if (is_null($pwd_error)) {
+            echo "<script> console.log('pwd 2.5')</script>";
             // Check if the current password is correct
             $query  = "SELECT password FROM user WHERE userID = ?";
             $stmt = $conn->prepare($query);
@@ -54,13 +55,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 } else {
                     echo "<script> console.log('Current password is incorrect.')</script>";
+                    $edit_userPwd_confirmation = 'false';
+                    $pwd_error = "The Current password which you entered is incorrect.";
                 }
             }else{
                 echo "<script> console.log('Failed to update password.')</script>";
             }
             $stmt->close();
         }else{
-            $edit_userPwd_confirmation = false;
+            $edit_userPwd_confirmation = 'false';
+            if (is_null($edit_userPwd_confirmation)) {
+                echo "<script> console.log('pwd failed : $pwd_error error bool : $edit_userPwd_confirmation')</script>";
+            }
         }
     }
     $conn->close();

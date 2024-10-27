@@ -1,4 +1,6 @@
 <?php 
+    error_reporting(E_ALL);  
+    ini_set('display_errors', 1);
     $page = 'register';
     require ('../scripts/user_scripts/add_user.php');
 ?>
@@ -62,6 +64,7 @@
         if ($add_user_confirmation == true) {
             $confirmationMessage = 'The registration was successful! Please sign in.';
             $confirmationImage = '../_images/tick.png';
+            $link = 'login.php';
         } else {
             $confirmationMessage = 'The registration was unsuccessful!.';
             $confirmationImage = '../_images/cross.png';

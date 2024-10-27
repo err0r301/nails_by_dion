@@ -9,6 +9,12 @@
             </div>
         </div>
         <h2><?php echo $confirmationMessage?></h2>
-        <button class="confirm-btn" onclick="togglePopup('<?php echo $confirmationID?>')">OK</button>
+        <?php if (isset($link)) { ?>
+            <a href="<?php echo $link?>">
+                <button class="confirm-btn" onclick="togglePopup('<?php echo $confirmationID?>')">OK</button>
+            </a>
+        <?php }else{?>
+            <button class="confirm-btn" onclick="togglePopup('<?php echo $confirmationID?>')">OK</button>
+        <?php }?>
     </div>
 </div>

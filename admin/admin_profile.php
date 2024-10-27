@@ -118,11 +118,11 @@ if ($edit_userInfo_confirmation != null){
 
 if ($edit_userPwd_confirmation != null){
     $confirmationID = 'confirmation_userPwd';
-    if ($edit_userPwd_confirmation == true) {
+    if ($edit_userPwd_confirmation == 'true') {
         $confirmationMessage = 'User password updated successfully!';
         $confirmationImage = '../_images/tick.png';
     } else {
-        $confirmationMessage = 'Failed to update user password.';
+        $confirmationMessage = 'Password Update Failed. '.$pwd_error;
         $confirmationImage = '../_images/cross.png';
     }
     require_once '../partial/popup.php';

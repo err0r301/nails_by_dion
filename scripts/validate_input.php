@@ -21,18 +21,19 @@ function validateEmail($email,$error) {
 function validateCell($cell,$error) {
     if (!empty(trim($cell))) {
         if (!preg_match("/^[0-9]*$/", $cell)) {
-            return "no characters allowed";
+            return "cell no. must only contain numbers 0-9";
         } elseif (strlen($cell) != 10) {
             return "cell no. must be 10 digits";
         } elseif (!is_numeric($cell)) {
             return "Invalid cell number";
         } else {
-            return null;
+            return $error;
         }
     }
 
     return $error;
 }
+
 
 function validatePassword($password,$error) {
     $pwdL = strlen($password);
