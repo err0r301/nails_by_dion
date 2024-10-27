@@ -33,7 +33,7 @@
             </div>
             <form  action="" method="POST" class="form">
                 <div class="input-field">
-                    <input id="email" type="email" name="email" placeholder="" autocomplete="off"/>
+                    <input id="email" type="email" name="email" placeholder="" />
                     <label for="email">Email</label>
                 </div>
 

@@ -122,7 +122,14 @@ body {
   border: solid 1px var(--text);
 }
 
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  font-size: 1rem;
+}
+
 .input-field input:focus ~ label,
+.input-field input:valid ~ label,
 .input-field input:not(:placeholder-shown) ~ label {
   transform: translateY(-51%) translateX(-10px) scale(0.8);
   background: linear-gradient(180deg, var(--background), var(--light));
@@ -133,6 +140,8 @@ body {
   border: none;
   border-radius: 100px;
 }
+
+
 
 .link{
   text-decoration: none;
