@@ -18,7 +18,7 @@
 
 
     <style>
-        .report-container {
+        .report-page {
             max-width: 800px;
             margin: 20px auto 0 auto;
             padding: 100px;
@@ -78,39 +78,65 @@
                 <button class="app-content-headerButton" onclick="generatePDF()">Download</button>
             </div>
             <div class="report-container">
-                <div style="text-align: center;">
-                    <h1>Nails By Dion</h1>
-                    <div class="report-header">
-                        <img src="../_images/logo.png" alt="Salon Logo" style="width: 200px;">
-                        <div>
-                            <h3><?php echo date("F Y");?></h3>
-                            <p>Sales this month: R <?= $report['sales'] ?></p>
-                            <p>Appointments this month: <?= $report['appointments']?></p>
-                            <p>Number of customers: <?= $report['users'] ?></p>
+                <div class="report-page">
+                    <div style="text-align: center;">
+                        <h1>Nails By Dion</h1>
+                        <div class="report-header">
+                            <img src="../_images/logo.png" alt="Salon Logo" style="width: 200px;">
+                            <div>
+                                <h3><?php echo date("F Y");?></h3>
+                                <p>Sales this month: R <?= $report['sales'] ?></p>
+                                <p>Appointments this month: <?= $report['appointments']?></p>
+                                <p>Number of customers: <?= $report['users'] ?></p>
+                            </div>
+                            
                         </div>
                         
                     </div>
-                    
+
+                    <h2>Services Report</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Revenue</th>
+                        </tr>
+
+                        <?php   
+                            // Ensure $report['services'] is defined and is an array before using it  
+                            if (isset($report['services']) && is_array($report['services'])) {  
+                                $limit = min(13, count($report['services'])); // Determine the lesser between 13 and the count of services  
+                                for ($x = 0; $x < $limit; $x++): ?>  
+                                    <tr>  
+                                        <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>  
+                                        <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>  
+                                        <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>  
+                                        <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>  
+                                    </tr>  
+                                <?php endfor;?>
+                    </table>
                 </div>
 
-                <h2>Services Report</h2>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Revenue</th>
-                    </tr>
-
-                    <?php foreach ($report['services'] as $service): ?>
-                        <tr>
-                            <td><?= $service['name'] ?></td>
-                            <td><?= $service['category'] ?></td>
-                            <td>R <?= $service['price'] ?></td>
-                            <td>R <?= $service['monthlyRevenue'] ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
+                <div class="report-page">
+                    <table>
+                        
+                                
+                                <?php for ($x = $limit; $x < count($report['services']); $x++): ?>  
+                                    <tr>  
+                                        <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>  
+                                        <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>  
+                                        <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>  
+                                        <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>  
+                                    </tr>  
+                                <?php endfor;
+                            } else {  
+                                // Optional: Display a message if there are no services  
+                                echo "<tr><td colspan='4'>No services available.</td></tr>";  
+                            }  
+                        ?>  
+                    </table>
+                </div>
             </div>
             
         </main>
