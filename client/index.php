@@ -25,12 +25,11 @@
     <?php /*$page = 'home'; include '../partial/header.php';*/?>
     <?php $page = 'services'; include '../partial/header.php';?>
     <br>
-	<button onclick="myController2.addService()">Add Service</button>
     <div id='texter'></div>
     
     <div id="bill" onclick="myController2.showPopBill(1)"> Bill</div>
     <div id="serviceList">
-
+    
     <div id='noticeBox' class='notice'>
         <p id='externalMsg'class='noticeMessage'></p>
     </div>
@@ -50,79 +49,9 @@
         </tr>
     </table>
 
-    <table id='eyebrowsTable' class=serviceTable>
-        <tr>
-            <td class='gridBlockImage'>
-                <div class='store'>
-                    <img src="../_images/1.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(1)">           
-                    
-                </div>
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Classic</p><p class='price'> R400.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'>
-                            <div class='addButton' onclick='myController2.bookService(false,"../_images/1.jpg", "Classic")'>+</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        
-                        </td>
-                    </tr>
-                </table>
-            </td>
+    <div id='serviceHolder1'> servicer holder1
 
-            
-            
-            <td class='gridBlockImage'>
-                <img src="../_images\2.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(2)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Hybrid</p><p class='price'> R500.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'>
-                            <div class='addButton' onclick='myController2.bookService(false, "../_images/2.jpg", "Hybrid")'>+</div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-
-            <td class='gridBlockImage'>
-                <img src="../_images\3.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(3)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Strip Lash</p><p class='price'> R450.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/3.jpg", "Strip Lash")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-
-            <td class='gridBlockImage'>
-                <img src="../_images\20.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(4)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Volume</p><p class='price'> R600.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/20.png", "Volume")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-            <td class='gridBlockImage'>
-                <img src="../_images\21.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(5)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Mega Vol</p><p class='price'> R800.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/21.jpg", "Mega Vol")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-
-        
-            </td class='gridBlock'>
-        </tr>
-       
-    </table>
+    </div>
 
     <table>
         <tr>
@@ -138,71 +67,11 @@
             </td>
         </tr>
     </table>
-    <table class=serviceTable>
-        <tr>
-            <td class='gridBlockImage'>
-                <img src="../_images\4.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(6)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'>
-                            <p id="sDetails" class='serviceLabel' >
-                                <p id="sDetails" class='serviceLabel'>Nail Art</p>
-                                <p class='price'> R30.00</p>
-                            </p>
-                            
-                        </td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/4.png", "Nail Art")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-            
-            <td class='gridBlockImage'>
-                <img src="../_images\5.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(7)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Acrylic</p><p class='price'> R420.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/5.png", "Acrylic")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\6.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(8)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Gel</p><p class='price'> R370.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/6.png", "Gel")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
+    <div id='serviceHolder2'> servicer holder2
 
+    </div>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\14.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(9)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Silk</p><p class='price'> R390.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/14.png", "Silk")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-            <td class='gridBlockImage'>
-                <img src="../_images\16.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(10)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Soak off</p><p class='price'> R130.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/16.png", "Soak off")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-
-        
-            </td class='gridBlock'>
-        </tr>
-       
-    </table>
     
     <table>
         <tr>
@@ -218,65 +87,11 @@
             </td>
         </tr>
     </table>
-    <table class=serviceTable>
-        <tr>
-            <td class='gridBlockImage'>
-                <img src="../_images\17.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(11)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Knotless</p><p class='price'> R850.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/17.png", "Knotless")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-            
-            <td class='gridBlockImage'>
-                <img src="../_images\19.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(12)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Small</p><p class='price'> R900.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/19.png", "Small")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\18.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(13)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Medium</p><p class='price'> R800.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/18.png", "Medium")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
+    <div id='serviceHolder3'> servicer holder3
 
+    </div>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\7.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(14)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Large</p><p class='price'> R750.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/7.png", "Large")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-            <td class='gridBlockImage'>
-                <img src="../_images\8.png" width="150" height="150" class='gridImage' onclick="myController2.showPop(15)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Thick</p><p class='price'> R700.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/8.png", "Thick")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-
-        
-            </td class='gridBlock'>
-        </tr>
-       
-    </table>
 
     <table>
         <tr>
@@ -292,74 +107,22 @@
             </td>
         </tr>
     </table>
-    <table class=serviceTable>
-        <tr>
-            <td class='gridBlockImage'>
-                <img src="../_images\23.jpeg" width="150" height="150" class='gridImage' onclick="myController2.showPop(16)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Full Body</p><p class='price'> R110.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/23.jpeg", "Full Body")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-            
-            <td class='gridBlockImage'>
-                <img src="../_images\24.jpeg" width="150" height="150" class='gridImage' onclick="myController2.showPop(17)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Underarms</p><p class='price'> R120.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/24.jpeg", "Underarms")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\12.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(18)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Bikini</p><p class='price'> R160.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/12.jpg", "Bikini")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
+    <div id='serviceHolder4'> servicer holder4
+
+    </div>
+
+    </div>
 
 
-            <td class='gridBlockImage'>
-                <img src="../_images\10.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(19)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Brazilian</p><p class='price'> R335.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/10.jpg", "Brazilian")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
 
-            <td class='gridBlockImage'>
-                <img src="../_images\11.jpg" width="150" height="150" class='gridImage' onclick="myController2.showPop(20)">            
-                <table class='labelTable'>
-                    <tr >
-                        <td class='labelTableCell'><p id="sDetails" class='serviceLabel' ><p id="sDetails" class='serviceLabel'>Face</p><p class='price'> R225.00</p></p></td class='gridBlock'></td>
-                        <td class='labelTableCellAdd'><div class='addButton' onclick='myController2.bookService(false, "../_images/11.jpg", "Face")'>+</div></td>
-                    </tr>
-                </table>
-            </td>
-
-
-        
-            </td class='gridBlock'>
-        </tr>
-       
-    </table>
-
-</div>
     
 <div id="popupBack" class="popupBackground"><!--popup background-->
 
 <div class="popupBlock"  ><!--popup block-->
     
     <div class="contentblock">
-    <button id='sometext'>Share</button>
+    <!--<button id='sometext'>Share</button>-->
     <h2 id='serviceName' class='headingCol'>heading</h2>
     <p id='description' class='tableHeading'>This will be the description of the service selected by a user</p>
         <table class='dialogServicesInfo'>
@@ -630,240 +393,16 @@
             <div id='noticeBox2' class='notice'>
         <p id='externalMsg2'class='noticeMessage'></p>
     </div>
-            <?php 
-                class appointer
-                {
-                    function flipData($string, $type )
-                    {
-                        $run=0;
-                        $index=0;
-                        switch($type)
-                        {
-                        
-                        //'2024-01-01 04:45:00'
-                        case 'stylist':
-
-                            $stylists=array('Dion','Mpho','Vusi','jacob');
+            
                             
-
-                            while($run<4)
-                            {
-                            if(strcasecmp($string, $stylists[$run])==0)
-                            {
-                                $index=$run+1;
-                                break;
-                            }
-
-                            $run++;
-                            }
-
-                            break;
-
-                            //'2024-01-01 04:45:00'
-                            case 'day':
-
-                            //trim string
-                            $dayMarked=substr($string,9,1);
-                            $days=array(1,2,3);
-
-                            while($run<3)
-                            {
-                                //compare string
-                                if(strcasecmp($dayMarked, $days[$run])==0)
-                                {
-                                $index=$run+1;
-                                break;
-                                }
-
-                                $run++;
-                            }
-
-                            break;
-                            
-                            //'2024-01-01 04:45:00'
-                            case 'month':
-
-                            //trim string
-                            $dayMarked=substr($string,6,1);
-                            $days=array(1,2,3);
-
-                            while($run<3)
-                            {
-                                //compare string
-                                if(strcasecmp($dayMarked, $days[$run])==0)
-                                {
-                                $index=$run+1;
-                                break;
-                                }
-
-                                $run++;
-                            }
-                            break;
-
-                            //'2024-01-01 04:45:00'
-                            case 'hour':
-
-                            $dayMarked=substr($string,12,1);
-                            $days=array(1,2,3);
-
-                            while($run<3)
-                            {
-                                //compare string
-                                if(strcasecmp($dayMarked, $days[$run])==0)
-                                {
-                                $index=$run+1;
-                                break;
-                                }
-
-                                $run++;
-                            }
-                            break;
-                            
-                            //'2024-01-01 04:45:00'
-                            case 'min':
-
-                            $dayMarked=substr($string,14,2);
-                            $days=array("01","02","03");
-
-                            while($run<3)
-                            {
-                                //compare string
-                                if(strcasecmp($dayMarked, $days[$run])==0)
-                                {
-                                $index=$run+1;
-                                break;
-                                }
-
-                                $run++;
-                            }
-                            break;
-                        }
-
-                        return $index;
-                    }
-
-                function makeRequests()
-                {
-                  //$key = intval($_GET['k']);
-                  
-                  $serverName="localhost";
-                  $userName="root";
-                  $password="12345";
-                  $dbName="nails_by_dion_database";
-                
-                  $con=mysqli_connect($serverName, $userName, $password, $dbName);
-                
-                  if (!$con) 
-                  {
-                    die('Could not connect: ' . mysqli_connect_error($con));
-                  }
-                  
-                  
-
-                  mysqli_select_db($con,$dbName);
-                  $records="select count(*) from appointment;";
-                  $result = mysqli_query($con,$records);
-                  $row = mysqli_fetch_array($result);
-                  if($row['count(*)']!=0)
-                  {
-                    echo "<table class='statusTableBill'>
-                  <tr>
-                  
-                  <th class='headingCellBill'></th>
-                  <th class='headingCellBill'>Service</th>
-                  <th class='headingCellBill'>date</th>
-                      <th class='headingCellBill'>Stylist</th>
-                  <th class='headingCellBill'>Sessions</th>
-                  
-              
-                  <th class='headingCellBill'>Cost</th>
-                  </tr>";
-                  }else
-                  {
-                    echo"<p id='billDescription' class='tableHeading'>---Bill Empty, Please Select Service to Book, Bookings will appear here.---</p>";
-                  }
-
-                  $sql='select * from appointment;';
-                  $result = mysqli_query($con,$sql);
-
-                    $rowNum=1;
-                    $count=1;
-                    $statusID='status'. $count;
-                    $sessionsID='sessions'. $count;
-                    $showheader=false;
-                    while($row = mysqli_fetch_array($result)) 
-                    { 
-
-                    $timeID='"time'. $count . '"';
-                    $serviceID='service'. $count;
-                    $sessionsID='sessions'. $count;
-                    $stylistID='stylist'. $count;
-                    $statusID='status'. $count;
-                    $thumbnailsrc='"'.$row['serviceThumbnail'].'"';
-                        if($rowNum==1)
-                        {
-                        echo "<tr class='oddRow' )'>";
-                        $rowNum=0;
-                        }else
-                        {
-                        echo "<tr class='evenRow' '>";
-                        $rowNum=1;
-                        } 
-                
-                        //convert string to integers
-                        echo "<td id=". 'recordThumbnail'.$count ." class='appointmentTimeCell' >" ."<img src='".$row['serviceThumbnail']."' width='50' height='50' class='appointmentImage'>" . "</td>";
-                        echo "<td id=". $serviceID ." class='appointmentCell' >" .  $row['serviceID'] . "</td>";
-                        echo "<td id=".$timeID." class='leftAppointmentCell'>" . $row['scheduledDateTime'] . "</td>";
-                        echo "<td id=". $stylistID ." class='appointmentTimeCell' >"  . $row['stylist'] . "</td>";//
-                        echo "<td id=". $sessionsID ." class='appointmentTimeCell'>" . $row['sessions'] . "</td>";//
-                
-                        echo "<td id=". $statusID ." class='appointmentCell'>" . $row['servicePrice'] . "</td>";
-                        echo "<td id=". 'delete'." class='appointmentCell' >" . "<button class='deleteButton' onclick='newManager.deleteAppointment(". $row['appointmentID'] .")' >Delete</button></td>";
-        
-                        echo "</tr>";
-                
-                        $count++;
-                    }
-
-                    $total="select sum(servicePrice) from appointment;";
-                    $row = mysqli_fetch_array(mysqli_query($con,$total));
-                    //$onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". 1 .",". $this->flipData($row['stylist'],'stylist') ;
-                
-                    echo "<tr class='evenRow' "  . ">";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-
-                    $result = mysqli_query($con,$records);
-
-                    $row = mysqli_fetch_array($result);
-                    if($row['count(*)']!=0)
-                    {
-                        $result = mysqli_query($con,$total);
-                        $row = mysqli_fetch_array($result);
-                        echo "<td id=". $sessionsID ." class='appointmentTimeCell'>" . "Total" . "</td>";
-                        echo "<td id=". $statusID ." class='appointmentCell'>" . "R ".$row['sum(servicePrice)']. "</td>";
-                    
-                    }
-                    echo "</tr>";
-                    //attributes need to have properties that will be caught by the showpop function
-                
-                    echo "</table>";
-                
-                    mysqli_close($con);
-                }
-
-                }
-
-                $appointer=new appointer();
-                $appointer->makeRequests();
-            ?>
                 
             </div>
         </div>
 
+        <div id='billContent'>
+                            
                 
+        </div>       
     <button id="closePopupBill"  onclick='myController2.removePopBill()'>Close</button>        
 
 </div>
@@ -872,18 +411,19 @@
 ?>
 </div>
 
-<?php include '../partial/footer.php';?>   
+                    
     <script>
 
         myController2=new controller2();
+        myController2.addService();
         var newManager= new manager();
-        bill.addEventListener("click", function () { myController2.showPop(); });
+        bill.addEventListener("click", function () { myController2.showPop(21); });
         closePopup.addEventListener("click", function () { myController2.removePop();});
         window.addEventListener("click", function (event) {myController2.removeByBackground();});
         var hasBeenClearedForStart=false;
         myController2.share();
     </script>
-    
+    <?php include '../partial/footer.php';?>
 
 </body>
 </html>

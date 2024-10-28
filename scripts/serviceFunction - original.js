@@ -33,15 +33,7 @@ class controller2 //services' page
             selectedService;
 
             showPop(service)
-            {       
-                if(service ==21)
-                {
-
-                }
-                else
-                {
-
-                    this.selectedService=service;
+            {       this.selectedService=service;
                     this.serviceNumber=service-1;
                     var thumbnail=document.getElementById('thumbnailDialog');
                     var serviceName=document.getElementById('serviceName');
@@ -69,31 +61,13 @@ class controller2 //services' page
 
                     buttonBook.setAttribute('onclick','myController2.bookService('+service+',true)');
                     popupBack.classList.add("show");
-                }
-            }
 
-            getBillData()
-            {
-                var billContent=document.getElementById('billContent');               
-                var requestor1 = new XMLHttpRequest();
-
-                //newElement.setAttribute('class','gridBlockImage')
-                requestor1.open("GET",'/scripts/logBookings.php?path=4',true);
-                requestor1.send();
-
-                requestor1.onreadystatechange = function()
-                {
-                  //targetTable.appendChild(newElement);
-                  //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
-                  billContent.innerHTML=requestor1.responseText;    
-
-                };
             }
 
             showPopBill(service)
             {       
                 //buttonBook.setAttribute('onclick','myController2.bookService('+service+',true)');
-                this.getBillData();
+
                 popupBackBill.classList.add("show");
 
             }
@@ -287,7 +261,7 @@ class controller2 //services' page
                     +"&path=1",true);
                    requestor.send();
 
-                    internalMsg.textContent='Successfully Done!';    
+                    internalMsg.textContent='Successfully Done, refresh to see changes!';    
 
 
                     setTimeout(function()
@@ -379,7 +353,7 @@ class controller2 //services' page
                         +"&path=1",true);
                         requestor.send();
 
-                    externalMsg.textContent='Successfully Done!!';
+                    externalMsg.textContent='Successfully Done, refresh to see changes!!';
                     externalMsg.style.color='black';
                     noticeBox.style.backgroundColor='#fff3e7';
 
@@ -526,77 +500,27 @@ class controller2 //services' page
             {
                 //get values from the database
                 //place service by creating js elements
-                //var targetTable=document.getElementById('eyebrowsTable');
-                //var newElement=document.createElement('td'); 
-                var serviceHolder1=document.getElementById('serviceHolder1');               
-                var requestor1 = new XMLHttpRequest();
-
-                //newElement.setAttribute('class','gridBlockImage')
-                requestor1.open("GET",'/scripts/logBookings.php?path=2&category=1',true);
-        
-                requestor1.send();
-                requestor1.onreadystatechange = function()
-                {
-                  //targetTable.appendChild(newElement);
-                  //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
-                  serviceHolder1.innerHTML=requestor1.responseText;    
-
-                };
-
-                var serviceHolder2=document.getElementById('serviceHolder2');               
+                var targetTable=document.getElementById('eyebrowsTable');
+                var newElement=document.createElement('td');                
                 var requestor2 = new XMLHttpRequest();
 
-                //newElement.setAttribute('class','gridBlockImage')
-                requestor2.open("GET",'/scripts/logBookings.php?path=2&category=2',true);
+                newElement.setAttribute('class','gridBlockImage')
+                requestor2.open("GET",'/scripts/logBookings.php?path=2',true);
         
                 requestor2.send();
                 requestor2.onreadystatechange = function()
                 {
-                  //targetTable.appendChild(newElement);
-                  //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
-                  serviceHolder2.innerHTML=requestor2.responseText;    
-
+                  targetTable.appendChild(newElement);
+                  newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
                 };
-
-                var serviceHolder3=document.getElementById('serviceHolder3');               
-                var requestor3 = new XMLHttpRequest();
-
-                //newElement.setAttribute('class','gridBlockImage')
-                requestor3.open("GET",'/scripts/logBookings.php?path=2&category=3',true);
-        
-                requestor3.send();
-                requestor3.onreadystatechange = function()
-                {
-                  //targetTable.appendChild(newElement);
-                  //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
-                  serviceHolder3.innerHTML=requestor3.responseText;    
-
-                };
-
-                var serviceHolder4=document.getElementById('serviceHolder4');               
-                var requestor4 = new XMLHttpRequest();
-
-                //newElement.setAttribute('class','gridBlockImage')
-                requestor4.open("GET",'/scripts/logBookings.php?path=2&category=4',true);
-        
-                requestor4.send();
-                requestor4.onreadystatechange = function()
-                {
-                  //targetTable.appendChild(newElement);
-                  //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
-                  serviceHolder4.innerHTML=requestor4.responseText;    
-
-                };
-
-
 
                 var externalMsg=document.getElementById('externalMsg');
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                //externalMsg.textContent='Successfully Done!';
-                //externalMsg.style.color='black';
-                //noticeBox.style.backgroundColor='#fff3e7';
+                externalMsg.textContent='Successfully Done, refresh to see changes!';
+                externalMsg.style.color='black';
+                noticeBox.style.backgroundColor='#fff3e7';
 
                 setTimeout(function()
                 {
@@ -608,20 +532,17 @@ class controller2 //services' page
             }
 
             requestor = new XMLHttpRequest();
-            deleteAppointment(AppointmentID, rowID)
+            deleteAppointment(AppointmentID)
             {
-                var rowToDelete=document.getElementById("'"+rowID+"'");
-                rowToDelete.remove();
                 this.requestor.open("GET",'/scripts/logBookings.php?'+"appointmentID="+AppointmentID+"&path=3"                    
                     ,true);
-                    
                 this.requestor.send();
-                
+
                 var externalMsg=document.getElementById('externalMsg');
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                externalMsg.textContent='Successfully Done!!';
+                externalMsg.textContent='Successfully Done, refresh to see changes!!';
                 externalMsg.style.color='black';
                 noticeBox.style.backgroundColor='#fff3e7';
 
@@ -631,7 +552,6 @@ class controller2 //services' page
                     noticeBox.style.backgroundColor='#ffffff00';
                 }
                 ,2500);
-
             }
         }
 

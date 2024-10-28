@@ -1,12 +1,11 @@
 <?php
-
+include 'connection.php';
 class appointer
 {
-  function createConnection()
-  {
-    
-  }
 
+/*<link rel="stylesheet" href="/../styles/client_styles_root0.css">
+    <link rel="stylesheet" href="/../styles/main_styles_root1.css">
+    */
   function convertServiceToValue($serviceName)
   {
     $serviceNumber=0;
@@ -91,23 +90,13 @@ class appointer
   {
     $key = intval($_GET['k']);
     
-    $serverName="localhost";
-    $userName="root";
-    $password="12345";
-    $dbName="nails_by_dion_database";
-  
-    $con=mysqli_connect($serverName, $userName, $password, $dbName);
-  
-    if (!$con) 
-    {
-      die('Could not connect: ' . mysqli_connect_error($con));
-    }
+    
 
    // $userID=$_SESSION['user'];
   
-    mysqli_select_db($con,$dbName);
+   // mysqli_select_db($con,$dbName);
     $sql='select * from appointment;';
-    $result = mysqli_query($con,$sql);
+    $result = mysqli_query(getConnection(),$sql);
     
     /*echo "<h3 class='subheading'>Bookings' Status</h3>";
 
@@ -128,9 +117,9 @@ class appointer
     echo "<h3 class='subheading'>Bookings </h3>";
     echo "<button class='locationButton' onclick='newManager.showPopMap()'>Get Location</button><br><br>";
     
-    mysqli_select_db($con,$dbName);
+    //mysqli_select_db($con,$dbName);
     $records="select count(*) from appointment;";
-    $result = mysqli_query($con,$records);
+    $result = mysqli_query(getConnection(),$records);
     $row = mysqli_fetch_array($result);
                   
 
@@ -157,7 +146,7 @@ class appointer
   }
 
   $sql='select * from appointment;';
-  $result = mysqli_query($con,$sql);
+  $result = mysqli_query(getConnection(),$sql);
   $rowNum=1;
   $count=1;
 
@@ -169,32 +158,35 @@ class appointer
     $stylistID='stylist'. $count;
     $statusID='status'. $count;
     $thumbnailsrc='"'.$row['serviceThumbnail'].'"';
-
+    $rowID=null;
       if($rowNum==1)
       {
         $serviceValue=$this->convertServiceToValue($row['serviceID']);
         $onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". $serviceValue .",". $this->flipData($row['stylist'],'stylist') ;
 
-        echo "<tr class='oddRow' ".$onclickAttribute
+        echo "<tr id='oddRowApp".$count."' class='oddRow' ".$onclickAttribute
         .",". $this->flipData($row['scheduledDateTime'],'day')
         .",". $this->flipData($row['scheduledDateTime'],'month') 
         .",". $this->flipData($row['scheduledDateTime'],'hour') 
         .','. $this->flipData($row['scheduledDateTime'],'min') 
         .','. $row['sessions'] 
         .','. $thumbnailsrc .")'>";
+
+        $rowID='"'.'oddRowApp'.$count.'"';
         $rowNum=0;
       }else
       {
         $serviceValue=$this->convertServiceToValue($row['serviceID']);
 
         $onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". $serviceValue ;
-        echo "<tr class='evenRow' " .$onclickAttribute
+        echo "<tr id='evenRowApp".$count."' class='evenRow' " .$onclickAttribute
         .",". $this->flipData($row['stylist'],'stylist') 
         .",".$this->flipData($row['scheduledDateTime'],'day') 
         .",".$this->flipData($row['scheduledDateTime'],'month') 
         .",".$this->flipData($row['scheduledDateTime'],'hour') 
         .",".$this->flipData($row['scheduledDateTime'],'min') 
         .",". $row['sessions'].",". $thumbnailsrc .")'>";
+        $rowID='"'.'evenRowApp'.$count.'"';
         $rowNum=1;
       } 
 
@@ -206,7 +198,7 @@ class appointer
       echo "<td id=". $sessionsID ." class='appointmentTimeCell'>" . $row['sessions'] . "</td>";//
  
       echo "<td id=". $statusID ." class='appointmentCell'>" . $row['status_'] . "</td>";
-      echo "<td id=". 'delete'." class='appointmentCell' >" . "<button class='deleteButton' onclick='newManager.deleteAppointment(". $row['appointmentID'] .")' >Delete</button></td>";
+      echo "<td id=". 'delete'." class='appointmentCell' >" . "<button class='deleteButton' onclick='newManager.deleteAppointment(". $row['appointmentID'] .",". $rowID .")' >Delete</button></td>";
       
       echo "</tr>";
 
@@ -214,7 +206,7 @@ class appointer
   }
 
   $total="select sum(servicePrice) from appointment;";
-  $row = mysqli_fetch_array(mysqli_query($con,$total));
+  $row = mysqli_fetch_array(mysqli_query(getConnection(),$total));
   //$onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". 1 .",". $this->flipData($row['stylist'],'stylist') ;
 
 
@@ -222,7 +214,7 @@ class appointer
 
   echo "</table>";
 
-    mysqli_close($con);
+    mysqli_close(getConnection());
   }
 
   function flipData($string, $type )
@@ -292,19 +284,9 @@ class appointer
   function update()
   {
 
-    $serverName="localhost";
-    $userName="root";
-    $password="12345";
-    $dbName="nails_by_dion_database";
+    
   
-    $con=mysqli_connect($serverName, $userName, $password, $dbName);
-  
-    if (!$con) 
-    {
-      die('Could not connect: ' . mysqli_connect_error($con));
-    }
-  
-    mysqli_select_db($con,$dbName);
+    //mysqli_select_db($con,$dbName);
 
     $service=$_GET['service'];
     $stylist=$_GET['stylist'];
@@ -332,53 +314,32 @@ class appointer
       $sql="UPDATE appointment SET stylist='".$_GET['stylist']."', scheduledDateTime='". $date ."', sessions=". $_GET['sessions']." WHERE appointmentID=".$_GET['appointmentID'].";";
       //$sql="insert into appointments values(appointmentID, 'userName',". $date.", '20:27', 'approved','tyr');";//
       
-      $result = mysqli_query($con,$sql);
+      $result = mysqli_query(getConnection(),$sql);
       $_GET['update']=0;
     }
   }
 
   function deleteAppointment()
   {
-    $serverName="localhost";
-    $userName="root";
-    $password="12345";
-    $dbName="nails_by_dion_database";
-  
-    $con=mysqli_connect($serverName, $userName, $password, $dbName);
-  
-    if (!$con) 
-    {
-      die('Could not connect: ' . mysqli_connect_error($con));
-    }
-  
-    mysqli_select_db($con,$dbName);
+    
+    //mysqli_select_db($con,$dbName);
 
 
 
     $sql='delete from appointment where appointmentID='. $_GET['appointmentID'];
-    $result = mysqli_query($con,$sql);
+    $result = mysqli_query(getConnection(),$sql);
   }
 
   function deleteAllAppointments()
   {
-    $serverName="localhost";
-    $userName="root";
-    $password="12345";
-    $dbName="nails_by_dion_database";
+    
   
-    $con=mysqli_connect($serverName, $userName, $password, $dbName);
-  
-    if (!$con) 
-    {
-      die('Could not connect: ' . mysqli_connect_error($con));
-    }
-  
-    mysqli_select_db($con,$dbName);
+    //mysqli_select_db($con,$dbName);
 
 
 
     $sql='delete from appointment;';
-    mysqli_query($con,$sql);
+    mysqli_query(getConnection(),$sql);
   }
 
 

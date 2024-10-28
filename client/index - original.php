@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta property="og:url"           content="http://localhost/client/index.php" />
@@ -19,15 +19,16 @@
     <script src="../scripts/client_script.js" defer></script>
     <script src="../scripts/serviceFunction.js" ></script>
     <script src="../scripts/appointFunction.js" ></script>
+    
 </head>
 <body>
     <?php /*$page = 'home'; include '../partial/header.php';*/?>
-    <?php $page = 'home'; include '../partial/header.php';?>
+    <?php $page = 'services'; include '../partial/header.php';?>
     <br>
-    <button onclick="myController2.addService()">Add Service</button>
-	<div id='texter'></div>
-    <div id="bill" onclick="myController2.showPopBill(1)"> Bill</div>
+	<button onclick="myController2.addService()">Add Service</button>
+    <div id='texter'></div>
     
+    <div id="bill" onclick="myController2.showPopBill(1)"> Bill</div>
     <div id="serviceList">
 
     <div id='noticeBox' class='notice'>
@@ -48,6 +49,7 @@
             </td>
         </tr>
     </table>
+
     <table id='eyebrowsTable' class=serviceTable>
         <tr>
             <td class='gridBlockImage'>
@@ -122,9 +124,6 @@
        
     </table>
 
-    
-    <br>
-
     <table>
         <tr>
             <td>
@@ -139,7 +138,6 @@
             </td>
         </tr>
     </table>
-
     <table class=serviceTable>
         <tr>
             <td class='gridBlockImage'>
@@ -620,24 +618,9 @@
 </div>
 
 
-<table id='lastButtons'>
-    <tr>
-        <td>
-        </td>
-            
-        <td>
-        
-        </td>
-    </tr>
-</table>
-
-</div>
-
-</div>
-<?php include '../partial/footer.php';?>
 <div id="popupBackBill" class="popupBackground"> <!--popup background-->
 
-    <div class="popupBlockBill"  ><!--popup block-->
+        <div class="popupBlockBill"  ><!--popup block-->
         <h2 id='serviceName' class='headingCol'>Bill</h2>
         <p id='billDescription' class='tableHeading'>Please see the list of service you want to purchase, to alter properties of the different services, please select from the appointment list.</p>
     
@@ -647,14 +630,250 @@
             <div id='noticeBox2' class='notice'>
         <p id='externalMsg2'class='noticeMessage'></p>
     </div>
-            
+            <?php 
+                class appointer
+                {
+                    function flipData($string, $type )
+                    {
+                        $run=0;
+                        $index=0;
+                        switch($type)
+                        {
+                        
+                        //'2024-01-01 04:45:00'
+                        case 'stylist':
+
+                            $stylists=array('Dion','Mpho','Vusi','jacob');
+                            
+
+                            while($run<4)
+                            {
+                            if(strcasecmp($string, $stylists[$run])==0)
+                            {
+                                $index=$run+1;
+                                break;
+                            }
+
+                            $run++;
+                            }
+
+                            break;
+
+                            //'2024-01-01 04:45:00'
+                            case 'day':
+
+                            //trim string
+                            $dayMarked=substr($string,9,1);
+                            $days=array(1,2,3);
+
+                            while($run<3)
+                            {
+                                //compare string
+                                if(strcasecmp($dayMarked, $days[$run])==0)
+                                {
+                                $index=$run+1;
+                                break;
+                                }
+
+                                $run++;
+                            }
+
+                            break;
+                            
+                            //'2024-01-01 04:45:00'
+                            case 'month':
+
+                            //trim string
+                            $dayMarked=substr($string,6,1);
+                            $days=array(1,2,3);
+
+                            while($run<3)
+                            {
+                                //compare string
+                                if(strcasecmp($dayMarked, $days[$run])==0)
+                                {
+                                $index=$run+1;
+                                break;
+                                }
+
+                                $run++;
+                            }
+                            break;
+
+                            //'2024-01-01 04:45:00'
+                            case 'hour':
+
+                            $dayMarked=substr($string,12,1);
+                            $days=array(1,2,3);
+
+                            while($run<3)
+                            {
+                                //compare string
+                                if(strcasecmp($dayMarked, $days[$run])==0)
+                                {
+                                $index=$run+1;
+                                break;
+                                }
+
+                                $run++;
+                            }
+                            break;
+                            
+                            //'2024-01-01 04:45:00'
+                            case 'min':
+
+                            $dayMarked=substr($string,14,2);
+                            $days=array("01","02","03");
+
+                            while($run<3)
+                            {
+                                //compare string
+                                if(strcasecmp($dayMarked, $days[$run])==0)
+                                {
+                                $index=$run+1;
+                                break;
+                                }
+
+                                $run++;
+                            }
+                            break;
+                        }
+
+                        return $index;
+                    }
+
+                function makeRequests()
+                {
+                  //$key = intval($_GET['k']);
+                  
+                  $serverName="localhost";
+                  $userName="root";
+                  $password="";
+                  $dbName="nails_by_dion_database";
+                
+                  $con=mysqli_connect($serverName, $userName, $password, $dbName);
+                
+                  if (!$con) 
+                  {
+                    die('Could not connect: ' . mysqli_connect_error($con));
+                  }
+                  
+                  
+
+                  mysqli_select_db($con,$dbName);
+                  $records="select count(*) from appointments;";
+                  $result = mysqli_query($con,$records);
+                  $row = mysqli_fetch_array($result);
+                  if($row['count(*)']!=0)
+                  {
+                    echo "<table class='statusTableBill'>
+                  <tr>
+                  
+                  <th class='headingCellBill'></th>
+                  <th class='headingCellBill'>Service</th>
+                  <th class='headingCellBill'>date</th>
+                      <th class='headingCellBill'>Stylist</th>
+                  <th class='headingCellBill'>Sessions</th>
+                  
+              
+                  <th class='headingCellBill'>Cost</th>
+                  </tr>";
+                  }else
+                  {
+                    echo"<p id='billDescription' class='tableHeading'>---Bill Empty, Please Select Service to Book, Bookings will appear here.---</p>";
+                  }
+
+                  $sql='select * from appointments;';
+                  $result = mysqli_query($con,$sql);
+
+                $rowNum=1;
+                $count=1;
+                $statusID='status'. $count;
+                $sessionsID='sessions'. $count;
+                $showheader=false;
+                while($row = mysqli_fetch_array($result)) 
+                { 
+
+                  $timeID='"time'. $count . '"';
+                  $serviceID='service'. $count;
+                  $sessionsID='sessions'. $count;
+                  $stylistID='stylist'. $count;
+                  $statusID='status'. $count;
+                  $thumbnailsrc='"'.$row['serviceThumbnail'].'"';
+                    if($rowNum==1)
+                    {
+                      echo "<tr class='oddRow' )'>";
+                      $rowNum=0;
+                    }else
+                    {
+                      echo "<tr class='evenRow' '>";
+                      $rowNum=1;
+                    } 
+              
+                    //convert string to integers
+                    echo "<td id=". 'recordThumbnail'.$count ." class='appointmentTimeCell' >" ."<img src='".$row['serviceThumbnail']."' width='50' height='50' class='appointmentImage'>" . "</td>";
+                    echo "<td id=". $serviceID ." class='appointmentCell' >" .  $row['serviceID'] . "</td>";
+                    echo "<td id=".$timeID." class='leftAppointmentCell'>" . $row['scheduledDateTime'] . "</td>";
+                    echo "<td id=". $stylistID ." class='appointmentTimeCell' >"  . $row['stylist'] . "</td>";//
+                    echo "<td id=". $sessionsID ." class='appointmentTimeCell'>" . $row['sessions'] . "</td>";//
+               
+                    echo "<td id=". $statusID ." class='appointmentCell'>" . $row['servicePrice'] . "</td>";
+                    echo "<td id=". 'delete'." class='appointmentCell' >" . "<button class='deleteButton' onclick='newManager.deleteAppointment(". $row['appointmentID'] .")' >Delete</button></td>";
+      
+                    echo "</tr>";
+              
+                    $count++;
+                }
+
+                $total="select sum(servicePrice) from appointments;";
+                $row = mysqli_fetch_array(mysqli_query($con,$total));
+                //$onclickAttribute="onclick='newManager.showPope(". $row['appointmentID'] .",". 1 .",". $this->flipData($row['stylist'],'stylist') ;
+              
+                echo "<tr class='evenRow' "  . ">";
+                echo"<td></td>";
+                echo"<td></td>";
+                echo"<td></td>";
+                echo"<td></td>";
+
+                $result = mysqli_query($con,$records);
+
+                  $row = mysqli_fetch_array($result);
+                  if($row['count(*)']!=0)
+                  {
+                    $result = mysqli_query($con,$total);
+                    $row = mysqli_fetch_array($result);
+                    echo "<td id=". $sessionsID ." class='appointmentTimeCell'>" . "Total" . "</td>";
+                    echo "<td id=". $statusID ." class='appointmentCell'>" . "R ".$row['sum(servicePrice)']. "</td>";
+                
+                  }
+                echo "</tr>";
+                //attributes need to have properties that will be caught by the showpop function
+              
+                echo "</table>";
+              
+                  mysqli_close($con);
+                }
+
+                }
+
+                $appointer=new appointer();
+                $appointer->makeRequests();
+            ?>
+                            
+                
+            </div>
+        </div>
+
+                
     <button id="closePopupBill"  onclick='myController2.removePopBill()'>Close</button>        
 
 </div>
-
 <?php
     //echo '<p id="UserId">'.$_SESSION['user'] .'</p>';
 ?>
+</div>
+
+                    
     <script>
 
         myController2=new controller2();
@@ -665,7 +884,7 @@
         var hasBeenClearedForStart=false;
         myController2.share();
     </script>
-    
+    <?php include '../partial/footer.php';?>
 
 </body>
 </html>

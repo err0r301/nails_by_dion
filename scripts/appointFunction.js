@@ -114,8 +114,11 @@ class manager {
 
     requestor = new XMLHttpRequest();
 
-    deleteAppointment(AppointmentID)
+    deleteAppointment(AppointmentID,rowID)
     {
+        var rowToDelete=document.getElementById(rowID);
+        rowToDelete.remove();
+        
         this.requestor.open("GET",'/scripts/pullAppointments.php?'+"appointmentID="+AppointmentID+"&path=3"                    
             ,true);
         this.requestor.send();
@@ -124,7 +127,7 @@ class manager {
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                externalMsg.textContent='Successfully done, refresh to see changes!';
+                externalMsg.textContent='Successfully Done!';
                 externalMsg.style.color='black';
                 noticeBox.style.backgroundColor='#fff3e7';
 
@@ -147,7 +150,7 @@ class manager {
                 var noticeBox=document.getElementById('noticeBox');
                 
                 
-                externalMsg.textContent='Successfully done, refresh to see changes!';
+                externalMsg.textContent='Successfully Done!';
                 externalMsg.style.color='black';
                 noticeBox.style.backgroundColor='#fff3e7';
 
@@ -160,12 +163,28 @@ class manager {
                 
     }
 
+    getBillData()
+    {
+        var billContent=document.getElementById('billContentApp');               
+        var requestor1 = new XMLHttpRequest();
 
+        //newElement.setAttribute('class','gridBlockImage')
+        requestor1.open("GET",'/scripts/logBookings.php?path=4',true);
+        requestor1.send();
+
+        requestor1.onreadystatechange = function()
+        {
+          //targetTable.appendChild(newElement);
+          //newElement.innerHTML=requestor2.responseText+"<p>appendedX</p>";    
+          billContent.innerHTML=requestor1.responseText;    
+
+        };
+    }
 
     showPopBill(service)
             {       
                 //buttonBook.setAttribute('onclick','myController2.bookService('+service+',true)');
-
+                this.getBillData();
                 popupBackBill.classList.add("show");
 
             }
@@ -219,7 +238,7 @@ class manager {
             ,true);
         requestor.send();
 
-            internalMsg.textContent='Successfully done, refresh to see changes!!';    
+            internalMsg.textContent='Successfully Done!!';    
 
 
             setTimeout(function()
@@ -232,7 +251,7 @@ class manager {
             requestor.open("GET",'/scripts/logBookings.php?log='+service+"&day="+1,true);
             requestor.send();
 
-            externalMsg.textContent='Successfully done, refresh to see changes!!';
+            externalMsg.textContent='Successfully Done!!';
             externalMsg.style.color='black';
             noticeBox.style.backgroundColor='white';
 
@@ -677,11 +696,28 @@ class formatter
 
             removePop()
             {
+                this.alterData();
                 popupBack.classList.remove("show");
+            }
+            
+            alterData()
+            {
+                document.getElementById("dataPlot").innerHTML ="why does it...";
+                
+                 //this will pull from the server
+                 var requestor = new XMLHttpRequest();
+                    requestor.open("GET","/scripts/pullAppointments.php?k=8&path=1",true);
+                    requestor.send();
+
+                    requestor.onreadystatechange = function()
+                    {
+                        document.getElementById("dataPlot").innerHTML =requestor.responseText;//this.responseText
+                    };
             }
 
             removePopBill()
             {
+                this.alterData();
                 popupBackBill.classList.remove("show");
             }
 

@@ -305,7 +305,7 @@
                                 <td><?php echo htmlspecialchars($date); ?></td>  
                                 <td><?php echo htmlspecialchars($time); ?></td>  
                                 <td><?php echo htmlspecialchars($appointment['stylist']); ?></td>  
-                                <td><?php echo htmlspecialchars($appointment['status']); ?></td>  
+                                <td><?php echo htmlspecialchars($appointment['status']); ?></td>   
                                 <td>   
                                     <button class='crud-btn btn-view' onclick="viewPopup('popup-view-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-eye'></i></button>  
                                     <button class='crud-btn btn-edit' onclick="editPopup('popup-edit-appointment', <?php echo htmlspecialchars(json_encode($appointment), ENT_QUOTES); ?>)"><i class='fa fa-pen-to-square'></i></button>  

@@ -113,7 +113,7 @@ class formatter
 
                 
             }
-
+// email function
             sendEmail()
             {
             
@@ -125,7 +125,7 @@ class formatter
                   message: document.getElementById('replyBox').value
                 };
               
-                emailjs.send('service_v76x9jp', 'template_sbuuvm9', templateParams)
+                emailjs.send('', 'template_sbuuvm9', templateParams)
                   .then(function(response) {
                      console.log('SUCCESS!', response.status, response.text);
                      alert('Email sent successfully!');

@@ -1,0 +1,89 @@
+<html>
+  <head>
+
+  </head>
+
+  <body>
+
+    <label for="name">Name:</label>
+    <input type='text' name="name">
+    <br>
+    <br>
+
+    <form>
+      <select name="users" onchange="showUser(this.value)">
+        <option value="">Select a person:</option>
+        <option value="1">Peter Griffin</option>
+        <option value="2">Lois Griffin</option>
+        <option value="3">Joseph Swanson</option>
+        <option value="4">Glenn Quagmire</option>
+      </select>
+    </form>
+
+    <br>
+    <p id='dataPlot'>test data should appear here</p>
+    <div id="txtHint"><b>Person info will be listed here...</b></div>
+
+    <select id="selector2" name="users2" >
+      <option value="">Select a person:</option>
+      <option value="1">A</option>
+      <option value="2">B</option>
+      <option value="3">C</option>
+      <option value="4">D</option>
+    </select>
+
+    <br><button onclick="collectData(7022933563)">send request</button>
+
+    <script>
+
+      function showUser(str)
+      {
+        if (str == "") 
+        {
+          document.getElementById("txtHint").innerHTML = "";
+          return;
+        }
+        else
+        {
+          var requestor = new XMLHttpRequest();
+          
+          requestor.open("GET","family.php?q="+str,true);
+          requestor.send();
+
+          requestor.onreadystatechange = function()
+          {
+            if(requestor.readyState == 4 && requestor.status == 200) 
+            {
+              document.getElementById("txtHint").innerHTML = requestor.responseText;//this.responseText
+            }
+          };
+        }
+      }
+
+      function collectData(str)
+      {
+          var requestor = new XMLHttpRequest();
+          requestor.open("GET","text.php?k="+str,true);
+          requestor.send();
+          requestor.onreadystatechange = function()
+          {
+              document.getElementById("dataPlot").innerHTML = requestor.responseText;//this.responseText
+          };
+      }
+
+      </script>
+
+
+      <script>
+        //send a request to php and get some data and place a particular spot in html
+        function setValue()
+        {
+          document.getElementById("selector2").value="2";
+        }
+      
+      setValue();
+      </script>
+
+      
+  </body>
+</html>

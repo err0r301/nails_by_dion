@@ -1,22 +1,12 @@
 <?php
-
+include 'connection.php';
 $key = intval($_GET['k']);
     
-    $serverName="localhost";
-    $userName="root";
-    $password="12345";
-    $dbName="nails_by_dion_database";
+    
   
-    $con=mysqli_connect($serverName, $userName, $password, $dbName);
-  
-    if (!$con) 
-    {
-      die('Could not connect: ' . mysqli_connect_error($con));
-    }
-  
-    mysqli_select_db($con,$dbName);
+    //mysqli_select_db($con,$dbName);
     $sql='select dateTime_, message from notification;';
-    $result = mysqli_query($con,$sql);
+    $result = mysqli_query(getConnection(),$sql);
     
     echo "<h3 class='subheading'>Notifications</h3>";
     echo "<button  class='appointmentButton' onclick='newformatter.showPop(". 0 .")'>Message Nails by Dion</button><br><br>";
@@ -53,11 +43,11 @@ $key = intval($_GET['k']);
     $notReply="'". $_GET['notificationReply'] ."'";
 
   //use objects
-  $sql='insert into notification values(notificationID, "2024-05-26 08:27",'. $notReply.', "approved", 14);';
-    $result = mysqli_query($con,$sql);
+  $sql='insert into notification values(notificationID, "2024-05-26 08:27",'. $notReply.', "approved", 102);';
+    $result = mysqli_query(getConnection(),$sql);
   }
   $sql='delete from notification where message=""';
-  mysqli_query($con,$sql);
-    mysqli_close($con);
+  mysqli_query(getConnection(),$sql);
+    mysqli_close(getConnection());
 
 ?>

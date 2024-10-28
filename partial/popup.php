@@ -15,6 +15,13 @@
             </a>
         <?php }else{?>
             <button class="confirm-btn" onclick="togglePopup('<?php echo $confirmationID?>')">OK</button>
-        <?php }?>
+        <?php } CheckSession($killSession)?>
     </div>
 </div>
+<?php 
+function CheckSession($killSession){
+    if(isset($killSession)){
+        session_destroy();
+    }
+}
+?>

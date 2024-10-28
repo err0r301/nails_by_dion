@@ -1,18 +1,7 @@
 <footer class="footer has-bg-image" style="background-image: url('./assets/images/footer-bg.png')">
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-
-        <h3>Get to know us better</h3>
-
-        <form action="" class="input-wrapper">
-          <input type="email" name="email_address" placeholder="Enter Your Email" required class="email-field">
-          <button type="submit" class="btn has-before">
-            Subscribe Now
-          </button>
-        </form>
-      </div>
-
+      
       <div class="footer-link-box">
 
         <a href="index.php" >
