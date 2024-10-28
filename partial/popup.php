@@ -1,4 +1,3 @@
-
 <div class="popup active" id="<?php echo $confirmationID?>">
     <div class="overlay" onclick="togglePopup('<?php echo $confirmationID?>')"></div>
     <div class="content">
@@ -15,13 +14,12 @@
             </a>
         <?php }else{?>
             <button class="confirm-btn" onclick="togglePopup('<?php echo $confirmationID?>')">OK</button>
-        <?php } CheckSession($killSession)?>
+        <?php }?>
     </div>
 </div>
+
 <?php 
-function CheckSession($killSession){
     if(isset($killSession)){
         session_destroy();
     }
-}
 ?>
