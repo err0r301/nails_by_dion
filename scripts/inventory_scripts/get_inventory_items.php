@@ -9,7 +9,7 @@ function getInventoryItems() {
 
     // Check if the data was retrieved successfully
     if ($inventory_result->num_rows <= 0) {
-        echo "No inventory records found";                                   ////////////////////////
+        echo "<script> console.log('No inventory records found')</script>";                                   ////////////////////////
     }
     // Close the connection
     $conn->close();

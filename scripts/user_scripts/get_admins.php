@@ -12,7 +12,7 @@ function getAdmins() {
 
     // Check if the data was retrieved successfully
     if ($admin_result->num_rows <= 0) {
-        echo "No admins found";                                   ////////////////////////
+        echo "<script> console.log('No admins found')</script>";                                   ////////////////////////
     }
     // Close the connection
     $conn->close();

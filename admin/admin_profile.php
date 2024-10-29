@@ -81,7 +81,7 @@
                         </div>
 
                         <div>
-                            <label for="update_password_new">New Password</label>
+                            <label for="update_password_new">New Password<i class="fa-solid fa-circle-info" style="margin: 0 0 0 10px;"></i></label>
                             <input type="password" id="update_password_new" name="new_password" required>
                             <!--<p id="new_password_error_length" style="color: red;">the password need to be at least 8 characters long</p>
                             <<p id="new_password_error_special" style="color: red;">the password need to contain a spacial character</p>

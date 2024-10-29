@@ -9,7 +9,7 @@ function getGalleryRecords() {
 
     // Check if the data was retrieved successfully
     if ($gallery_result->num_rows <= 0) {
-        echo "No gallery records found";                                   ////////////////////////
+        echo "<script> console.log('No gallery records found')</script>";                                 
     }
     // Close the connection
     $conn->close();

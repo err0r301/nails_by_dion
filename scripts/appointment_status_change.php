@@ -13,7 +13,7 @@ function add_removeToRevenue($newAppointment) {
 
     if ($result->num_rows > 0) {  
         $oldAppointment = $result->fetch_assoc();  
-        sendNotification($oldAppointment, $newAppointment);
+        //sendNotification($oldAppointment, $newAppointment);  //////////////////////////
         $date = new DateTime($newAppointment['scheduledDateTime']);  
         $date = $date->format('Y-m');  
 

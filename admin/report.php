@@ -106,7 +106,7 @@
                         <?php   
                             // Ensure $report['services'] is defined and is an array before using it  
                             if (isset($report['services']) && is_array($report['services'])) {  
-                                $limit = min(13, count($report['services'])); // Determine the lesser between 13 and the count of services  
+                                $limit = min(13, count($report['services']));  
                                 for ($x = 0; $x < $limit; $x++): ?>  
                                     <tr>  
                                         <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>  
@@ -114,14 +114,16 @@
                                         <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>  
                                         <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>  
                                     </tr>  
-                                <?php endfor;?>
+                                <?php endfor;
+                                } else {  
+                                    // Optional: Display a message if there are no services  
+                                    echo "<tr><td colspan='4'>No services available.</td></tr>";  
+                                } ?>
                     </table>
                 </div>
-
+                <?php if ($x < count($report['services'])) {?>
                 <div class="report-page">
-                    <table>
-                        
-                                
+                    <table>  
                                 <?php for ($x = $limit; $x < count($report['services']); $x++): ?>  
                                     <tr>  
                                         <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>  
@@ -129,14 +131,10 @@
                                         <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>  
                                         <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>  
                                     </tr>  
-                                <?php endfor;
-                            } else {  
-                                // Optional: Display a message if there are no services  
-                                echo "<tr><td colspan='4'>No services available.</td></tr>";  
-                            }  
-                        ?>  
+                                <?php endfor;?>  
                     </table>
                 </div>
+                <?php }?>
             </div>
             
         </main>

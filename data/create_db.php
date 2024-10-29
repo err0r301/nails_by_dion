@@ -116,7 +116,7 @@ function createAppointmentTable($conn) {
         serviceID VARCHAR(100) NOT NULL,
         userEmail VARCHAR(100),
         status_ VARCHAR(20) NOT NULL DEFAULT 'Pending',
-        serviceThumbnail VARCHAR(20),
+        serviceThumbnail VARCHAR(150),
         servicePrice INT
         /*FOREIGN KEY (userID) REFERENCES user(userID)*/
     )";

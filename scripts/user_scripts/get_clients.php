@@ -9,7 +9,7 @@ function getClients() {
 
     // Check if the data was retrieved successfully
     if ($client_result->num_rows <= 0) {
-        echo "No clients found";                                   ////////////////////////
+        echo "<script> console.log('No clients found')</script>";                                   ////////////////////////
     }
     // Close the connection
     $conn->close();
