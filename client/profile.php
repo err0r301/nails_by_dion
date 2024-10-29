@@ -24,6 +24,27 @@
         require '../scripts/user_scripts/edit_user-pwd.php';
         require '../scripts/user_scripts/edit_user-info.php';
     ?>
+
+<div class="popup" id="popup-password-requirements">
+            <div class="overlay" onclick="togglePopup('popup-password-requirements')"></div>
+            <div class="content" style ="margin-top: 400px">
+                <div class="close-btn" onclick="togglePopup('popup-password-requirements')">&times;</div>
+                <div class="confirmation-img">
+                </div>
+                <h2>Password Requirements</h2>
+                <b>The password must be:</b>
+                <ol style="text-align: left">
+                <li>at least 8 characters long</li>
+                <li>contain at least one uppercase letter</li> 
+                <li>contain at least one lowercase letter</li>
+                <li>contain at least one special character</li>
+                <li>contain at least one digit.</li>
+                </ol>
+                
+                <button class="confirm-btn" onclick="togglePopup('popup-password-requirements')">OK</button>
+            </div>
+        </div>
+
     <section>
         <header>
             <h2>Profile Information</h2>
@@ -68,7 +89,7 @@
             </div>
 
             <div>
-                <label for="update_password_new">New Password</label>
+                <label for="update_password_new">New Password <i class="fa-solid fa-circle-info" onclick="togglePopup('popup-password-requirements')"></i></label>
                 <input type="password" id="update_password_new" name="new_password" required>
                 <p class="error" id="new_password_error"></p>
                 
