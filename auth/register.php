@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="/../styles/main_styles.css"> 
     <script src="../scripts/popup.js"></script>
     <?php if ($error != null){?>
@@ -21,6 +22,26 @@
     <?php }?>   
 </head>
 <body>
+    <div class="popup" id="pop-password-requirements">
+        <div class="overlay" onclick="togglePopup('pop-password-requirements')"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup('pop-password-requirements')">&times;</div>
+            <div class="confirmation-img">
+            </div>
+            <h2>Password Requirements</h2>
+            <b>The password must be:</b>
+            <ol style="text-align: left">
+            <li>at least 8 characters long</li>
+            <li>contain at least one uppercase letter</li> 
+            <li>contain at least one lowercase letter</li>
+            <li>contain at least one special character</li>
+            <li>contain at least one digit.</li>
+            </ol>
+            
+            <button class="confirm-btn" onclick="togglePopup('pop-password-requirements')">OK</button>
+        </div>
+    </div>
+
     <div class="login_register">
         <div class="form-container">
             <a href="../client/index.php">
@@ -47,7 +68,7 @@
 
                 <div class="input-field">
                     <input id="password" type="password" name="password" placeholder="" autocomplete="off"/>
-                    <label for="username">Password</label>
+                    <label for="username">Password </label> <i class="fa-solid fa-circle-info" onclick="togglePopup('pop-password-requirements')"></i>
                 </div>
                 <button class="btn">Sign up</button>
                 <p>

@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             echo "<script> console.log('pwd 6')</script>";
                         } else {
                             echo "<script> console.log('Confirmation password does not match.')</script>";
+                            $edit_userPwd_confirmation = 'false';
+                            $pwd_error = "The confirmation password does not match.";
                         }
                     }
                 } else {

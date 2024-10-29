@@ -22,6 +22,26 @@
             error_reporting(E_ALL);  
             ini_set('display_errors', 1); 
         ?> 
+
+        <div class="popup" id="popup-password-requirements">
+            <div class="overlay" onclick="togglePopup('popup-password-requirements')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('popup-password-requirements')">&times;</div>
+                <div class="confirmation-img">
+                </div>
+                <h2>Password Requirements</h2>
+                <b>The password must be:</b>
+                <ol style="text-align: left">
+                <li>at least 8 characters long</li>
+                <li>contain at least one uppercase letter</li> 
+                <li>contain at least one lowercase letter</li>
+                <li>contain at least one special character</li>
+                <li>contain at least one digit.</li>
+                </ol>
+                
+                <button class="confirm-btn" onclick="togglePopup('popup-password-requirements')">OK</button>
+            </div>
+        </div>
         
         <main class="main-container">
             <div class="profile">
@@ -81,7 +101,7 @@
                         </div>
 
                         <div>
-                            <label for="update_password_new">New Password<i class="fa-solid fa-circle-info" style="margin: 0 0 0 10px;"></i></label>
+                            <label for="update_password_new">New Password<i class="fa-solid fa-circle-info" style="margin: 0 0 0 10px;" onclick="togglePopup('popup-password-requirements')"></i></label>
                             <input type="password" id="update_password_new" name="new_password" required>
                             <!--<p id="new_password_error_length" style="color: red;">the password need to be at least 8 characters long</p>
                             <<p id="new_password_error_special" style="color: red;">the password need to contain a spacial character</p>
