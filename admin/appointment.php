@@ -262,10 +262,10 @@
                 <table class="table" id="appointment_table">
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0,'appointment_table','appointment_arrow_1')">#<i class="arrow" id="appointment_arrow_1"></i></th>
-                            <th onclick="sortTable(1,'appointment_table','appointment_arrow_2')">Client<i class="arrow" id="appointment_arrow_2"></i></th>
-                            <th onclick="sortTable(2,'appointment_table','appointment_arrow_4')">Date<i class="arrow" id="appointment_arrow_4"></i></th>
-                            <th onclick="sortTable(3,'appointment_table','appointment_arrow_5')">Time<i class="arrow" id="appointment_arrow_5"></i></th>
+                            <th onclick="sortTable(0,'appointment_table','appointment_arrow_1')">#<i class="arrow fa-solid fa-sort" id="appointment_arrow_1"></i></th>
+                            <th onclick="sortTable(1,'appointment_table','appointment_arrow_2')">Client<i class="arrow fa-solid fa-sort" id="appointment_arrow_2"></i></th>
+                            <th onclick="sortTable(2,'appointment_table','appointment_arrow_4')">Date<i class="arrow fa-solid fa-sort" id="appointment_arrow_4"></i></th>
+                            <th onclick="sortTable(3,'appointment_table','appointment_arrow_5')">Time<i class="arrow fa-solid fa-sort" id="appointment_arrow_5"></i></th>
                             <th>
                                 <select name="stylist" id="stylist" class="table-selector" onchange="getValue('stylist')">
                                   <option value="All">Stylists</option>

@@ -382,18 +382,16 @@ function sort(column, table,arrow) {
 
     const arrows = document.querySelectorAll('.arrow');
 
-    
     arrows.forEach(a => {
-      a.style.display = 'none';
+      a.className = "arrow fa-solid fa-sort";
     });
     
-    
     if (ascending) {
-      arrow.innerHTML = '&#x25B2';
       arrow.style.display = "inline-block";
+      arrow.className = "arrow fa-solid fa-sort-up";
     } else {
-      arrow.innerHTML = '&#x25BC';
       arrow.style.display = "inline-block";
+      arrow.className = "arrow fa-solid fa-sort-down";
     }
 
     table.querySelector('tbody').innerHTML = "";
