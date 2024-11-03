@@ -1,5 +1,6 @@
 <?php
-function removeGalleryRecord( $galleryID) {
+function removeGalleryRecord($galleryID)
+{
     // Include the config file
     require '../data/config.php';
 

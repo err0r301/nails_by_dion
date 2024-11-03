@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Include the config file
 require '../data/config.php';
 $error =  false;
@@ -6,9 +6,9 @@ $error =  false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = strtolower($_POST['email']);
     echo "<script> console.log('pwd :$_POST[password] email :$email')</script>";
-    if (isset($_POST['password'])){
-    $pwd = $_POST['password'];
-    }else{
+    if (isset($_POST['password'])) {
+        $pwd = $_POST['password'];
+    } else {
         $error = true;
     }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $a_row = $conn->query($getRole);
                 $a_row = $a_row->fetch_assoc();
             }
-            
+
             // password is correct
             session_start();
             $_SESSION['user'] = array(
@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'email' => $row['email'],
                 'cell' => $row['cell'],
                 'userType' => $row['userType'],
-                'role'=> $a_row['role'],
+                'role' => $a_row['role'],
                 'image' => $a_row['profileImage']
             );
-            
+
             if ($_SESSION['user']['userType'] == 'Client') {
                 //echo "<script> window.alert('User Type: " . $_SESSION['user']['userType'] . "')</script>";
                 header("Location: ../client/index.php");
@@ -50,15 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //echo "<script> window.alert('User Type: " . $_SESSION['user']['userType'] . "')</script>";
                 header("Location: ../admin/appointment.php");
                 exit;
-            }    
+            }
         } else {
             $error = true;
         }
     } else {
         $error = true;
     }
-    $stmt->close();    
+    $stmt->close();
 }
 $conn->close();
-
-

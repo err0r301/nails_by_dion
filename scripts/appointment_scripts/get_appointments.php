@@ -1,8 +1,9 @@
 <?php
 
-function getAppointments(){
-    error_reporting(E_ALL);  
-    ini_set('display_errors', 1); 
+function getAppointments()
+{
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
     // Include the config file
     require '../data/config.php';
@@ -26,7 +27,7 @@ function getAppointments(){
 
     // Check if the data was retrieved successfully
     if ($appointment_result->num_rows > 0) {
-        while($row = $appointment_result->fetch_assoc()) {
+        while ($row = $appointment_result->fetch_assoc()) {
             $appointments[] = array(
                 'client' => $row["client"],
                 'appointmentID' => $row["appointmentID"],
@@ -34,14 +35,14 @@ function getAppointments(){
                 'status' => $row["status"],
                 'stylist' => $row["stylist"],
                 'service' => $row["service"]
-            ); 
-        }                              
-    }else{
-        echo "<script> console.log('No appointments found') </script>";  
+            );
+        }
+    } else {
+        echo "<script> console.log('No appointments found') </script>";
     }
 
-    if ($result->num_rows > 0) {  
-        while($row = $result->fetch_assoc()) {  
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
             $appointments[] = array(
                 'client' => $row["userEmail"],
                 'appointmentID' => $row["appointmentID"],
@@ -49,24 +50,18 @@ function getAppointments(){
                 'status' => $row["status_"],
                 'stylist' => $row["stylist"],
                 'service' => $row["serviceID"]
-            );  
+            );
             echo " <script> console.log('user: " . $row["userEmail"] . "') </script>";
-        }  
-    }else{
+        }
+    } else {
         echo " <script> console.log('userEmail not found') </script>";
     }
     // Close the connection
     $conn->close();
 
     // sort the appointments by appointmentID
-    usort($appointments, function($a, $b) {
+    usort($appointments, function ($a, $b) {
         return $a['appointmentID'] - $b['appointmentID'];
     });
     return $appointments;
-} 
-
- 
-
- 
-    
-   
+}

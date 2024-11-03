@@ -18,27 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userID = getMaxUserID($conn) + 1;
 
         if (isset($_POST['password'])) {
-                $pwd = $_POST['password']; 
-        }else{  
-            $pwd = generatePassword();  
-        }  
+            $pwd = $_POST['password'];
+        } else {
+            $pwd = generatePassword();
+        }
 
-        $userType = 'Client'; 
+        $userType = 'Client';
         if ($page == 'team') {
             $userType = 'Admin';
         }
         echo "<script> console.log('test 1')</script>";
         // error massages
-        $error = validatePassword($pwd,$error);  // not working
-        $error = validateCell($cell,$error);
-        $error = validateEmail($email,$error);
-        $error = validateName($name,$error);
-        echo"<script> console.log('error :$error pwd len :".strlen($pwd)."')</script>";
-        
-        
+        $error = validatePassword($pwd, $error);  // not working
+        $error = validateCell($cell, $error);
+        $error = validateEmail($email, $error);
+        $error = validateName($name, $error);
+        echo "<script> console.log('error :$error pwd len :" . strlen($pwd) . "')</script>";
+
+
 
         // Validate the form data
-        if ( is_null($error)) {
+        if (is_null($error)) {
             // Hash the password
             $password_hash = password_hash($pwd, PASSWORD_DEFAULT);
             $email = strtolower($email);
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bind_param("isssss", $userID, $name, $email, $cell, $password_hash, $userType);
             $stmt->execute();
             echo "<script> console.log('test 2')</script>";
-            
+
             if ($userType == 'Admin' && $stmt->affected_rows == 1) {
                 $adminID = getMaxAdminID($conn) + 1;
                 $role = $_POST['add-role'];
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<script> console.log('The file has been uploaded successfully. Image path: $image')</script>";
                 } else {
                     echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";
-                }  
+                }
 
                 echo "<script> console.log('adminID :$adminID, userID :$userID, image :$image, role :$role')</script>";
 
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $add_user_confirmation = false;
             }
             $stmt->close();
-        }else{
+        } else {
             $add_user_confirmation = false;
         }
 
@@ -94,28 +94,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-function getMaxUserID($conn){
+function getMaxUserID($conn)
+{
     $query = "SELECT MAX(userID) AS maxID FROM user";
     $result = $conn->query($query);
     $row = $result->fetch_assoc();
     return $row['maxID'];
 }
 
-function getMaxAdminID($conn){
+function getMaxAdminID($conn)
+{
     $query = "SELECT MAX(adminID) AS maxID FROM admin";
     $result = $conn->query($query);
     $row = $result->fetch_assoc();
     return $row['maxID'];
 }
 
-function generatePassword() { 
-    $pwd = '';  
+function generatePassword()
+{
+    $pwd = '';
     $sChar = '`~!@#$%^&*()_+{}|:"<>?';
     $charCount = strlen($sChar);
     for ($i = 0; $i < 3; $i++) {
-        $randIndex = random_int(0, $charCount - 1);  
-        $pwd .= $sChar[$randIndex];  
-        $pwd .= rand(0,9);
+        $randIndex = random_int(0, $charCount - 1);
+        $pwd .= $sChar[$randIndex];
+        $pwd .= rand(0, 9);
         $pwd .= chr(rand(ord('A'), ord('Z')));
         $pwd .= chr(rand(ord('a'), ord('z')));
     }

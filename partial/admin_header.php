@@ -1,12 +1,12 @@
-<?php 
-    session_start();
-    if(!isset($_SESSION['user']))
-        header('Location: /../auth/login.php');
-    if($_SESSION['user']['userType'] != "Admin")
-        header('Location: /../auth/login.php');
-    echo"<script> console.log('session details : 
-                    userID: ".$_SESSION['user']['userID']."
-                    userType: ".$_SESSION['user']['userType']."')</script>"; 
+<?php
+session_start();
+if (!isset($_SESSION['user']))
+    header('Location: /../auth/login.php');
+if ($_SESSION['user']['userType'] != "Admin")
+    header('Location: /../auth/login.php');
+echo "<script> console.log('session details : 
+                    userID: " . $_SESSION['user']['userID'] . "
+                    userType: " . $_SESSION['user']['userType'] . "')</script>";
 ?>
 
 <header class="header">
@@ -15,7 +15,7 @@
     </div>
     <div class="header-right">
         <a href="admin_notification.php">
-           <i class="nav-icon fa fa-bell"></i>
+            <i class="nav-icon fa fa-bell"></i>
         </a>
         <!--
         <a href="messages.php">
@@ -30,9 +30,7 @@
                 <a id="logout" href="../auth/logout.php">
                     Logout<i class="fa fa-right-from-bracket"></i>
                 </a>
-            </div>   
+            </div>
         </div>
     </div>
 </header>
-
-

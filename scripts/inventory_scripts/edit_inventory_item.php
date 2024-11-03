@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($name) || empty($stock) || empty($price)) {
             echo "Please fill in all required fields.";
             exit;
-        }else{
+        } else {
             // edit the inventory data in the database
             $query = "UPDATE inventory SET name = ?, stock = ?, price = ? WHERE inventoryID = ?";
             $stmt = $conn->prepare($query);
@@ -35,5 +35,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->close();
     }
 }
-
-

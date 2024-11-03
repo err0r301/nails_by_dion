@@ -1,5 +1,6 @@
 <?php
-function getServices() {
+function getServices()
+{
     // Include the config file
     require '../data/config.php';
 

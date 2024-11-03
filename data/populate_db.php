@@ -2,11 +2,12 @@
 // Include the config file
 require_once 'config.php';
 
-error_reporting(E_ALL);  
-ini_set('display_errors', 1); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
-function checkInsert($conn,$query, $dataName) {
+function checkInsert($conn, $query, $dataName)
+{
     if ($conn->query($query) === TRUE) {
         echo "$dataName data inserted successfully\n";
     } else {
@@ -207,7 +208,7 @@ VALUES
     ('Staff Assignment for New Appointment', 'Staff Alert: [name] has been assigned to [client\'s] appointment for [service] on [date] at [time].'),  
     ('Stylist Missed Appointment', 'Appointment missed: [name] did not show up for their [service] appointment on [date]. Consider following up to reschedule.'),  
     ('Payment Received', 'Payment of [amount] has been received from [name] for their [service] on [date].'),  
-    ('System Error/Failure Notification', 'Error Alert: The system encountered an issue with [specific feature]. Immediate attention required to prevent downtime.')";  
+    ('System Error/Failure Notification', 'Error Alert: The system encountered an issue with [specific feature]. Immediate attention required to prevent downtime.')";
 
 checkInsert($conn, $notificationQuery, "Auto Notification");
 
@@ -408,7 +409,7 @@ VALUES
     (165, 'Gel Manicure', 500.00, '2022-06-15')";
 
 checkInsert($conn, $saleQuery, "Sale");
-  */  
+  */
 // insert notification data
 $notificationsQuery = "INSERT INTO notification (dateTime_, message, status_, userID) 
 VALUES   
@@ -431,8 +432,8 @@ VALUES
     ('2024-09-18 08:00:00', 'We miss you! Schedule your next visit.', 'Unread', 5),  
     ('2024-09-20 10:10:00', 'Your review is now live!', 'Read', 3),  
     ('2024-09-22 10:20:00', 'Appointment feedback request', 'Read', 4),  
-    ('2024-09-25 09:15:00', 'Promo code available for user 5', 'Read', 5)";  
-  
+    ('2024-09-25 09:15:00', 'Promo code available for user 5', 'Read', 5)";
+
 checkInsert($conn, $notificationsQuery, "Notification");
 
 // Close the connection

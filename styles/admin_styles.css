@@ -1,7 +1,6 @@
 :root
 
-/*[data-theme="light"]*/
-  {
+/*[data-theme="light"]*/ {
   --text: #000000;
   --background: #fffcfc;
   --primary: #dcc3ab;
@@ -130,8 +129,8 @@ body {
   z-index: 2;
 }
 
-.active-Side-link .sidebar-list-item{
-  background-color: var(--secondary); 
+.active-Side-link .sidebar-list-item {
+  background-color: var(--secondary);
   color: var(--text);
   font-weight: bold;
 }
@@ -169,7 +168,7 @@ body {
   cursor: pointer;
 }
 
-.sidebar-list>a {
+.sidebar-list > a {
   text-decoration: none;
   color: var(--background);
 }
@@ -271,8 +270,7 @@ body {
   column-count: 3;
   column-gap: 20px;
   margin: 20px;
-  grid-template-areas:
-    "graph-l graph-r graph-r";
+  grid-template-areas: "graph-l graph-r graph-r";
 }
 
 .graph-l,
@@ -290,8 +288,7 @@ body {
   min-width: 400px;
 }
 
-
-.customer-line-graph{
+.customer-line-graph {
   width: (100%-20px);
   background-color: var(--light);
   border-radius: 10px;
@@ -325,7 +322,7 @@ body {
   height: 270px;
 }
 
-.card-4{
+.card-4 {
   height: 350px;
   align-items: flex-start;
   padding: 24px;
@@ -333,7 +330,7 @@ body {
   background-color: var(--text);
 }
 
-.card-4 .main-title{
+.card-4 .main-title {
   color: var(--background);
   font-size: 20px;
 }
@@ -348,17 +345,16 @@ body {
 .table-container {
   margin-right: 40px;
 }
-.arrow{
+.arrow {
   margin-left: 15px;
 }
 
-.appoint{
+.appoint {
   display: flex;
   align-items: flex-end;
 }
 
-
-.crud-btn{
+.crud-btn {
   width: 25px;
   height: 20px;
   padding: 0;
@@ -371,35 +367,35 @@ body {
   opacity: 0.6;
 }
 
-.crud-btn:hover{
+.crud-btn:hover {
   opacity: 1;
   cursor: pointer;
-} 
+}
 
-.btn-add{
+.btn-add {
   color: white;
   width: 80px;
   height: 30px;
-  background-color:var(--text);
+  background-color: var(--text);
 }
 
-.btn-add:hover{
+.btn-add:hover {
   background-color: rgb(0, 210, 0);
 }
 
-.btn-delete:hover{
+.btn-delete:hover {
   color: red;
 }
 
-.btn-edit:hover{
+.btn-edit:hover {
   color: rgb(0, 210, 0);
 }
 
-.btn-view:hover{  
-  color: rgb(0, 140, 255);  
+.btn-view:hover {
+  color: rgb(0, 140, 255);
 }
 
-.table-selector{
+.table-selector {
   background-color: var(--secondary);
   color: var(--light);
   font-weight: bold;
@@ -408,31 +404,31 @@ body {
   cursor: pointer;
 }
 
-.table-selector option{
+.table-selector option {
   background-color: var(--primary);
   color: var(--text);
   font-size: 15px;
 }
 
-.appointment-cards{
+.appointment-cards {
   display: grid;
   column-count: 3;
   column-gap: 20px;
   margin: 20px;
-  grid-template-areas:
-  "graph-l graph-r graph-r";
+  grid-template-areas: "graph-l graph-r graph-r";
 }
 
-.graph-l, .graph-r{
+.graph-l,
+.graph-r {
   height: 270px;
 }
 
-.graph-l{
+.graph-l {
   grid-area: graph-l;
   min-width: 200px;
 }
 
-.graph-r{
+.graph-r {
   grid-area: graph-r;
   align-items: flex-start;
   min-width: 400px;
@@ -441,7 +437,7 @@ body {
   background-color: var(--text);
 }
 
-.graph-r .main-title{
+.graph-r .main-title {
   color: var(--light);
   font-size: 20px;
 }
@@ -571,7 +567,7 @@ body {
   padding: 12px 15px;
 }
 
-.table td{
+.table td {
   background-color: var(--background);
 }
 
@@ -661,7 +657,6 @@ body {
   font-size: 14px;
   background-color: #f9f9f9;
   width: 80px;
-
 }
 
 #calendar-button {
@@ -690,29 +685,28 @@ body {
   font-size: medium;
 }
 
-
 /*---------- modal ----------------- */
 
 /* Animation for modal */
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeOut {
   from {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
   to {
-      opacity: 0;
-      transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
   }
 }
 
@@ -744,9 +738,9 @@ body {
   padding-left: 100px;
 }
 
-#teamModal{
+#teamModal {
   padding-top: 30vh;
-} 
+}
 
 .modal-content {
   background-color: var(--light);
@@ -788,11 +782,11 @@ body {
   background-color: var(--secondary);
   color: var(--light);
 }
-#assignButton:hover{
+#assignButton:hover {
   background-color: rgb(79, 79, 248);
 }
-#deleteButton:hover{
- background-color: rgb(255, 35, 35);
+#deleteButton:hover {
+  background-color: rgb(255, 35, 35);
 }
 
 .btn:active {
@@ -800,30 +794,27 @@ body {
   color: var(--light);
 }
 
-
 /*----------- Team ----------------*/
 
-
-.formatter{
+.formatter {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.adding{
+.adding {
   display: flex;
   width: 100%;
   height: 90%;
   justify-content: center;
   padding-bottom: 40px;
 }
-.added{
+.added {
   display: flex;
   justify-content: center;
   width: 100%;
   padding-top: 20px;
-  
 }
 
 .add-card {
@@ -857,30 +848,28 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
-#add-img{
+#add-img {
   display: inline;
   border-radius: 100%;
   width: 50%;
   height: auto;
   margin: auto;
-
 }
 
-.add-img-container{
+.add-img-container {
   width: 50%;
   align-content: center;
 }
 
-.add-input-container{
+.add-input-container {
   width: 50%;
   margin-right: 5%;
 }
 
-.add-form-container{
-display: flex;
-justify-content: space-evenly;
-padding-bottom: 1%;
+.add-form-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 1%;
 }
 
 .deck {
@@ -892,7 +881,6 @@ padding-bottom: 1%;
   padding: 0;
   width: 90%;
   flex-wrap: wrap;
-
 }
 
 .card-container {
@@ -914,7 +902,7 @@ padding-bottom: 1%;
   justify-content: center;
   border-radius: 15px;
   /*box-shadow: 0px 8px 16px 0px rgba(0.2, 0.2, 0.2, 0.2);*/
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin: 0px;
   padding: 10px;
   padding-bottom: 0px;
@@ -922,23 +910,23 @@ padding-bottom: 1%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-.team-card:hover{
+.team-card:hover {
   transform: scale(1.1);
   background-color: var(--secondary);
   color: white;
 }
 
-.trash{
+.trash {
   display: flex;
   justify-content: end;
   margin-right: 3%;
   cursor: pointer;
 }
-#bin{
+#bin {
   color: #aaa;
   font-size: medium;
 }
-#bin:hover{
+#bin:hover {
   color: red;
 }
 
@@ -980,25 +968,25 @@ padding-bottom: 1%;
   border-radius: 5px;
   cursor: pointer;
   background-color: #cea984;
-  color: white; 
+  color: white;
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* The Modal (background) */
 .t-modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   padding-left: 100px;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content */
@@ -1033,64 +1021,62 @@ padding-bottom: 1%;
   margin-top: 20px;
 }
 
-#edit-button{
+#edit-button {
   padding: 8px 16px;
   width: 48%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background-color: black;
-  color: white; 
+  color: white;
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-#delete-button{
+#delete-button {
   padding: 8px 16px;
   width: 48%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background-color: black;
-  color: white; 
+  color: white;
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
-#edit-button:hover{
-background-color: #3270e4;
+#edit-button:hover {
+  background-color: #3270e4;
 }
-#delete-button:hover{
+#delete-button:hover {
   background-color: red;
 }
-#edit-member-form{
+#edit-member-form {
   margin: 20px auto;
   padding: 0px;
 }
-#edit-member-form input{
+#edit-member-form input {
   display: block;
   width: 80%;
   margin: 20px auto;
   padding: 10px;
   border: 1px solid #e0dbdb;
   border-radius: 5px;
-
 }
-#edit-member-form button{
+#edit-member-form button {
   padding: 8px 16px;
   width: 80%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background-color: black;
-  color: white; 
+  color: white;
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
-#edit-member-form button:hover{
+#edit-member-form button:hover {
   background-color: #3270e4;
 }
 /* ------------ Profile ------------ */
-
 
 .profile {
   position: relative;
@@ -1099,8 +1085,8 @@ background-color: #3270e4;
   max-height: 350px;
 }
 
-#edit-profile-btn{
-  padding:7px 25px;
+#edit-profile-btn {
+  padding: 7px 25px;
   background-color: rgb(19, 165, 19);
   color: var(--light);
   border: none;
@@ -1110,7 +1096,7 @@ background-color: #3270e4;
   opacity: 0.9;
 }
 
-#edit-profile-btn:hover{
+#edit-profile-btn:hover {
   opacity: 1;
 }
 
@@ -1123,7 +1109,7 @@ background-color: #3270e4;
   object-fit: cover;
   object-position: center;
   border-radius: 4px;
-  filter: brightness(.7);
+  filter: brightness(0.7);
 }
 
 .profile:before {
@@ -1242,12 +1228,10 @@ background-color: #3270e4;
   margin-top: 20px; /* Add spacing from the rest of the form */
 }
 
-
 .service-container {
   display: flex;
   flex-direction: row; /* Horizontal layout */
   gap: 20px; /* Space between image and text */
-  
 }
 
 #view-service-img {
@@ -1316,7 +1300,7 @@ background-color: #3270e4;
   }
 }
 
-.app-content-search{
+.app-content-search {
   display: inline-flex;
   align-items: center;
   background-color: rgb(242, 242, 245);
@@ -1324,15 +1308,15 @@ background-color: #3270e4;
   border-radius: 5px;
 }
 
-.app-content-search:hover{
+.app-content-search:hover {
   border-color: rgb(96, 96, 96);
 }
 
-.app-content-search:hover i{
+.app-content-search:hover i {
   color: rgba(41, 41, 224, 0.695);
 }
 
-.app-content-search i{
+.app-content-search i {
   margin-left: 8px;
 }
 
@@ -1391,14 +1375,16 @@ background-color: #3270e4;
   border-color: var(--accent);
 }
 
-.upload_img, #admin-image {
-  display: none;}
+.upload_img,
+#admin-image {
+  display: none;
+}
 
 .upload-image {
   background-color: black;
   color: var(--light);
   padding: 10px;
-  
+
   border-radius: 5px;
   cursor: pointer;
   display: block;
@@ -1410,7 +1396,7 @@ background-color: #3270e4;
 
 .upload-image:hover {
   opacity: 0.8;
-} 
+}
 
 .service-area-wrapper {
   width: 100%;
@@ -1473,13 +1459,15 @@ background-color: #3270e4;
   }
 }
 @media screen and (max-width: 520px) {
-  .tableView .service-cell.category, .tableView .service-cell.sales {
+  .tableView .service-cell.category,
+  .tableView .service-cell.sales {
     display: none;
   }
   .tableView .service-cell.status-cell {
     flex: 0.4;
   }
-  .tableView .service-cell.stock, .tableView .service-cell.price {
+  .tableView .service-cell.stock,
+  .tableView .service-cell.price {
     flex: 0.2;
   }
 }
@@ -1610,7 +1598,7 @@ background-color: #3270e4;
   width: 100%;
   height: 140px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 4px;
   margin-bottom: 16px;
 }
@@ -1626,7 +1614,8 @@ background-color: #3270e4;
   margin-top: 20px;
 }
 
-.inventory-header, .inventory-row {
+.inventory-header,
+.inventory-row {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
   gap: 10px;
@@ -1674,11 +1663,9 @@ background-color: #3270e4;
   color: #555;  
 }*/
 
-
-.crud-btn.p-btn-edit i:hover{
+.crud-btn.p-btn-edit i:hover {
   color: rgb(32, 197, 32);
 }
-
 
 .crud-btn.p-btn-delete i:hover {
   color: red;
@@ -1686,33 +1673,18 @@ background-color: #3270e4;
 
 .main-title {
   opacity: 1;
-  transition: opacity 0.5s ease;  /* 0.5s is the transition duration */
+  transition: opacity 0.5s ease; /* 0.5s is the transition duration */
 }
 
 .main-title.fade-out {
-  opacity: 0;  /* Fades out */
+  opacity: 0; /* Fades out */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ---------- Responsive ---------- */
 
 @media screen and (max-width: 700px) {
   /*make .table responsive*/
-  .table{
+  .table {
     display: block;
   }
 }
@@ -1722,7 +1694,6 @@ background-color: #3270e4;
     margin-left: 0;
     margin-right: 0;
   }
-
 
   .grid-container {
     grid-template-columns: 1fr;
@@ -1754,7 +1725,8 @@ background-color: #3270e4;
     display: inline;
   }
 
-  .graph-l, .graph-r{
+  .graph-l,
+  .graph-r {
     min-width: 0;
   }
 }

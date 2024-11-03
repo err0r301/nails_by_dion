@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="../scripts/admin_script.js" defer></script>
     <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
 </head>
+
 <body>
     <div class="grid-container">
         <?php
-            $page = 'admin_profile';
-            include '../partial/admin_header.php';
-            include '../partial/admin_sidebar.php';
-            require '../scripts/validate_input.php';
-            require '../scripts/user_scripts/edit_user-pwd.php';
-            require '../scripts/user_scripts/edit_user-info.php';
-            error_reporting(E_ALL);  
-            ini_set('display_errors', 1); 
-        ?> 
+        $page = 'admin_profile';
+        include '../partial/admin_header.php';
+        include '../partial/admin_sidebar.php';
+        require '../scripts/validate_input.php';
+        require '../scripts/user_scripts/edit_user-pwd.php';
+        require '../scripts/user_scripts/edit_user-info.php';
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+        ?>
 
         <div class="popup" id="popup-password-requirements">
             <div class="overlay" onclick="togglePopup('popup-password-requirements')"></div>
@@ -32,40 +34,40 @@
                 <h2>Password Requirements</h2>
                 <b>The password must be:</b>
                 <ol style="text-align: left">
-                <li>at least 8 characters long</li>
-                <li>contain at least one uppercase letter</li> 
-                <li>contain at least one lowercase letter</li>
-                <li>contain at least one special character</li>
-                <li>contain at least one digit.</li>
+                    <li>at least 8 characters long</li>
+                    <li>contain at least one uppercase letter</li>
+                    <li>contain at least one lowercase letter</li>
+                    <li>contain at least one special character</li>
+                    <li>contain at least one digit.</li>
                 </ol>
-                
+
                 <button class="confirm-btn" onclick="togglePopup('popup-password-requirements')">OK</button>
             </div>
         </div>
-        
+
         <main class="main-container">
             <div class="profile">
                 <div class="profile-avatar">
-                    <img src="<?php echo $_SESSION['user']['image'];?>" alt="Profile Image" class="profile-img">
+                    <img src="<?php echo $_SESSION['user']['image']; ?>" alt="Profile Image" class="profile-img">
                     <div class="profile-info">
-                        <b id="profile-name" ><?php echo $_SESSION['user']['name']; ?></b>
+                        <b id="profile-name"><?php echo $_SESSION['user']['name']; ?></b>
                         <br>
                         <b><?php echo $_SESSION['user']['email']; ?></b>
                         <br>
-                        <i><?php echo $_SESSION['user']['role'];?></i>
+                        <i><?php echo $_SESSION['user']['role']; ?></i>
                     </div>
                 </div>
                 <img src="../_images/profile-cover.jpg" alt="" class="profile-cover">
             </div>
-            
+
             <div class="profile-edit-info main-cards">
                 <section class="card">
                     <header>
                         <h2>Profile Information</h2>
-                        <p class="help-text"  id="help-userInfo" style="display: block;">Update your account's profile information and email address.</p>
+                        <p class="help-text" id="help-userInfo" style="display: block;">Update your account's profile information and email address.</p>
                     </header>
 
-                    <form class="profile-form" action="" method="POST" >
+                    <form class="profile-form" action="" method="POST">
                         <div>
                             <label for="name">Name</label>
                             <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>">
@@ -106,7 +108,7 @@
                             <!--<p id="new_password_error_length" style="color: red;">the password need to be at least 8 characters long</p>
                             <<p id="new_password_error_special" style="color: red;">the password need to contain a spacial character</p>
                             <<p id="new_password_error_caps" style="color: red;">the password need contain an upper case letter</p>-->
-                            
+
                         </div>
 
                         <div>
@@ -123,8 +125,8 @@
         </main>
     </div>
 </body>
-<?php 
-if ($edit_userInfo_confirmation != null){
+<?php
+if ($edit_userInfo_confirmation != null) {
     $confirmationID = 'confirmation_userInfo';
     if ($edit_userInfo_confirmation == true) {
         $confirmationMessage = 'User details updated successfully!';
@@ -136,16 +138,17 @@ if ($edit_userInfo_confirmation != null){
     require_once '../partial/popup.php';
 }
 
-if ($edit_userPwd_confirmation != null){
+if ($edit_userPwd_confirmation != null) {
     $confirmationID = 'confirmation_userPwd';
     if ($edit_userPwd_confirmation == 'true') {
         $confirmationMessage = 'User password updated successfully!';
         $confirmationImage = '../_images/tick.png';
     } else {
-        $confirmationMessage = 'Password Update Failed. '.$pwd_error;
+        $confirmationMessage = 'Password Update Failed. ' . $pwd_error;
         $confirmationImage = '../_images/cross.png';
     }
     require_once '../partial/popup.php';
 }
-?> 
+?>
+
 </html>

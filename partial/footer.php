@@ -1,12 +1,12 @@
 <footer class="footer has-bg-image" style="background-image: url('./assets/images/footer-bg.png')">
   <div class="container">
     <div class="footer-top">
-      
+
       <div class="footer-link-box">
 
-        <a href="index.php" >
-        <img class="logo" src="/_images/logo.png" alt="Logo" style="width: 200px; height: 200px;">
-      </a>
+        <a href="index.php">
+          <img class="logo" src="/_images/logo.png" alt="Logo" style="width: 200px; height: 200px;">
+        </a>
 
         <ul class="footer-list">
           <li>
@@ -51,7 +51,7 @@
               <span style="padding-right: 10px;">Sun - Friday, 08 am - 06 pm</span>
               <span>Saturdays: 08 am - 05 pm</span>
             </div>
-            
+
           </li>
 
           <li class="footer-list-item">
@@ -67,7 +67,7 @@
 
           <li>
             <a href="#" class="social-link">
-            <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-facebook"></i>
             </a>
           </li>
 
@@ -82,7 +82,7 @@
               <i class="fa-brands fa-youtube"></i>
             </a>
           </li>
-          
+
           <li>
             <a href="#" class="social-link">
               <i class="fa-brands fa-instagram"></i>
@@ -99,6 +99,4 @@
     </div>
 
   </div>
-</footer> 
-
-
+</footer>

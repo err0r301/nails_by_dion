@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insert the inventory data into the database
             $query = "INSERT INTO inventory (inventoryID, name, stock, price) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("isii",$id, $name, $stock, $price);
+            $stmt->bind_param("isii", $id, $name, $stock, $price);
             $stmt->execute();
 
             // Check if the insertion was successful
@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function getMaxID($conn){
+function getMaxID($conn)
+{
     $query = "SELECT MAX(inventoryID) AS maxID FROM inventory";
     $result = $conn->query($query);
     $row = $result->fetch_assoc();

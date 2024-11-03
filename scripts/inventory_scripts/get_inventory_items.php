@@ -1,5 +1,6 @@
 <?php
-function getInventoryItems() {
+function getInventoryItems()
+{
     // Include the config file
     require '../data/config.php';
 

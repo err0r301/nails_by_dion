@@ -1,5 +1,6 @@
 <?php
-function getClients() {
+function getClients()
+{
     // Include the config file
     require '../data/config.php';
 

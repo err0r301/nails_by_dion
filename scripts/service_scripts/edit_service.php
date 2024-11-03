@@ -18,20 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!empty($_FILES['image']['name'])) {
             $targetDir = "../_images/";
-            $fileName = basename($_FILES['image']['name']);  
-            $targetFilePath = $targetDir . $fileName;  
+            $fileName = basename($_FILES['image']['name']);
+            $targetFilePath = $targetDir . $fileName;
 
-            if (!is_dir($targetDir)) {  
-                mkdir($targetDir, 0755, true);  
-            } 
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {  
-                $image = $targetFilePath;  
-                echo "<script> console.log('The image has been uploaded successfully. Image path: $image')</script>";  
-            } else {  
-                echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";  
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
             }
-        }else{
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+                $image = $targetFilePath;
+                echo "<script> console.log('The image has been uploaded successfully. Image path: $image')</script>";
+            } else {
+                echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";
+            }
+        } else {
             $image = $_POST['originImage'];
         }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (/*empty($name) ||*/empty($serviceID) || empty($description) || empty($price) || empty($image) || empty($category) || empty($duration) || empty($status)) {
             echo "Please fill in all required fields.";
             exit;
-        }else{
+        } else {
             // edit the service data in the database
             $query = "UPDATE service SET serviceID = ?,  description = ?, price = ?, image = ?, category = ?, duration = ?, status = ? WHERE serviceID = ?";
             $stmt = $conn->prepare($query);
@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<script>console.log('Service record updated successfully.')</script>";
                 $edit_service_confirmation = true;
             } else {
-                echo "<script> console.log('Error updating service record: " . $stmt->error. "')</script>";
-                $edit_service_confirmation = false; 
+                echo "<script> console.log('Error updating service record: " . $stmt->error . "')</script>";
+                $edit_service_confirmation = false;
             }
             $stmt->close();
 

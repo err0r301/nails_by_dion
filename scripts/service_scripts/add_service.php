@@ -14,19 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status = $_POST['status'];
         //$id = getMaxID($conn) + 1;
         $targetDir = "../_images/";
-        $fileName = basename($_FILES['image']['name']);  
-        $targetFilePath = $targetDir . $fileName;  
+        $fileName = basename($_FILES['image']['name']);
+        $targetFilePath = $targetDir . $fileName;
 
-        if (!is_dir($targetDir)) {  
-            mkdir($targetDir, 0755, true);  
-        } 
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {  
-            $image = $targetFilePath;  
-            echo "<script> console.log('The file has been uploaded successfully. Image path: ')</script>";  
-        } else {  
-            echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";  
-        }  
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+            $image = $targetFilePath;
+            echo "<script> console.log('The file has been uploaded successfully. Image path: ')</script>";
+        } else {
+            echo "<script> console.log('Sorry, there was an error uploading your file.')</script>";
+        }
 
         echo "<script> console.log('name :$name, description :$description, price :$price, image :$image, category :$category, duration :$duration, status :$status')</script>";
 
@@ -54,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function getMaxID($conn){
+function getMaxID($conn)
+{
     $query = "SELECT MAX(serviceID) AS maxID FROM service";
     $result = $conn->query($query);
     $row = $result->fetch_assoc();

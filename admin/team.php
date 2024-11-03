@@ -16,17 +16,17 @@
 <body>
     <div class="grid-container">
         <?php
-            $page = 'team';
-            error_reporting(E_ALL);  
-            ini_set('display_errors', 1); 
-            include '../partial/admin_header.php';
-            include '../partial/admin_sidebar.php';
-            require '../scripts/user_scripts/remove_user.php';
-            require '../scripts/user_scripts/add_user.php'; 
-            require '../scripts/user_scripts/edit_user-info.php';
-            require '../scripts/user_scripts/edit_user-pwd.php';           
-            require '../scripts/user_scripts/get_admins.php';
-            $team = getAdmins();
+        $page = 'team';
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+        include '../partial/admin_header.php';
+        include '../partial/admin_sidebar.php';
+        require '../scripts/user_scripts/remove_user.php';
+        require '../scripts/user_scripts/add_user.php';
+        require '../scripts/user_scripts/edit_user-info.php';
+        require '../scripts/user_scripts/edit_user-pwd.php';
+        require '../scripts/user_scripts/get_admins.php';
+        $team = getAdmins();
         ?>
 
         <main class="main-container">
@@ -56,96 +56,96 @@
                             </div>
                         </form>
                     </div>
-                </div>        
+                </div>
 
-                    <div class="added">
-                        <div class="deck">
-                            <?php 
-                                foreach ($team as $member) {
-                                    $name = $member['name'];
-                                    $email = $member['email'];
-                                    $cell = $member['cell'];
-                                    $role = $member['role'];
-                                    $image = $member['image'];
-                                    $memberID = $member['id'];
-                                ?>
- 
-                                <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($memberID); ?>','<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>'); storeID('<?php echo addslashes( $memberID); ?>','delete-member-id');">
-                                        <div class="team-card">
-                                            <img id="team-pic" src="<?php echo $image?>" alt="team-profile photo">
-                                            <p id="team-name"><?php echo $name ?></p>
-                                            <p id="team-email"><?php echo $email ?></p>
-                                            <p class="team-role"><?php echo $role ?></p>
-                                            <div class="card-bottom">
-                                                <!--    <button id="team-view">Edit</button>
+                <div class="added">
+                    <div class="deck">
+                        <?php
+                        foreach ($team as $member) {
+                            $name = $member['name'];
+                            $email = $member['email'];
+                            $cell = $member['cell'];
+                            $role = $member['role'];
+                            $image = $member['image'];
+                            $memberID = $member['id'];
+                        ?>
+
+                            <div class="card-container" onclick="viewModal('popup-view-member', '<?php echo addslashes($memberID); ?>','<?php echo addslashes($name); ?>', '<?php echo addslashes($email); ?>', '<?php echo addslashes($cell); ?>', '<?php echo addslashes($role); ?>'); storeID('<?php echo addslashes($memberID); ?>','delete-member-id');">
+                                <div class="team-card">
+                                    <img id="team-pic" src="<?php echo $image ?>" alt="team-profile photo">
+                                    <p id="team-name"><?php echo $name ?></p>
+                                    <p id="team-email"><?php echo $email ?></p>
+                                    <p class="team-role"><?php echo $role ?></p>
+                                    <div class="card-bottom">
+                                        <!--    <button id="team-view">Edit</button>
                                             <button id="team-view">View</button> -->
-                                            </div>
-                                        </div>
                                     </div>
-                            <?php }?>
-                        </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
+            </div>
 
-                <!-- ---------MODAL ----------- -->
-                <div class="popup <?php if(isset($pwd)) echo 'active'?>" id="popup-generated-pwd">
-                    <div class="overlay" onclick="togglePopup('popup-generated-pwd')"></div>
-                    <div class="content">
-                        <div class="close-btn" onclick="togglePopup('popup-generated-pwd')">&times;</div>
-                        <h2>Generated Password</h2>
-                        <strong>Password : <?php echo $pwd;?></strong>
-                        <button class="red-btn" onclick="togglePopup('popup-generated-pwd')">close</button> 
-                    </div>
+            <!-- ---------MODAL ----------- -->
+            <div class="popup <?php if (isset($pwd)) echo 'active' ?>" id="popup-generated-pwd">
+                <div class="overlay" onclick="togglePopup('popup-generated-pwd')"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup('popup-generated-pwd')">&times;</div>
+                    <h2>Generated Password</h2>
+                    <strong>Password : <?php echo $pwd; ?></strong>
+                    <button class="red-btn" onclick="togglePopup('popup-generated-pwd')">close</button>
                 </div>
+            </div>
 
-                <div class="popup" id="popup-view-member">
-                    <div class="overlay" onclick="togglePopup('popup-view-member')"></div>
-                    <div class="content">
-                        <div class="close-btn" onclick="togglePopup('popup-view-member')">&times;</div>
-                        <h2>Team Member Details</h2>
-                        <input type="hidden" name="userID" id="memberUserID">
-                        <p id="modal-name"></p>
-                        <p id="modal-email"></p>
-                        <p id="modal-cell"></p>
-                        <p id="modal-role"></p>
-                        <div class="modal-buttons">
-                            <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member');">Edit</button>
-                            <button id="delete-button" onclick="togglePopup('popup-delete-member');togglePopup('popup-view-member');">Delete</button> 
-                        </div>
+            <div class="popup" id="popup-view-member">
+                <div class="overlay" onclick="togglePopup('popup-view-member')"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup('popup-view-member')">&times;</div>
+                    <h2>Team Member Details</h2>
+                    <input type="hidden" name="userID" id="memberUserID">
+                    <p id="modal-name"></p>
+                    <p id="modal-email"></p>
+                    <p id="modal-cell"></p>
+                    <p id="modal-role"></p>
+                    <div class="modal-buttons">
+                        <button id="edit-button" onclick="togglePopup('popup-view-member');editModal('popup-edit-member');">Edit</button>
+                        <button id="delete-button" onclick="togglePopup('popup-delete-member');togglePopup('popup-view-member');">Delete</button>
                     </div>
                 </div>
-        
-                <!-- ---------EDIT MODAL ----------- -->
-                <div class="popup" id="popup-edit-member">
-                    <div class="overlay" onclick="togglePopup('popup-edit-member')"></div>
-                    <div class="content">
-                        <div class="close-btn" onclick="togglePopup('popup-edit-member')">&times;</div>
-                        <h2>Edit Team Member Details</h2>
-                        <form id="edit-member-form" action="" method="post">
-                            <input type="hidden" name="userID" id="edit-member-id"> 
-                            <input type="text" id="edit-name" name="edit-name" placeholder="Name" required>
-                            <input type="email" id="edit-email" name="edit-email" placeholder="Email" required>
-                            <input type="text" id="edit-cell" name="edit-cell" placeholder="Phone number" required>
-                            <input type="text" id="edit-role" name="edit-role" placeholder="Role" required>
-                            <button class="blue-btn" type="submit">Update</button>
-                        </form>
-                    </div>
-                </div>
+            </div>
 
-                <!-- ---------DELETE MODAL ----------- -->
-                <div class="popup" id="popup-delete-member">
-                    <div class="overlay" onclick="togglePopup('popup-delete-member')"></div>
-                    <div class="content">
-                        <div class="close-btn" onclick="togglePopup('popup-delete-member')">&times;</div>
-                        <h2>Remove Employee</h2>
-                        <p>Are you sure you want to remove this employee?</p>
-                        <form action="" method="post">
-                            <input type="hidden" name="delete-user-id" id="delete-member-id"> 
-                            <button class="red-btn" type="submit" id="delete-member-btn" value="Delete">Delete</button>
-                            <button type="reset" onclick="togglePopup('popup-delete-member')">Cancel</button>
-                        </form>
-                    </div>
+            <!-- ---------EDIT MODAL ----------- -->
+            <div class="popup" id="popup-edit-member">
+                <div class="overlay" onclick="togglePopup('popup-edit-member')"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup('popup-edit-member')">&times;</div>
+                    <h2>Edit Team Member Details</h2>
+                    <form id="edit-member-form" action="" method="post">
+                        <input type="hidden" name="userID" id="edit-member-id">
+                        <input type="text" id="edit-name" name="edit-name" placeholder="Name" required>
+                        <input type="email" id="edit-email" name="edit-email" placeholder="Email" required>
+                        <input type="text" id="edit-cell" name="edit-cell" placeholder="Phone number" required>
+                        <input type="text" id="edit-role" name="edit-role" placeholder="Role" required>
+                        <button class="blue-btn" type="submit">Update</button>
+                    </form>
                 </div>
+            </div>
+
+            <!-- ---------DELETE MODAL ----------- -->
+            <div class="popup" id="popup-delete-member">
+                <div class="overlay" onclick="togglePopup('popup-delete-member')"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup('popup-delete-member')">&times;</div>
+                    <h2>Remove Employee</h2>
+                    <p>Are you sure you want to remove this employee?</p>
+                    <form action="" method="post">
+                        <input type="hidden" name="delete-user-id" id="delete-member-id">
+                        <button class="red-btn" type="submit" id="delete-member-btn" value="Delete">Delete</button>
+                        <button type="reset" onclick="togglePopup('popup-delete-member')">Cancel</button>
+                    </form>
+                </div>
+            </div>
         </main>
 
     </div>
@@ -153,12 +153,12 @@
         const modal = document.getElementById("team-modal");
         const modalClose = document.getElementsByClassName("close")[0];
         var m_id;
-        var m_name;  
+        var m_name;
         var m_email;
         var m_cell;
         var m_role;
 
-        function showTeamModal(name,email,phone,role) {
+        function showTeamModal(name, email, phone, role) {
             document.getElementById("modal-name").textContent = name;
             document.getElementById("modal-email").textContent = email;
             document.getElementById("modal-phone").textContent = phone;
@@ -170,44 +170,43 @@
             modal.style.display = "none";
         }
 
-        function viewModal(pop, model_id,modal_name, modal_email, modal_cell, modal_role) {  
-            var popup = document.getElementById(pop);  
-            popup.classList.toggle("active");  
+        function viewModal(pop, model_id, modal_name, modal_email, modal_cell, modal_role) {
+            var popup = document.getElementById(pop);
+            popup.classList.toggle("active");
 
-            
-            var name = document.getElementById('modal-name');  
-            var email = document.getElementById('modal-email');  
-            var cell = document.getElementById('modal-cell');  
-            var role = document.getElementById('modal-role'); 
-            
+
+            var name = document.getElementById('modal-name');
+            var email = document.getElementById('modal-email');
+            var cell = document.getElementById('modal-cell');
+            var role = document.getElementById('modal-role');
+
             m_id = model_id;
-            name.textContent  = m_name = modal_name;
+            name.textContent = m_name = modal_name;
             email.textContent = m_email = modal_email;
-            cell.textContent  = m_cell= modal_cell;
-            role.textContent  = m_role = modal_role;   
+            cell.textContent = m_cell = modal_cell;
+            role.textContent = m_role = modal_role;
         }
 
-        function editModal(pop) {  
-            var popup = document.getElementById(pop);  
-            popup.classList.toggle("active");  
-            
+        function editModal(pop) {
+            var popup = document.getElementById(pop);
+            popup.classList.toggle("active");
+
             var id = document.getElementById('edit-member-id');
-            var name = document.getElementById('edit-name');  
-            var email = document.getElementById('edit-email');  
-            var cell = document.getElementById('edit-cell');  
-            var role = document.getElementById('edit-role'); 
-            
+            var name = document.getElementById('edit-name');
+            var email = document.getElementById('edit-email');
+            var cell = document.getElementById('edit-cell');
+            var role = document.getElementById('edit-role');
+
             id.value = m_id;
             name.value = m_name;
             email.value = m_email;
-            cell.value= m_cell;
-            role.value= m_role;   
+            cell.value = m_cell;
+            role.value = m_role;
         }
-
     </script>
 </body>
-<?php 
-if ($edit_userInfo_confirmation != null){
+<?php
+if ($edit_userInfo_confirmation != null) {
     $confirmationID = 'confirmation_userInfo';
     if ($edit_userInfo_confirmation == true) {
         $confirmationMessage = 'User details updated successfully!';
@@ -219,7 +218,7 @@ if ($edit_userInfo_confirmation != null){
     require_once '../partial/popup.php';
 }
 
-if ($remove_user_confirmation != null){
+if ($remove_user_confirmation != null) {
     $confirmationID = 'confirmation_userInfo';
     if ($remove_user_confirmation == true) {
         $confirmationMessage = 'User details deleted successfully!';
@@ -231,5 +230,5 @@ if ($remove_user_confirmation != null){
     require_once '../partial/popup.php';
 }
 ?>
+
 </html>
-    

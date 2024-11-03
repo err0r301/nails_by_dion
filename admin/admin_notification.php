@@ -15,10 +15,10 @@
 <body>
     <div class="grid-container">
         <?php
-            $page = 'admin_notification';
-            include '../partial/admin_header.php';
-            include '../partial/admin_sidebar.php';
-            require '../scripts/get_notification.php'
+        $page = 'admin_notification';
+        include '../partial/admin_header.php';
+        include '../partial/admin_sidebar.php';
+        require '../scripts/get_notification.php'
         ?>
 
         <main class="main-container">
@@ -31,23 +31,24 @@
                 </div> -->
             </div>
 
-            <?php 
-                $notifications = getNotifications();
-                if ($notifications == "No notifications found") {
-                    echo "<p>No notifications found</p>";
-                }else{
-                    foreach ($notifications as $notification) {echo "<script>console.log('".$notification['message']."')</script>";?>
-                        <div class="message-box" data-message="<?php echo $notification["message"]?>">
-                            <div class="message-start">
-                                <img src="../_images/profile-pic blank.jpeg" alt="Profile picture">
-                                <p class="message-name"><?php echo $notification["sender"]?></p>
-                            </div>
-                            <p class="message-time"><?php echo $notification["time"]?></p>
+            <?php
+            $notifications = getNotifications();
+            if ($notifications == "No notifications found") {
+                echo "<p>No notifications found</p>";
+            } else {
+                foreach ($notifications as $notification) {
+                    echo "<script>console.log('" . $notification['message'] . "')</script>"; ?>
+                    <div class="message-box" data-message="<?php echo $notification["message"] ?>">
+                        <div class="message-start">
+                            <img src="../_images/profile-pic blank.jpeg" alt="Profile picture">
+                            <p class="message-name"><?php echo $notification["sender"] ?></p>
                         </div>
-                    <?php }
-                }
+                        <p class="message-time"><?php echo $notification["time"] ?></p>
+                    </div>
+            <?php }
+            }
             ?>
-<!--
+            <!--
             <div class="message-box"
                 data-message="Dear John, this is a reminder for your appointment scheduled for tomorrow at 3:00 PM. Please make sure to arrive 10 minutes early.">
                 <div class="message-start">
@@ -106,40 +107,40 @@
     </div>
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // Get all message boxes
-    var messageBoxes = document.querySelectorAll('.message-box');
+        // Get all message boxes
+        var messageBoxes = document.querySelectorAll('.message-box');
 
-    // When the user clicks on a message box, open the modal with animation
-    messageBoxes.forEach(function(box) {
-        box.onclick = function() {
-            var message = box.getAttribute('data-message');
-            document.getElementById('modalMessage').textContent = message;
-            modal.classList.remove('fade-out');
-            modal.classList.add('fade-in');
-            modal.style.display = "grid";
+        // When the user clicks on a message box, open the modal with animation
+        messageBoxes.forEach(function(box) {
+            box.onclick = function() {
+                var message = box.getAttribute('data-message');
+                document.getElementById('modalMessage').textContent = message;
+                modal.classList.remove('fade-out');
+                modal.classList.add('fade-in');
+                modal.style.display = "grid";
+            }
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
         }
-    });
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it with animation
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.classList.remove('fade-in');
-            modal.classList.add('fade-out');
-            setTimeout(function() {
-                modal.style.display = "none";
-            }, 400); // Match the animation-duration time
+        // When the user clicks anywhere outside of the modal, close it with animation
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('fade-in');
+                modal.classList.add('fade-out');
+                setTimeout(function() {
+                    modal.style.display = "none";
+                }, 400); // Match the animation-duration time
+            }
         }
-    }
     </script>
 </body>
 

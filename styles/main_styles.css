@@ -1,4 +1,4 @@
-:root/*[data-theme="light"]*/{
+:root/*[data-theme="light"]*/ {
   --text: #000000;
   --background: #f3e6d8;
   --primary: #e3cfbb;
@@ -8,29 +8,29 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--light);
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--light);
 }
 
 /* ------- forms -------- */
 
-.logo{
-    width: 150px;
-    height: 150px;
+.logo {
+  width: 150px;
+  height: 150px;
 }
 
 .login_register {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: auto;
-    min-height: 100vh;
-    min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 .form-container {
-  padding: 30px;;
+  padding: 30px;
   border-radius: 20px;
   width: 400px;
   max-width: 400px;
@@ -46,8 +46,8 @@ body {
 .form-container .logo,
 .form-container h2,
 .form-container p {
-    justify-content: center;
-    text-align: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .form {
@@ -56,22 +56,21 @@ body {
   gap: 20px;
 }
 
-.error{
-  background-color: rgb(255,220,224);
+.error {
+  background-color: rgb(255, 220, 224);
   border: solid 1px rgb(251, 157, 157);
   font-weight: bolder;
   width: 300px;
   padding: 20px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 1rem;
   display: none;
 }
 
-.error p{
+.error p {
   margin: 0;
-  color: red;;
-
+  color: red;
 }
 
 .btn {
@@ -91,7 +90,6 @@ body {
     inset 0px -7px 5px var(--accent);
 }
 
-
 .input-field {
   position: relative;
 }
@@ -102,7 +100,7 @@ body {
   pointer-events: none;
   background-color: transparent;
   left: 15px;
-  top : 0;
+  top: 0;
   transform: translateY(0.6rem);
   transition: all 0.3s ease;
 }
@@ -122,7 +120,6 @@ body {
   border: solid 1px var(--text);
 }
 
-
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   font-size: 1rem;
@@ -141,9 +138,7 @@ input:-webkit-autofill {
   border-radius: 100px;
 }
 
-
-
-.link{
+.link {
   text-decoration: none;
   color: rgb(38, 38, 217);
 }
@@ -167,10 +162,9 @@ input:-webkit-autofill {
   width: 100%; /* Use the full width defined in the form-control class */
 }
 
-
 /* --------- Logout ---------- */
 
-#logout-buttons{
+#logout-buttons {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -179,55 +173,55 @@ input:-webkit-autofill {
 
 /*----------- Pop Ups ----------*/
 
-.popup .overlay{
-  position:fixed;
-  top:0px;
-  left:0px;
-  width:100vw;
-  height:100vh;
-  background:rgba(0,0,0,0.7);
-  z-index:2;
+.popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
   display: none;
 }
 
-.popup .content{
-  position:absolute;
+.popup .content {
+  position: absolute;
   padding: 20px;
-  min-width:350px;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  background:#fff;
-  z-index:3;
-  text-align:center;
-  padding:20px;
-  box-sizing:border-box;
+  min-width: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  z-index: 3;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
   border-radius: 20px;
 }
 
-.popup .close-btn{
-  cursor:pointer;
-  position:absolute;
-  right:20px;
-  top:20px;
-  width:30px;
-  height:30px;
-  background:var(--text);
-  color:#fff;
-  font-size:25px;
-  font-weight:600;
-  line-height:30px;
-  text-align:center;
-  border-radius:50%;
+.popup .close-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: var(--text);
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.popup .close-btn:hover{
-  background:var(--text);
+.popup .close-btn:hover {
+  background: var(--text);
   background-color: red;
 }
 
-.popup h2{
+.popup h2 {
   margin-top: 50px;
   color: var(--text);
   font-weight: 600;
@@ -242,7 +236,7 @@ input:-webkit-autofill {
   flex-direction: column;
 }
 
-.popup .form-group input{
+.popup .form-group input {
   width: 300px;
   padding: 5px;
   border: 1px solid var(--text);
@@ -250,20 +244,20 @@ input:-webkit-autofill {
   outline: none;
 }
 
-#popup-view-appointment .form-group{
+#popup-view-appointment .form-group {
   flex-direction: row;
   margin: 0;
 }
 
-#popup-view-appointment .form-group p{
-  margin: 10px; 
+#popup-view-appointment .form-group p {
+  margin: 10px;
 }
 
-.view-p{
+.view-p {
   font-weight: normal;
 }
 
-.popup button{
+.popup button {
   width: 35%;
   margin: 20px 10px 10px 10px;
   padding: 10px 0;
@@ -278,20 +272,20 @@ input:-webkit-autofill {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.popup button:hover{
+.popup button:hover {
   opacity: 0.8;
 }
 
-.popup.active .overlay{
-  display:block;
+.popup.active .overlay {
+  display: block;
 }
 
-.popup.active .content{
-  transition:all 300ms ease-in-out;
-  transform:translate(-50%,-50%) scale(1);
+.popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-.form-selector{
+.form-selector {
   width: 300px;
   padding: 5px;
   border: 1px solid var(--text);
@@ -299,7 +293,7 @@ input:-webkit-autofill {
   outline: none;
 }
 
-.description-box{
+.description-box {
   height: 70px;
   width: 300px;
 }
@@ -307,7 +301,7 @@ input:-webkit-autofill {
 .confirmation-img .circle {
   width: 100px;
   height: 100px;
- /* background-color: #F5F5F5; */
+  /* background-color: #F5F5F5; */
   border-radius: 50%;
   margin: 20px auto;
   display: flex;
@@ -321,15 +315,14 @@ input:-webkit-autofill {
   border-radius: 50%;
 }
 
-.green-btn:hover{
-background-color:rgb(19, 165, 19);
+.green-btn:hover {
+  background-color: rgb(19, 165, 19);
 }
 
-.red-btn:hover{
+.red-btn:hover {
   background-color: red;
 }
 
-.blue-btn:hover{
+.blue-btn:hover {
   background-color: #3270e4;
 }
-

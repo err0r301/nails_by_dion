@@ -1,7 +1,7 @@
-<?php  
+<?php
 // Include the config file
-error_reporting(E_ALL);  
-ini_set('display_errors', 1);  
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Parse the config file
 $config = parse_ini_file(__DIR__ . "/../config.ini", true);
@@ -12,56 +12,58 @@ $username = $config["database"]["DB_USER"];
 $password = $config["database"]["DB_PASSWORD"];
 
 // Create a connection to the MySQL server without selecting a database  
-$conn = new mysqli($host, $username, $password);  
+$conn = new mysqli($host, $username, $password);
 
 // Check connection  
-if ($conn->connect_error) {  
-    die("Connection failed: " . $conn->connect_error);  
-}  
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Check if the database exists     
-$result = $conn->query("SHOW DATABASES LIKE '$dbName'");  
+$result = $conn->query("SHOW DATABASES LIKE '$dbName'");
 
-if ($result) {  
-    if ($result->num_rows > 0) {  
-        echo "The '$dbName' database already exists.\n";  
-    } else {  
+if ($result) {
+    if ($result->num_rows > 0) {
+        echo "The '$dbName' database already exists.\n";
+    } else {
         // SQL to create a database  
-        if ($conn->query("CREATE DATABASE $dbName") === TRUE) {  
-            echo "Database '$dbName' created successfully.\n";  
+        if ($conn->query("CREATE DATABASE $dbName") === TRUE) {
+            echo "Database '$dbName' created successfully.\n";
             // Select the database after creation  
-            $conn->select_db($dbName);  
+            $conn->select_db($dbName);
             // Create tables  
             createUserTable($conn);
-            createAdminTable($conn);    
-            createServiceTable($conn);  
-            createAppointmentTable($conn);  
+            createAdminTable($conn);
+            createServiceTable($conn);
+            createAppointmentTable($conn);
             //createGalleryTable($conn);  
-            createInventoryTable($conn);   
-            createNotificationTable($conn); 
-            createAutoNotificationTable($conn); 
+            createInventoryTable($conn);
+            createNotificationTable($conn);
+            createAutoNotificationTable($conn);
             //createCartTable($conn);
             //createSaleTable($conn);
-        } else {  
-            echo "Error creating database: " . $conn->error . "\n";  
-        }  
-    }  
-} else {  
-    echo "Query failed: " . $conn->error;  
-} 
+        } else {
+            echo "Error creating database: " . $conn->error . "\n";
+        }
+    }
+} else {
+    echo "Query failed: " . $conn->error;
+}
 
 // Close the connection  
-$conn->close();  
+$conn->close();
 
-function confirmQuery($conn, $sql, $tableName) {
-    if ($conn->query($sql) === TRUE) {  
-        echo "$tableName table created successfully.\n";  
-    } else {  
-        echo "Error creating table: " . $conn->error . "\n";  
+function confirmQuery($conn, $sql, $tableName)
+{
+    if ($conn->query($sql) === TRUE) {
+        echo "$tableName table created successfully.\n";
+    } else {
+        echo "Error creating table: " . $conn->error . "\n";
     }
 }
 
-function createUserTable($conn) {
+function createUserTable($conn)
+{
     $sql = "CREATE TABLE user (
         userID INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
@@ -69,12 +71,13 @@ function createUserTable($conn) {
         cell VARCHAR(15),
         password VARCHAR(500) NOT NULL,
         userType VARCHAR(10) DEFAULT 'Client'
-    )"; 
-    
-    confirmQuery($conn, $sql, "User" );
+    )";
+
+    confirmQuery($conn, $sql, "User");
 }
 
-function createServiceTable($conn) {
+function createServiceTable($conn)
+{
     $sql = "CREATE TABLE service (
         /*serviceID INT AUTO_INCREMENT PRIMARY KEY,*/
         serviceID VARCHAR(100) PRIMARY KEY,
@@ -91,7 +94,8 @@ function createServiceTable($conn) {
     confirmQuery($conn, $sql, "Service");
 }
 
-function createAdminTable($conn) {
+function createAdminTable($conn)
+{
     $sql = "CREATE TABLE admin (
         adminID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT NOT NULL,
@@ -102,9 +106,10 @@ function createAdminTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Admin");
-}  
+}
 
-function createAppointmentTable($conn) {
+function createAppointmentTable($conn)
+{
     $sql = "CREATE TABLE appointment (
         appointmentID INT AUTO_INCREMENT PRIMARY KEY,
         userID INT,
@@ -124,7 +129,8 @@ function createAppointmentTable($conn) {
     confirmQuery($conn, $sql, "Appointment");
 }
 
-function createInventoryTable($conn) {
+function createInventoryTable($conn)
+{
     $sql = "CREATE TABLE inventory (
         inventoryID INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
@@ -133,9 +139,10 @@ function createInventoryTable($conn) {
     )";
 
     confirmQuery($conn, $sql, "Inventory");
-} 
+}
 
-function createNotificationTable($conn) {
+function createNotificationTable($conn)
+{
     $sql = "CREATE TABLE notification (
         notificationID INT AUTO_INCREMENT PRIMARY KEY,
         dateTime_ DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -148,7 +155,8 @@ function createNotificationTable($conn) {
     confirmQuery($conn, $sql, "Notification");
 }
 
-function createAutoNotificationTable($conn){
+function createAutoNotificationTable($conn)
+{
     $sql = "CREATE TABLE auto_notification (
         autoNotificationID VARCHAR(50) PRIMARY KEY,
         message VARCHAR(300) NOT NULL)";

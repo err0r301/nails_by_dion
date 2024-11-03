@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status = $_POST['edit_appointment_status'];
 
         // Validate the form data
-        if (empty($appointmentID) ||empty($scheduledDateTime) || empty($status) || empty(/*$stylistID*/$stylist)) {
+        if (empty($appointmentID) || empty($scheduledDateTime) || empty($status) || empty(/*$stylistID*/$stylist)) {
             echo "<script>console.log('Please fill in all required fields.')</script>";
             echo "<script>console.log('appointmentID : $appointmentID scheduledDateTime : $scheduledDateTime status :   $status stylist :$stylist')</script>";
         } else {
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // edit the appointment data in the database
             $query = "UPDATE appointment SET scheduledDateTime = ?, status_ = ?, stylist = ? WHERE appointmentID = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("sssi", $scheduledDateTime, $status, /*$stylistID*/$stylist, $appointmentID);
+            $stmt->bind_param("sssi", $scheduledDateTime, $status, /*$stylistID*/ $stylist, $appointmentID);
             $stmt->execute();
 
             // Check if the edit was successful
@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function getAppointment($conn,$appointmentID) {
+function getAppointment($conn, $appointmentID)
+{
     // get the appointment record
     $query = "SELECT * FROM appointment WHERE appointmentID = ?";
     $stmt = $conn->prepare($query);

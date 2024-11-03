@@ -1,49 +1,51 @@
 <?php
-    error_reporting(E_ALL);  
-    ini_set('display_errors', 1);  
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="/../styles/client_styles_root0.css">
-    <link rel="stylesheet" href="/../styles/main_styles.css"> 
+    <link rel="stylesheet" href="/../styles/main_styles.css">
     <script src="../scripts/popup.js"></script>
 </head>
+
 <body>
-    <?php 
-        $page = 'profile'; 
-        $unsubcribe = false;
-        $pop = false;
-        include '../partial/header.php';
-        require '../scripts/user_scripts/remove_user.php';
-        require '../scripts/validate_input.php';
-        require '../scripts/user_scripts/edit_user-pwd.php';
-        require '../scripts/user_scripts/edit_user-info.php';
+    <?php
+    $page = 'profile';
+    $unsubcribe = false;
+    $pop = false;
+    include '../partial/header.php';
+    require '../scripts/user_scripts/remove_user.php';
+    require '../scripts/validate_input.php';
+    require '../scripts/user_scripts/edit_user-pwd.php';
+    require '../scripts/user_scripts/edit_user-info.php';
     ?>
 
-<div class="popup" id="popup-password-requirements">
-            <div class="overlay" onclick="togglePopup('popup-password-requirements')"></div>
-            <div class="content" style ="margin-top: 400px">
-                <div class="close-btn" onclick="togglePopup('popup-password-requirements')">&times;</div>
-                <div class="confirmation-img">
-                </div>
-                <h2>Password Requirements</h2>
-                <b>The password must be:</b>
-                <ol style="text-align: left">
+    <div class="popup" id="popup-password-requirements">
+        <div class="overlay" onclick="togglePopup('popup-password-requirements')"></div>
+        <div class="content" style="margin-top: 400px">
+            <div class="close-btn" onclick="togglePopup('popup-password-requirements')">&times;</div>
+            <div class="confirmation-img">
+            </div>
+            <h2>Password Requirements</h2>
+            <b>The password must be:</b>
+            <ol style="text-align: left">
                 <li>at least 8 characters long</li>
-                <li>contain at least one uppercase letter</li> 
+                <li>contain at least one uppercase letter</li>
                 <li>contain at least one lowercase letter</li>
                 <li>contain at least one special character</li>
                 <li>contain at least one digit.</li>
-                </ol>
-                
-                <button class="confirm-btn" onclick="togglePopup('popup-password-requirements')">OK</button>
-            </div>
+            </ol>
+
+            <button class="confirm-btn" onclick="togglePopup('popup-password-requirements')">OK</button>
         </div>
+    </div>
 
     <section>
         <header>
@@ -55,7 +57,7 @@
             <div>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="edit-name" value="<?php echo $_SESSION['user']['name']; ?>" required>
-                <p class="error" id="name_error"></p>    
+                <p class="error" id="name_error"></p>
             </div>
 
             <div>
@@ -92,7 +94,7 @@
                 <label for="update_password_new">New Password <i class="fa-solid fa-circle-info" onclick="togglePopup('popup-password-requirements')"></i></label>
                 <input type="password" id="update_password_new" name="new_password" required>
                 <p class="error" id="new_password_error"></p>
-                
+
             </div>
 
             <div>
@@ -122,7 +124,7 @@
                 <h2>Delete Account</h2>
                 <p>Are you sure you want to delete your account?</p>
                 <form action="" method="post">
-                    <input type="hidden" name="delete-user-id" id="delete-account-id"> 
+                    <input type="hidden" name="delete-user-id" id="delete-account-id">
                     <button class="red-btn" type="submit" id="delete-account-btn" value="Delete">Delete</button>
                     <button type="reset" onclick="togglePopup('popup-delete-account')">Cancel</button>
                 </form>
@@ -131,8 +133,8 @@
     </section>
 </body>
 
-<?php 
-if ($edit_userInfo_confirmation != null){
+<?php
+if ($edit_userInfo_confirmation != null) {
     $confirmationID = 'confirmation_userInfo';
     if ($edit_userInfo_confirmation == true) {
         $confirmationMessage = 'User details updated successfully!';
@@ -144,19 +146,19 @@ if ($edit_userInfo_confirmation != null){
     require_once '../partial/popup.php';
 }
 
-if ($edit_userPwd_confirmation != null){
+if ($edit_userPwd_confirmation != null) {
     $confirmationID = 'confirmation_userPwd';
     if ($edit_userPwd_confirmation == 'true') {
         $confirmationMessage = 'User password updated successfully!';
         $confirmationImage = '../_images/tick.png';
     } else {
-        $confirmationMessage = 'Password Update Failed. '.$pwd_error;
+        $confirmationMessage = 'Password Update Failed. ' . $pwd_error;
         $confirmationImage = '../_images/cross.png';
     }
     require_once '../partial/popup.php';
 }
 
-if ($remove_user_confirmation != null){
+if ($remove_user_confirmation != null) {
     $confirmationID = 'remove_user_confirmation';
     if ($remove_user_confirmation == true) {
         $confirmationMessage = 'The account was deleted successfully!';
@@ -169,5 +171,6 @@ if ($remove_user_confirmation != null){
     }
     require_once '../partial/popup.php';
 }
-?> 
+?>
+
 </html>

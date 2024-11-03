@@ -15,15 +15,15 @@
 <body>
     <div class="grid-container">
         <?php
-            $page = 'admin_service';
-            include '../partial/admin_header.php';
-            include '../partial/admin_sidebar.php';
-            require '../scripts/service_scripts/edit_service.php';
-            require '../scripts/service_scripts/remove_service.php';
-            require '../scripts/service_scripts/add_service.php';
-            require '../scripts/service_scripts/get_services.php';
-            $services = getServices();
-              
+        $page = 'admin_service';
+        include '../partial/admin_header.php';
+        include '../partial/admin_sidebar.php';
+        require '../scripts/service_scripts/edit_service.php';
+        require '../scripts/service_scripts/remove_service.php';
+        require '../scripts/service_scripts/add_service.php';
+        require '../scripts/service_scripts/get_services.php';
+        $services = getServices();
+
         ?>
 
         <!-- popups-->
@@ -230,123 +230,123 @@
                     <div class="service-cell duration">Duration</div>
                     <!--<div class="service-cell actions"></div>-->
                 </div>
-                <?php 
-                    if ($services) {  
-                        while ($row = $services->fetch_assoc()) {  
-                            $duration = $row['duration'];?>
-                <div class='service-row'
-                    onclick="viewService('popup-show-service', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>); 
+                <?php
+                if ($services) {
+                    while ($row = $services->fetch_assoc()) {
+                        $duration = $row['duration']; ?>
+                        <div class='service-row'
+                            onclick="viewService('popup-show-service', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>); 
                                                               storeID('<?php echo $row['serviceID']; ?>','delete-service-id'); 
                                                               storeID('<?php echo $row['serviceID']; ?>','edit-service-id');">
-                    <div class='service-cell image'>
-                        <img src='<?php echo $row['image']?>' alt='Service' class='service-img'>
-                        <span><?php echo $row['serviceID']?></span>
-                    </div>
-                    <div class='service-cell category'>
-                        <span class='cell-label'>Category:</span>
-                        <?php echo $row['category']?>
-                    </div>
-                    <div class='service-cell status-cell'>
-                        <span class='cell-label'>Status:</span>
-                        <?php if ($row['status'] == "Active") {
-                                        echo "          <span class='status active'>Active</span>";
-                                    }else{
-                                        echo "          <span class='status disabled'>Disabled</span>";
-                                    }?>
-                    </div>
-                    <div class='service-cell price'>
-                        <span class='cell-label'>Price:</span>R
-                        <?php echo $row['price']?>
-                    </div>
-                    <div class='service-cell duration'>
-                        <span class='cell-label'>Duration:</span>
-                        <?php echo $duration?>
-                    </div>
-                    <!--<div class='service-cell actions'>
+                            <div class='service-cell image'>
+                                <img src='<?php echo $row['image'] ?>' alt='Service' class='service-img'>
+                                <span><?php echo $row['serviceID'] ?></span>
+                            </div>
+                            <div class='service-cell category'>
+                                <span class='cell-label'>Category:</span>
+                                <?php echo $row['category'] ?>
+                            </div>
+                            <div class='service-cell status-cell'>
+                                <span class='cell-label'>Status:</span>
+                                <?php if ($row['status'] == "Active") {
+                                    echo "          <span class='status active'>Active</span>";
+                                } else {
+                                    echo "          <span class='status disabled'>Disabled</span>";
+                                } ?>
+                            </div>
+                            <div class='service-cell price'>
+                                <span class='cell-label'>Price:</span>R
+                                <?php echo $row['price'] ?>
+                            </div>
+                            <div class='service-cell duration'>
+                                <span class='cell-label'>Duration:</span>
+                                <?php echo $duration ?>
+                            </div>
+                            <!--<div class='service-cell actions'>
                                     <button class='crud-btn btn-view' onclick="togglePopup('popup-view-service')"><i class='fa fa-eye'></i></button>
                                     <button class='crud-btn btn-edit' onclick="togglePopup('popup-edit-service')"><i class='fa fa-pen-to-square'></i></button>
-                                    <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-service','delete-service-id',<?php echo $row['serviceID']?>)"><i class='fa fa-trash-can'></i></button>
+                                    <button class='crud-btn btn-delete' onclick="togglePopup('popup-delete-service','delete-service-id',<?php echo $row['serviceID'] ?>)"><i class='fa fa-trash-can'></i></button>
                                 </div>-->
-                </div>
-                <?php 
-                        }
+                        </div>
+                <?php
                     }
+                }
                 ?>
             </div>
         </main>
     </div>
     <script>
-    function viewService(pop, data) {
-        var popup = document.getElementById(pop);
-        popup.classList.toggle("active");
+        function viewService(pop, data) {
+            var popup = document.getElementById(pop);
+            popup.classList.toggle("active");
 
-        if (data) {
-            //var image = document.getElementById('view-service-').textContent = data.;
-            document.getElementById('view-service-img').src = data.image;
-            document.getElementById('view-service-name').textContent = data.serviceID;
-            document.getElementById('view-service-category').textContent = "Service category : " + data.category;
-            document.getElementById('view-service-status').textContent = "Service status : " + data.status;
-            document.getElementById('view-service-price').textContent = "Service price : " + "R" + data.price;
-            var time = "";
-            if (data.duration.substr(0, 2) != "00") {
-                time = data.duration.substr(0, 2) + "hrs ";
-            }
-            if (data.duration.substr(3, 2) != "00") {
-                time += data.duration.substr(3, 2) + "mins";
-            }
-            document.getElementById('view-service-duration').textContent = "Service duration : " + time;
-            document.getElementById('view-service-description').textContent = data.description;
+            if (data) {
+                //var image = document.getElementById('view-service-').textContent = data.;
+                document.getElementById('view-service-img').src = data.image;
+                document.getElementById('view-service-name').textContent = data.serviceID;
+                document.getElementById('view-service-category').textContent = "Service category : " + data.category;
+                document.getElementById('view-service-status').textContent = "Service status : " + data.status;
+                document.getElementById('view-service-price').textContent = "Service price : " + "R" + data.price;
+                var time = "";
+                if (data.duration.substr(0, 2) != "00") {
+                    time = data.duration.substr(0, 2) + "hrs ";
+                }
+                if (data.duration.substr(3, 2) != "00") {
+                    time += data.duration.substr(3, 2) + "mins";
+                }
+                document.getElementById('view-service-duration').textContent = "Service duration : " + time;
+                document.getElementById('view-service-description').textContent = data.description;
 
-            //document.getElementById('edit-service-image').value = data.image;
-            document.getElementById('edit-service-name').value = data.serviceID;
-            document.getElementById('edit-service-category').value = data.category;
-            document.getElementById('edit-service-status').value = data.status;
-            document.getElementById('edit-service-price').value = data.price;
-            document.getElementById('edit-service-duration').value = data.duration;
-            console.log("js function : " + data.duration);
-            document.getElementById('edit-service-description').value = data.description;
-            document.getElementById('edit-service-originImage').value = data.image;
+                //document.getElementById('edit-service-image').value = data.image;
+                document.getElementById('edit-service-name').value = data.serviceID;
+                document.getElementById('edit-service-category').value = data.category;
+                document.getElementById('edit-service-status').value = data.status;
+                document.getElementById('edit-service-price').value = data.price;
+                document.getElementById('edit-service-duration').value = data.duration;
+                console.log("js function : " + data.duration);
+                document.getElementById('edit-service-description').value = data.description;
+                document.getElementById('edit-service-originImage').value = data.image;
+            }
         }
-    }
     </script>
 </body>
 
-<?php 
-    if ($add_service_confirmation != null){
-        $confirmationID = 'add_service_confirmation';
-        if ($add_service_confirmation == true) {
-            $confirmationMessage = 'The service was added successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to add the service.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+<?php
+if ($add_service_confirmation != null) {
+    $confirmationID = 'add_service_confirmation';
+    if ($add_service_confirmation == true) {
+        $confirmationMessage = 'The service was added successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to add the service.';
+        $confirmationImage = '../_images/cross.png';
     }
-    
-    if ($edit_service_confirmation != null){
-        $confirmationID = 'edit_service_confirmation';
-        if ($edit_service_confirmation == true) {
-            $confirmationMessage = 'The service was updated successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to update the service.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+    require_once '../partial/popup.php';
+}
+
+if ($edit_service_confirmation != null) {
+    $confirmationID = 'edit_service_confirmation';
+    if ($edit_service_confirmation == true) {
+        $confirmationMessage = 'The service was updated successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to update the service.';
+        $confirmationImage = '../_images/cross.png';
     }
-    
-    if ($remove_service_confirmation != null){
-        $confirmationID = 'remove_service_confirmation';
-        if ($remove_service_confirmation == true) {
-            $confirmationMessage = 'The service was deleted successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to delete the service.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+    require_once '../partial/popup.php';
+}
+
+if ($remove_service_confirmation != null) {
+    $confirmationID = 'remove_service_confirmation';
+    if ($remove_service_confirmation == true) {
+        $confirmationMessage = 'The service was deleted successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to delete the service.';
+        $confirmationImage = '../_images/cross.png';
     }
+    require_once '../partial/popup.php';
+}
 ?>
 
 </html>

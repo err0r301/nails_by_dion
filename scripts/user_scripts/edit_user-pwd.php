@@ -8,8 +8,8 @@ echo "<script> console.log('pwd 1')</script>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<script> console.log('pwd 1.5')</script>";
     if (isset($_POST['current_password']) && isset($_POST['new_password']) && isset($_POST['confirm_password'])) {
-        $currentPwd = $_POST['current_password'];   
-        $newPwd = $_POST['new_password'];   
+        $currentPwd = $_POST['current_password'];
+        $newPwd = $_POST['new_password'];
         $confirmPwd = $_POST['confirm_password'];
         // Validate the form data
         $pwd_error = null;
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($result->num_rows > 0) {
                 echo "<script> console.log('pwd 3')</script>";
                 $row = $result->fetch_assoc();
-                if (password_verify($currentPwd, $row ['password'])) {
+                if (password_verify($currentPwd, $row['password'])) {
                     echo "<script> console.log('pwd 4')</script>";
                     // check if the new password is valid
                     $pwd_error = null;
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $stmt = $conn->prepare($query);
                             $stmt->bind_param("si", $hashedPwd, $_SESSION['user']['userID']);
                             $stmt->execute();
-                        
+
                             if ($stmt->affected_rows > 0) {
                                 echo "<script> console.log('Password updated successfully.')</script>";
                                 $edit_userPwd_confirmation = true;
@@ -60,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $edit_userPwd_confirmation = 'false';
                     $pwd_error = "The Current password which you entered is incorrect.";
                 }
-            }else{
+            } else {
                 echo "<script> console.log('Failed to update password.')</script>";
             }
             $stmt->close();
-        }else{
+        } else {
             $edit_userPwd_confirmation = 'false';
             if (is_null($edit_userPwd_confirmation)) {
                 echo "<script> console.log('pwd failed : $pwd_error error bool : $edit_userPwd_confirmation')</script>";

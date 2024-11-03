@@ -1,6 +1,7 @@
 <?php
 //validate input
-function validateName($name,$error) {
+function validateName($name, $error)
+{
     if (empty(trim($name))) {
         return "Name is required";
     } else {
@@ -8,7 +9,8 @@ function validateName($name,$error) {
     }
 }
 
-function validateEmail($email,$error) {
+function validateEmail($email, $error)
+{
     if (empty(trim($email))) {
         return "Email is required";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -18,7 +20,8 @@ function validateEmail($email,$error) {
     }
 }
 
-function validateCell($cell,$error) {
+function validateCell($cell, $error)
+{
     if (!empty(trim($cell))) {
         if (!preg_match("/^[0-9]*$/", $cell)) {
             return "cell no. must only contain numbers 0-9";
@@ -35,7 +38,8 @@ function validateCell($cell,$error) {
 }
 
 
-function validatePassword($password,$error) {
+function validatePassword($password, $error)
+{
     $pwdL = strlen($password);
     if (empty(trim($password))) {
         return "Password is required";
@@ -53,4 +57,3 @@ function validatePassword($password,$error) {
         return $error;
     }
 }
-

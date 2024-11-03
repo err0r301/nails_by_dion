@@ -1,5 +1,6 @@
 <?php
-function getAdmins() {
+function getAdmins()
+{
     // Include the config file
     require '../data/config.php';
 

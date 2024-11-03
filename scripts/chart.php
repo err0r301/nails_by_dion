@@ -1,10 +1,11 @@
-<?php 
+<?php
 // Include the config file
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require '../data/config.php';
 
-function getWeeklySales($conn){
+function getWeeklySales($conn)
+{
     $weeklySalesQuery = "SELECT   s.name,  SUM(sa.price) AS income_last_week  
                         FROM   
                             sale sa  
@@ -14,7 +15,7 @@ function getWeeklySales($conn){
                             sa.date >= CURDATE() - INTERVAL 7 DAY  
                         GROUP BY   
                             s.name;";
-                        
+
     $weeklySalesResult = $conn->query($weeklySalesQuery);
     $weeklySales = array();
     foreach ($weeklySalesResult as $row) {
@@ -23,7 +24,8 @@ function getWeeklySales($conn){
     return $weeklySales;
 }
 
-function getMonthlySales($conn){
+function getMonthlySales($conn)
+{
     $monthlySalesQuery = "SELECT   s.name,  SUM(sa.price) AS income_last_month  
                         FROM   
                             sale sa  
@@ -42,7 +44,8 @@ function getMonthlySales($conn){
     return $monthlySales;
 }
 
-function getYearlySales($conn){
+function getYearlySales($conn)
+{
     $yearlySalesQuery = "SELECT   s.name,  SUM(sa.price) AS income_last_year  
                         FROM   
                             sale sa  

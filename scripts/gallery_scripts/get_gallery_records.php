@@ -1,5 +1,6 @@
 <?php
-function getGalleryRecords() {
+function getGalleryRecords()
+{
     // Include the config file
     require '../data/config.php';
 
@@ -9,7 +10,7 @@ function getGalleryRecords() {
 
     // Check if the data was retrieved successfully
     if ($gallery_result->num_rows <= 0) {
-        echo "<script> console.log('No gallery records found')</script>";                                 
+        echo "<script> console.log('No gallery records found')</script>";
     }
     // Close the connection
     $conn->close();

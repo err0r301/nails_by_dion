@@ -10,27 +10,27 @@
     <script src="../scripts/popup.js"></script>
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
-    
+
 </head>
 
 <body>
     <div class="grid-container">
         <?php
-            $page = 'inventory';
-            include '../partial/admin_header.php';
-            include '../partial/admin_sidebar.php';
+        $page = 'inventory';
+        include '../partial/admin_header.php';
+        include '../partial/admin_sidebar.php';
 
-            error_reporting(E_ALL);  
-            ini_set('display_errors', 1); 
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-            require '../scripts/inventory_scripts/add_inventory_item.php';
-            require '../scripts/inventory_scripts/edit_inventory_item.php';
-            require '../scripts/inventory_scripts/remove_inventory_item.php';
+        require '../scripts/inventory_scripts/add_inventory_item.php';
+        require '../scripts/inventory_scripts/edit_inventory_item.php';
+        require '../scripts/inventory_scripts/remove_inventory_item.php';
         ?>
 
         <!--popups-->
         <!--add popup-->
-        
+
         <div class="popup" id="popup-add-product">
             <div class="overlay" onclick="togglePopup('popup-add-product')"></div>
             <div class="content">
@@ -39,15 +39,15 @@
                 <h2>Add Product</h2>
                 <form id="add-product-form" action="" method="post">
                     <div class="form-group">
-                        
+
                         <input type="text" id="product-name" name="product-name" placeholder="Product name" required>
                     </div>
                     <div class="form-group">
-                       
+
                         <input type="number" id="product-stock" name="product-stock" placeholder="Stock" required>
                     </div>
                     <div class="form-group">
-                        
+
                         <input type="number" id="product-price" name="product-price" placeholder="Price (ZAR)" required>
                     </div>
                     <button class="green-btn" type="submit">Add</button>
@@ -63,17 +63,17 @@
                     &times;</div>
                 <h2>Edit Product</h2>
                 <form action="" method="post">
-                <input type="hidden" name="edit-product-id" id="edit-product-id">
+                    <input type="hidden" name="edit-product-id" id="edit-product-id">
                     <div class="form-group">
-                        
+
                         <input type="text" name="edit-product-name" id="edit-product-name" placeholder="Product name" required>
                     </div>
                     <div class="form-group">
-                        
+
                         <input type="number" name="edit-product-stock" id="edit-product-stock" placeholder="Stock" required>
                     </div>
                     <div class="form-group">
-                        
+
                         <input type="number" name="edit-product-price" id="edit-product-price" placeholder="Price (ZAR)" required>
                     </div>
                     <button class="blue-btn" type="submit" id="save-edit-btn">Update</button>
@@ -81,144 +81,145 @@
             </div>
         </div>
 
-        <div class="popup" id="popup-delete-product">  
-            <div class="overlay" onclick="togglePopup('popup-delete-product')"></div>  
-            <div class="content">  
-                <div class="close-btn" onclick="togglePopup('popup-delete-product')">&times;</div>  
-                <h2>Delete Product</h2>  
-                <p>Are you sure you want to delete this product?</p>  
-                <form action="" method="POST">  
-                    <input type="hidden" name="delete-product-id" id="delete-product-id">  
-                    <button class="red-btn" type="submit" id="delete-product-btn">Delete</button>  
-                    <button type="button" onclick="togglePopup('popup-delete-product')">Cancel</button>  
-                </form>  
-            </div>  
-        </div> 
-
-       <!-- Main -->
-       <main class="main-container">
-    <div class="top">
-        <h1 class="main-title font-weight-bold">INVENTORY</h1>
-        <button class="app-content-headerButton" onclick="togglePopup('popup-add-product')">Add Product</button>
-    </div>
-
-    <div class="app-content-actions">
-        <div class="app-content-search">
-            <i class="fa fa-search"></i>
-            <input class="search-bar" placeholder="Search..." type="search" id="product-search" onkeyup="searchProducts()">
+        <div class="popup" id="popup-delete-product">
+            <div class="overlay" onclick="togglePopup('popup-delete-product')"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup('popup-delete-product')">&times;</div>
+                <h2>Delete Product</h2>
+                <p>Are you sure you want to delete this product?</p>
+                <form action="" method="POST">
+                    <input type="hidden" name="delete-product-id" id="delete-product-id">
+                    <button class="red-btn" type="submit" id="delete-product-btn">Delete</button>
+                    <button type="button" onclick="togglePopup('popup-delete-product')">Cancel</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="inventory-area-wrapper tableView">
-        <!-- Header Row (Table headings) -->
-        <div class="inventory-header">
-            <div class="inventory-cell id">#</div>
-            <div class="inventory-cell name">Product Name</div>
-            <div class="inventory-cell stock">Stock</div>
-            <div class="inventory-cell price">Price</div>
-            <div class="inventory-cell actions"></div>
-        </div>
-        
-        <!-- Inventory Items -->
-        <div id="inventory-items">
-            <?php 
-                include '../scripts/inventory_scripts/get_inventory_items.php';
-                $inventories = getInventoryItems();
+        <!-- Main -->
+        <main class="main-container">
+            <div class="top">
+                <h1 class="main-title font-weight-bold">INVENTORY</h1>
+                <button class="app-content-headerButton" onclick="togglePopup('popup-add-product')">Add Product</button>
+            </div>
 
-                if ($inventories) {  
-                    while ($row = $inventories->fetch_assoc()) {  
-                        if ($row['inventoryID'] < 10) {
-                            $row['inventoryID'] = "0" . $row['inventoryID'];
-                        }
-                        ?>
-                        <div class="inventory-row">
-                            <div class="inventory-cell id">
-                                <span><?php echo $row['inventoryID']; ?></span>
+            <div class="app-content-actions">
+                <div class="app-content-search">
+                    <i class="fa fa-search"></i>
+                    <input class="search-bar" placeholder="Search..." type="search" id="product-search" onkeyup="searchProducts()">
+                </div>
+            </div>
+
+            <div class="inventory-area-wrapper tableView">
+                <!-- Header Row (Table headings) -->
+                <div class="inventory-header">
+                    <div class="inventory-cell id">#</div>
+                    <div class="inventory-cell name">Product Name</div>
+                    <div class="inventory-cell stock">Stock</div>
+                    <div class="inventory-cell price">Price</div>
+                    <div class="inventory-cell actions"></div>
+                </div>
+
+                <!-- Inventory Items -->
+                <div id="inventory-items">
+                    <?php
+                    include '../scripts/inventory_scripts/get_inventory_items.php';
+                    $inventories = getInventoryItems();
+
+                    if ($inventories) {
+                        while ($row = $inventories->fetch_assoc()) {
+                            if ($row['inventoryID'] < 10) {
+                                $row['inventoryID'] = "0" . $row['inventoryID'];
+                            }
+                    ?>
+                            <div class="inventory-row">
+                                <div class="inventory-cell id">
+                                    <span><?php echo $row['inventoryID']; ?></span>
+                                </div>
+                                <div class="inventory-cell name">
+                                    <span><?php echo $row['name']; ?></span>
+                                </div>
+                                <div class="inventory-cell stock">
+                                    <span><?php echo $row['stock']; ?></span>
+                                </div>
+                                <div class="inventory-cell price">
+                                    <span>R<?php echo $row['price']; ?></span>
+                                </div>
+                                <div class="inventory-cell actions">
+                                    <button class="crud-btn p-btn-edit" onclick="editPopup('popup-edit-product', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>)">
+                                        <i class="fa fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="crud-btn p-btn-delete" onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID'] ?>)">
+                                        <i class="fa fa-trash-can"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="inventory-cell name">
-                                <span><?php echo $row['name']; ?></span>
-                            </div>
-                            <div class="inventory-cell stock">
-                                <span><?php echo $row['stock']; ?></span>
-                            </div>
-                            <div class="inventory-cell price">
-                                <span>R<?php echo $row['price']; ?></span>
-                            </div>
-                            <div class="inventory-cell actions">
-                                <button class="crud-btn p-btn-edit" onclick="editPopup('popup-edit-product', <?php echo htmlspecialchars(json_encode($row), ENT_QUOTES); ?>)">
-                                    <i class="fa fa-pen-to-square"></i>
-                                </button>
-                                <button class="crud-btn p-btn-delete" onclick="togglePopup('popup-delete-product','delete-product-id',<?php echo $row['inventoryID']?>)">
-                                    <i class="fa fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-                    <?php }  
-                }
-            ?>
-        </div>
-    </div>
-</main>
+                    <?php }
+                    }
+                    ?>
+                </div>
+            </div>
+        </main>
 
 
     </div>
     <script>
-        function editPopup(pop, data) {  
-            var popup = document.getElementById(pop);  
-            popup.classList.toggle("active");  
-            
-            var id = document.getElementById('edit-product-id');  
-            var name = document.getElementById('edit-product-name'); 
-            var stock = document.getElementById('edit-product-stock');
-            var Price = document.getElementById('edit-product-price');    
+        function editPopup(pop, data) {
+            var popup = document.getElementById(pop);
+            popup.classList.toggle("active");
 
-            if(data) {
-                console.log('date value: ',data); 
+            var id = document.getElementById('edit-product-id');
+            var name = document.getElementById('edit-product-name');
+            var stock = document.getElementById('edit-product-stock');
+            var Price = document.getElementById('edit-product-price');
+
+            if (data) {
+                console.log('date value: ', data);
                 id.value = data.inventoryID;
                 name.value = data.name;
                 stock.value = data.stock;
-                Price.value = data.price;    
+                Price.value = data.price;
             }
-            
+
         }
     </script>
 </body>
 
-<?php 
-    if ($add_inventory_confirmation != null){
-        $confirmationID = 'add_inventory_confirmation';
-        if ($add_inventory_confirmation == true) {
-            $confirmationMessage = 'The product was added successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to add the product.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+<?php
+if ($add_inventory_confirmation != null) {
+    $confirmationID = 'add_inventory_confirmation';
+    if ($add_inventory_confirmation == true) {
+        $confirmationMessage = 'The product was added successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to add the product.';
+        $confirmationImage = '../_images/cross.png';
     }
-    
-    if ($edit_inventory_confirmation != null){
-        $confirmationID = 'edit_inventory_confirmation';
-        if ($edit_inventory_confirmation == true) {
-            $confirmationMessage = 'The product was updated successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to update the product.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+    require_once '../partial/popup.php';
+}
+
+if ($edit_inventory_confirmation != null) {
+    $confirmationID = 'edit_inventory_confirmation';
+    if ($edit_inventory_confirmation == true) {
+        $confirmationMessage = 'The product was updated successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to update the product.';
+        $confirmationImage = '../_images/cross.png';
     }
-    
-    if ($remove_inventory_confirmation != null){
-        $confirmationID = 'remove_inventory_confirmation';
-        if ($remove_inventory_confirmation == true) {
-            $confirmationMessage = 'The product was deleted successfully!';
-            $confirmationImage = '../_images/tick.png';
-        } else {
-            $confirmationMessage = 'Failed to delete the product.';
-            $confirmationImage = '../_images/cross.png';
-        }
-        require_once '../partial/popup.php';
+    require_once '../partial/popup.php';
+}
+
+if ($remove_inventory_confirmation != null) {
+    $confirmationID = 'remove_inventory_confirmation';
+    if ($remove_inventory_confirmation == true) {
+        $confirmationMessage = 'The product was deleted successfully!';
+        $confirmationImage = '../_images/tick.png';
+    } else {
+        $confirmationMessage = 'Failed to delete the product.';
+        $confirmationImage = '../_images/cross.png';
     }
+    require_once '../partial/popup.php';
+}
 ?>
+
 </html>
