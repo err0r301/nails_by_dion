@@ -236,11 +236,6 @@ require('../scripts/report_script.php');
                 <div class="report-page">
                     <h2>Inventory Report</h2>
                 </div>
-
-                <!-- Appointment Report -->
-                <div class="report-page">
-                    <h2>Appointment Report</h2>
-                </div>
             </div>
 
             <div class="pagination">
