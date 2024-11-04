@@ -37,7 +37,7 @@ function getReport()
     $services = [];
     if ($service_result && $service_result->num_rows > 0) {
         while ($service = $service_result->fetch_assoc()) {
-            $services[] = $service; // Add each service to the array  
+            $services[] = $service;
         }
     }
 
@@ -45,13 +45,12 @@ function getReport()
         'sales' => $sales,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services // Use the array of services here  
+        'services' => $services
     );
 
     echo "<script>console.log('sales: " . $output['sales'] . "')</script>";
     echo "<script>console.log('appointments: " . $output['appointments'] . "')</script>";
 
-    // Close the database connection  
     $conn->close();
 
     return $output;
@@ -60,16 +59,18 @@ function getReport()
 function weekReport()
 {
     require '../data/config.php';
-
     $appointments = 0;
+    $services = [];
 
     // Get the start and end of the current week  
     $startOfWeek = date('Y-m-d H:i:s', strtotime('monday this week'));
     $endOfWeek = date('Y-m-d H:i:s', strtotime('sunday this week'));
 
     $appointments = countAppointments($conn, $startOfWeek, $endOfWeek, "week");
+    $services = serviceDetails($conn, $startOfWeek, $endOfWeek);
 
     $output = array();
+    $conn->close();
 
     return $output;
 }
@@ -77,16 +78,18 @@ function weekReport()
 function monthReport()
 {
     require '../data/config.php';
-
     $appointments = 0;
+    $services = [];
 
     // Get the first and last day of the current month  
     $startOfMonth = date('Y-m-01 00:00:00'); // First day of the month  
     $endOfMonth = date('Y-m-t 23:59:59'); // Last day of the month  
 
     $appointments = countAppointments($conn, $startOfMonth, $endOfMonth, "month");
+    $services = serviceDetails($conn, $startOfMonth, $endOfMonth);
 
     $output = array();
+    $conn->close();
 
     return $output;
 }
@@ -94,8 +97,8 @@ function monthReport()
 function quarterReport()
 {
     require '../data/config.php';
-
     $appointments = 0;
+    $services = [];
 
     // Get the current date  
     $currentMonth = date('n'); // Numeric representation of a month (1 to 12)  
@@ -121,8 +124,10 @@ function quarterReport()
     }
 
     $appointments = countAppointments($conn, $startOfQuarter, $endOfQuarter, "quarter");
+    $services = serviceDetails($conn, $startOfQuarter, $endOfQuarter);
 
     $output = array();
+    $conn->close();
 
     return $output;
 }
@@ -130,8 +135,8 @@ function quarterReport()
 function yearReport()
 {
     require '../data/config.php';
-
     $appointments = 0;
+    $services = [];
 
     // Get the current year  
     $currentYear = date('Y'); // Current year  
@@ -141,8 +146,10 @@ function yearReport()
     $endOfYear = "$currentYear-12-31 23:59:59"; // Last day of the year  
 
     $appointments = countAppointments($conn, $startOfYear, $endOfYear, "year");
+    $services = serviceDetails($conn, $startOfYear, $endOfYear);
 
     $output = array();
+    $conn->close();
 
     return $output;
 }
@@ -165,6 +172,34 @@ function countAppointments($conn, $startDate, $endDate, $period)
         echo "<script>console.log('no appointments this $period');</script>";
     }
 
-    $stmt->close();
     return $appointments;
+}
+
+function serviceDetails($conn, $startDate, $endDate)
+{
+    $query = "SELECT a.serviceID AS name, COUNT(*) AS recordCount,s.price,s.category
+                FROM appointment a JOIN service s ON a.serviceID = s.serviceID  
+                WHERE a.status_ = 'Completed' AND a.scheduledDateTime BETWEEN ? AND ?  
+                GROUP BY a.serviceID, s.description, s.price, s.image, s.category, s.duration, s.monthlyRevenue, s.status";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $startDate, $endDate);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $output = array();
+        while ($row = $result->fetch_assoc()) {
+            $output[] = array(
+                'name' => $row["name"],
+                'revenue' => $row["recordCount"] * $row["price"],
+                'price' => $row["price"],
+                'category' => $row["category"]
+            );
+        }
+        echo "<script>console.log('serviceDetails: " . json_encode($output) . "');</script>";
+        return $output;
+    } else {
+        echo "<script>console.log('no serviceDetails');</script>";
+    }
 }
