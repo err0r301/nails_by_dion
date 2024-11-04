@@ -19,50 +19,82 @@ require('../scripts/report_script.php');
 
 
     <style>
+    .report-page {
+        max-width: 800px;
+        margin: 20px auto 0 auto;
+        padding: 100px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .report-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .report-header img {
+        width: 200px;
+    }
+
+    .report-header div {
+        text-align: right;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 8px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    @media print {
         .report-page {
-            max-width: 800px;
-            margin: 20px auto 0 auto;
-            padding: 100px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            page-break-after: always;
         }
-
-        .report-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .report-header img {
-            width: 200px;
-        }
-
-        .report-header div {
-            text-align: right;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    }
     </style>
 
 </head>
@@ -83,6 +115,15 @@ require('../scripts/report_script.php');
         <main class="main-container">
             <div class="top" style="margin-bottom: 40px">
                 <h1 class="main-title font-weight-bold">REPORT</h1>
+                <div class="dropdown">
+                    <button class="app-content-headerButton dropdown-toggle">Filter</button>
+                    <div class="dropdown-content">
+                        <a href="#">Daily</a>
+                        <a href="#">Monthly</a>
+                        <a href="#">Yearly</a>
+                        <a href="#">Custom</a>
+                    </div>
+                </div>
                 <button class="app-content-headerButton" onclick="generatePDF()">Download</button>
             </div>
             <div class="report-container">
@@ -116,12 +157,12 @@ require('../scripts/report_script.php');
                         if (isset($report['services']) && is_array($report['services'])) {
                             $limit = min(13, count($report['services']));
                             for ($x = 0; $x < $limit; $x++): ?>
-                                <tr>
-                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
-                                </tr>
+                        <tr>
+                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                            <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
+                        </tr>
                         <?php endfor;
                         } else {
                             // Optional: Display a message if there are no services  
@@ -130,19 +171,38 @@ require('../scripts/report_script.php');
                     </table>
                 </div>
                 <?php if ($x < count($report['services'])) { ?>
-                    <div class="report-page">
-                        <table>
-                            <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
-                                <tr>
-                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
-                                </tr>
-                            <?php endfor; ?>
-                        </table>
-                    </div>
+                <div class="report-page">
+                    <table>
+                        <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
+                        <tr>
+                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                            <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
+                        </tr>
+                        <?php endfor; ?>
+                    </table>
+                </div>
                 <?php } ?>
+
+                <!-- Staff Report -->
+                <div class="report-page">
+                    <h2>Staff Report</h2>
+                </div>
+
+                <!-- Inventory Report -->
+                <div class="report-page">
+                    <h2>Inventory Report</h2>
+                </div>
+
+                <!-- Appointment Report -->
+                <div class="report-page">
+                    <h2>Appointment Report</h2>
+                </div>
+
+
+
+
             </div>
 
         </main>
@@ -151,30 +211,30 @@ require('../scripts/report_script.php');
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
     <script>
-        function generatePDF() {
-            const element = document.querySelector('.report-container');
+    function generatePDF() {
+        const element = document.querySelector('.report-container');
 
-            const options = {
-                filename: '<?php echo date("F-Y"); ?>_report.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 2
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'letter',
-                    orientation: 'portrait'
-                }
-            };
+        const options = {
+            filename: '<?php echo date("F-Y"); ?>_report.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
 
-            html2pdf()
-                .from(element)
-                .set(options)
-                .save();
-        }
+        html2pdf()
+            .from(element)
+            .set(options)
+            .save();
+    }
     </script>
 </body>
 
