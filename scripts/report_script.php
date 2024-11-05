@@ -154,6 +154,21 @@ function yearReport()
     return $output;
 }
 
+function customReport($startDate, $endDate)
+{
+    require '../data/config.php';
+    $appointments = 0;
+    $services = [];
+
+    $appointments = countAppointments($conn, $startDate, $endDate, "custom date");
+    $services = serviceDetails($conn, $startDate, $endDate);
+
+    $output = array();
+    $conn->close();
+
+    return $output;
+}
+
 function countAppointments($conn, $startDate, $endDate, $period)
 {
     $appointments = 0;

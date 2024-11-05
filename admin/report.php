@@ -168,6 +168,12 @@ require('../scripts/report_script.php');
                         <a href="#">Yearly</a>
                         <a href="#">Custom</a>
                     </div>
+                    <!--<form action="" method="post">
+                        Add input fields for filter options
+
+                        <button  type="submit" name="filter">Filter</button>
+                        <button type="reset">Reset</button>
+                    </form>-->
                 </div>
                 <button class="app-content-headerButton" onclick="generatePDF()">Download</button>
             </div>
@@ -254,123 +260,90 @@ require('../scripts/report_script.php');
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
     <script>
-        function generatePDF() {
-            const reportPages = document.querySelectorAll('.report-page');
-            const pdfContainer = document.createElement('div');
+        // FILTER FUNCTIONALITY
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterLinks = document.querySelectorAll('.dropdown-content a');
+            const appointmentsElement = document.querySelector('.report-header p:nth-child(3)');
+            const dateElement = document.querySelector('.report-header h3');
 
-            // Append all pages to the new container  
-            reportPages.forEach(page => {
-                const clonedPage = page.cloneNode(true); // Clone the page  
-                pdfContainer.appendChild(clonedPage); // Add cloned page to the new container  
+            filterLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const filterType = this.textContent.trim().toLowerCase();
+
+                    // Fetch the data based on the filter type
+                    fetchAppointmentsData(filterType);
+                    updateDateDisplay(filterType);
+                });
             });
 
-            const options = {
-                filename: '<?php echo date("F-Y"); ?>_report.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 2
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'letter',
-                    orientation: 'portrait'
+            function updateDateDisplay(filterType) {
+                const currentDate = new Date();
+                let formattedDate;
+
+                switch (filterType) {
+                    case 'daily':
+                        formattedDate = currentDate.toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+                        break;
+                    case 'monthly':
+                        formattedDate = currentDate.toLocaleDateString('en-GB', {
+                            month: 'long',
+                            year: 'numeric'
+                        });
+                        break;
+                    case 'yearly':
+                        formattedDate = currentDate.getFullYear();
+                        break;
+                    default:
+                        formattedDate = currentDate.toLocaleDateString('en-GB', {
+                            month: 'long',
+                            year: 'numeric'
+                        });
                 }
-            };
 
-            html2pdf()
-                .from(pdfContainer) // Use the combined container  
-                .set(options)
-                .save();
-        }
+                // Update the date display
+                dateElement.textContent = formattedDate;
+            }
 
+            function generatePDF() {
+                const reportPages = document.querySelectorAll('.report-page');
+                const pdfContainer = document.createElement('div');
 
-    // FILTER FUNCTIONALITY
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterLinks = document.querySelectorAll('.dropdown-content a');
-        const appointmentsElement = document.querySelector('.report-header p:nth-child(3)');
-        const dateElement = document.querySelector('.report-header h3');
+                // Append all pages to the new container  
+                reportPages.forEach(page => {
+                    const clonedPage = page.cloneNode(true); // Clone the page  
+                    pdfContainer.appendChild(clonedPage); // Add cloned page to the new container  
+                });
 
-        filterLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const filterType = this.textContent.trim().toLowerCase();
+                const options = {
+                    filename: '<?php echo date("F-Y"); ?>_report.pdf',
+                    image: {
+                        type: 'jpeg',
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: 'in',
+                        format: 'letter',
+                        orientation: 'portrait'
+                    }
+                };
 
-                // Fetch the data based on the filter type
-                fetchAppointmentsData(filterType);
-                updateDateDisplay(filterType);
-            });
+                html2pdf()
+                    .from(pdfContainer) // Use the combined container  
+                    .set(options)
+                    .save();
+            }
         });
-
-        function fetchAppointmentsData(filterType) {
-            // Simulate fetching data based on filter type
-            let appointments, sales, customers;
-            switch (filterType) {
-                case 'daily':
-                    appointments = '5'; // Example data
-                    sales = '500'; // Example data
-                    customers = '3'; // Example data
-                    break;
-                case 'monthly':
-                    appointments = '150'; // Example data
-                    sales = '15000'; // Example data
-                    customers = '100'; // Example data
-                    break;
-                case 'yearly':
-                    appointments = '1800'; // Example data
-                    sales = '180000'; // Example data
-                    customers = '1200'; // Example data
-                    break;
-                default:
-                    appointments = '0';
-                    sales = '0';
-                    customers = '0';
-            }
-
-            // Update the appointments, sales, and customers display
-            appointmentsElement.textContent = `Appointments this ${filterType}: ${appointments}`;
-            document.querySelector('.report-header p:nth-child(2)').textContent = `Sales this ${filterType}: R ${sales}`;
-            document.querySelector('.report-header p:nth-child(4)').textContent = `Number of customers: ${customers}`;
-        }
-
-        function updateDateDisplay(filterType) {
-            const currentDate = new Date();
-            let formattedDate;
-
-            switch (filterType) {
-                case 'daily':
-                    formattedDate = currentDate.toLocaleDateString('en-GB', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    });
-                    break;
-                case 'monthly':
-                    formattedDate = currentDate.toLocaleDateString('en-GB', {
-                        month: 'long',
-                        year: 'numeric'
-                    });
-                    break;
-                case 'yearly':
-                    formattedDate = currentDate.getFullYear();
-                    break;
-                default:
-                    formattedDate = currentDate.toLocaleDateString('en-GB', {
-                        month: 'long',
-                        year: 'numeric'
-                    });
-            }
-
-            // Update the date display
-            dateElement.textContent = formattedDate;
-        }
-    });
     </script>
-    <script>
+    <!--<script>
         // Function to show the selected page and hide others  
         function showPage(pageNumber) {
             const reportPages = document.querySelectorAll('.report-page');
@@ -429,7 +402,9 @@ require('../scripts/report_script.php');
 
         // Initialize the first page as active  
         showPage(1);
-    </script>
+    </script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+
 </body>
 
 </html>
