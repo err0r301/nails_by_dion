@@ -121,19 +121,17 @@ require('../scripts/report_script.php');
 
     #filterForm {
         position: absolute;
-        top: 100px;
-        /* Adjust as needed */
+        top: 93px;
         right: 225px;
-        /* Adjust as needed */
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         background-color: #f9f9f9;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        /* Ensure it appears above other elements */
         display: none;
-        /* Initially hidden */
+        width: 780px;
+        
     }
 
     #filterForm label {
@@ -143,7 +141,20 @@ require('../scripts/report_script.php');
     #filterForm input,
     #filterForm select {
         margin-right: 10px;
+        border: 1px solid #ccc;
+       
     }
+
+    #filterForm button {
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+        border: none;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+   
+
     </style>
 
 </head>
@@ -185,8 +196,8 @@ require('../scripts/report_script.php');
                     <label for="year">Year:</label>
                     <input type="number" id="year" name="year" min="2000" max="2100">
 
-                    <button type="button" onclick="setCurrentDate()">Current Date</button>
-                    <button type="button" onclick="applyDateFilter()">Submit</button>
+                    <button type="button" id="currentDateButton" onclick="setCurrentDate()">Current Date</button>
+                    <button type="button" id="submitButton" class="form-submit-button" onclick="applyDateFilter()">Submit</button>
                 </form>
             </div>
             <div class="report-container">
@@ -197,8 +208,8 @@ require('../scripts/report_script.php');
                             <img src="../_images/logo.png" alt="Salon Logo" style="width: 200px;">
                             <div>
                                 <h3 id="report-date"><?php echo date("F Y"); ?></h3>
-                                <p>Sales this month: R <?= $report['sales'] ?></p>
-                                <p>Appointments this month: <?= $report['appointments'] ?></p>
+                                <p>Sales this <span class="sales-period">month</span>: R <?= $report['sales'] ?></p>
+                                <p>Appointments this <span class="sales-period">month</span>: <?= $report['appointments'] ?></p>
                                 <p>Number of customers: <?= $report['users'] ?></p>
                             </div>
 
@@ -334,8 +345,26 @@ require('../scripts/report_script.php');
                 pdfContainer.appendChild(clonedPage); // Add cloned page to the new container
             });
 
+            // Gets the selected report type and date values
+            const reportType = document.getElementById('reportType').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            let filenameDate = '';
+
+            // Sets the filename based on the selected report type and date values
+            if (reportType === 'day' && day && month && year) {
+                filenameDate = `${day}-${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
+            } else if (reportType === 'month' && month && year) {
+                filenameDate = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
+            } else if (reportType === 'year' && year) {
+                filenameDate = `${year}`;
+            } else {
+                filenameDate = '<?php echo date("F-Y"); ?>';
+            }
+
             const options = {
-                filename: '<?php echo date("F-Y"); ?>_report.pdf',
+                filename: `${filenameDate}_report.pdf`,
                 image: {
                     type: 'jpeg',
                     quality: 0.98
@@ -356,6 +385,7 @@ require('../scripts/report_script.php');
                 .save();
         }
 
+        // Filter function
     function toggleFilterForm() {
         const filterForm = document.getElementById('filterForm');
         filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
@@ -375,17 +405,24 @@ require('../scripts/report_script.php');
         const year = document.getElementById('year').value;
 
         let dateString = '';
+        let periodText = '';
 
         if (reportType === 'day' && day && month && year) {
             dateString = `${day} ${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+            periodText = 'day';
         } else if (reportType === 'month' && month && year) {
             dateString = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+            periodText = 'month';
         } else if (reportType === 'year' && year) {
             dateString = `${year}`;
+            periodText = 'year';
         }
 
         if (dateString) {
             document.getElementById('report-date').textContent = dateString.trim();
+            document.querySelectorAll('.sales-period').forEach(element => {
+                element.textContent = periodText;
+            });
         }
 
         // Hide the form after applying the filter
