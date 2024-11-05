@@ -114,6 +114,32 @@ require('../scripts/report_script.php');
             color: #f0f0f0;
             text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
         }*/
+
+    #filterForm {
+        position: absolute;
+        top: 100px;
+        /* Adjust as needed */
+        right: 225px;
+        /* Adjust as needed */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        /* Ensure it appears above other elements */
+        display: none;
+        /* Initially hidden */
+    }
+
+    #filterForm label {
+        margin-right: 5px;
+    }
+
+    #filterForm input,
+    #filterForm select {
+        margin-right: 10px;
+    }
     </style>
 
 </head>
@@ -132,9 +158,32 @@ require('../scripts/report_script.php');
         ?>
 
         <main class="main-container">
-            <div class="top" style="margin-bottom: 40px">
+            <div class="top" style="margin-bottom: 40px; position: relative;">
                 <h1 class="main-title font-weight-bold">REPORT</h1>
+                <button class="app-content-headerButton" onclick="toggleFilterForm()">Filter</button>
                 <button class="app-content-headerButton" onclick="generatePDF()">Download</button>
+            </div>
+            <div id="filterForm" style="display: none;">
+                <form id="dateFilterForm">
+                    <label for="reportType">Report Type:</label>
+                    <select id="reportType" name="reportType">
+                        <option value="day">Day</option>
+                        <option value="month">Month</option>
+                        <option value="year">Year</option>
+                    </select>
+
+                    <label for="day">Day:</label>
+                    <input type="number" id="day" name="day" min="1" max="31">
+
+                    <label for="month">Month:</label>
+                    <input type="number" id="month" name="month" min="1" max="12">
+
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" min="2000" max="2100">
+
+                    <button type="button" onclick="setCurrentDate()">Current Date</button>
+                    <button type="button" onclick="applyDateFilter()">Submit</button>
+                </form>
             </div>
             <div class="report-container">
                 <div class="report-page active">
@@ -250,6 +299,42 @@ require('../scripts/report_script.php');
             .from(pdfContainer) // Use the combined container
             .set(options)
             .save();
+    }
+
+    function toggleFilterForm() {
+        const filterForm = document.getElementById('filterForm');
+        filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function setCurrentDate() {
+        const today = new Date();
+        document.getElementById('day').value = today.getDate();
+        document.getElementById('month').value = today.getMonth() + 1; // Months are zero-indexed
+        document.getElementById('year').value = today.getFullYear();
+    }
+
+    function applyDateFilter() {
+        const reportType = document.getElementById('reportType').value;
+        const day = document.getElementById('day').value;
+        const month = document.getElementById('month').value;
+        const year = document.getElementById('year').value;
+
+        let dateString = '';
+
+        if (reportType === 'day' && day && month && year) {
+            dateString = `${day} ${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+        } else if (reportType === 'month' && month && year) {
+            dateString = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+        } else if (reportType === 'year' && year) {
+            dateString = `${year}`;
+        }
+
+        if (dateString) {
+            document.getElementById('report-date').textContent = dateString.trim();
+        }
+
+        // Hide the form after applying the filter
+        document.getElementById('filterForm').style.display = 'none';
     }
     </script>
     <!--<script>
