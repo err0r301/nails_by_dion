@@ -62,6 +62,10 @@ require('../scripts/report_script.php');
             text-align: left;
         }
 
+        th {
+            background-color: #f2f2f2;
+        }
+
         button {
             padding: 10px 20px;
             background-color: #007bff;
@@ -124,7 +128,7 @@ require('../scripts/report_script.php');
         $page = 'report';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        $report = getReport();
+        $report = getReport("week");
         /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
                 $sales += $services[$i]['month-revenue'];
@@ -163,15 +167,16 @@ require('../scripts/report_script.php');
                         </tr>
 
                         <?php
+                        $x = 0;
                         // Ensure $report['services'] is defined and is an array before using it  
-                        if (isset($report['services']) && is_array($report['services'])) {
+                        if (isset($report['services']) && is_array($report['services']) && count($report['services']) > 0) {
                             $limit = min(13, count($report['services']));
                             for ($x = 0; $x < $limit; $x++): ?>
                                 <tr>
                                     <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
                                     <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
                                     <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
                                 </tr>
                         <?php endfor;
                         } else {
@@ -188,7 +193,7 @@ require('../scripts/report_script.php');
                                     <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
                                     <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
                                     <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
                                 </tr>
                             <?php endfor; ?>
                         </table>
