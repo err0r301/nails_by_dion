@@ -19,65 +19,69 @@ require('../scripts/report_script.php');
 
 
     <style>
-    .report-page {
-        /*display: inline;*/
-        max-width: 800px;
-        height: 820px;
-        margin: 20px auto 0 auto;
-        padding: 100px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+        .report-page {
+            /*display: inline;*/
+            max-width: 800px;
+            height: 820px;
+            margin: 20px auto 0 auto;
+            padding: 100px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-    /* 
+        /* 
         .report-page.active {
             display: block;
         } */
 
-    .report-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .report-header img {
-        width: 200px;
-    }
-
-    .report-header div {
-        text-align: right;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th,
-    td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-
-    button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    @media print {
-        .report-page {
-            page-break-after: always;
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
-    }
 
-    /*
+        .report-header img {
+            width: 200px;
+        }
+
+        .report-header div {
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        @media print {
+            .report-page {
+                page-break-after: always;
+            }
+        }
+
+        /*
         .pagination {
             padding: 20px;
             margin: 20px 0;
@@ -150,7 +154,7 @@ require('../scripts/report_script.php');
         $page = 'report';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        $report = getReport();
+        $report = getReport("year");
         /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
                 $sales += $services[$i]['month-revenue'];
@@ -212,16 +216,17 @@ require('../scripts/report_script.php');
                         </tr>
 
                         <?php
+                        $x = 0;
                         // Ensure $report['services'] is defined and is an array before using it  
-                        if (isset($report['services']) && is_array($report['services'])) {
+                        if (isset($report['services']) && is_array($report['services']) && count($report['services']) > 0) {
                             $limit = min(13, count($report['services']));
                             for ($x = 0; $x < $limit; $x++): ?>
-                        <tr>
-                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                            <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
-                        </tr>
+                                <tr>
+                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
+                                </tr>
                         <?php endfor;
                         } else {
                             // Optional: Display a message if there are no services  
@@ -230,28 +235,78 @@ require('../scripts/report_script.php');
                     </table>
                 </div>
                 <?php if ($x < count($report['services'])) { ?>
-                <div class="report-page active">
-                    <table>
-                        <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
-                        <tr>
-                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                            <td>R <?= $report['services'][$x]['monthlyRevenue'] ?? '0.00' ?></td>
-                        </tr>
-                        <?php endfor; ?>
-                    </table>
-                </div>
+                    <div class="report-page active">
+                        <table>
+                            <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
+                                <tr>
+                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
+                                </tr>
+                            <?php endfor; ?>
+                        </table>
+                    </div>
                 <?php } ?>
 
                 <!-- Staff Report -->
                 <div class="report-page">
                     <h2>Staff Report</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Appointments completed</th>
+                            <th>Appointments canceled</th>
+                            <th>Revenue</th>
+                        </tr>
+
+                        <?php
+                        // Ensure $report['services'] is defined and is an array before using it  
+                        if (isset($report['staff']) && is_array($report['staff'])) {
+                            $limit = min(13, count($report['staff']));
+                            for ($x = 0; $x < $limit; $x++): ?>
+                                <tr>
+                                    <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['staff'][$x]['appointments-completed'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['staff'][$x]['appointments-canceled'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['staff'][$x]['Revenue'] ?? '0.00' ?></td>
+                                </tr>
+                        <?php endfor;
+                        } else {
+                            // Optional: Display a message if there are no services  
+                            echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
+                        } ?>
+                    </table>
                 </div>
 
                 <!-- Inventory Report -->
                 <div class="report-page">
                     <h2>Inventory Report</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>head3</th>
+                            <th>head4</th>
+                        </tr>
+
+                        <?php
+                        // Ensure $report['services'] is defined and is an array before using it  
+                        if (isset($report['inventory']) && is_array($report['inventory'])) {
+                            $limit = min(13, count($report['inventory']));
+                            for ($x = 0; $x < $limit; $x++): ?>
+                                <tr>
+                                    <td><?= $report['inventory'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['inventory'][$x]['price'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['inventory'][$x]['head3'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['inventory'][$x]['head4'] ?? '0.00' ?></td>
+                                </tr>
+                        <?php endfor;
+                        } else {
+                            // Optional: Display a message if there are no services  
+                            echo "<tr><td colspan='4'>No inventory data available.</td></tr>";
+                        } ?>
+                    </table>
                 </div>
             </div>
             <!--
@@ -269,37 +324,37 @@ require('../scripts/report_script.php');
 
 
     <script>
-    function generatePDF() {
-        const reportPages = document.querySelectorAll('.report-page');
-        const pdfContainer = document.createElement('div');
+        function generatePDF() {
+            const reportPages = document.querySelectorAll('.report-page');
+            const pdfContainer = document.createElement('div');
 
-        // Append all pages to the new container
-        reportPages.forEach(page => {
-            const clonedPage = page.cloneNode(true); // Clone the page
-            pdfContainer.appendChild(clonedPage); // Add cloned page to the new container
-        });
+            // Append all pages to the new container
+            reportPages.forEach(page => {
+                const clonedPage = page.cloneNode(true); // Clone the page
+                pdfContainer.appendChild(clonedPage); // Add cloned page to the new container
+            });
 
-        const options = {
-            filename: '<?php echo date("F-Y"); ?>_report.pdf',
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'letter',
-                orientation: 'portrait'
-            }
-        };
+            const options = {
+                filename: '<?php echo date("F-Y"); ?>_report.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'portrait'
+                }
+            };
 
-        html2pdf()
-            .from(pdfContainer) // Use the combined container
-            .set(options)
-            .save();
-    }
+            html2pdf()
+                .from(pdfContainer) // Use the combined container
+                .set(options)
+                .save();
+        }
 
     function toggleFilterForm() {
         const filterForm = document.getElementById('filterForm');

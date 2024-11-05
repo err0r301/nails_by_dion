@@ -1,58 +1,20 @@
 <?php
-function getReport()
+function getReport($duration)
 {
-    // Include the config file  
-    require '../data/config.php';
-
-    // Get sales this month  
-    $query = "SELECT SUM(monthlyRevenue) AS sales FROM service";
-    $Month_result = $conn->query($query);
-
-    $sales = 0; // Default sales to 0  
-    if ($Month_result && $Month_result->num_rows > 0) {
-        $row = $Month_result->fetch_assoc(); // Fetch the result as an associative array  
-        $sales = $row['sales']; // Access the 'sales' key  
+    switch ($duration) {
+        case 'week':
+            $output = weekReport();
+            break;
+        case 'month':
+            $output = monthReport();
+            break;
+        case 'year':
+            $output = yearReport();
+            break;
+        case 'custom date':
+            $output = weekReport();
+            break;
     }
-
-    // Get appointments this month  
-    $appointments = 0;
-    $query = "SELECT * FROM appointment WHERE MONTH(scheduledDateTime) = MONTH(NOW()) AND YEAR(scheduledDateTime) = YEAR(NOW())";
-    $appointment_result = $conn->query($query);
-    if ($appointment_result->num_rows > 0) {
-        $appointments = $appointment_result->num_rows;
-        echo "<script>console.log('appointments: " . $appointments . "')</script>";
-    } else {
-        echo "<script>console.log('no appointments')</script>";
-    }
-
-    // Get number of users with a 'userType' of 'Client'  
-    $query = "SELECT * FROM user WHERE userType = 'Client'";
-    $user_result = $conn->query($query);
-
-    // Get the name, category, price, and monthlyRevenue for each service  
-    $query = "SELECT serviceID AS name, category, price, monthlyRevenue FROM service";
-    $service_result = $conn->query($query);
-
-    // Fetch services into an array  
-    $services = [];
-    if ($service_result && $service_result->num_rows > 0) {
-        while ($service = $service_result->fetch_assoc()) {
-            $services[] = $service;
-        }
-    }
-
-    $output = array(
-        'sales' => $sales,
-        'appointments' => $appointments,
-        'users' => $user_result->num_rows,
-        'services' => $services
-    );
-
-    echo "<script>console.log('sales: " . $output['sales'] . "')</script>";
-    echo "<script>console.log('appointments: " . $output['appointments'] . "')</script>";
-
-    $conn->close();
-
     return $output;
 }
 
@@ -68,8 +30,22 @@ function weekReport()
 
     $appointments = countAppointments($conn, $startOfWeek, $endOfWeek, "week");
     $services = serviceDetails($conn, $startOfWeek, $endOfWeek);
+    $serviceTotal = 0;
 
-    $output = array();
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
+
+    // Get number of users with a 'userType' of 'Client'  
+    $query = "SELECT * FROM user WHERE userType = 'Client'";
+    $user_result = $conn->query($query);
+
+    $output = array(
+        'sales' => $serviceTotal,
+        'appointments' => $appointments,
+        'users' => $user_result->num_rows,
+        'services' => $services
+    );
     $conn->close();
 
     return $output;
@@ -87,8 +63,22 @@ function monthReport()
 
     $appointments = countAppointments($conn, $startOfMonth, $endOfMonth, "month");
     $services = serviceDetails($conn, $startOfMonth, $endOfMonth);
+    $serviceTotal = 0;
 
-    $output = array();
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
+
+    // Get number of users with a 'userType' of 'Client'  
+    $query = "SELECT * FROM user WHERE userType = 'Client'";
+    $user_result = $conn->query($query);
+
+    $output = array(
+        'sales' => $serviceTotal,
+        'appointments' => $appointments,
+        'users' => $user_result->num_rows,
+        'services' => $services
+    );
     $conn->close();
 
     return $output;
@@ -125,8 +115,22 @@ function quarterReport()
 
     $appointments = countAppointments($conn, $startOfQuarter, $endOfQuarter, "quarter");
     $services = serviceDetails($conn, $startOfQuarter, $endOfQuarter);
+    $serviceTotal = 0;
 
-    $output = array();
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
+
+    // Get number of users with a 'userType' of 'Client'  
+    $query = "SELECT * FROM user WHERE userType = 'Client'";
+    $user_result = $conn->query($query);
+
+    $output = array(
+        'sales' => $serviceTotal,
+        'appointments' => $appointments,
+        'users' => $user_result->num_rows,
+        'services' => $services
+    );
     $conn->close();
 
     return $output;
@@ -147,8 +151,22 @@ function yearReport()
 
     $appointments = countAppointments($conn, $startOfYear, $endOfYear, "year");
     $services = serviceDetails($conn, $startOfYear, $endOfYear);
+    $serviceTotal = 0;
 
-    $output = array();
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
+
+    // Get number of users with a 'userType' of 'Client'  
+    $query = "SELECT * FROM user WHERE userType = 'Client'";
+    $user_result = $conn->query($query);
+
+    $output = array(
+        'sales' => $serviceTotal,
+        'appointments' => $appointments,
+        'users' => $user_result->num_rows,
+        'services' => $services
+    );
     $conn->close();
 
     return $output;
@@ -162,8 +180,22 @@ function customReport($startDate, $endDate)
 
     $appointments = countAppointments($conn, $startDate, $endDate, "custom date");
     $services = serviceDetails($conn, $startDate, $endDate);
+    $serviceTotal = 0;
 
-    $output = array();
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
+
+    // Get number of users with a 'userType' of 'Client'  
+    $query = "SELECT * FROM user WHERE userType = 'Client'";
+    $user_result = $conn->query($query);
+
+    $output = array(
+        'sales' => $serviceTotal,
+        'appointments' => $appointments,
+        'users' => $user_result->num_rows,
+        'services' => $services
+    );
     $conn->close();
 
     return $output;
@@ -192,29 +224,40 @@ function countAppointments($conn, $startDate, $endDate, $period)
 
 function serviceDetails($conn, $startDate, $endDate)
 {
-    $query = "SELECT a.serviceID AS name, COUNT(*) AS recordCount,s.price,s.category
-                FROM appointment a JOIN service s ON a.serviceID = s.serviceID  
-                WHERE a.status_ = 'Completed' AND a.scheduledDateTime BETWEEN ? AND ?  
-                GROUP BY a.serviceID, s.description, s.price, s.image, s.category, s.duration, s.monthlyRevenue, s.status";
+    $query = "  
+        SELECT  
+            s.serviceID AS name,  
+            COUNT(CASE WHEN a.status_ = 'Complete' THEN 1 END) AS completeCount,  
+            SUM(CASE WHEN a.status_ = 'Complete' THEN 1 ELSE 0 END) * s.price AS revenue,  
+            s.price,  
+            s.category  
+        FROM appointment a  
+        JOIN service s ON a.serviceID = s.serviceID  
+        WHERE a.scheduledDateTime BETWEEN ? AND ?  
+        GROUP BY s.serviceID, s.price, s.category  
+    ";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $startDate, $endDate);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    $output = array();
+
     if ($result->num_rows > 0) {
-        $output = array();
         while ($row = $result->fetch_assoc()) {
             $output[] = array(
                 'name' => $row["name"],
-                'revenue' => $row["recordCount"] * $row["price"],
+                'revenue' => $row["revenue"],
                 'price' => $row["price"],
-                'category' => $row["category"]
+                'category' => $row["category"],
+                'completeCount' => $row["completeCount"]
             );
         }
         echo "<script>console.log('serviceDetails: " . json_encode($output) . "');</script>";
-        return $output;
     } else {
         echo "<script>console.log('no serviceDetails');</script>";
     }
+
+    return $output;
 }
