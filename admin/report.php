@@ -20,6 +20,7 @@ require('../scripts/report_script.php');
 
     <style>
         .report-page {
+            /*display: inline;*/
             max-width: 800px;
             height: 820px;
             margin: 20px auto 0 auto;
@@ -28,9 +29,10 @@ require('../scripts/report_script.php');
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
+        /*
         .report-page.active {
             display: block;
-        }
+        }*/
 
         .report-header {
             display: flex;
@@ -101,6 +103,7 @@ require('../scripts/report_script.php');
             }
         }
 
+        /*
         .pagination {
             padding: 20px;
             margin: 20px 0;
@@ -136,7 +139,7 @@ require('../scripts/report_script.php');
             box-shadow: inset 0px 0px 8px rgba(0, 0, 0, .5), 0px 1px 0px rgba(255, 255, 255, .8);
             color: #f0f0f0;
             text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
-        }
+        }*/
     </style>
 
 </head>
@@ -242,7 +245,7 @@ require('../scripts/report_script.php');
                     <h2>Appointment Report</h2>
                 </div>
             </div>
-
+            <!--
             <div class="pagination">
                 <a href="#" class="page" data-page="back">&#129120;</a>
                 <a href="#" class="page active" data-page="1">1</a>
@@ -251,7 +254,7 @@ require('../scripts/report_script.php');
                 <a href="#" class="page" data-page="4">4</a>
                 <a href="#" class="page" data-page="5">5</a>
                 <a href="#" class="page" data-page="next">&#129122;</a>
-            </div>
+            </div>-->
         </main>
     </div>
 
