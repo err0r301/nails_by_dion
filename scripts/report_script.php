@@ -68,6 +68,11 @@ function weekReport()
 
     $appointments = countAppointments($conn, $startOfWeek, $endOfWeek, "week");
     $services = serviceDetails($conn, $startOfWeek, $endOfWeek);
+    $serviceTotal = 0;
+
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
 
     $output = array();
     $conn->close();
@@ -87,6 +92,11 @@ function monthReport()
 
     $appointments = countAppointments($conn, $startOfMonth, $endOfMonth, "month");
     $services = serviceDetails($conn, $startOfMonth, $endOfMonth);
+    $serviceTotal = 0;
+
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
 
     $output = array();
     $conn->close();
@@ -125,6 +135,11 @@ function quarterReport()
 
     $appointments = countAppointments($conn, $startOfQuarter, $endOfQuarter, "quarter");
     $services = serviceDetails($conn, $startOfQuarter, $endOfQuarter);
+    $serviceTotal = 0;
+
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
 
     $output = array();
     $conn->close();
@@ -147,6 +162,11 @@ function yearReport()
 
     $appointments = countAppointments($conn, $startOfYear, $endOfYear, "year");
     $services = serviceDetails($conn, $startOfYear, $endOfYear);
+    $serviceTotal = 0;
+
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
 
     $output = array();
     $conn->close();
@@ -162,6 +182,11 @@ function customReport($startDate, $endDate)
 
     $appointments = countAppointments($conn, $startDate, $endDate, "custom date");
     $services = serviceDetails($conn, $startDate, $endDate);
+    $serviceTotal = 0;
+
+    foreach ($services as $service) {
+        $serviceTotal += $service['revenue'];
+    }
 
     $output = array();
     $conn->close();
