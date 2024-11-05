@@ -128,7 +128,7 @@ require('../scripts/report_script.php');
         $page = 'report';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        $report = getReport("week");
+        $report = getReport("year");
         /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
                 $sales += $services[$i]['month-revenue'];
