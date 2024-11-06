@@ -243,6 +243,7 @@
                 <h1 class="main-title font-weight-bold">APPOINTMENTS</h1>
                 <button class="app-content-headerButton" onclick="togglePopup('popup-add-appointment')">Add Appointment</button>
             </div>
+
             <div class="main-overview">
                 <div class="overview-card">
                     <div class="overview-card__data"><?php echo $pending ?></div>
