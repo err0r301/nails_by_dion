@@ -127,6 +127,7 @@ ini_set('display_errors', 1);
     <div class="grid-container">
         <?php
         $page = 'report';
+        $staffDisplay = false;
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
         $report = getReport($startDate, $endDate);
@@ -194,20 +195,8 @@ ini_set('display_errors', 1);
                             echo "<tr><td colspan='4'>No services available.</td></tr>";
                         } ?>
                     </table>
-                </div>
-                <?php if ($x < count($report['services'])) { ?>
-                    <div class="report-page active">
-                        <table>
-                            <?php for (; $x < count($report['services']); $x++): ?>
-                                <tr>
-                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
-                                </tr>
-                            <?php endfor; ?>
-                        </table>
 
+                    <?php if ($limit <= 5) { ?>
                         <h2 style="margin-top : 80px">Staff Report</h2>
                         <table>
                             <tr>
@@ -220,6 +209,7 @@ ini_set('display_errors', 1);
                             <?php
                             if (isset($report['staff']) && is_array($report['staff'])) {
                                 $limit = min(13, count($report['staff']));
+                                $staffDisplay = true;
                                 for ($x = 0; $x < $limit; $x++): ?>
                                     <tr>
                                         <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
@@ -232,6 +222,47 @@ ini_set('display_errors', 1);
                                 echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
                             } ?>
                         </table>
+                    <?php } ?>
+                </div>
+                <?php if ($staffDisplay == false) { ?>
+                    <div class="report-page active">
+                        <table>
+                            <?php for (; $x < count($report['services']); $x++): ?>
+                                <tr>
+                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
+                                </tr>
+                            <?php endfor; ?>
+                        </table>
+
+                        <?php if ($staffDisplay == false) { ?>
+                            <h2 style="margin-top : 80px">Staff Report</h2>
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Appointments completed</th>
+                                    <th>Appointments canceled</th>
+                                    <th>Revenue</th>
+                                </tr>
+
+                                <?php
+                                if (isset($report['staff']) && is_array($report['staff'])) {
+                                    $limit = min(13, count($report['staff']));
+                                    for ($x = 0; $x < $limit; $x++): ?>
+                                        <tr>
+                                            <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
+                                            <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
+                                            <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
+                                            <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
+                                        </tr>
+                                <?php endfor;
+                                } else {
+                                    echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
+                                } ?>
+                            </table>
+                        <?php } ?>
                     </div>
                 <?php } ?>
             </div>
