@@ -255,38 +255,35 @@ require('../scripts/report_script.php');
                                 </tr>
                             <?php endfor; ?>
                         </table>
+
+                        <h2 style="margin-top : 80px">Staff Report</h2>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Appointments completed</th>
+                                <th>Appointments canceled</th>
+                                <th>Revenue</th>
+                            </tr>
+
+                            <?php
+                            // Ensure $report['services'] is defined and is an array before using it  
+                            if (isset($report['staff']) && is_array($report['staff'])) {
+                                $limit = min(13, count($report['staff']));
+                                for ($x = 0; $x < $limit; $x++): ?>
+                                    <tr>
+                                        <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
+                                        <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
+                                        <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
+                                        <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
+                                    </tr>
+                            <?php endfor;
+                            } else {
+                                // Optional: Display a message if there are no services  
+                                echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
+                            } ?>
+                        </table>
                     </div>
                 <?php } ?>
-
-                <!-- Staff Report -->
-                <div class="report-page">
-                    <h2>Staff Report</h2>
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Appointments completed</th>
-                            <th>Appointments canceled</th>
-                            <th>Revenue</th>
-                        </tr>
-
-                        <?php
-                        // Ensure $report['services'] is defined and is an array before using it  
-                        if (isset($report['staff']) && is_array($report['staff'])) {
-                            $limit = min(13, count($report['staff']));
-                            for ($x = 0; $x < $limit; $x++): ?>
-                                <tr>
-                                    <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
-                                    <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
-                                    <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
-                                </tr>
-                        <?php endfor;
-                        } else {
-                            // Optional: Display a message if there are no services  
-                            echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
-                        } ?>
-                    </table>
-                </div>
 
                 <!-- Inventory Report -->
                 <div class="report-page">
