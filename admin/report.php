@@ -1,4 +1,7 @@
 <?php
+    require('../scripts/report_script.php');
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 ?>
 
 <!DOCTYPE html>
@@ -160,9 +163,6 @@
         $page = 'report';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        require('../scripts/report_script.php');
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
         $report = getReport("year");
       /*$sales = 0;
             for ($i = 0; $i < count($services); $i++) {
