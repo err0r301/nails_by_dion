@@ -115,6 +115,7 @@ ini_set('display_errors', 1);
             padding: 10px 20px;
             margin-left: 5px;
         }
+
         #filterForm button:hover {
             background-color: #007bff;
             color: white;
@@ -147,7 +148,7 @@ ini_set('display_errors', 1);
                     <label for="endDate">End Date:</label>
                     <input type="date" id="endDate" name="endDate">
 
-                    <button type="button" id="submitButton" class="form-submit-button" onclick="applyDateFilter()">Filter</button>
+                    <button type="submit" id="submitButton" class="form-submit-button" onclick="applyDateFilter()">Filter</button>
                 </form>
             </div>
             <div class="report-container">
@@ -290,8 +291,16 @@ ini_set('display_errors', 1);
             const endDate = document.getElementById('endDate').value;
 
             if (startDate && endDate) {
-                const formattedStartDate = new Date(startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-                const formattedEndDate = new Date(endDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                const formattedStartDate = new Date(startDate).toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                const formattedEndDate = new Date(endDate).toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
                 const dateString = `${formattedStartDate} - ${formattedEndDate}`;
                 document.getElementById('report-date').textContent = dateString;
                 document.querySelectorAll('.sales-period').forEach(element => {
