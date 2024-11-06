@@ -1,7 +1,7 @@
 <?php
-    require('../scripts/report_script.php');
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+require('../scripts/report_script.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
 
 <!DOCTYPE html>
@@ -17,150 +17,104 @@
     <link rel="stylesheet" href="/../styles/main_styles.css">
     <link rel="stylesheet" href="/../styles/admin_styles.css">
 
-
     <style>
-    .report-page {
-        /*display: inline;*/
-        max-width: 800px;
-        height: 820px;
-        margin: 20px auto 0 auto;
-        padding: 100px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* 
-        .report-page.active {
-            display: block;
-        } */
-
-    .report-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .report-header img {
-        width: 200px;
-    }
-
-    .report-header div {
-        text-align: right;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th,
-    td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    @media print {
         .report-page {
-            page-break-after: always;
-        }
-    }
-
-    /*
-        .pagination {
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
+            max-width: 800px;
+            height: 820px;
+            margin: 20px auto 0 auto;
+            padding: 100px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-        .page {
-            display: inline-block;
-            height: 25px;
-            padding: 0px 9px;
-            margin-right: 4px;
-            border-radius: 3px;
-            border: solid 1px #c0c0c0;
-            background: #e9e9e9;
-            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .8), 0px 1px 3px rgba(0, 0, 0, .1);
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: #717171;
-            text-shadow: 0px 1px 0px rgba(255, 255, 255, 1);
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .page:hover,
-        .page.gradient:hover {
-            background: #fefefe;
-            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
-            background: -moz-linear-gradient(0% 0% 270deg, #FEFEFE, #f0f0f0);
+        .report-header img {
+            width: 200px;
         }
 
-        .page.active {
+        .report-header div {
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
             border: none;
-            background: #616161;
-            box-shadow: inset 0px 0px 8px rgba(0, 0, 0, .5), 0px 1px 0px rgba(255, 255, 255, .8);
-            color: #f0f0f0;
-            text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
-        }*/
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    #filterForm {
-        position: absolute;
-        top: 93px;
-        right: 250px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        display: none;
-        width: 730px;
-    }
+        @media print {
+            .report-page {
+                page-break-after: always;
+            }
+        }
 
-    #filterForm label,
-    #filterForm input,
-    #filterForm select,
-    #filterForm button {
-        display: inline-block;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        padding: 5px;
-        vertical-align: middle;
-    }
+        #filterForm {
+            position: absolute;
+            top: 93px;
+            right: 250px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            width: 730px;
+        }
 
-    #filterForm input,
-    #filterForm select {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
+        #filterForm label,
+        #filterForm input,
+        #filterForm select,
+        #filterForm button {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 5px;
+            vertical-align: middle;
+        }
 
-    #filterForm button {
-        background-color: white;
-        color: black;
-        transition: background-color 0.3s, color 0.3s;
-        border: none;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        cursor: pointer;
-    }
+        #filterForm input,
+        #filterForm select {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #filterForm button {
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+            border: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
     </style>
-
 </head>
 
 <body>
@@ -170,10 +124,6 @@
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
         $report = getReport("year");
-      /*$sales = 0;
-            for ($i = 0; $i < count($services); $i++) {
-                $sales += $services[$i]['month-revenue'];
-            }*/
         ?>
 
         <main class="main-container">
@@ -232,19 +182,17 @@
 
                         <?php
                         $x = 0;
-                        // Ensure $report['services'] is defined and is an array before using it  
                         if (isset($report['services']) && is_array($report['services']) && count($report['services']) > 0) {
                             $limit = min(13, count($report['services']));
                             for ($x = 0; $x < $limit; $x++): ?>
-                        <tr>
-                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                            <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
-                        </tr>
+                                <tr>
+                                    <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
+                                    <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
+                                    <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
+                                    <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
+                                </tr>
                         <?php endfor;
                         } else {
-                            // Optional: Display a message if there are no services  
                             echo "<tr><td colspan='4'>No services available.</td></tr>";
                         } ?>
                     </table>
@@ -252,7 +200,7 @@
                 <?php if ($x < count($report['services'])) { ?>
                     <div class="report-page active">
                         <table>
-                            <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
+                            <?php for (; $x < count($report['services']); $x++): ?>
                                 <tr>
                                     <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
                                     <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
@@ -261,19 +209,6 @@
                                 </tr>
                             <?php endfor; ?>
                         </table>
-                <div class="report-page active">
-                    <table>
-                        <?php for ($x = $limit; $x < count($report['services']); $x++): ?>
-                        <tr>
-                            <td><?= $report['services'][$x]['name'] ?? 'N/A' ?></td>
-                            <td><?= $report['services'][$x]['category'] ?? 'N/A' ?></td>
-                            <td>R <?= $report['services'][$x]['price'] ?? '0.00' ?></td>
-                            <td>R <?= $report['services'][$x]['revenue'] ?? '0.00' ?></td>
-                        </tr>
-                        <?php endfor; ?>
-                    </table>
-                </div>
-                <?php } ?>
 
                         <h2 style="margin-top : 80px">Staff Report</h2>
                         <table>
@@ -285,7 +220,6 @@
                             </tr>
 
                             <?php
-                            // Ensure $report['services'] is defined and is an array before using it  
                             if (isset($report['staff']) && is_array($report['staff'])) {
                                 $limit = min(13, count($report['staff']));
                                 for ($x = 0; $x < $limit; $x++): ?>
@@ -297,181 +231,102 @@
                                     </tr>
                             <?php endfor;
                             } else {
-                                // Optional: Display a message if there are no services  
                                 echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
                             } ?>
                         </table>
                     </div>
                 <?php } ?>
             </div>
-            <!--
-            <div class="pagination">
-                <a href="#" class="page" data-page="back">&#129120;</a>
-                <a href="#" class="page active" data-page="1">1</a>
-                <a href="#" class="page" data-page="2">2</a>
-                <a href="#" class="page" data-page="3">3</a>
-                <a href="#" class="page" data-page="4">4</a>
-                <a href="#" class="page" data-page="5">5</a>
-                <a href="#" class="page" data-page="next">&#129122;</a>
-            </div>-->
         </main>
     </div>
 
-
     <script>
-    function generatePDF() {
-        const reportPages = document.querySelectorAll('.report-page');
-        const pdfContainer = document.createElement('div');
-
-        // Append all pages to the new container
-        reportPages.forEach(page => {
-            const clonedPage = page.cloneNode(true); // Clone the page
-            pdfContainer.appendChild(clonedPage); // Add cloned page to the new container
-        });
-
-        // Gets the selected report type and date values
-        const reportType = document.getElementById('reportType').value;
-        const day = document.getElementById('day').value;
-        const month = document.getElementById('month').value;
-        const year = document.getElementById('year').value;
-        let filenameDate = '';
-
-        // Sets the filename based on the selected report type and date values
-        if (reportType === 'day' && day && month && year) {
-            filenameDate = `${day}-${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
-        } else if (reportType === 'month' && month && year) {
-            filenameDate = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
-        } else if (reportType === 'year' && year) {
-            filenameDate = `${year}`;
-        } else {
-            filenameDate = '<?php echo date("F-Y"); ?>';
-        }
-
-        const options = {
-            filename: `${filenameDate}_report.pdf`,
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'letter',
-                orientation: 'portrait'
-            }
-        };
-
-        html2pdf()
-            .from(pdfContainer) // Use the combined container
-            .set(options)
-            .save();
-    }
-
-    // Filter function
-    function toggleFilterForm() {
-        const filterForm = document.getElementById('filterForm');
-        filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function applyDateFilter() {
-        const reportType = document.getElementById('reportType').value;
-        const startDate = document.getElementById('startDate').value;
-        const endDate = document.getElementById('endDate').value;
-
-        let dateString = '';
-        let periodText = '';
-
-        if (reportType === 'range' && startDate && endDate) {
-            dateString = `From ${startDate} to ${endDate}`;
-            periodText = 'range';
-        } else {
-            periodText = reportType;
-        }
-
-        if (dateString || periodText) {
-            document.getElementById('report-date').textContent = dateString || '<?php echo date("F Y"); ?>';
-            document.querySelectorAll('.sales-period').forEach(element => {
-                element.textContent = periodText;
-            });
-        }
-
-        // Hide the form after applying the filter
-        document.getElementById('filterForm').style.display = 'none';
-    }
-
-    document.getElementById('reportType').addEventListener('change', function() {
-        const rangeDateInputs = document.getElementById('rangeDateInputs');
-        if (this.value === 'range') {
-            rangeDateInputs.style.display = 'block';
-        } else {
-            rangeDateInputs.style.display = 'none';
-        }
-    });
-    </script>
-    <!--<script>
-        // Function to show the selected page and hide others  
-        function showPage(pageNumber) {
+        function generatePDF() {
             const reportPages = document.querySelectorAll('.report-page');
-            reportPages.forEach((page, index) => {
-                if (index + 1 === pageNumber) {
-                    page.classList.add('active');
-                } else {
-                    page.classList.remove('active');
-                }
+            const pdfContainer = document.createElement('div');
+
+            reportPages.forEach(page => {
+                const clonedPage = page.cloneNode(true);
+                pdfContainer.appendChild(clonedPage);
             });
 
-            // Update pagination link styles  
-            const paginationLinks = document.querySelectorAll('.pagination .page');
-            paginationLinks.forEach(link => {
-                if (parseInt(link.getAttribute('data-page')) === pageNumber) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
+            const reportType = document.getElementById('reportType').value;
+            const day = document.getElementById('day') ? document.getElementById('day').value : '';
+            const month = document.getElementById('month') ? document.getElementById('month').value : '';
+            const year = document.getElementById('year') ? document.getElementById('year').value : '';
+            let filenameDate = '';
+
+            if (reportType === 'day' && day && month && year) {
+                filenameDate = `${day}-${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
+            } else if (reportType === 'month' && month && year) {
+                filenameDate = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })}-${year}`;
+            } else if (reportType === 'year' && year) {
+                filenameDate = `${year}`;
+            } else {
+                filenameDate = '<?php echo date("F-Y"); ?>';
+            }
+
+            const options = {
+                filename: `${filenameDate}_report.pdf`,
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'portrait'
                 }
-            });
+            };
+
+            html2pdf()
+                .from(pdfContainer)
+                .set(options)
+                .save();
         }
 
-        // Add event listeners to pagination links  
-        document.querySelectorAll('.pagination .page').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default anchor behavior  
+        function toggleFilterForm() {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
+        }
 
-                const pageNumber = this.getAttribute('data-page');
+        function applyDateFilter() {
+            const reportType = document.getElementById('reportType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
 
-                // Handle the 'next' functionality  
-                if (pageNumber === 'next') {
-                    const currentActive = document.querySelector('.pagination .page.active');
-                    if (currentActive) {
-                        const nextPage = parseInt(currentActive.getAttribute('data-page')) + 1;
-                        if (nextPage <= 5) { // assuming 5 total pages  
-                            showPage(nextPage);
-                        }
-                    }
-                }
-                // Handle the 'back' functionality  
-                else if (pageNumber === 'back') {
-                    const currentActive = document.querySelector('.pagination .page.active');
-                    if (currentActive) {
-                        const previousPage = parseInt(currentActive.getAttribute('data-page')) - 1;
-                        if (previousPage >= 1) { // assuming 1 is the first page  
-                            showPage(previousPage);
-                        }
-                    }
-                }
-                // For normal page numbers  
-                else {
-                    showPage(parseInt(pageNumber));
-                }
-            });
+            let dateString = '';
+            let periodText = '';
+
+            if (reportType === 'range' && startDate && endDate) {
+                dateString = `From ${startDate} to ${endDate}`;
+                periodText = 'range';
+            } else {
+                periodText = reportType;
+            }
+
+            if (dateString || periodText) {
+                document.getElementById('report-date').textContent = dateString || '<?php echo date("F Y"); ?>';
+                document.querySelectorAll('.sales-period').forEach(element => {
+                    element.textContent = periodText;
+                });
+            }
+
+            document.getElementById('filterForm').style.display = 'none';
+        }
+
+        document.getElementById('reportType').addEventListener('change', function() {
+            const rangeDateInputs = document.getElementById('rangeDateInputs');
+            if (this.value === 'range') {
+                rangeDateInputs.style.display = 'block';
+            } else {
+                rangeDateInputs.style.display = 'none';
+            }
         });
-
-        // Initialize the first page as active  
-        showPage(1);
-    </script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
-
+    </script>
 </body>
 
 </html>
