@@ -1,11 +1,13 @@
 <?php
-$currentYear = date('Y');
-$startDate = "$currentYear-01-01 00:00:00"; // First day of the year  
-$endDate = "$currentYear-12-31 23:59:59"; // Last day of the year 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    echo "<script>console.log('report form sent');</script>";
+} else {
+    $currentYear = date('Y');
+    $startDate = "$currentYear-01-01 00:00:00"; // First day of the year  
+    $endDate = "$currentYear-12-31 23:59:59"; // Last day of the year 
+    echo "<script>console.log('report form not sent');</script>";
 }
 
 function getReport($startDate, $endDate)
