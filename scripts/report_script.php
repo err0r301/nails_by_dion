@@ -1,24 +1,17 @@
 <?php
+$currentYear = date('Y');
+$startDate = "$currentYear-01-01 00:00:00"; // First day of the year  
+$endDate = "$currentYear-12-31 23:59:59"; // Last day of the year 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $duration = $_POST['duration'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
 }
 
-function getReport($duration)
+function getReport($startDate, $endDate)
 {
-    switch ($duration) {
-        case 'week':
-            $output = weekReport();
-            break;
-        case 'month':
-            $output = monthReport();
-            break;
-        case 'year':
-            $output = yearReport();
-            break;
-        case 'custom date':
-            $output = weekReport();
-            break;
-    }
+    $output = [];
+    $output = customReport($startDate, $endDate);
     return $output;
 }
 
@@ -211,6 +204,8 @@ function customReport($startDate, $endDate)
         'staff' => $staff
     );
     $conn->close();
+
+    echo "<script>console.log('start date: " . $startDate . "', 'end date: " . $endDate . "');</script>";
 
     return $output;
 }
