@@ -14,7 +14,7 @@ function getReport($startDate, $endDate)
     $output = customReport($startDate, $endDate);
     return $output;
 }
-
+/*
 function weekReport()
 {
     require '../data/config.php';
@@ -176,7 +176,7 @@ function yearReport()
 
     return $output;
 }
-
+*/
 function customReport($startDate, $endDate)
 {
     require '../data/config.php';
