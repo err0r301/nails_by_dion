@@ -128,7 +128,7 @@ ini_set('display_errors', 1);
         $page = 'report';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        $report = getReport("year");
+        $report = getReport($startDate, $endDate);
         ?>
 
         <main class="main-container">
