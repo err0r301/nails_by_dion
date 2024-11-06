@@ -77,15 +77,15 @@ ini_set('display_errors', 1);
         #filterForm {
             position: absolute;
             top: 93px;
-            right: 250px;
+            right: 350px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            display: none;
-            width: 730px;
+            display: block;
+            width: auto;
         }
 
         #filterForm label,
@@ -94,7 +94,7 @@ ini_set('display_errors', 1);
         #filterForm button {
             display: inline-block;
             margin-right: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 0px;
             padding: 5px;
             vertical-align: middle;
         }
@@ -106,13 +106,18 @@ ini_set('display_errors', 1);
         }
 
         #filterForm button {
-            background-color: white;
-            color: black;
+            background-color: black;
+            color: white;
             transition: background-color 0.3s, color 0.3s;
             border: none;
             border-radius: 5px;
-            border: 1px solid #ccc;
             cursor: pointer;
+            padding: 10px 20px;
+            margin-left: 5px;
+        }
+        #filterForm button:hover {
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
@@ -129,26 +134,18 @@ ini_set('display_errors', 1);
         <main class="main-container">
             <div class="top" style="margin-bottom: 40px; position: relative;">
                 <h1 class="main-title font-weight-bold">REPORT</h1>
-                <button class="app-content-headerButton" onclick="toggleFilterForm()">Filter</button>
                 <button class="app-content-headerButton" onclick="generatePDF()">Download</button>
             </div>
-            <div id="filterForm" style="display: none;">
-                <form id="dateFilterForm">
-                    <label for="reportType">Report Type:</label>
-                    <select id="reportType" name="reportType">
-                        <option value="day">Day</option>
-                        <option value="month">Month</option>
-                        <option value="year">Year</option>
-                        <option value="range">Date Range</option>
-                    </select>
 
-                    <div id="rangeDateInputs" style="display: inline;">
-                        <label for="startDate">Start Date:</label>
-                        <input type="date" id="startDate" name="startDate">
+            <!-- Filter Form -->
+            <div id="filterForm" style="display: block;">
+                <form id="dateFilterForm" action="" method="post">
 
-                        <label for="endDate">End Date:</label>
-                        <input type="date" id="endDate" name="endDate">
-                    </div>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate">
+
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate">
 
                     <button type="button" id="submitButton" class="form-submit-button" onclick="applyDateFilter()">Filter</button>
                 </form>
@@ -288,34 +285,19 @@ ini_set('display_errors', 1);
                 .save();
         }
 
-        function toggleFilterForm() {
-            const filterForm = document.getElementById('filterForm');
-            filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
-        }
-
         function applyDateFilter() {
-            const reportType = document.getElementById('reportType').value;
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
 
-            let dateString = '';
-            let periodText = '';
-
-            if (reportType === 'range' && startDate && endDate) {
-                dateString = `From ${startDate} to ${endDate}`;
-                periodText = 'range';
-            } else {
-                periodText = reportType;
-            }
-
-            if (dateString || periodText) {
-                document.getElementById('report-date').textContent = dateString || '<?php echo date("F Y"); ?>';
+            if (startDate && endDate) {
+                const formattedStartDate = new Date(startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                const formattedEndDate = new Date(endDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                const dateString = `${formattedStartDate} - ${formattedEndDate}`;
+                document.getElementById('report-date').textContent = dateString;
                 document.querySelectorAll('.sales-period').forEach(element => {
-                    element.textContent = periodText;
+                    element.textContent = 'period';
                 });
             }
-
-            document.getElementById('filterForm').style.display = 'none';
         }
 
         document.getElementById('reportType').addEventListener('change', function() {
