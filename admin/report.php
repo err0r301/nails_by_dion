@@ -122,7 +122,7 @@
     #filterForm {
         position: absolute;
         top: 93px;
-        right: 225px;
+        right: 250px;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -130,19 +130,24 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         display: none;
-        width: 780px;
-
+        width: 730px;
     }
 
-    #filterForm label {
+    #filterForm label,
+    #filterForm input,
+    #filterForm select,
+    #filterForm button {
+        display: inline-block;
         margin-right: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+        vertical-align: middle;
     }
 
     #filterForm input,
     #filterForm select {
-        margin-right: 10px;
         border: 1px solid #ccc;
-
+        border-radius: 3px;
     }
 
     #filterForm button {
@@ -152,6 +157,7 @@
         border: none;
         border-radius: 5px;
         border: 1px solid #ccc;
+        cursor: pointer;
     }
     </style>
 
@@ -183,20 +189,18 @@
                         <option value="day">Day</option>
                         <option value="month">Month</option>
                         <option value="year">Year</option>
+                        <option value="range">Date Range</option>
                     </select>
 
-                    <label for="day">Day:</label>
-                    <input type="number" id="day" name="day" min="1" max="31">
+                    <div id="rangeDateInputs" style="display: inline;">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" name="startDate">
 
-                    <label for="month">Month:</label>
-                    <input type="number" id="month" name="month" min="1" max="12">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" name="endDate">
+                    </div>
 
-                    <label for="year">Year:</label>
-                    <input type="number" id="year" name="year" min="2000" max="2100">
-
-                    <button type="button" id="currentDateButton" onclick="setCurrentDate()">Current Date</button>
-                    <button type="button" id="submitButton" class="form-submit-button"
-                        onclick="applyDateFilter()">Submit</button>
+                    <button type="button" id="submitButton" class="form-submit-button" onclick="applyDateFilter()">Filter</button>
                 </form>
             </div>
             <div class="report-container">
@@ -371,35 +375,23 @@
         filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
     }
 
-    function setCurrentDate() {
-        const today = new Date();
-        document.getElementById('day').value = today.getDate();
-        document.getElementById('month').value = today.getMonth() + 1; // Months are zero-indexed
-        document.getElementById('year').value = today.getFullYear();
-    }
-
     function applyDateFilter() {
         const reportType = document.getElementById('reportType').value;
-        const day = document.getElementById('day').value;
-        const month = document.getElementById('month').value;
-        const year = document.getElementById('year').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
 
         let dateString = '';
         let periodText = '';
 
-        if (reportType === 'day' && day && month && year) {
-            dateString = `${day} ${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
-            periodText = 'day';
-        } else if (reportType === 'month' && month && year) {
-            dateString = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
-            periodText = 'month';
-        } else if (reportType === 'year' && year) {
-            dateString = `${year}`;
-            periodText = 'year';
+        if (reportType === 'range' && startDate && endDate) {
+            dateString = `From ${startDate} to ${endDate}`;
+            periodText = 'range';
+        } else {
+            periodText = reportType;
         }
 
-        if (dateString) {
-            document.getElementById('report-date').textContent = dateString.trim();
+        if (dateString || periodText) {
+            document.getElementById('report-date').textContent = dateString || '<?php echo date("F Y"); ?>';
             document.querySelectorAll('.sales-period').forEach(element => {
                 element.textContent = periodText;
             });
@@ -408,6 +400,15 @@
         // Hide the form after applying the filter
         document.getElementById('filterForm').style.display = 'none';
     }
+
+    document.getElementById('reportType').addEventListener('change', function() {
+        const rangeDateInputs = document.getElementById('rangeDateInputs');
+        if (this.value === 'range') {
+            rangeDateInputs.style.display = 'block';
+        } else {
+            rangeDateInputs.style.display = 'none';
+        }
+    });
     </script>
     <!--<script>
         // Function to show the selected page and hide others  
