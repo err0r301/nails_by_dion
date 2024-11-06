@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $duration = $_POST['duration'];
+}
+
 function getReport($duration)
 {
     switch ($duration) {

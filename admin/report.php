@@ -284,54 +284,25 @@
                                 <th>Revenue</th>
                             </tr>
 
-                        <?php
-                        // Ensure $report['services'] is defined and is an array before using it  
-                        if (isset($report['staff']) && is_array($report['staff'])) {
-                            $limit = min(13, count($report['staff']));
-                            for ($x = 0; $x < $limit; $x++): ?>
-                                <tr>
-                                    <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
-                                    <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
-                                    <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
-                                </tr>
-                        <?php endfor;
-                        } else {
-                            // Optional: Display a message if there are no services  
-                            echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
-                        } ?>
-                    </table>
-                </div>
-
-                <!-- Inventory Report -->
-                <div class="report-page">
-                    <h2>Inventory Report</h2>
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>head3</th>
-                            <th>head4</th>
-                        </tr>
-
-                        <?php
-                        // Ensure $report['services'] is defined and is an array before using it  
-                        if (isset($report['inventory']) && is_array($report['inventory'])) {
-                            $limit = min(13, count($report['inventory']));
-                            for ($x = 0; $x < $limit; $x++): ?>
-                        <tr>
-                            <td><?= $report['inventory'][$x]['name'] ?? 'N/A' ?></td>
-                            <td><?= $report['inventory'][$x]['price'] ?? 'N/A' ?></td>
-                            <td>R <?= $report['inventory'][$x]['head3'] ?? '0.00' ?></td>
-                            <td>R <?= $report['inventory'][$x]['head4'] ?? '0.00' ?></td>
-                        </tr>
-                        <?php endfor;
-                        } else {
-                            // Optional: Display a message if there are no services  
-                            echo "<tr><td colspan='4'>No inventory data available.</td></tr>";
-                        } ?>
-                    </table>
-                </div>
+                            <?php
+                            // Ensure $report['services'] is defined and is an array before using it  
+                            if (isset($report['staff']) && is_array($report['staff'])) {
+                                $limit = min(13, count($report['staff']));
+                                for ($x = 0; $x < $limit; $x++): ?>
+                                    <tr>
+                                        <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
+                                        <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
+                                        <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
+                                        <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
+                                    </tr>
+                            <?php endfor;
+                            } else {
+                                // Optional: Display a message if there are no services  
+                                echo "<tr><td colspan='4'>No Staff data available.</td></tr>";
+                            } ?>
+                        </table>
+                    </div>
+                <?php } ?>
             </div>
             <!--
             <div class="pagination">
