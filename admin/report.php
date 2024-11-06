@@ -119,42 +119,40 @@ require('../scripts/report_script.php');
             text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
         }*/
 
-    #filterForm {
-        position: absolute;
-        top: 93px;
-        right: 225px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        display: none;
-        width: 780px;
-        
-    }
+        #filterForm {
+            position: absolute;
+            top: 93px;
+            right: 225px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            width: 780px;
 
-    #filterForm label {
-        margin-right: 5px;
-    }
+        }
 
-    #filterForm input,
-    #filterForm select {
-        margin-right: 10px;
-        border: 1px solid #ccc;
-       
-    }
+        #filterForm label {
+            margin-right: 5px;
+        }
 
-    #filterForm button {
-        background-color: white;
-        color: black;
-        transition: background-color 0.3s, color 0.3s;
-        border: none;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-   
+        #filterForm input,
+        #filterForm select {
+            margin-right: 10px;
+            border: 1px solid #ccc;
 
+        }
+
+        #filterForm button {
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+            border: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
     </style>
 
 </head>
@@ -278,9 +276,9 @@ require('../scripts/report_script.php');
                             for ($x = 0; $x < $limit; $x++): ?>
                                 <tr>
                                     <td><?= $report['staff'][$x]['name'] ?? 'N/A' ?></td>
-                                    <td><?= $report['staff'][$x]['appointments-completed'] ?? 'N/A' ?></td>
-                                    <td>R <?= $report['staff'][$x]['appointments-canceled'] ?? '0.00' ?></td>
-                                    <td>R <?= $report['staff'][$x]['Revenue'] ?? '0.00' ?></td>
+                                    <td><?= $report['staff'][$x]['complete_appointments'] ?? '0' ?></td>
+                                    <td><?= $report['staff'][$x]['cancelled_appointments'] ?? '0' ?></td>
+                                    <td>R <?= $report['staff'][$x]['revenue'] ?? '0.00' ?></td>
                                 </tr>
                         <?php endfor;
                         } else {
@@ -386,48 +384,48 @@ require('../scripts/report_script.php');
         }
 
         // Filter function
-    function toggleFilterForm() {
-        const filterForm = document.getElementById('filterForm');
-        filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function setCurrentDate() {
-        const today = new Date();
-        document.getElementById('day').value = today.getDate();
-        document.getElementById('month').value = today.getMonth() + 1; // Months are zero-indexed
-        document.getElementById('year').value = today.getFullYear();
-    }
-
-    function applyDateFilter() {
-        const reportType = document.getElementById('reportType').value;
-        const day = document.getElementById('day').value;
-        const month = document.getElementById('month').value;
-        const year = document.getElementById('year').value;
-
-        let dateString = '';
-        let periodText = '';
-
-        if (reportType === 'day' && day && month && year) {
-            dateString = `${day} ${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
-            periodText = 'day';
-        } else if (reportType === 'month' && month && year) {
-            dateString = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
-            periodText = 'month';
-        } else if (reportType === 'year' && year) {
-            dateString = `${year}`;
-            periodText = 'year';
+        function toggleFilterForm() {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
         }
 
-        if (dateString) {
-            document.getElementById('report-date').textContent = dateString.trim();
-            document.querySelectorAll('.sales-period').forEach(element => {
-                element.textContent = periodText;
-            });
+        function setCurrentDate() {
+            const today = new Date();
+            document.getElementById('day').value = today.getDate();
+            document.getElementById('month').value = today.getMonth() + 1; // Months are zero-indexed
+            document.getElementById('year').value = today.getFullYear();
         }
 
-        // Hide the form after applying the filter
-        document.getElementById('filterForm').style.display = 'none';
-    }
+        function applyDateFilter() {
+            const reportType = document.getElementById('reportType').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+
+            let dateString = '';
+            let periodText = '';
+
+            if (reportType === 'day' && day && month && year) {
+                dateString = `${day} ${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+                periodText = 'day';
+            } else if (reportType === 'month' && month && year) {
+                dateString = `${new Date(0, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+                periodText = 'month';
+            } else if (reportType === 'year' && year) {
+                dateString = `${year}`;
+                periodText = 'year';
+            }
+
+            if (dateString) {
+                document.getElementById('report-date').textContent = dateString.trim();
+                document.querySelectorAll('.sales-period').forEach(element => {
+                    element.textContent = periodText;
+                });
+            }
+
+            // Hide the form after applying the filter
+            document.getElementById('filterForm').style.display = 'none';
+        }
     </script>
     <!--<script>
         // Function to show the selected page and hide others  

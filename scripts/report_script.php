@@ -30,6 +30,7 @@ function weekReport()
 
     $appointments = countAppointments($conn, $startOfWeek, $endOfWeek, "week");
     $services = serviceDetails($conn, $startOfWeek, $endOfWeek);
+    $staff = staffDetails($conn, $startOfWeek, $endOfWeek);
     $serviceTotal = 0;
 
     foreach ($services as $service) {
@@ -44,7 +45,8 @@ function weekReport()
         'sales' => $serviceTotal,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services
+        'services' => $services,
+        'staff' => $staff
     );
     $conn->close();
 
@@ -63,6 +65,7 @@ function monthReport()
 
     $appointments = countAppointments($conn, $startOfMonth, $endOfMonth, "month");
     $services = serviceDetails($conn, $startOfMonth, $endOfMonth);
+    $staff = staffDetails($conn, $startOfMonth, $endOfMonth);
     $serviceTotal = 0;
 
     foreach ($services as $service) {
@@ -77,7 +80,8 @@ function monthReport()
         'sales' => $serviceTotal,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services
+        'services' => $services,
+        'staff' => $staff
     );
     $conn->close();
 
@@ -115,6 +119,7 @@ function quarterReport()
 
     $appointments = countAppointments($conn, $startOfQuarter, $endOfQuarter, "quarter");
     $services = serviceDetails($conn, $startOfQuarter, $endOfQuarter);
+    $staff = staffDetails($conn, $startOfQuarter, $endOfQuarter);
     $serviceTotal = 0;
 
     foreach ($services as $service) {
@@ -129,7 +134,8 @@ function quarterReport()
         'sales' => $serviceTotal,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services
+        'services' => $services,
+        'staff' => $staff
     );
     $conn->close();
 
@@ -151,6 +157,7 @@ function yearReport()
 
     $appointments = countAppointments($conn, $startOfYear, $endOfYear, "year");
     $services = serviceDetails($conn, $startOfYear, $endOfYear);
+    $staff = staffDetails($conn, $startOfYear, $endOfYear);
     $serviceTotal = 0;
 
     foreach ($services as $service) {
@@ -165,7 +172,8 @@ function yearReport()
         'sales' => $serviceTotal,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services
+        'services' => $services,
+        'staff' => $staff
     );
     $conn->close();
 
@@ -180,6 +188,7 @@ function customReport($startDate, $endDate)
 
     $appointments = countAppointments($conn, $startDate, $endDate, "custom date");
     $services = serviceDetails($conn, $startDate, $endDate);
+    $staff = staffDetails($conn, $startDate, $endDate);
     $serviceTotal = 0;
 
     foreach ($services as $service) {
@@ -194,7 +203,8 @@ function customReport($startDate, $endDate)
         'sales' => $serviceTotal,
         'appointments' => $appointments,
         'users' => $user_result->num_rows,
-        'services' => $services
+        'services' => $services,
+        'staff' => $staff
     );
     $conn->close();
 
@@ -224,9 +234,7 @@ function countAppointments($conn, $startDate, $endDate, $period)
 
 function serviceDetails($conn, $startDate, $endDate)
 {
-    $query = "  
-        SELECT  
-            s.serviceID AS name,  
+    $query = "SELECT s.serviceID AS name,  
             COUNT(CASE WHEN a.status_ = 'Complete' THEN 1 END) AS completeCount,  
             SUM(CASE WHEN a.status_ = 'Complete' THEN 1 ELSE 0 END) * s.price AS revenue,  
             s.price,  
@@ -257,6 +265,46 @@ function serviceDetails($conn, $startDate, $endDate)
         echo "<script>console.log('serviceDetails: " . json_encode($output) . "');</script>";
     } else {
         echo "<script>console.log('no serviceDetails');</script>";
+    }
+
+    return $output;
+}
+
+function staffDetails($conn, $startDate, $endDate)
+{
+    $query = "SELECT  
+        a.stylist,  
+        COUNT(CASE WHEN a.status_ = 'Complete' THEN 1 END) AS complete_appointments,  
+        COUNT(CASE WHEN a.status_ = 'Cancelled' THEN 1 END) AS cancelled_appointments,  
+        SUM(CASE WHEN a.status_ = 'Complete' THEN s.price ELSE 0 END) AS revenue  
+    FROM  
+        appointment a  
+    JOIN   
+        service s ON a.serviceID = s.serviceID   
+    WHERE   
+        a.scheduledDateTime BETWEEN ? AND ?   
+    GROUP BY  
+        a.stylist";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $startDate, $endDate);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $output = array();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $output[] = array(
+                'name' => $row["stylist"],
+                'complete_appointments' => $row["complete_appointments"],
+                'cancelled_appointments' => $row["cancelled_appointments"],
+                'revenue' => $row["revenue"]
+            );
+        }
+        echo "<script>console.log('staffDetails: " . json_encode($output) . "');</script>";
+    } else {
+        echo "<script>console.log('no staffDetails');</script>";
     }
 
     return $output;
