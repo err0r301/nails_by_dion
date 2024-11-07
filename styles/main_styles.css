@@ -1,4 +1,4 @@
-:root[data-theme="light"] {
+:root/*[data-theme="light"]*/ {
   --text: #000000;
   --background: #f3e6d8;
   --primary: #e3cfbb;
@@ -6,21 +6,12 @@
   --accent: #8f7a37;
   --light: #ffffff;
 }
-:root[data-theme="dark"] {
-  --text: #000000;
-  --background: #050000;
-  --primary: #533b23;
-  --secondary: #7c5731;
-  --accent: #563e2e;
-  --light: #000000;
-}
 
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--light);
 }
 
 /* ------- forms -------- */
@@ -47,8 +38,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 2px 3px #000d3848, inset 0px 0px 0px #cea984,
-    inset 0px -2px 3px #8f7a37;;
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 0px 0px var(--secondary),
+    inset 0px -2px 3px var(--accent);
   background-color: var(--background);
 }
 
@@ -66,8 +57,8 @@ body {
 }
 
 .error {
-  background-color: #cea984;
-  border: solid 1px #8f7a37;
+  background-color: rgb(255, 220, 224);
+  border: solid 1px rgb(251, 157, 157);
   font-weight: bolder;
   width: 300px;
   padding: 20px;
@@ -76,27 +67,27 @@ body {
   font-size: 1rem;
   display: none;
 }
-/*------------------------------------------------------------------------*/
+
 .error p {
   margin: 0;
-  color: #8f7a37;
+  color: red;
 }
 
 .btn {
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 10px;
-  border: solid 1px #8f7a37;
-  background: linear-gradient(135deg, #8f7a37, #cea984);
+  border: solid 1px var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
   color: #fff;
   font-weight: bolder;
-  box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #cea984,
-    inset 0px -4px 5px #8f7a37;
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px var(--secondary),
+    inset 0px -4px 5px var(--accent);
 }
 
 .btn:hover {
-  box-shadow: 0px 2px 3px #000d3848, inset 0px 7px 5px #cea984,
-    inset 0px -7px 5px #8f7a37;
+  box-shadow: 0px 2px 3px #000d3848, inset 0px 7px 5px var(--secondary),
+    inset 0px -7px 5px var(--accent);
 }
 
 .input-field {
@@ -118,7 +109,7 @@ body {
   padding: 10px 15px;
   font-size: 1rem;
   border-radius: 8px;
-  border: solid 1px black;
+  border: solid 1px #8d8d8d;
   letter-spacing: 1px;
   width: 300px;
 }
@@ -126,7 +117,7 @@ body {
 .input-field input:focus,
 .input-field input:valid {
   outline: none;
-  border: solid 1px black;
+  border: solid 1px var(--text);
 }
 
 input:-webkit-autofill {
@@ -200,14 +191,12 @@ input:-webkit-autofill {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  background: var(--background);
-  border: 1px solid var(--text);
+  background: #fff;
   z-index: 3;
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 20px;
-  color: var(--text);
 }
 
 .popup .close-btn {
@@ -217,7 +206,7 @@ input:-webkit-autofill {
   top: 20px;
   width: 30px;
   height: 30px;
-  background: var(--accent);
+  background: var(--text);
   color: #fff;
   font-size: 25px;
   font-weight: 600;
@@ -273,7 +262,7 @@ input:-webkit-autofill {
   margin: 20px 10px 10px 10px;
   padding: 10px 0;
   background: var(--text);
-  color: var(--light);
+  color: #fff;
   border: 0;
   outline: none;
   font-size: 18px;
