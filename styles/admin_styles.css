@@ -1,4 +1,6 @@
-:root
+/*:root {
+  /* Add the opening brace here */
+/*}*/
 
 /*[data-theme="light"] {
   --text: #000000;
@@ -9,13 +11,115 @@
   --light: #ffffff;
 }*/
 
-/*:root[data-theme="dark"]*/ {
+/*:root[data-theme="dark"]{
   --text: #ffffff;
   --background: #000000;
   --primary: #d6b89a;
   --secondary: #b8946f;
   --accent: #4d3b00;
   --text-light: #000000;
+}  */
+
+/* potential dark color replacing white #585555 */
+
+:root[data-theme="light"] {
+  --text: #000000;
+  --background: #fffafa;
+  --primary: #dcc4ac;
+  --secondary: #cea883;
+  --accent: #d1b9a9;
+  --light: #ffffff;
+  --extra: transparent;
+}
+
+
+:root[data-theme="dark"] {
+  --text: #ffffff;
+  --background: #050000;
+  --primary: #533b23;
+  --secondary: #7c5731;
+  --accent: #563e2e;
+  --text-light: #000000;
+  --dark_p2: #3a3737;
+  --extra: #ffffff;
+}
+
+
+
+
+/* .theme-toggle {
+  background-color: var(--primary);
+  color: var(--text);
+  margin-right: 20px;
+  padding-right: 10px;
+} */
+
+.container-toggle {
+  margin-right: 20px;
+  background-color: transparent;
+  padding: 5px;
+  
+}
+
+/* From Uiverse.io by alexruix */ 
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  border-radius: 20px;
+  border: 1px solid var(--text);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  --background: var(--primary);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary);
+  transition: .5s;
+  border-radius: 30px;
+}
+
+/* the sun icon */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 15px -4px 0px 15px black;
+  background: var(--background);
+  transition: .5s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+/* the moon icon */
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 8px -4px 0px 0px white;
+}
+
+.no-transition * {
+  transition: none !important;
 }
 
 body {
@@ -365,6 +469,7 @@ body {
   border-radius: 3px;
   background-color: transparent;
   opacity: 0.6;
+  color: var(--text);
 }
 
 .crud-btn:hover {
@@ -373,7 +478,7 @@ body {
 }
 
 .btn-add {
-  color: white;
+  color: var(--light);
   width: 80px;
   height: 30px;
   background-color: var(--text);
@@ -381,6 +486,7 @@ body {
 
 .btn-add:hover {
   background-color: rgb(0, 210, 0);
+
 }
 
 .btn-delete:hover {
@@ -598,7 +704,7 @@ body {
 /*----------- Notifications ----------*/
 
 .message-box {
-  background-color: #e3cfbb;
+  background-color: var(--primary);
   padding: 30px 30px 0 20px;
   display: flex;
   justify-content: space-between;
@@ -638,16 +744,22 @@ body {
 .message-name {
   font-size: larger;
   font-weight: bold;
+  color: var(--text);
 }
 
 .message-title {
   font-size: medium;
+  color: var(--text);
 }
 
 .message-time {
   font-size: medium;
   color: grey;
   margin-right: 20px;
+}
+
+#modalMessage{
+  color: var(--text);
 }
 
 #calendar-input {
@@ -669,7 +781,7 @@ body {
 }
 
 .message-box:hover {
-  background-color: #d3bda6;
+  background-color: var(--secondary);
 }
 
 .message-read {
@@ -743,7 +855,7 @@ body {
 }
 
 .modal-content {
-  background-color: var(--light);
+  background-color: var(--background);
   padding: 20px;
   max-width: 50%;
   color: var(--text);
@@ -754,7 +866,7 @@ body {
 
 .close {
   display: none;
-  color: #aaa;
+  color: var(--text);
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -762,7 +874,7 @@ body {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: var(--text);
   text-decoration: none;
   cursor: pointer;
 }
@@ -818,7 +930,7 @@ body {
 }
 
 .add-card {
-  background-color: #f9f9f9;
+  background-color: var(--background);
   border-radius: 10px;
   padding: 5px;
   text-align: center;
@@ -826,6 +938,7 @@ body {
   width: 90%;
   height: 25%;
   margin: 0px;
+  border: 1px solid var(--extra);
 }
 
 .add-card input {
@@ -833,15 +946,15 @@ body {
   width: calc(100% - 20px);
   margin: 20px auto;
   padding: 5px;
-  border: 1px solid #e0dbdb;
+  border: 1px solid var(--text);
   border-radius: 5px;
 }
 
 .add-card button {
   padding: 10px 20px;
-  background-color: black;
+  background-color: var(--text);
   font-size: medium;
-  color: white;
+  color: var(--light);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -893,7 +1006,8 @@ body {
 }
 
 .team-card {
-  background-color: #f9f9f9;
+  background-color: var(--background);
+  border: 1px solid var(--extra);
   width: 200px;
   /*height: 270px;       Height with buttons included*/
   height: 250px;
@@ -906,7 +1020,7 @@ body {
   margin: 0px;
   padding: 10px;
   padding-bottom: 0px;
-  color: black;
+  color: var(--text);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -1027,8 +1141,8 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: var(--text);
+  color: var(--light);
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -1039,8 +1153,8 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: var(--text);
+  color: var(--light);
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -1059,7 +1173,7 @@ body {
   width: 80%;
   margin: 20px auto;
   padding: 10px;
-  border: 1px solid #e0dbdb;
+  border: 1px solid var(--text);
   border-radius: 5px;
 }
 #edit-member-form button {
@@ -1068,8 +1182,8 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: var(--text);
+  color: var(--light);
   margin-right: 0px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -1174,7 +1288,7 @@ body {
 
 .profile-edit-info p {
   font-size: 1em;
-  color: var(--accent);
+  color: var(--text);
 }
 
 .profile-form {
@@ -1192,7 +1306,7 @@ body {
   max-width: 500px;
   padding: 5px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--text);
   border-radius: 3px;
 }
 
@@ -1303,8 +1417,8 @@ body {
 .app-content-search {
   display: inline-flex;
   align-items: center;
-  background-color: rgb(242, 242, 245);
-  border: 1px solid rgb(231, 231, 232);
+  background-color: var(--dark_p2);
+  border: 1px solid var(--text);
   border-radius: 5px;
 }
 
@@ -1321,7 +1435,7 @@ body {
 }
 
 .search-bar {
-  background-color: rgb(242, 242, 245);
+  background-color: var(--dark_p2);
   border: none;
   color: var(--text);
   font-size: 14px;
@@ -1381,10 +1495,10 @@ body {
 }
 
 .upload-image {
-  background-color: black;
-  color: var(--light);
+  background-color: var(--accent);
+  color: var(--text);
   padding: 10px;
-
+  
   border-radius: 5px;
   cursor: pointer;
   display: block;
@@ -1424,7 +1538,7 @@ body {
 
 .tableView .service-row:hover {
   box-shadow: var(--filter-shadow);
-  background-color: rgb(243, 238, 238);
+  background-color: var(--dark_p2);
 }
 
 .tableView .service-row .cell-more-button {
@@ -1633,7 +1747,7 @@ body {
 }
 
 .inventory-row {
-  background-color: #fff;
+  background-color: var(--background);
   /*border-bottom: 1px solid #ddd; */
 }
 
@@ -1760,4 +1874,43 @@ body {
     height: 100px;
     width: 100px;
   }
+}
+
+/* Apply theme variables to elements */
+.nav-icon {
+  color: var(--text);
+}
+
+.sidebar-list > a {
+  color: var(--background);
+}
+
+.table td {
+  background-color: var(--background);
+}
+
+.table tbody tr:hover {
+  background-color: rgb(217, 217, 217); /* Keep hover state unchanged */
+}
+
+input, select {
+  background-color: var(--dark_p2);
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent); /* Optional: Change border color on focus */
+}
+
+input, select, textarea {
+  background-color: var(--dark_p2);
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--text); /* Optional: Change border color on focus */
 }
