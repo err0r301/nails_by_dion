@@ -65,7 +65,7 @@ if (page == "/admin/dashboard.php") {
   displayWeeklySales("dashboard-sales-weekly");
   displayServiceRevenue("dashboard-service-revenue");
   displayCustomerNumber("dashboard-customer-number");
-} else if (page == "/admin/sale.php") {
+} else if (page == "/admin/report.php") {
   displayMonthlySales("sales-monthly");
   displayWeeklySales("sales-weekly");
   displayServiceRevenue("service-revenue");
@@ -252,7 +252,7 @@ function displayServiceRevenue(id) {
           beginAtZero: true,
         },
       },
-      indexAxis: "y",
+      indexAxis: "x",
     },
   });
 }

@@ -18,7 +18,7 @@
         $page = 'sale';
         include '../partial/admin_header.php';
         include '../partial/admin_sidebar.php';
-        require '../scripts/chart.php';
+        //require '../scripts/chart.php';
         ?>
 
         <main class="main-container">
