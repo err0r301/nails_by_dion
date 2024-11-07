@@ -14,6 +14,7 @@ echo "<script> console.log('session details :
         <i class="fa fa-bars"></i>
     </div>
     <div class="header-right">
+        <!--dark/light theme-->
         <a href="admin_notification.php">
             <i class="nav-icon fa fa-bell"></i>
         </a>

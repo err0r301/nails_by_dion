@@ -1,22 +1,22 @@
 :root
 
-/*[data-theme="light"]*/ {
+/*[data-theme="light"] {
   --text: #000000;
   --background: #fffcfc;
   --primary: #dcc3ab;
   --secondary: #cea984;
   --accent: #674f00;
   --light: #ffffff;
-}
+}*/
 
-/*:root[data-theme="dark"]{
+/*:root[data-theme="dark"]*/ {
   --text: #ffffff;
   --background: #000000;
   --primary: #d6b89a;
   --secondary: #b8946f;
   --accent: #4d3b00;
   --text-light: #000000;
-}*/
+}
 
 body {
   background-color: var(--background);
