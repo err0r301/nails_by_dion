@@ -274,7 +274,6 @@ ini_set('display_errors', 1);
         </main>
     </div>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script>
         function applyDateFilter() {
